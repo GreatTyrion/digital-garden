@@ -10,11 +10,11 @@ A digital garden is an online space for thinking in public. It's less about poli
 
 Each "issue" in this garden is a unique collection that may include:
 
-*   **🗺️ Maps & Visualizations:** Personal cartography projects and data visualizations.
-*   **📖 Writing & Fiction:** Short stories, novel excerpts, and narrative experiments.
-*   **🧠 Knowledge Snippets:** Interesting concepts, research notes, and things I'm learning about.
-*   **🛠️ Toolbox:** Cool tools, software, and resources I find useful.
-*   **💭 Seedlings:** Raw, unpolished thoughts and early-stage ideas.
+* **🗺️ Maps & Visualizations:** Personal cartography projects and data visualizations.
+* **📖 Writing & Fiction:** Short stories, novel excerpts, and narrative experiments.
+* **🧠 Knowledge Snippets:** Interesting concepts, research notes, and things I'm learning about.
+* **🛠️ Toolbox:** Cool tools, software, and resources I find useful.
+* **💭 Seedlings:** Raw, unpolished thoughts and early-stage ideas.
 
 Browse the issues below to see what's currently growing.
 
@@ -22,14 +22,13 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
-| [#1](/issues-1.md) | YYYY-MM-DD | A brief description of what this issue is about. | 🗺️, 🧠, 🛠️ |
-| [#2](/issues-2.md) | YYYY-MM-DD | Another description of the contents. | 📖, 💭 |
+| [#1](posts/issue-1/issue-1.md) | 2025-09-28 | Something I want to share. | 🗺️, 🧠, 🛠️, 📖 |
 
 *(I'll maintain this table as new issues are published.)*
 
 ## How This Garden Grows
 
-*   **Issue-Based:** Content is published in individual Markdown files, each containing a mix of different elements.
-*   **No Schedule:** New issues appear whenever I have enough interesting material to share. There is no fixed publishing schedule.
-*   **Work in Progress:** Notes may be incomplete, revised, or linked to other notes as my understanding evolves.
-*   **Connection over Chronology:** The value is in how ideas connect, not in when they were posted.
+* **Issue-Based:** Content is published in individual Markdown files, each containing a mix of different elements.
+* **No Schedule:** New issues appear whenever I have enough interesting material to share. There is no fixed publishing schedule.
+* **Work in Progress:** Notes may be incomplete, revised, or linked to other notes as my understanding evolves.
+* **Connection over Chronology:** The value is in how ideas connect, not in when they were posted.

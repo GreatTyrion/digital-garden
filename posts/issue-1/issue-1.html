@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第1期 - 数字花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .issue-meta {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .issue-number {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .link-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .link-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .link-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .issue-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-btn">← 返回首页</a>
+        
+        <header class="header">
+            <h1>🌱 Digital Garden 第1期</h1>
+            <div class="issue-meta">
+                <span class="issue-number">#1</span>
+                <span>2025年9月28日</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 本期目录</h3>
+            <ul>
+                <li><a href="#notebooklm">工具分享：NotebookLM</a></li>
+                <li><a href="#obdp">知识片段：星载数据处理技术</a></li>
+                <li><a href="#rental-map">实用地图：纽芬兰租房地图</a></li>
+                <li><a href="#novel">小说分享：《重生之瑶光倾城》</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="notebooklm" class="section">
+                <h2>🛠️ 工具分享：NotebookLM</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>描述</strong>: NotebookLM是<strong>谷歌推出的一款AI笔记工具</strong>。YouTube上有大量关于如何使用NotebookLM的视频。</p>
+                </div>
+
+                <h3>主要功能</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li>它能够将散落在各种数据源中的知识进行归纳整理，这些数据源包括<strong>音频、视频、PDF、网页</strong>等。</li>
+                        <li>整理后的知识可以<strong>输出成学习指南、简报、音频概览或思维导图</strong>等多种形式。</li>
+                        <li>用户可以<strong>新建笔记本，并上传各种来源的学习资料</strong>，例如YouTube视频。</li>
+                    </ul>
+                </div>
+
+                <h3>使用限制</h3>
+                <p>访问NotebookLM需要<strong>国外的上网环境</strong>。<strong>目前它只支持YouTube视频</strong>。</p>
+            </section>
+
+            <section id="obdp" class="section">
+                <h2>🧠 知识片段：星载数据处理技术</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>: 星载数据处理（On-Board Data Processing，OBDP）是指在航天器上直接对采集到的数据进行实时处理和分析的技术。这种方法能够显著减少数据传输量，提高实时性，并增强航天器的自主性。</p>
+                </div>
+
+                <h3>核心优势</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li>减少数据传输量，降低通信成本</li>
+                        <li>提高数据处理实时性</li>
+                        <li>增强航天器自主决策能力</li>
+                        <li>支持地球观测、深空探索、灾害监测等关键应用</li>
+                    </ul>
+                </div>
+
+                <h3>技术趋势</h3>
+                <p>随着人工智能技术的融合和卫星星座系统的普及，星载数据处理正朝着更智能化、协同化的方向发展。</p>
+
+                <div class="link-card">
+                    <h4>📊 详细技术报告</h4>
+                    <p>查看完整的星载数据处理技术简报，了解技术原理、应用案例和发展前景。</p>
+                    <a href="./on-board-data-processing.md" target="_blank">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="rental-map" class="section">
+                <h2>🗺️ 实用地图：纽芬兰圣约翰斯及其周边城市的租房地图</h2>
+                
+                <p>这个交互式租房地图是通过一个Kijiji租房信息爬虫项目生成的，其主要功能和作用如下：</p>
+
+                <ol>
+                    <li><strong>租房搜索辅助</strong>：帮助用户快速找到心仪区域的租房信息</li>
+                    <li><strong>价格分析</strong>：通过颜色编码直观了解不同区域的租金水平</li>
+                    <li><strong>地理位置参考</strong>：结合地图和地址信息，更好地了解租房位置</li>
+                    <li><strong>数据可视化</strong>：将爬取的文本数据转化为直观的视觉展示</li>
+                </ol>
+
+                <p>这个地图功能让原本枯燥的租房数据变得生动直观，大大提升了用户查找和分析租房信息的效率。</p>
+
+                <div class="link-card">
+                    <h4>🌍 访问租房地图</h4>
+                    <p>点击下方链接查看交互式租房地图，探索纽芬兰地区的租房信息。</p>
+                    <a href="https://greattyrion.github.io/localRentalPlace/" target="_blank">打开地图 →</a>
+                </div>
+            </section>
+
+            <section id="novel" class="section">
+                <h2>📚 小说分享：《重生之瑶光倾城》</h2>
+                
+                <div class="highlight-box">
+                    <p>《重生之瑶光倾城》是一部以2025年河北孟村真实家庭暴力案件为创作灵感的重生复仇小说。作品讲述了一个25岁的女性在被丈夫殴打致死后，意识回溯到18岁，带着痛苦记忆重生，通过智慧与法律手段实现正义复仇的动人故事。</p>
+                </div>
+
+                <div class="link-card">
+                    <h4>📖 项目主页</h4>
+                    <p>查看开源重生小说项目的GitHub仓库，了解项目详情和开发进度。</p>
+                    <a href="https://github.com/greywolfrock772/xiaoyao-rebirth" target="_blank">访问项目仓库 →</a>
+                </div>
+
+                <div class="link-card">
+                    <h4>📱 在线阅读</h4>
+                    <p>在GitHub Pages上在线阅读这部基于真实案件的开源重生小说。</p>
+                    <a href="https://greywolfrock772.github.io/xiaoyao-rebirth/" target="_blank">开始阅读 →</a>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="../../index.html" class="nav-btn">🏠 返回首页</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" class="nav-btn secondary" target="_blank">💬 意见反馈</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 键返回顶部
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // 添加阅读进度指示器
+        function updateReadingProgress() {
+            const article = document.querySelector('.content');
+            const progress = document.querySelector('.reading-progress');
+            
+            if (article && progress) {
+                const articleTop = article.offsetTop;
+                const articleHeight = article.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+                
+                const progressPercent = Math.min(
+                    Math.max((scrollTop - articleTop + windowHeight) / articleHeight * 100, 0),
+                    100
+                );
+                
+                progress.style.width = progressPercent + '%';
+            }
+        }
+
+        // 监听滚动事件
+        window.addEventListener('scroll', updateReadingProgress);
+    </script>
+</body>
+</html>

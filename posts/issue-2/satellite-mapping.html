@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>揭开深蓝面纱：卫星与人工智能如何绘制隐藏的海上工业世界 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .case-study {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .case-study h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .case-study ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .case-study li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .case-study li::before {
+            content: '🚀';
+            position: absolute;
+            left: 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stats-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-2.html" class="back-btn">← 返回第2期</a>
+        
+        <header class="header">
+            <h1>🛰️ 揭开深蓝面纱</h1>
+            <div class="subtitle">卫星与人工智能如何绘制隐藏的海上工业世界</div>
+            <div class="meta">
+                <span>📅 2025年</span>
+                <span>📊 科学研究</span>
+                <span>🌊 海洋监测</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">引言：我们海洋中看不见的经济活动</a></li>
+                <li><a href="#blind-spots">1. 海洋的"盲点"：为何我们知之甚少</a>
+                    <ul>
+                        <li><a href="#ais-limitations">AIS系统的局限性</a></li>
+                        <li><a href="#hidden-activities">未被记录的活动</a></li>
+                    </ul>
+                </li>
+                <li><a href="#tech-tools">2. 高科技侦探工具：科学家如何揭示真相</a>
+                    <ul>
+                        <li><a href="#satellites">卫星技术</a></li>
+                        <li><a href="#ais-data">AIS数据</a></li>
+                        <li><a href="#deep-learning">深度学习</a></li>
+                    </ul>
+                </li>
+                <li><a href="#discoveries">3. 新地图揭示的三大惊人发现</a>
+                    <ul>
+                        <li><a href="#fishing-scale">发现一：全球捕鱼活动的真实规模</a></li>
+                        <li><a href="#energy-revolution">发现二：海上能源革命</a></li>
+                        <li><a href="#covid-impact">发现三：新冠疫情的不均衡影响</a></li>
+                    </ul>
+                </li>
+                <li><a href="#future-implications">4. 这对地球的未来意味着什么</a>
+                    <ul>
+                        <li><a href="#fighting-illegal">打击非法活动</a></li>
+                        <li><a href="#environmental-impact">量化环境影响</a></li>
+                        <li><a href="#ocean-changes">理解海洋使用的变迁</a></li>
+                        <li><a href="#global-collaboration">赋能全球合作</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>🌊 引言：我们海洋中看不见的经济活动</h2>
+                    <p>海洋是全球经济的引擎，为我们提供食物、能源，并承载着全球贸易的动脉。这个价值高达1.5至2.5万亿美元的"蓝色经济"在很大程度上是公众视野之外的隐形世界。</p>
+                    <p>这个隐形世界的核心问题在于，我们对其活动的了解极不完整。在陆地上，我们几乎为每一条道路都绘制了地图；但在广阔的海洋上，人类活动的扩张却"记录甚少"。研究显示，全球约有72%至76%的工业渔船未被公共系统追踪。更令人惊讶的是，这个问题并非仅限于渔业：全球21%至30%的运输和能源船只活动同样处于"隐身"状态。</p>
+                    <p>然而，一项技术突破正在改变这一现状。通过结合卫星图像和人工智能，科学家们首次将这个看不见的世界变得清晰可见。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="blind-spots" class="section">
+                <h2>1. 海洋的"盲点"：为何我们知之甚少</h2>
+
+                <p>长久以来，我们主要依赖一种名为"船舶自动识别系统"（AIS）的技术来追踪船只。这套系统可以被理解为一个公开的GPS广播系统，船只通过它广播自己的位置。然而，AIS存在三个主要弱点，导致我们无法获得完整的海上活动图景：</p>
+
+                <div class="warning-box">
+                    <h4>⚠️ AIS系统的三大局限</h4>
+                    <ul>
+                        <li><strong>法规不一 (Varying Regulations)</strong>：并非所有船只都被强制要求使用AIS。法规因国家、船只大小和活动类型而异。</li>
+                        <li><strong>非法活动 (Illicit Activities)</strong>：从事非法活动的船只可以轻易关闭其AIS应答器，成为不被公共系统追踪的"黑暗船只"（dark vessels）。</li>
+                        <li><strong>信号盲区 (Signal Blind Spots)</strong>：在一些沿海地区，卫星信号接收效果不佳，同时部分国家政府可能会限制AIS数据的公开。</li>
+                    </ul>
+                </div>
+
+                <p>这些盲点意味着我们错过了大量的海上活动。为了看清全貌，我们需要一种能穿透这些盲点的全新方法。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="tech-tools" class="section">
+                <h2>2. 高科技侦探工具：科学家如何揭示真相</h2>
+
+                <p>为了绘制一幅完整的海上工业地图，科学家们将三种强大的技术结合在一起，形成了一套高科技侦探工具。</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>🛰️ 卫星：全天候的"天眼"</h4>
+                        <ul>
+                            <li><strong>合成孔径雷达（SAR）</strong>：不受光照水平和大多数天气条件的影响，无论是白天还是黑夜，多云还是下雨，都能清晰地"看到"海面上的物体。</li>
+                            <li><strong>光学卫星图像</strong>：类似普通相机，用来辅助识别和分类海上基础设施。</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>📡 AIS数据：公开的参照点</h4>
+                        <ul>
+                            <li>科学家们分析了高达<strong>530亿个AIS位置点</strong></li>
+                            <li>这些数据并非最终地图本身，而是作为"地面真相"</li>
+                            <li>用来识别哪些船只已经被公开追踪，从而区分出那些"黑暗船只"</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🧠 深度学习：能识别万物的"智能大脑"</h4>
+                        <ul>
+                            <li>训练计算机模型"看懂"卫星图像，就像人类学习识别物体一样</li>
+                            <li>科学家们设计了<strong>三个不同的人工智能模型</strong>，每个模型都有特定的任务</li>
+                            <li>准确率惊人，为研究提供了可靠的技术支撑</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>📊 AI模型性能统计</h4>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>AI模型</th>
+                                <th>任务</th>
+                                <th>准确率</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>模型一</td>
+                                <td>识别船只并估算其长度</td>
+                                <td>>97%</td>
+                            </tr>
+                            <tr>
+                                <td>模型二</td>
+                                <td>将海上设施分类（如风力涡轮机、石油平台及其他结构）</td>
+                                <td>>98%</td>
+                            </tr>
+                            <tr>
+                                <td>模型三</td>
+                                <td>判断船只是渔船还是非渔船</td>
+                                <td>>90%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <p>凭借这套强大的工具，科学家们得以以前所未有的清晰度，揭示了全球海洋工业活动的真实面貌。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="discoveries" class="section">
+                <h2>3. 新地图揭示的三大惊人发现</h2>
+
+                <h3 id="fishing-scale">发现一：全球捕鱼活动的真实规模</h3>
+                <div class="warning-box">
+                    <h4>🚨 令人震惊的统计数据</h4>
+                    <p>最令人震惊的统计数据是：<strong>全球约有72%至76%的工业渔船是"黑暗的"</strong>，即未出现在公共追踪系统中。这种未被追踪的捕鱼活动主要集中在"南亚、东南亚和非洲"周边海域。</p>
+                </div>
+
+                <p>旧的AIS数据具有极大的误导性。例如，仅凭AIS数据会错误地认为欧洲和亚洲的捕鱼活动规模相当。但新地图显示，<strong>亚洲在工业捕鱼中占据主导地位，占所有渔船探测总数的70%</strong>，其活动规模比欧洲大出一个数量级。</p>
+
+                <div class="case-study">
+                    <h4>🔍 具体案例：朝鲜半岛西部水域</h4>
+                    <ul>
+                        <li>发现了此前未知的全球密度最高的捕鱼活动</li>
+                        <li>即便是在全球最著名、监控最严密的海洋保护区，黑暗船只也屡见不鲜</li>
+                    </ul>
+                </div>
+
+                <h3 id="energy-revolution">发现二：海上能源革命</h3>
+                <div class="success-box">
+                    <h4>⚡ 海上能源开发的快速转变</h4>
+                    <p>新地图揭示了海上能源开发的快速转变。与风能的爆炸式增长相比，海上石油开发则显得相对停滞。在过去五年中，全球海上石油平台的数量仅增长了约16%，其中美国甚至减少了数百座平台。</p>
+                </div>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>💨 风能超越石油</h4>
+                        <ul>
+                            <li>自2017年以来，海上风力涡轮机的数量"增加了一倍以上"</li>
+                            <li>在2020年底超过了石油平台的数量</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🇨🇳 中国引领增长</h4>
+                        <ul>
+                            <li>中国在海上风电发展中处于领先地位</li>
+                            <li>从2017年到2021年，其涡轮机数量"惊人地增长了900%"</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🗺️ 集中分布</h4>
+                        <ul>
+                            <li>全球海上风电开发主要局限于两个地区</li>
+                            <li>"北欧（占52%）和中国（占45%）"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 id="covid-impact">发现三：新冠疫情的不均衡影响</h3>
+                <div class="info-box">
+                    <h4>🦠 疫情对不同海洋产业的影响</h4>
+                    <p>新冠疫情大流行为观察不同海洋产业如何应对全球冲击提供了一次独特的"自然实验"。</p>
+                    <ul>
+                        <li><strong>捕鱼业 (Fishing)</strong>：全球活动量下降了12 ± 1%</li>
+                        <li><strong>运输和能源业 (Transport and Energy)</strong>：活动量"相对未受影响"，保持稳定</li>
+                    </ul>
+                </div>
+
+                <p>这些发现不仅刷新了我们对海洋的认知，更对全球海洋治理和环境保护具有深远的意义。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="future-implications" class="section">
+                <h2>4. 这对地球的未来意味着什么</h2>
+
+                <p>这幅前所未有的清晰的海上人类活动图景，对于可持续地管理我们的海洋至关重要。它的重要性主要体现在以下几个方面：</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>⚖️ 打击非法活动</h4>
+                        <ul>
+                            <li>现在，有了这份免费公开的数据，任何国家和组织都可以识别全球范围内潜在的非法捕鱼热点</li>
+                            <li>从而更有效地进行监管和执法</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>📊 量化环境影响</h4>
+                        <ul>
+                            <li>这些数据可以帮助我们量化船只和海上开发产生的温室气体排放</li>
+                            <li>为制定减排政策提供科学依据</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🌊 理解海洋使用的变迁</h4>
+                        <ul>
+                            <li>地图揭示了一个历史性的转变：全球捕鱼活动可能已经见顶</li>
+                            <li>而运输和可再生能源领域正在迅速扩张</li>
+                            <li>未来由基础设施和海上交通对海洋生态系统的影响，"可能与捕鱼的影响相匹敌"</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🤝 赋能全球合作</h4>
+                        <ul>
+                            <li>最关键的是，这份数据集是"免费提供"的</li>
+                            <li>这赋予了世界各地的国家、研究机构和保护组织强大的工具</li>
+                            <li>使它们能够更好地管理和保护我们共同的海洋财富</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🌟 结语</h4>
+                    <p>技术与数据正在照亮地球上最后一个伟大的未知领域。拥有了这份清晰的认知，我们才能更好地为子孙后代守护这片蔚蓝的星球。</p>
+                </div>
+
+                <div class="footer">
+                    <p><em>本文基于Nature期刊发表的科学研究报告整理而成，旨在普及海洋监测技术的最新发展。</em></p>
+                    <p><strong>原文链接</strong>：<a href="https://www.nature.com/articles/s41586-023-06825-8" target="_blank">Nature期刊论文</a></p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-2.html" class="nav-btn">📖 返回第2期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 键返回顶部
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // 添加阅读进度指示器
+        function updateReadingProgress() {
+            const article = document.querySelector('.content');
+            const progress = document.querySelector('.reading-progress');
+            
+            if (article && progress) {
+                const articleTop = article.offsetTop;
+                const articleHeight = article.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+                
+                const progressPercent = Math.min(
+                    Math.max((scrollTop - articleTop + windowHeight) / articleHeight * 100, 0),
+                    100
+                );
+                
+                progress.style.width = progressPercent + '%';
+            }
+        }
+
+        // 监听滚动事件
+        window.addEventListener('scroll', updateReadingProgress);
+    </script>
+</body>
+</html>

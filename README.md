@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#2](posts/issue-2/issue-2.md) | 2025-10-05 | Toolbox, Research, and Maps to Share. | 🛠️, 🛰️, 🗺️ |
 | [#1](posts/issue-1/issue-1.md) | 2025-09-28 | Something I want to share. | 🗺️, 🧠, 🛠️, 📖 |
 
 *(I'll maintain this table as new issues are published.)*

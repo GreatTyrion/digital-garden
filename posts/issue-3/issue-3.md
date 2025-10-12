@@ -51,7 +51,7 @@ AI 正在取代人类的"日常脑力劳动"，许多知识型工作可能很快
 
 **详细报告**：查看完整的[文章解读](./warnings-from-geoffrey-hinton.md)，深入了解 Hinton 的警告及其对未来的影响。
 
-**深度分析**：查看更详细的[访谈全解析](./ai-risks-and-future.md)，完整了解 AI 的历史、现状、风险与应对措施。
+**深度分析**：查看更详细的[访谈全解析](./warnings-from-geoffrey-hinton-2.md)，完整了解 AI 的历史、现状、风险与应对措施。
 
 ---
 

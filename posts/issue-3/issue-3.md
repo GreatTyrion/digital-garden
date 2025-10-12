@@ -17,7 +17,7 @@
 
 **服务链接**：[Cerulean 在线地图](https://cerulean.skytruth.org/)
 
-**详细介绍**：查看完整的[服务介绍](./skytruth-cerulean-service.html)，深入了解如何使用该服务监测海洋石油污染。
+**详细介绍**：查看完整的[服务介绍](./skytruth-cerulean-service.md)，深入了解如何使用该服务监测海洋石油污染。
 
 ---
 
@@ -49,7 +49,9 @@ Hinton 预测超级智能可能在未来 5-20 年内出现，届时人类将不�
 
 AI 正在取代人类的"日常脑力劳动"，许多知识型工作可能很快被颠覆，而体力劳动（如水管工）反而更加安全。
 
-**详细报告**：查看完整的[文章解读](./warnings-from-geoffrey-hinton.html)，深入了解 Hinton 的警告及其对未来的影响。
+**详细报告**：查看完整的[文章解读](./warnings-from-geoffrey-hinton.md)，深入了解 Hinton 的警告及其对未来的影响。
+
+**深度分析**：查看更详细的[访谈全解析](./ai-risks-and-future.md)，完整了解 AI 的历史、现状、风险与应对措施。
 
 ---
 

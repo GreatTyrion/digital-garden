@@ -3,3 +3,5 @@ tmp/
 .cursor/
 
 .DS_Store
+
+docs/

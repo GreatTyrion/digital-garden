@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实用地图：Cerulean 服务 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .video-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .video-box h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .video-box a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .video-box a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-3.html" class="back-btn">← 返回第3期</a>
+        
+        <header class="header">
+            <h1>🗺️ Cerulean 服务</h1>
+            <div class="subtitle">利用卫星技术和AI监测海洋石油污染</div>
+            <div class="meta">
+                <span>📅 2025年</span>
+                <span>🛰️ 实用地图</span>
+                <span>🌊 海洋保护</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">服务简介</a></li>
+                <li><a href="#monitoring">监测海洋石油污染</a></li>
+                <li><a href="#patterns">理解污染模式</a></li>
+                <li><a href="#resources">额外资源</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>🌊 服务简介</h2>
+                    <p>SkyTruth 的 <strong>Cerulean（蔚蓝）</strong>服务是一个全球性、免费的在线地图应用和数据平台，它利用卫星技术和人工智能（AI）来监测和对抗<strong>海洋石油污染</strong>。</p>
+                    <p>通过使用这项服务，您可以了解全球范围内的海洋石油污染情况，识别污染源，并追踪污染趋势。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="monitoring" class="section">
+                <h2>🌊 监测海洋石油污染</h2>
+
+                <p>Cerulean 服务提供了强大的海洋石油污染监测能力，帮助用户实时了解全球海洋污染状况。</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>🛢️ 油污检测</h4>
+                        <ul>
+                            <li>通过欧洲空间局 Sentinel-1 雷达卫星图像自动检测</li>
+                            <li>近乎实时的潜在海洋石油污染事件</li>
+                            <li>显示油污带的位置和范围</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🔍 污染源识别</h4>
+                        <ul>
+                            <li>利用机器学习模型进行智能分析</li>
+                            <li>结合船舶自动识别系统（AIS）数据</li>
+                            <li>识别船只和海上石油与天然气平台</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>⚖️ 追究责任</h4>
+                        <ul>
+                            <li>提供"污染源档案"功能</li>
+                            <li>追踪特定船只的行为历史</li>
+                            <li>记录关闭 AIS 事件</li>
+                            <li>将船只行为与污染事件联系起来</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 技术亮点</h4>
+                    <p>该平台将特定船只的位置历史和关闭 AIS 事件与可能的污染事件联系起来，从而加强从检测到追究责任的途径。这种系统化的方法使得海洋污染的监管和执法变得更加高效和精准。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="patterns" class="section">
+                <h2>📈 理解污染模式</h2>
+
+                <p>除了实时监测，Cerulean 还能帮助我们理解海洋污染的长期趋势和全球分布模式。</p>
+
+                <h3>长期污染趋势</h3>
+                <div class="success-box">
+                    <p>Cerulean 有助于揭示和追踪来自以下活动的<strong>慢性石油污染</strong>：</p>
+                    <ul>
+                        <li><strong>船舶非法排放舱底油</strong>：许多船只为了节省成本，非法排放含油废水</li>
+                        <li><strong>石油钻井平台常规排放</strong>：海上平台排放的"采出水"虽然合法但有害</li>
+                    </ul>
+                    <p>这提供了一个比官方报告统计数据更广泛、更准确的污染全景图。</p>
+                </div>
+
+                <h3>全球热点地区</h3>
+                <div class="highlight-box">
+                    <h4>🗺️ 识别污染热点</h4>
+                    <p>用户可以识别船只和基础设施油污的全球和区域<strong>热点地区</strong>，使环保人士、记者和执法机构能够将精力集中在污染最严重的地方。</p>
+                    <p>这项服务的目的是为海洋倡导者和组织提供所需的科学数据，以便调查油污、追踪潜在的罪魁祸首，并推动政策变革，以保护海洋生态系统和沿海社区。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="resources" class="section">
+                <h2>📹 额外资源</h2>
+
+                <p>为了帮助您更好地了解和使用 Cerulean 服务，我们提供了以下资源：</p>
+
+                <div class="video-box">
+                    <h4>🎥 视频演示</h4>
+                    <p>观看 Cerulean 服务的完整演示视频，了解如何使用该系统，并探索全球船只和基础设施油污热点地区的早期结果。</p>
+                    <p><strong>视频标题</strong>：Cerulean：在全球海洋中检测石油污染</p>
+                    <p>该视频是一个网络研讨会，介绍了 Cerulean 系统、如何使用它，并分享了全球船只和基础设施油污热点地区的早期结果。</p>
+                    <a href="https://www.youtube.com/watch?v=qIANexruAzU" target="_blank">观看视频演示 →</a>
+                </div>
+
+                <div class="info-box">
+                    <h4>🌐 访问 Cerulean 服务</h4>
+                    <p>点击下方链接，访问 Cerulean 在线地图应用，开始探索全球海洋石油污染数据：</p>
+                    <a href="https://cerulean.skytruth.org/" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); color: white; text-decoration: none; padding: 12px 24px; border-radius: 25px; font-weight: 500; transition: all 0.3s ease; margin-top: 10px;">访问 Cerulean 地图 →</a>
+                </div>
+
+                <div class="footer">
+                    <p><em>本文基于 SkyTruth 的 Cerulean 服务介绍整理而成，旨在普及海洋污染监测技术。</em></p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-3.html" class="nav-btn">📖 返回第3期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 键返回顶部
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+
+        // 添加阅读进度指示器
+        function updateReadingProgress() {
+            const article = document.querySelector('.content');
+            const progress = document.querySelector('.reading-progress');
+            
+            if (article && progress) {
+                const articleTop = article.offsetTop;
+                const articleHeight = article.offsetHeight;
+                const windowHeight = window.innerHeight;
+                const scrollTop = window.pageYOffset;
+                
+                const progressPercent = Math.min(
+                    Math.max((scrollTop - articleTop + windowHeight) / articleHeight * 100, 0),
+                    100
+                );
+                
+                progress.style.width = progressPercent + '%';
+            }
+        }
+
+        // 监听滚动事件
+        window.addEventListener('scroll', updateReadingProgress);
+    </script>
+</body>
+</html>
+

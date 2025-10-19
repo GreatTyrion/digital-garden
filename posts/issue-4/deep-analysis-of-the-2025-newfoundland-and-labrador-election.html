@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025年纽芬兰选举——民心求变与权力颠覆 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stats-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .stats-table {
+                font-size: 0.9rem;
+            }
+
+            .stats-table th,
+            .stats-table td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-4.html" class="back-btn">← 返回第4期</a>
+        
+        <header class="header">
+            <h1>📊 2025年纽芬兰选举</h1>
+            <div class="subtitle">民心求变与权力颠覆</div>
+            <div class="meta">
+                <span>📅 2025年10月</span>
+                <span>📊 时事分析</span>
+                <span>🇨🇦 加拿大</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">选举概况：一场政治海啸</a></li>
+                <li><a href="#core">一、选举核心：民心求变与执政疲劳</a>
+                    <ul>
+                        <li><a href="#liberal-failure">自由党的失败：务实政策难以抵挡怒火</a></li>
+                        <li><a href="#pc-victory">进步保守党的胜利：承诺"改变"是最好的纲领</a></li>
+                    </ul>
+                </li>
+                <li><a href="#voters">二、选民结构与地理分布</a></li>
+                <li><a href="#future">三、选举结果带来的未来三年影响</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>🌊 选举概况：一场政治海啸</h2>
+                    <p>纽芬兰与拉布拉多省（Newfoundland and Labrador）在2025年的省选中迎来了一次彻底的政治海啸。进步保守党（Progressive Conservative - PC）在托尼·威克汉姆（Tony Wakeham）的领导下，以微弱多数推翻了执政十年的自由党，组建了新政府。</p>
+                    <p>这次选举与其说是选民对PC政策纲领的完全认同，不如说是<strong>"民心求变"和对自由党执政记录的强烈不满</strong>所驱动的"惩罚性投票"。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="core" class="section">
+                <h2>一、选举核心：民心求变与执政疲劳</h2>
+
+                <p>本次选举的结果明确地反映了选民对现状的愤怒，而非对特定政策的理性选择。</p>
+
+                <h3 id="liberal-failure">自由党的失败：务实政策难以抵挡怒火</h3>
+
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>政策策略</th>
+                            <th>务实之处</th>
+                            <th>失败原因</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>经济核心</strong></td>
+                            <td>以"丘吉尔瀑布能源协议"为中心，承诺通过数百亿的能源收入来偿还巨额省债，并投资公共服务。</td>
+                            <td>选民对此类大型项目持<strong>高度不信任态度</strong>（受穆斯克拉特瀑布项目灾难影响）。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>竞选主张</strong></td>
+                            <td>强调"真正的势头，真正的能源"，试图将自己描绘成<strong>财政负责的管理者</strong>。</td>
+                            <td>这种务实的警告<strong>被选民对现状的痛苦所免疫</strong>。十年执政后，医疗系统崩溃、生活成本飙升，选民认为自由党已经失去了解决这些问题的能力。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>提前选举</strong></td>
+                            <td>新省长约翰·霍根（John Hogan）试图利用微弱的领先民调巩固权力。</td>
+                            <td>结果适得其反。提前选举被视为缺乏安全感和党内不稳的信号，未能为霍根赢得个人授权。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="pc-victory">进步保守党的胜利：承诺"改变"是最好的纲领</h3>
+
+                <p>PC党成功地将选举简化为一个核心诉求：<strong>"是时候改变了"（Time for a change）</strong>。</p>
+
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>政策策略</th>
+                            <th>"画大饼"之处</th>
+                            <th>成功原因</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>施政重点</strong></td>
+                            <td>承诺$2.8亿新增支出，优先减税和缓解生活成本，但未给出清晰的财政支撑。</td>
+                            <td>这种对<strong>"个人口袋问题"</strong>的立即关注，精准命中了受生活成本上升影响最大的选民。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>医疗承诺</strong></td>
+                            <td>承诺改善可及性和增加医护人员，但缺乏具体的预算和详细计划。</td>
+                            <td>成功将医疗危机塑造成自由党执政失败的标志。选民更愿意相信"新的希望"，而非"旧的失败"。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>能源立场</strong></td>
+                            <td>要求对丘吉尔瀑布协议进行<strong>独立审查</strong>。</td>
+                            <td>这一立场意外地迎合了选民对大型项目<strong>审慎和避免重蹈覆辙</strong>的心理，使PC党显得更为谨慎。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr class="divider">
+
+            <section id="voters" class="section">
+                <h2>二、选民结构与地理分布</h2>
+
+                <p>本次选举结果在地理上呈现出清晰的<strong>"乡村对抗城市"</strong>格局：</p>
+
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>政党</th>
+                            <th>核心支持区域</th>
+                            <th>核心支持群体</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>进步保守党 (PC)</strong></td>
+                            <td><strong>纽芬兰岛乡村、沿海和外围地区，以及拉布拉多地区。</strong></td>
+                            <td><strong>中低收入阶层、老年选民、传统工业社区</strong>。他们是受医疗危机和高生活成本打击最严重的群体，是主要的"抗议票"来源。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>自由党 (Liberal)</strong></td>
+                            <td><strong>圣琼斯都会区及其主要郊区。</strong></td>
+                            <td><strong>中高收入阶层、专业人士、城市既得利益者。</strong>尽管全省失败，自由党仍保持了城市中心的大部分席位，表明城市选民相对不那么急于改变。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>新民主党 (NDP)</strong></td>
+                            <td><strong>圣琼斯市中心核心选区。</strong></td>
+                            <td><strong>年轻选民、工会成员、社会行动主义者。</strong>成功巩固了其作为城市左翼力量的地位。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <h4>📌 关键洞察</h4>
+                    <p>这种地理分布模式揭示了一个重要事实：受经济困难和公共服务恶化影响最严重的乡村和外围地区，成为了推动政治变革的主要力量。城市中产阶级由于相对稳定的经济状况，表现出更强的政治惯性。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="future" class="section">
+                <h2>三、选举结果带来的未来三年影响</h2>
+
+                <p>PC党的胜利将给纽芬兰与拉布拉多省的未来几年带来深远且充满不确定性的影响。</p>
+
+                <table class="stats-table">
+                    <thead>
+                        <tr>
+                            <th>影响领域</th>
+                            <th>具体变化</th>
+                            <th>风险与挑战</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. 财政与经济</strong></td>
+                            <td>执政重心将从<strong>还债转向减税和增加公共服务支出</strong>。</td>
+                            <td><strong>能源收入风险：</strong>PC党对丘吉尔瀑布协议的审查可能导致该协议流产或严重推迟，使省财政失去关键收入来源。<strong>债务加剧：</strong>在缺乏新收入的情况下增加支出，将使该省本已是全国最高的人均债务雪上加霜。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. 医疗系统</strong></td>
+                            <td>立即面临<strong>高期望值</strong>，必须快速采取行动，例如招募医护人员、重开急诊服务。</td>
+                            <td><strong>兑现压力：</strong>医疗系统的改善需要大量资金和时间。如果PC无法在短期内展示进展，选民的失望情绪将很快反噬。</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. 政治稳定</strong></td>
+                            <td>PC党以<strong>21席的微弱多数</strong>执政。</td>
+                            <td><strong>政府不稳定：</strong>任何一次议员辞职或补选失败，都可能使PC党失去多数地位，导致政府陷入不稳定的立法困境。政党轮替的信号意味着未来所有政府的执政周期都可能缩短。</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="warning-box">
+                    <h4>⚠️ 关键挑战</h4>
+                    <p>新上任的PC政府肩负着巨大的期望，但其<strong>务实性</strong>将很快受到检验——特别是在必须在<strong>兑现民生承诺</strong>和<strong>避免省级财政灾难</strong>之间找到平衡时。</p>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>💡 总结</h4>
+                    <p>总而言之，2025年的选举是纽芬兰与拉布拉多省<strong>对十年失望的一次情感释放</strong>。这次选举不仅改变了省政府的政治面貌，更反映出选民对务实治理与即时改变之间复杂的期望。PC党能否在执政中兑现承诺，将决定这次"政治海啸"是否真能带来持久的积极变革。</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-4.html" class="nav-btn">📖 返回第4期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 键返回顶部
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

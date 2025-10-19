@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#4](posts/issue-4/issue-4.md) | 2025-10-19 | Politics, Tech, and App Ideas. | 📊, 🛠️, 💡, 🗺️ |
 | [#3](posts/issue-3/issue-3.md) | 2025-10-12 | Ocean Monitoring, AI Warnings, and Rental Maps. | 🗺️, 🧠, 🏠 |
 | [#2](posts/issue-2/issue-2.md) | 2025-10-05 | Toolbox, Research, and Maps to Share. | 🛠️, 🛰️, 🗺️ |
 | [#1](posts/issue-1/issue-1.md) | 2025-09-28 | Something I want to share. | 🗺️, 🧠, 🛠️, 📖 |

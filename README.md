@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#6](posts/issue-6/issue-6.md) | 2025-11-01 | AI Tech, GIS, and Tools. | 🤖, 🗺️, 🛠️ |
 | [#5](posts/issue-5/issue-5.md) | 2025-10-25 | AI Tools, MCP Protocol, and Web Development. | 🤖, 🛠️, 🌐, 🗺️ |
 | [#4](posts/issue-4/issue-4.md) | 2025-10-19 | Politics, Tech, and App Ideas. | 📊, 🛠️, 💡, 🗺️ |
 | [#3](posts/issue-3/issue-3.md) | 2025-10-12 | Ocean Monitoring, AI Warnings, and Rental Maps. | 🗺️, 🧠, 🏠 |

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>为你的孩子编写软件 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-6.html" class="back-btn">← 返回第6期</a>
+        
+        <header class="header">
+            <h1>👨‍👩‍👧‍👦 为你的孩子编写软件</h1>
+            <div class="subtitle">用简单技术为孩子们定制专属教育软件</div>
+            <div class="meta">
+                <span>📅 2025年11月</span>
+                <span>💡 创意分享</span>
+                <span>🎓 教育工具</span>
+            </div>
+        </header>
+
+        <div class="content">
+            <section class="section">
+                <p>你是否曾想过，如何用一种独特且具有教育意义的方式来陪伴孩子的成长？比起购买昂贵的玩具或电子产品，亲手为他们"量身定制"一款专属软件，或许是更好的选择。</p>
+
+                <p>这篇文章的灵感，来源于一位父亲利用简单的技术，成功地将抽象的理财概念植入孩子心中的故事。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section class="section">
+                <h2>科技的礼物：用代码传递知识</h2>
+
+                <p>学校教育固然重要，但生活中一些至关重要的技能，比如个人理财，往往被忽视。正如那句俄罗斯谚语所言："随牛奶而来的，会随灵魂而去"（即早期的教育影响深远）。</p>
+
+                <p>当这位父亲发现，他的孩子们缺乏关于投资和资金管理的直观理解时，他没有选择枯燥的课本，而是决定<strong>自己动手</strong>。他的目标不是教他们如何编程，而是通过一个日常可见的工具，来展示"钱是如何生钱的"。</p>
+
+                <div class="success-box">
+                    <h3>✨ 案例：一个HTML文件实现的"投资导师"</h3>
+                    <p>这位父亲创造了一个名为 <strong>D-iꞥvestments</strong> 的简易<a href="https://roberdam.com/en/dinversiones.html" target="_blank">应用程序</a>。这个应用的核心亮点在于它的极简主义和教育效果：</p>
+                    <ol>
+                        <li><strong>极简实现：</strong> 它不是一个复杂的原生应用，而仅仅是<strong>一个单独的 HTML 文件</strong>，利用 PWA（Progressive Web App）技术，使其可以像原生App一样安装在手机上。</li>
+                        <li><strong>可视化学习：</strong> 他将一个旧智能手机附着在冰箱上，作为家庭的"投资仪表板"。孩子们每天都可以看到他们的"虚拟投资"账户的实时增长情况，包括日收益、周收益和总余额。</li>
+                        <li><strong>核心概念：</strong> 父亲充当"投资经纪人"，设置合理的利率，让孩子们直观感受<strong>复利</strong>的魔力，以及<strong>时间和投资是盟友</strong>的真谛。</li>
+                    </ol>
+                    <p>这个简单的 HTML App，比任何理财书籍都更有效地教会了孩子们一个终生的教训。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="section">
+                <h2>为什么亲手为孩子编写软件？</h2>
+
+                <p>这个案例告诉我们，为孩子"建造"东西的价值，远超于为他们"购买"东西。</p>
+
+                <div class="tech-card">
+                    <h3>1️⃣ 将抽象概念具象化</h3>
+                    <p>无论是复利、科学原理，还是语言学习，许多知识对孩子来说是抽象且难以捉摸的。通过软件，你可以将这些概念转化为<strong>可互动、可观察</strong>的界面。就像 D-iꞥvestments 一样，每天跳动的数字，让"复利"不再是数学公式，而是一种看得见的成长。</p>
+                </div>
+
+                <div class="tech-card">
+                    <h3>2️⃣ 教育定制化</h3>
+                    <p>市面上的软件是为大众设计的，而你为孩子编写的软件是独一无二的。你可以完全根据孩子的年龄、兴趣和学习风格来定制功能，解决他们特定的学习痛点。这不仅提高了学习效率，也让孩子感受到父母的用心。</p>
+                </div>
+
+                <div class="tech-card">
+                    <h3>3️⃣ 成本低廉，创意无限</h3>
+                    <p>你不必是专业的软件工程师。正如案例所示，一个简单的 HTML 文件、一个 Python 脚本，甚至一个利用表格和公式的在线文档，都可以成为强大的教育工具。关键在于创意，而不是复杂的技术栈。你可以利用身边废弃的硬件（如旧手机），赋予它们新的教育使命。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section class="section">
+                <h2>如何开始你的"亲子软件"项目？</h2>
+
+                <p>如果你也想效仿，为孩子打造一个软件工具，请记住以下几点：</p>
+
+                <ul>
+                    <li><strong>从一个痛点开始：</strong> 你的孩子最需要学习什么？是时间管理、储蓄习惯、还是对某个历史事件的兴趣？</li>
+                    <li><strong>保持极简主义：</strong> 专注于一个核心的教育目标。一开始，一个简单的仪表盘、一个计时器、一个问答小游戏就足够了。功能越简单，实现起来越快，孩子的学习焦点也越集中。</li>
+                    <li><strong>追求互动与可见：</strong> 将软件置于家庭的公共区域（如冰箱、客厅的平板），让它成为孩子日常生活中可见的一部分，定期引起他们的注意和讨论。</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>🌟 最后的反思</h3>
+                    <p>教导孩子们投资和时间的关系，让他们理解持续的努力和积累带来的巨大回报，这比任何物质礼物都更加珍贵。为你的孩子编写软件，实际上是在为他们的未来构建一套<strong>思维模型</strong>和<strong>学习工具</strong>，这是可以伴随他们一生的宝贵财富。</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-6.html" class="nav-btn">📖 返回第6期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

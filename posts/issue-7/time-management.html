@@ -25,20 +25,20 @@
         }
 
         .header {
-            background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             padding: 50px 0;
             margin-bottom: 40px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .header h1 {
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .header .subtitle {
@@ -49,7 +49,7 @@
 
         .header .meta {
             font-size: 1rem;
-            opacity: 0.85;
+            opacity: 0.8;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -59,7 +59,7 @@
 
         .back-btn {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255,255,255,0.2);
             color: white;
             text-decoration: none;
             padding: 10px 20px;
@@ -67,11 +67,11 @@
             margin-bottom: 20px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .back-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
         }
 
@@ -79,22 +79,8 @@
             background: white;
             padding: 50px;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             margin-bottom: 30px;
-        }
-
-        .overview {
-            background: linear-gradient(135deg, #f0f9ff 0%, #dff0ff 100%);
-            border-left: 4px solid #00a3cc;
-            padding: 30px;
-            margin-bottom: 40px;
-            border-radius: 0 15px 15px 0;
-        }
-
-        .overview h2 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
         }
 
         .section {
@@ -113,7 +99,7 @@
             color: #2c3e50;
             margin-bottom: 25px;
             padding-bottom: 15px;
-            border-bottom: 3px solid #00a3cc;
+            border-bottom: 3px solid #667eea;
             display: inline-block;
         }
 
@@ -122,14 +108,7 @@
             color: #34495e;
             margin: 30px 0 20px 0;
             padding-left: 15px;
-            border-left: 4px solid #00a3cc;
-        }
-
-        .section h4 {
-            font-size: 1.2rem;
-            color: #495057;
-            margin: 25px 0 15px 0;
-            font-weight: 600;
+            border-left: 4px solid #667eea;
         }
 
         .section p {
@@ -150,20 +129,14 @@
             font-size: 1.05rem;
         }
 
-        .highlight-box {
-            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
-            border-left: 4px solid #ffb400;
-            padding: 25px;
-            margin: 25px 0;
-            border-radius: 0 12px 12px 0;
-        }
-
+        .overview,
+        .highlight-box,
         .info-box {
-            background: linear-gradient(135deg, #e0f7fa 0%, #c1f0f6 100%);
-            border-left: 4px solid #00bcd4;
+            border-left: 4px solid #667eea;
             padding: 25px;
             margin: 25px 0;
             border-radius: 0 12px 12px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
         }
 
         .practice-grid {
@@ -183,8 +156,8 @@
 
         .practice-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border-color: #00a3cc;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
         }
 
         .practice-card h4 {
@@ -198,6 +171,14 @@
             padding-left: 0;
         }
 
+        .practice-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
         .practice-card li {
             position: relative;
             padding-left: 20px;
@@ -205,20 +186,12 @@
             font-size: 0.95rem;
         }
 
-        .practice-card li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: #00a3cc;
-            font-weight: bold;
-        }
-
         .toc {
             background: #f8f9fa;
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 40px;
-            border-left: 4px solid #00a3cc;
+            border-left: 4px solid #667eea;
         }
 
         .toc h3 {
@@ -248,13 +221,13 @@
         }
 
         .toc a {
-            color: #00a3cc;
+            color: #667eea;
             text-decoration: none;
             transition: color 0.3s ease;
         }
 
         .toc a:hover {
-            color: #0083b0;
+            color: #764ba2;
             text-decoration: underline;
         }
 
@@ -264,12 +237,12 @@
             padding: 40px;
             background: white;
             border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
         }
 
         .nav-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #00b4db, #0083b0);
+            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             text-decoration: none;
             padding: 15px 30px;
@@ -286,12 +259,12 @@
 
         .nav-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 150, 200, 0.35);
+            box-shadow: 0 8px 20px rgba(102,126,234,0.35);
         }
 
         .nav-btn.secondary:hover {
             background: #5a6268;
-            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+            box-shadow: 0 8px 20px rgba(108,117,125,0.4);
         }
 
         .footer {

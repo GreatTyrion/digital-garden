@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 年加拿大联邦预算分析 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.85;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #fff0f2 0%, #ffe0d3 100%);
+            border-left: 4px solid #ff815a;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #ff815a;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #ff815a;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul,
+        .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff9db 0%, #ffe29a 100%);
+            border-left: 4px solid #ffb400;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8ecff 100%);
+            border-left: 4px solid #667eea;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffe4e6 0%, #ffccd5 100%);
+            border-left: 4px solid #ff6b81;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-table th {
+            background: #ff815a;
+            color: white;
+            font-weight: 600;
+        }
+
+        .data-table tr:hover {
+            background: #fdf2ed;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #ff815a;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #ff815a;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #ff6b81;
+            text-decoration: underline;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 126, 95, 0.35);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-7.html" class="back-btn">← 返回第7期</a>
+
+        <header class="header">
+            <h1>📊 2025 年加拿大联邦预算分析</h1>
+            <div class="subtitle">投资驱动与财政风险的双重考验</div>
+            <div class="meta">
+                <span>📅 2025 年</span>
+                <span>🇨🇦 加拿大财政</span>
+                <span>💰 预算审视</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">引言：预算案的战略定位</a></li>
+                <li><a href="#core-data">1. 核心数据与投资重点</a>
+                    <ul>
+                        <li><a href="#deficit">巨额赤字</a></li>
+                        <li><a href="#investment">三大投资板块</a></li>
+                    </ul>
+                </li>
+                <li><a href="#policy-shift">2. 结构性削减与政策转向</a></li>
+                <li><a href="#risks">3. 财政风险与“数字游戏”争议</a>
+                    <ul>
+                        <li><a href="#debt">债务与利息负担</a></li>
+                        <li><a href="#metrics">净债务与毛债务之争</a></li>
+                        <li><a href="#spending">支出增速与分类包装</a></li>
+                    </ul>
+                </li>
+                <li><a href="#conclusion">4. 成败关键与类比总结</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>🧭 引言：预算案的战略定位</h2>
+                    <p>卡尼政府的首份预算案被视为应对全球经济不确定性的“特朗普生存计划”。通过扩大公共投资与重塑产业政策，加拿大试图确保经济主权与长期竞争力。</p>
+                    <p>预算案强调的是“投资”逻辑：政府愿意承担更高的赤字，以基础设施、国防工业与生产力提升换取未来潜在的增长。</p>
+                </div>
+            </section>
+
+            <section id="core-data" class="section">
+                <h2>1. 核心数据与投资重点</h2>
+
+                <section id="deficit">
+                    <h3>1.1 巨额赤字</h3>
+                    <div class="warning-box">
+                        <h4>⚠️ 数据速览</h4>
+                        <ul>
+                            <li>2025/2026 财政年度赤字预计达 <strong>780 亿加元</strong>。</li>
+                            <li>较上一届政府的 420 亿承诺翻近一倍。</li>
+                            <li>未来五年新增公共投资规模约 <strong>140 亿加元</strong>。</li>
+                        </ul>
+                    </div>
+                    <p>政府通过将支出分为“资本投资”与“运营开支”，试图强调绝大部分赤字与长期建设相关，并承诺在三年内让日常运营开支实现收支平衡。</p>
+                </section>
+
+                <section id="investment">
+                    <h3>1.2 三大投资板块</h3>
+                    <div class="info-box">
+                        <h4>🏗️ 投资重心</h4>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>领域</th>
+                                    <th>资金规模与目标</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>基础设施与住房</td>
+                                    <td>10 亿加元“建设强大社区基金”；五年内 130 亿加元推动模块化住宅，缓解住房短缺并升级公共设施。</td>
+                                </tr>
+                                <tr>
+                                    <td>国防工业与主权</td>
+                                    <td>未来五年投入 818 亿加元（其中 720 亿为新资金），强化军备采购与“购买加拿大产品”战略。</td>
+                                </tr>
+                                <tr>
+                                    <td>企业生产力</td>
+                                    <td>“生产力超级抵扣计划”加速设备折旧，将企业边际有效税率降至 13.2%，低于美国与其他 G7 国家。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>预算案中“投资”一词出现近 800 次，突显政府希望通过资本开支重塑经济结构的决心。</p>
+                </section>
+            </section>
+
+            <section id="policy-shift" class="section">
+                <h2>2. 结构性削减与政策转向</h2>
+                <p>为了缓冲巨额支出带来的压力，预算案同步推出大规模削减计划，试图在社会政策和移民数量上“瘦身”。</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>政策领域</th>
+                            <th>关键调整</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>公共服务</td>
+                            <td>未来数年裁减约 4 万个政府职位，到 2028-2029 年将公职人员规模从 36.8 万降至 33 万。</td>
+                        </tr>
+                        <tr>
+                            <td>移民政策</td>
+                            <td>保持永久居民年增 1% 的目标，但大幅削减临时居民，2026 年目标下调至 38.5 万，留学生配额减半。</td>
+                        </tr>
+                        <tr>
+                            <td>能源政策</td>
+                            <td>可能废除自由党时期的油气排放上限，同时为 LNG 项目提供税收优惠。</td>
+                        </tr>
+                        <tr>
+                            <td>税收体系</td>
+                            <td>取消房屋控制税与奢侈税，简化税制并减少行政成本。</td>
+                        </tr>
+                        <tr>
+                            <td>社会福利</td>
+                            <td>为残疾人提供一次性 150 加元补助，学生资助聚焦公立或非营利私校。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="risks" class="section">
+                <h2>3. 财政风险与“数字游戏”争议</h2>
+
+                <section id="debt">
+                    <h3>3.1 债务规模与利息负担</h3>
+                    <p>在疫情后的财政扩张背景下，加拿大的债务与利息支出再创新高。</p>
+                    <div class="warning-box">
+                        <h4>💣 关键压力点</h4>
+                        <ul>
+                            <li>赤字规模回升至 780 亿加元，为近 50 年最高水平。</li>
+                            <li>预计到 2030 年，年度利息支出将达 760 亿加元，占政府收入 13%。</li>
+                            <li>利息支出相当于一个省级政府（如阿尔伯塔）全年财政预算。</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="metrics">
+                    <h3>3.2 净债务 vs. 毛债务</h3>
+                    <p>政府强调加拿大净债务占 GDP 比例仅 13.3%，在 G7 中表现最佳。然而批评者指出，这一指标包含了公共养老金等资产，使数据“过于好看”。</p>
+                    <div class="highlight-box">
+                        <h4>指标拆解</h4>
+                        <ul>
+                            <li><strong>净债务：</strong>扣除养老金等资产后的负债，官方称其为“国际领先”。</li>
+                            <li><strong>毛债务：</strong>未扣除资产的总债务占 GDP 比例达 111%，在 30 多个发达国家中排名第七。</li>
+                            <li>批评者认为，净债务指标掩盖了真实债务风险。</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="spending">
+                    <h3>3.3 支出增速与分类包装</h3>
+                    <ul>
+                        <li>2014-2024 年间，加拿大政府整体支出增长 63%，债务增长 25.2%，为 G7 增速最快。</li>
+                        <li>政府将大量赤字归类为“投资”，使日常运营开支看似下降，被批评为“分类包装”。</li>
+                        <li>批评者认为这属于“数字游戏”，本质仍是继续借钱扩张支出。</li>
+                    </ul>
+                </section>
+            </section>
+
+            <section id="conclusion" class="section">
+                <h2>4. 成败关键与类比总结</h2>
+                <p>预算案的成功取决于三个变量：高赤字是否可持续、税收激励能否转化为真实投资，以及政府是否具备执行庞大议程的能力。</p>
+                <p>财政部长商鹏飞的表态凸显政府的雄心：“面对不确定的风暴，我们不会收起风帆，而是扬帆迎风前行。”</p>
+
+                <div class="info-box">
+                    <h4>🏠 类比总结</h4>
+                    <p>将预算案比作家庭理财：为了翻修房子与购买先进工具，家庭大胆申请高额贷款，并通过重新命名开销让账面看起来更健康。问题在于，贷款利息已经吞噬家庭收入的八分之一，而借贷速度居邻里之首，这意味着一旦经济环境恶化，家庭财务可能遭受严峻考验。</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-7.html" class="nav-btn">📖 返回第7期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+</body>
+</html>
+

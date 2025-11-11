@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第7期 - 数字花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .issue-meta {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .issue-number {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #00a6ff;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #dff0ff 100%);
+            border-left: 4px solid #00a6ff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-color: #00a6ff;
+        }
+
+        .link-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .link-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .link-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 126, 255, 0.4);
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 126, 255, 0.4);
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #00a6ff;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #0072ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #00a6ff;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .issue-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 0;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-btn">← 返回首页</a>
+
+        <header class="header">
+            <h1>🌱 Digital Garden 第7期</h1>
+            <div class="issue-meta">
+                <span class="issue-number">#7</span>
+                <span>2025 年</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 本期目录</h3>
+            <ul>
+                <li><a href="#time-management">时间管理实用建议</a></li>
+                <li><a href="#budget">2025 年加拿大联邦预算分析</a></li>
+                <li><a href="#rental-map">纽芬兰圣约翰斯租房地图（更新版）</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="time-management" class="section">
+                <h2>🕒 时间管理实用建议</h2>
+
+                <div class="highlight-box">
+                    <p><strong>主题：</strong> 结合《如何度过每天的 24 小时》，帮助忙碌的上班族设计“神圣时间”、训练专注力，并为副业与学习建立稳定节奏。</p>
+                </div>
+
+                <h3>重点要点</h3>
+                <ul>
+                    <li>进行时间审计，明确可支配的 5 小时自由时间。</li>
+                    <li>每周规划三个 90 分钟的“神圣时间”专注学习或副业。</li>
+                    <li>通过单任务原则、番茄工作法与“五分钟原则”持续积累成果。</li>
+                </ul>
+
+                <div class="link-card">
+                    <h4>🔗 阅读本期长文</h4>
+                    <p>查看完整的时间管理实践框架与具体训练步骤。</p>
+                    <a href="./time-management.html">阅读文章 →</a>
+                </div>
+            </section>
+
+            <section id="budget" class="section">
+                <h2>📊 2025 年加拿大联邦预算分析</h2>
+
+                <div class="highlight-box">
+                    <p><strong>主题：</strong> 解读卡尼政府的首份预算案，从投资重点、政策转向与债务风险三个维度审视其可行性。</p>
+                </div>
+
+                <h3>重点要点</h3>
+                <ul>
+                    <li>政府以基础设施、国防工业与生产力为三大投资主轴。</li>
+                    <li>同步削减公共服务、收紧临时居民配额，调整税制与能源政策。</li>
+                    <li>巨额赤字与利息负担引发“数字游戏”争议，毛债务占 GDP 已达 111%。</li>
+                </ul>
+
+                <div class="link-card">
+                    <h4>🔗 阅读本期长文</h4>
+                    <p>深入了解预算案的结构、争议与潜在影响。</p>
+                    <a href="./budget-analysis-report.html">阅读文章 →</a>
+                </div>
+            </section>
+
+            <section id="rental-map" class="section">
+                <h2>🗺️ 纽芬兰圣约翰斯租房地图（更新版）</h2>
+
+                <div class="highlight-box">
+                    <p><strong>项目简介：</strong> 持续更新的互动租房地图，整合 Kijiji 最新房源数据，支持筛选与地理浏览。</p>
+                </div>
+
+                <h3>使用亮点</h3>
+                <ul>
+                    <li>实时掌握纽芬兰及周边区域的租房供给。</li>
+                    <li>通过地图筛选快速了解价格区间与社区特点。</li>
+                    <li>与时间管理方法结合，高效完成住房调研。</li>
+                </ul>
+
+                <div class="link-card">
+                    <h4>🌍 访问地图</h4>
+                    <p>点击进入交互式地图，探索最新房源。</p>
+                    <a href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noopener noreferrer">打开地图 →</a>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="../../index.html" class="nav-btn">🏠 返回首页</a>
+            <a href="../issue-6/issue-6.html" class="nav-btn">📖 第6期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" class="nav-btn secondary" target="_blank" rel="noopener noreferrer">💬 意见反馈</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+</body>
+</html>
+

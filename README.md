@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#7](posts/issue-7/issue-7.md) | 2025-11-11 | 时间管理策略、加拿大预算解读与租房地图更新。 | ⏰, 📊, 🗺️ |
 | [#6](posts/issue-6/issue-6.md) | 2025-11-01 | AI Tech, GIS, Education, and Tools. | 🤖, 🗺️, 💡, 🛠️ |
 | [#5](posts/issue-5/issue-5.md) | 2025-10-25 | AI Tools, MCP Protocol, and Web Development. | 🤖, 🛠️, 🌐, 🗺️ |
 | [#4](posts/issue-4/issue-4.md) | 2025-10-19 | Politics, Tech, and App Ideas. | 📊, 🛠️, 💡, 🗺️ |
@@ -29,7 +30,7 @@ Browse the issues below to see what's currently growing.
 | [#2](posts/issue-2/issue-2.md) | 2025-10-05 | Toolbox, Research, and Maps to Share. | 🛠️, 🛰️, 🗺️ |
 | [#1](posts/issue-1/issue-1.md) | 2025-09-28 | Something I want to share. | 🗺️, 🧠, 🛠️, 📖 |
 
-*(I'll maintain this table as new issues are published.)*
+（I'll maintain this table as new issues are published.）
 
 ## How This Garden Grows
 

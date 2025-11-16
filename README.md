@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#8](posts/issue-8/issue-8.md) | 2025-11-16 | 谷歌免费AI生态、自动化手册与独立开发者指南；含租房地图更新。 | 🤖, ⚙️, 🧰, 🗺️ |
 | [#7](posts/issue-7/issue-7.md) | 2025-11-11 | 时间管理策略、加拿大预算解读与租房地图更新。 | ⏰, 📊, 🗺️ |
 | [#6](posts/issue-6/issue-6.md) | 2025-11-01 | AI Tech, GIS, Education, and Tools. | 🤖, 🗺️, 💡, 🛠️ |
 | [#5](posts/issue-5/issue-5.md) | 2025-10-25 | AI Tools, MCP Protocol, and Web Development. | 🤖, 🛠️, 🌐, 🗺️ |

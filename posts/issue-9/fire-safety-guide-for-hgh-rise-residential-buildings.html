@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高层住宅消防安全指南：火灾来临时，我该怎么办？ - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #dc3545;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #dc3545;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #c82333;
+            text-decoration: underline;
+        }
+
+        .case-study {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .case-study h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .case-study ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .case-study li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .case-study li::before {
+            content: '🔥';
+            position: absolute;
+            left: 0;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stats-table th {
+            background: #dc3545;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #dc3545, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        .section a {
+            color: #dc3545;
+            text-decoration: none;
+        }
+
+        .section a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-9.html" class="back-btn">← 返回第9期</a>
+        
+        <header class="header">
+            <h1>🔥 高层住宅消防安全指南</h1>
+            <div class="subtitle">火灾来临时，我该怎么办？</div>
+            <div class="meta">
+                <span>📅 2025年</span>
+                <span>🛡️ 安全指南</span>
+                <span>🏢 高层建筑</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">写在前面：为什么您必须阅读本指南</a></li>
+                <li><a href="#decision">火灾中的核心决策：疏散还是固守？</a>
+                    <ul>
+                        <li><a href="#judge-source">第一步：保持冷静，判断火源位置</a></li>
+                        <li><a href="#action-guide">情景分析：根据火源位置采取行动</a></li>
+                        <li><a href="#your-home-fire">如果您家是起火点</a></li>
+                        <li><a href="#stairway-safety">关键决策点：楼梯间是否安全？</a></li>
+                        <li><a href="#stay-safe">当无法疏散时：就地避险是更安全的选择</a></li>
+                    </ul>
+                </li>
+                <li><a href="#prevention">您的家庭防火清单：防患于未然</a>
+                    <ul>
+                        <li><a href="#check-hazards">检查并消除家中的火灾隐患</a></li>
+                        <li><a href="#equipment">为家人配备关键的救生装备</a></li>
+                    </ul>
+                </li>
+                <li><a href="#summary">总结：请牢记三条最重要的救生法则</a></li>
+                <li><a href="#references">参考视频和新闻</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>⚠️ 写在前面：为什么您必须阅读本指南</h2>
+                    <p>高层建筑的火灾与普通火灾截然不同，其危险性常常超出我们的想象。由于高楼内部存在"烟囱效应"，一旦起火，火势和有毒浓烟可以在短短30秒内，沿着楼梯间或管道井，蔓延至百米高楼的顶层。近年来，我国高层建筑火灾数量急剧增加，仅2022年就发生了多达1.7万起，造成260人遇难。这些冰冷的数字提醒我们，每一位高层住户都必须掌握科学的自救知识。</p>
+                    <p>在这样瞬息万变的危险环境中，您在火灾发生后的第一个决定，往往就是生与死的区别。那么，最关键的决定究竟是什么？</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="decision" class="section">
+                <h2>2. 火灾中的核心决策：疏散还是固守？</h2>
+
+                <p>在火灾中，最关键的决策是在"立即疏散"和"就地避险"（即留在家中固守待援）之间做出正确选择。统计显示，绝大多数高层火灾的伤亡，并非死于火焰，而是因为在惊慌中冲入充满有毒浓烟的楼道，最终窒息或中毒身亡。错误的选择比火灾本身更致命。</p>
+
+                <h3 id="judge-source">2.1 第一步：保持冷静，判断火源位置</h3>
+
+                <p>在采取任何行动之前，您必须先冷静下来，用几秒钟时间判断火源的准确位置。</p>
+
+                <ul>
+                    <li>如果是邻居敲门或听到火灾警报，切勿盲目开门冲出去。</li>
+                    <li>首先通过自家阳台向外观察，或者关注业主群里的实时消息，快速了解起火的大致楼层和方位。</li>
+                </ul>
+
+                <h3 id="action-guide">2.2 情景分析：根据火源位置采取行动</h3>
+
+                <p>了解火源位置后，您可以根据下表做出最基本的行动判断：</p>
+
+                <div class="warning-box">
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>火情位置</th>
+                                <th>核心行动指南</th>
+                                <th>关键说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>火在您家楼上或隔壁</strong></td>
+                                <td><strong>立即向下疏散</strong></td>
+                                <td>这是最安全的逃生路线。烟和火向上蔓延，向下跑可以避开危险。<strong>在开门确认楼梯间内无烟后</strong>，请立即通过疏散楼梯迅速下楼。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>火在您家楼下</strong></td>
+                                <td><strong>谨慎判断，切勿盲目下楼</strong></td>
+                                <td>这是最危险的情况。烟雾和火焰会因"烟囱效应"迅速向上蔓延，您向下的逃生通道很可能已被致命浓烟封锁。<strong>首选策略是立即返回室内，进行"就地避险"</strong>。只有在您楼层接近顶楼，且<strong>100%确定</strong>屋顶天台常年开放、可以通往安全区域的情况下，才可考虑向上疏散，但<strong>风险极高，不作推荐</strong>。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 id="your-home-fire">2.3 如果您家是起火点</h3>
+
+                <p>如果火灾不幸在您家中发生，且火势已无法在1分钟内用灭火器扑灭，请遵循以下步骤：</p>
+
+                <ol>
+                    <li><strong>立即撤离</strong>：尽快离开房间。</li>
+                    <li><strong>关闭所有门</strong>：在逃离起火房间和撤离家门时，<strong>务必将所有房门（卧室门、入户门）随手紧闭</strong>。这一动作至关重要，它能极大地<strong>延缓火势和浓烟的蔓延速度</strong>，为您和邻居争取宝贵的逃生和救援时间。</li>
+                    <li><strong>通知并报警</strong>：撤离到安全地带后，立即拨打119报警，并大声呼喊或按响邻居门铃，通知同楼层的居民迅速疏散。</li>
+                </ol>
+
+                <h3 id="stairway-safety">2.4 关键决策点：楼梯间是否安全？</h3>
+
+                <div class="warning-box">
+                    <h4>🚨 生死判断点</h4>
+                    <p>这是决定您是"疏散"还是"固守"的生死判断点。请牢记以下铁律：</p>
+                    <p><strong>在开门准备进入楼梯间之前，必须先用手背触摸门把手（因为手背对热更敏感，能避免掌心被烫伤）。如果门把手已经发烫，或者开门后发现楼梯间内已有浓烟，绝对不要进入楼梯间！立即返回室内！</strong></p>
+                </div>
+
+                <h3 id="stay-safe">2.5 当无法疏散时：就地避险是更安全的选择</h3>
+
+                <p>如果楼梯间已被浓烟封锁，强行冲入无异于自杀。"返回家中等待救援"是此时最科学、最安全的选择。</p>
+
+                <div class="info-box">
+                    <h4>📚 科学原理</h4>
+                    <p>现代高层建筑在设计时都遵循"防火分区"原则，每户人家的墙体和入户门都具有一定的耐火极限。只要门窗紧闭，火焰很难在短时间内烧穿进入您家中。</p>
+                </div>
+
+                <div class="success-box">
+                    <h4>✅ 成功案例与官方指引</h4>
+                    <p>大量真实案例与官方指引都证明了"固守待援"策略的有效性。</p>
+                    <ul>
+                        <li><strong>2020年重庆渝北区加州花园高层火灾</strong>：大火从底层迅速蔓延至30层，场面极其骇人。一位住在14楼的亲历者回忆，他最初尝试向下逃生，但发现楼道已被浓烟封锁，于是果断退回室内。他立即拨打119，<strong>接线员明确指导他"不要动，把门窗关住，用湿毛巾捂住口鼻"</strong>。他遵照执行，紧闭门窗并用湿毛巾堵住门缝，最终成功等到了消防员的救援。这场波及极广的大火，正因为许多居民采取了正确的固守策略，最终实现了<strong>无人员伤亡</strong>的救援奇迹。<a href="https://news.qq.com/rain/a/20200104A0FET800?pc" target="_blank">相关报道</a></li>
+                        <li><strong>"邻居起火，关门阻烟"的成功案例</strong>：据澎湃新闻报道，一起居民楼火灾中，一位阿姨发现邻居家起火、楼道充满浓烟后，冷静地<strong>紧闭自家房门，并用湿毛巾堵住门缝</strong>，将致命的浓烟彻底挡在门外。她在屋内坚守待援，最终被消防员安全救出。这个案例生动地说明，<strong>一扇紧闭的房门就是一道坚实的"生命屏障"</strong>。<a href="https://www.thepaper.cn/newsDetail_forward_22340697" target="_blank">相关报道</a></li>
+                        <li><strong>消防部门的普遍指导</strong>：<strong>中国消防、央视新闻等权威机构曾多次在消防科普中强调</strong>，当疏散通道被浓烟封锁时，"<strong>关门求生</strong>"是关键策略。一扇紧闭的房门，能有效隔绝有毒烟气，为您赢得宝贵的救援时间。<a href="https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=3542062286691046628&t=1764202457940&toc_style_id=feeds_default&share_to=copy_url&track_id=67d277d7-b532-4228-81a6-6cb52bbaf0aa" target="_blank">相关报道</a></li>
+                    </ul>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>🔑 就地避险核心步骤：遵循"先关门，后开窗"原则</h4>
+                    <ul>
+                        <li><strong>第一步：立即返回，紧闭房门</strong>
+                            <ul>
+                                <li>迅速退回室内，立即关闭入户门。</li>
+                                <li>如果楼层的公共防火门是开着的，请在返回时随手关上，这能有效阻止烟火在整层蔓延。</li>
+                            </ul>
+                        </li>
+                        <li><strong>第二步：封堵门缝，拨打119</strong>
+                            <ul>
+                                <li><strong>用湿毛巾、湿衣物、床单等彻底堵死入户门的所有缝隙</strong>，这是阻挡浓烟渗入最关键的一步。</li>
+                                <li>立即拨打119报警，清晰、准确地告知消防员您被困的具体楼层、单元和房间号。</li>
+                            </ul>
+                        </li>
+                        <li><strong>第三步：谨慎判断，决定开窗</strong>
+                            <ul>
+                                <li>在确保房门已严密关闭后，<strong>谨慎地观察窗外情况</strong>。</li>
+                                <li><strong>如果窗外没有浓烟和火焰</strong>，可以打开您所在避难房间的窗户一条缝，用于通风换气、排出微量渗入的烟气和方便救援人员发现您。</li>
+                                <li><strong>如果窗外已有浓烟或热浪</strong>，<strong>请保持窗户关闭</strong>！立即退回至远离窗口的位置，避免外部火势卷入。</li>
+                            </ul>
+                        </li>
+                        <li><strong>第四步：持续防御，等待救援</strong>
+                            <ul>
+                                <li>如果入户门的温度持续升高，要不断向门上泼水降温。</li>
+                                <li>转移到有外墙窗户、靠近水源（如卫生间）、且远离火源和浓烟的房间固守。</li>
+                                <li>发出求救信号：在确保安全的前提下，可以使用手电筒（或手机闪光灯）向窗外闪烁，或者挥舞鲜艳的衣物。有规律地闪烁（如三短、三长、三短，代表SOS求救信号）更能引起救援人员的注意。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <p>正确的行动选择至关重要，但更好的方式是提前预防，让火灾没有发生的机会。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="prevention" class="section">
+                <h2>3. 您的家庭防火清单：防患于未然</h2>
+
+                <h3 id="check-hazards">3.1 检查并消除家中的火灾隐患</h3>
+
+                <p>请对照以下清单，定期检查并消除家中最常见的火灾隐患：</p>
+
+                <div class="warning-box">
+                    <ul>
+                        <li><strong>电动车电池</strong>：切勿在室内或楼道内为任何锂电池（包括电动车、平衡车、电动滑板车等）充电。这是近年来高层火灾的首要原因。</li>
+                        <li><strong>厨房用火</strong>：烹饪时人不离火，防止油锅起火或长时间干烧。</li>
+                        <li><strong>燃气安全</strong>：如果是老旧社区，要警惕燃气管道老化泄漏的风险，定期检查。</li>
+                        <li><strong>电路老化</strong>：不违规乱拉电线，不将多个大功率电器插在同一个插线板上，避免线路过载。</li>
+                        <li><strong>劣质充电器</strong>：杜绝使用不合格、廉价的充电器和充电宝，防止充电时发生自燃。</li>
+                        <li><strong>卧床吸烟</strong>：严禁在床上或沙发上吸烟，未熄灭的烟头极易引燃被褥等易燃物。</li>
+                        <li><strong>社区烟火</strong>：遵守社区规定，不在阳台或楼下燃放烟花爆竹。</li>
+                    </ul>
+                </div>
+
+                <h3 id="equipment">3.2 为家人配备关键的救生装备</h3>
+
+                <p>仅仅消除隐患还不够，为家中配备合适的消防装备，能在关键时刻拯救全家人的生命。</p>
+
+                <div class="info-box">
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>装备名称</th>
+                                <th>推荐等级</th>
+                                <th>核心作用（为什么需要它？）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>烟雾报警器</strong></td>
+                                <td><strong>必备</strong></td>
+                                <td>火灾发生时，尤其是在您熟睡时，能第一时间发出高分贝警报。建议选择两类：一是独立式（电池供电），安装简单；二是智能式，可连接手机App，即使您不在家也能收到警报，及时采取措施。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>过滤式消防自救呼吸器</strong></td>
+                                <td><strong>必备</strong></td>
+                                <td>火灾中真正的头号杀手是浓烟。它能有效过滤一氧化碳等有毒烟雾，保障您在穿过烟雾区域时的呼吸安全，是逃生时最重要的保障。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>水基/干粉灭火器</strong></td>
+                                <td><strong>推荐</strong></td>
+                                <td>用于扑灭初期小火。水基灭火器对厨房油锅起火效果好；干粉灭火器适用范围广，性价比高。</td>
+                            </tr>
+                            <tr>
+                                <td><strong>消防毯</strong></td>
+                                <td><strong>推荐</strong></td>
+                                <td>可快速扑灭油锅起火，或在逃生时披在身上作为隔热防护。选择尺寸适中、易于操作的型号。</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ 特别提醒</h4>
+                    <p>我们不推荐普通居民购买和使用速降设备（如逃生缓降器）。这类设备操作难度极高，在火场恐慌情绪下使用风险极大，很可能因操作失误导致坠落悲剧。此外，普通的工业防毒面具无法有效防护火场的高温和复杂毒气，不能替代专业的消防自救呼吸器。</p>
+                </div>
+
+                <p>现在，您已经掌握了从预防到自救的核心知识。让我们再次回顾最重要的几点。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="summary" class="section">
+                <h2>4. 总结：请牢记三条最重要的救生法则</h2>
+
+                <p>请将以下三条法则深深印在脑海中，它们是您在高层火灾中保护自己和家人的黄金准则。</p>
+
+                <div class="success-box">
+                    <ol>
+                        <li><strong>火灾发生时，首先要判断火源位置，切勿盲目行动。</strong></li>
+                        <li><strong>楼梯间有烟或门把手发烫，是绝对不能外出的信号，立即返回家中固守待援。</strong></li>
+                        <li><strong>固守时遵循"先关门，后开窗"的铁律，并优先防烟，务必为家人配备消防自救呼吸器。</strong></li>
+                    </ol>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="references" class="section">
+                <h2>参考视频和新闻</h2>
+
+                <ul>
+                    <li><a href="https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=3542062286691046628&t=1764202457940&toc_style_id=feeds_default&share_to=copy_url&track_id=67d277d7-b532-4228-81a6-6cb52bbaf0aa" target="_blank">视频丨高层起火如何逃生？记住这些危急时刻能救命</a></li>
+                    <li><a href="https://news.qq.com/rain/a/20200104A0FET800?pc" target="_blank">重庆加州花园高楼火灾：被困居民讲述惊魂时刻</a></li>
+                    <li><a href="https://www.youtube.com/watch?v=3DMSwjhZN0k&t=781s" target="_blank">YouTube:高层火灾自救指南！</a></li>
+                </ul>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-9.html" class="nav-btn">📖 返回第9期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

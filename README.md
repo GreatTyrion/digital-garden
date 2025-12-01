@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#9](posts/issue-9/issue-9.md) | 2025-12-20 | Fire Safety, World Observations, Geopolitical Analysis | 🔥, 🌍, 📊, 🗺️ |
 | [#8](posts/issue-8/issue-8.md) | 2025-11-16 | Google Free AI Ecosystem | 🤖, ⚙️, 🧰, 🗺️ |
 | [#7](posts/issue-7/issue-7.md) | 2025-11-11 | Time Management and Budget Analysis. | ⏰, 📊, 🗺️ |
 | [#6](posts/issue-6/issue-6.md) | 2025-11-01 | AI Tech, GIS, Education, and Tools. | 🤖, 🗺️, 💡, 🛠️ |

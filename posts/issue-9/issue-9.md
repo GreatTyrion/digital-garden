@@ -32,7 +32,7 @@
 
 这份指南提供了科学、实用的高层火灾自救知识，帮助每一位高层住户在关键时刻做出正确的决策，保护自己和家人的生命安全。
 
-**详细报告**：查看完整的[消防安全指南](./fire-safety-guide-for-hgh-rise-residential-buildings.md)，深入了解高层火灾自救的完整流程和预防措施。
+**详细报告**：查看完整的[消防安全指南](./fire-safety-guide-for-high-rise-residential-buildings.md)，深入了解高层火灾自救的完整流程和预防措施。
 
 ---
 

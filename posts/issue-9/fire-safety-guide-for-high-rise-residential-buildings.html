@@ -153,6 +153,17 @@
             margin-bottom: 12px;
             color: #555;
             font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .section ul ul, .section ol ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        .section ul ul li, .section ol ol li {
+            font-size: 1rem;
+            margin-bottom: 8px;
         }
 
         .highlight-box {
@@ -290,6 +301,30 @@
             background: #f8f9fa;
         }
 
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 767px) {
+            .stats-table {
+                min-width: 600px;
+                font-size: 0.9rem;
+            }
+
+            .stats-table th,
+            .stats-table td {
+                padding: 12px 10px;
+            }
+
+            .table-wrapper {
+                margin-left: -15px;
+                margin-right: -15px;
+                padding: 0 15px;
+            }
+        }
+
         .navigation {
             text-align: center;
             margin-top: 50px;
@@ -341,58 +376,344 @@
             border: none;
         }
 
-        .section a {
-            color: #dc3545;
-            text-decoration: none;
-        }
-
-        .section a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .header h1 {
-                font-size: 2.2rem;
-            }
-
-            .header .meta {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .content {
-                padding: 30px;
-            }
-
-            .section h2 {
-                font-size: 1.6rem;
-            }
-
-            .nav-btn {
-                display: block;
-                margin: 15px 0;
+            .divider {
+                margin: 30px 0;
             }
         }
 
         @media (max-width: 480px) {
+            .divider {
+                margin: 25px 0;
+            }
+        }
+
+        .section a {
+            color: #dc3545;
+            text-decoration: none;
+            word-break: break-word;
+            padding: 2px 4px;
+            border-radius: 3px;
+            transition: background-color 0.2s ease;
+        }
+
+        .section a:hover {
+            text-decoration: underline;
+            background-color: rgba(220, 53, 69, 0.1);
+        }
+
+        .section a:active {
+            background-color: rgba(220, 53, 69, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
             .header {
-                padding: 40px 0;
+                padding: 35px 20px;
+                margin-bottom: 25px;
             }
 
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+
+            .header .subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 15px;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 8px;
+                font-size: 0.9rem;
+            }
+
+            .back-btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                margin-bottom: 15px;
+            }
+
+            .toc {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+            .toc h3 {
+                font-size: 1.2rem;
+                margin-bottom: 15px;
+            }
+
+            .toc ul ul {
+                padding-left: 15px;
             }
 
             .content {
-                padding: 25px;
+                padding: 25px 20px;
+            }
+
+            .overview {
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .overview h2 {
+                font-size: 1.3rem;
+                margin-bottom: 12px;
+            }
+
+            .overview p {
+                font-size: 1rem;
+                line-height: 1.7;
             }
 
             .section {
-                margin-bottom: 40px;
+                margin-bottom: 35px;
+                padding-bottom: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                margin-bottom: 20px;
+                padding-bottom: 12px;
+            }
+
+            .section h3 {
+                font-size: 1.2rem;
+                margin: 25px 0 15px 0;
+                padding-left: 12px;
+            }
+
+            .section h4 {
+                font-size: 1.1rem;
+                margin: 20px 0 12px 0;
+            }
+
+            .section p {
+                font-size: 1rem;
+                margin-bottom: 15px;
+                line-height: 1.7;
+            }
+
+            .section ul, .section ol {
+                padding-left: 25px;
+                margin: 15px 0;
+            }
+
+            .section li {
+                font-size: 1rem;
+                margin-bottom: 10px;
+                line-height: 1.7;
+            }
+
+            .section ul ul, .section ol ol {
+                padding-left: 20px;
+                margin: 8px 0;
+            }
+
+            .section ul ul li, .section ol ol li {
+                font-size: 0.95rem;
+                margin-bottom: 6px;
+            }
+
+            .highlight-box,
+            .info-box,
+            .warning-box,
+            .success-box {
+                padding: 18px;
+                margin: 18px 0;
+            }
+
+            .highlight-box h4,
+            .info-box h4,
+            .warning-box h4,
+            .success-box h4 {
+                font-size: 1.05rem;
+                margin-bottom: 12px;
+            }
+
+            .highlight-box p,
+            .info-box p,
+            .warning-box p,
+            .success-box p {
+                font-size: 0.95rem;
+                margin-bottom: 12px;
+            }
+
+            .highlight-box ul,
+            .info-box ul,
+            .warning-box ul,
+            .success-box ul {
+                padding-left: 20px;
+            }
+
+            .case-study {
+                padding: 18px;
+                margin: 18px 0;
+            }
+
+            .case-study h4 {
+                font-size: 1.05rem;
+            }
+
+            .navigation {
+                padding: 25px 20px;
+                margin-top: 35px;
+            }
+
+            .nav-btn {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+
+            .footer {
+                padding: 25px 20px;
+                margin-top: 35px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 8px;
+            }
+
+            .header {
+                padding: 30px 15px;
+                margin-bottom: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+                margin-bottom: 10px;
+            }
+
+            .header .subtitle {
+                font-size: 1rem;
+                margin-bottom: 12px;
+            }
+
+            .header .meta {
+                font-size: 0.85rem;
+            }
+
+            .back-btn {
+                padding: 7px 14px;
+                font-size: 0.85rem;
+            }
+
+            .toc {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .toc h3 {
+                font-size: 1.1rem;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .overview {
+                padding: 15px;
+                margin-bottom: 25px;
+            }
+
+            .overview h2 {
+                font-size: 1.2rem;
+            }
+
+            .overview p {
+                font-size: 0.95rem;
+            }
+
+            .section {
+                margin-bottom: 30px;
+                padding-bottom: 20px;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+                margin-bottom: 18px;
+            }
+
+            .section h3 {
+                font-size: 1.1rem;
+                margin: 20px 0 12px 0;
+                padding-left: 10px;
+            }
+
+            .section h4 {
+                font-size: 1rem;
+                margin: 18px 0 10px 0;
+            }
+
+            .section p {
+                font-size: 0.95rem;
+            }
+
+            .section ul, .section ol {
+                padding-left: 22px;
+            }
+
+            .section li {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+
+            .section ul ul, .section ol ol {
+                padding-left: 18px;
+            }
+
+            .highlight-box,
+            .info-box,
+            .warning-box,
+            .success-box {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .highlight-box h4,
+            .info-box h4,
+            .warning-box h4,
+            .success-box h4 {
+                font-size: 1rem;
+            }
+
+            .stats-table th,
+            .stats-table td {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .table-wrapper {
+                margin-left: -15px;
+                margin-right: -15px;
+                padding: 0 15px;
+            }
+
+            .section a {
+                padding: 3px 5px;
+                display: inline-block;
+                min-height: 24px;
+                line-height: 1.5;
+            }
+
+            .navigation {
+                padding: 20px 15px;
+            }
+
+            .nav-btn {
+                padding: 12px 20px;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -465,27 +786,29 @@
                 <p>了解火源位置后，您可以根据下表做出最基本的行动判断：</p>
 
                 <div class="warning-box">
-                    <table class="stats-table">
-                        <thead>
-                            <tr>
-                                <th>火情位置</th>
-                                <th>核心行动指南</th>
-                                <th>关键说明</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>火在您家楼上或隔壁</strong></td>
-                                <td><strong>立即向下疏散</strong></td>
-                                <td>这是最安全的逃生路线。烟和火向上蔓延，向下跑可以避开危险。<strong>在开门确认楼梯间内无烟后</strong>，请立即通过疏散楼梯迅速下楼。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>火在您家楼下</strong></td>
-                                <td><strong>谨慎判断，切勿盲目下楼</strong></td>
-                                <td>这是最危险的情况。烟雾和火焰会因"烟囱效应"迅速向上蔓延，您向下的逃生通道很可能已被致命浓烟封锁。<strong>首选策略是立即返回室内，进行"就地避险"</strong>。只有在您楼层接近顶楼，且<strong>100%确定</strong>屋顶天台常年开放、可以通往安全区域的情况下，才可考虑向上疏散，但<strong>风险极高，不作推荐</strong>。</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>火情位置</th>
+                                    <th>核心行动指南</th>
+                                    <th>关键说明</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>火在您家楼上或隔壁</strong></td>
+                                    <td><strong>立即向下疏散</strong></td>
+                                    <td>这是最安全的逃生路线。烟和火向上蔓延，向下跑可以避开危险。<strong>在开门确认楼梯间内无烟后</strong>，请立即通过疏散楼梯迅速下楼。</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>火在您家楼下</strong></td>
+                                    <td><strong>谨慎判断，切勿盲目下楼</strong></td>
+                                    <td>这是最危险的情况。烟雾和火焰会因"烟囱效应"迅速向上蔓延，您向下的逃生通道很可能已被致命浓烟封锁。<strong>首选策略是立即返回室内，进行"就地避险"</strong>。只有在您楼层接近顶楼，且<strong>100%确定</strong>屋顶天台常年开放、可以通往安全区域的情况下，才可考虑向上疏散，但<strong>风险极高，不作推荐</strong>。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <h3 id="your-home-fire">2.3 如果您家是起火点</h3>
@@ -519,9 +842,9 @@
                     <h4>✅ 成功案例与官方指引</h4>
                     <p>大量真实案例与官方指引都证明了"固守待援"策略的有效性。</p>
                     <ul>
-                        <li><strong>2020年重庆渝北区加州花园高层火灾</strong>：大火从底层迅速蔓延至30层，场面极其骇人。一位住在14楼的亲历者回忆，他最初尝试向下逃生，但发现楼道已被浓烟封锁，于是果断退回室内。他立即拨打119，<strong>接线员明确指导他"不要动，把门窗关住，用湿毛巾捂住口鼻"</strong>。他遵照执行，紧闭门窗并用湿毛巾堵住门缝，最终成功等到了消防员的救援。这场波及极广的大火，正因为许多居民采取了正确的固守策略，最终实现了<strong>无人员伤亡</strong>的救援奇迹。<a href="https://news.qq.com/rain/a/20200104A0FET800?pc" target="_blank">相关报道</a></li>
-                        <li><strong>"邻居起火，关门阻烟"的成功案例</strong>：据澎湃新闻报道，一起居民楼火灾中，一位阿姨发现邻居家起火、楼道充满浓烟后，冷静地<strong>紧闭自家房门，并用湿毛巾堵住门缝</strong>，将致命的浓烟彻底挡在门外。她在屋内坚守待援，最终被消防员安全救出。这个案例生动地说明，<strong>一扇紧闭的房门就是一道坚实的"生命屏障"</strong>。<a href="https://www.thepaper.cn/newsDetail_forward_22340697" target="_blank">相关报道</a></li>
-                        <li><strong>消防部门的普遍指导</strong>：<strong>中国消防、央视新闻等权威机构曾多次在消防科普中强调</strong>，当疏散通道被浓烟封锁时，"<strong>关门求生</strong>"是关键策略。一扇紧闭的房门，能有效隔绝有毒烟气，为您赢得宝贵的救援时间。<a href="https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=3542062286691046628&t=1764202457940&toc_style_id=feeds_default&share_to=copy_url&track_id=67d277d7-b532-4228-81a6-6cb52bbaf0aa" target="_blank">相关报道</a></li>
+                        <li><strong>2020年重庆渝北区加州花园高层火灾</strong>：大火从底层迅速蔓延至30层，场面极其骇人。一位住在14楼的亲历者回忆，他最初尝试向下逃生，但发现楼道已被浓烟封锁，于是果断退回室内。他立即拨打119，<strong>接线员明确指导他"不要动，把门窗关住，用湿毛巾捂住口鼻"</strong>。他遵照执行，紧闭门窗并用湿毛巾堵住门缝，最终成功等到了消防员的救援。这场波及极广的大火，正因为居民采取了正确的固守策略，最终实现了<strong>无人员伤亡</strong>的救援奇迹。<a href="https://news.qq.com/rain/a/20200104A0FET800?pc" target="_blank">点击查看相关报道</a></li>
+                        <li><strong>"邻居起火，关门阻烟"的成功案例</strong>：据澎湃新闻报道，一起居民楼火灾中，一位阿姨发现邻居家起火、楼道充满浓烟后，冷静地<strong>紧闭自家房门，并用湿毛巾堵住门缝</strong>，将致命的浓烟彻底挡在门外。她在屋内坚守待援，最终被消防员安全救出。这个案例生动地说明，<strong>一扇紧闭的房门就是一道坚实的"生命屏障"</strong>。<a href="https://www.thepaper.cn/newsDetail_forward_22340697" target="_blank">点击查看相关报道</a></li>
+                        <li><strong>消防部门的普遍指导</strong>：<strong>中国消防、央视新闻等权威机构曾多次在消防科普中强调</strong>，当疏散通道被浓烟封锁时，"<strong>关门求生</strong>"是关键策略。一扇紧闭的房门，能有效隔绝有毒烟气，为您赢得宝贵的救援时间。<a href="https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=3542062286691046628&t=1764202457940&toc_style_id=feeds_default&share_to=copy_url&track_id=67d277d7-b532-4228-81a6-6cb52bbaf0aa" target="_blank">点击查看相关报道</a></li>
                     </ul>
                 </div>
 
@@ -586,37 +909,39 @@
                 <p>仅仅消除隐患还不够，为家中配备合适的消防装备，能在关键时刻拯救全家人的生命。</p>
 
                 <div class="info-box">
-                    <table class="stats-table">
-                        <thead>
-                            <tr>
-                                <th>装备名称</th>
-                                <th>推荐等级</th>
-                                <th>核心作用（为什么需要它？）</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>烟雾报警器</strong></td>
-                                <td><strong>必备</strong></td>
-                                <td>火灾发生时，尤其是在您熟睡时，能第一时间发出高分贝警报。建议选择两类：一是独立式（电池供电），安装简单；二是智能式，可连接手机App，即使您不在家也能收到警报，及时采取措施。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>过滤式消防自救呼吸器</strong></td>
-                                <td><strong>必备</strong></td>
-                                <td>火灾中真正的头号杀手是浓烟。它能有效过滤一氧化碳等有毒烟雾，保障您在穿过烟雾区域时的呼吸安全，是逃生时最重要的保障。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>水基/干粉灭火器</strong></td>
-                                <td><strong>推荐</strong></td>
-                                <td>用于扑灭初期小火。水基灭火器对厨房油锅起火效果好；干粉灭火器适用范围广，性价比高。</td>
-                            </tr>
-                            <tr>
-                                <td><strong>消防毯</strong></td>
-                                <td><strong>推荐</strong></td>
-                                <td>可快速扑灭油锅起火，或在逃生时披在身上作为隔热防护。选择尺寸适中、易于操作的型号。</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-wrapper">
+                        <table class="stats-table">
+                            <thead>
+                                <tr>
+                                    <th>装备名称</th>
+                                    <th>推荐等级</th>
+                                    <th>核心作用（为什么需要它？）</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>烟雾报警器</strong></td>
+                                    <td><strong>必备</strong></td>
+                                    <td>火灾发生时，尤其是在您熟睡时，能第一时间发出高分贝警报。建议选择两类：一是独立式（电池供电），安装简单；二是智能式，可连接手机App，即使您不在家也能收到警报，及时采取措施。</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>过滤式消防自救呼吸器</strong></td>
+                                    <td><strong>必备</strong></td>
+                                    <td>火灾中真正的头号杀手是浓烟。它能有效过滤一氧化碳等有毒烟雾，保障您在穿过烟雾区域时的呼吸安全，是逃生时最重要的保障。</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>水基/干粉灭火器</strong></td>
+                                    <td><strong>推荐</strong></td>
+                                    <td>用于扑灭初期小火。水基灭火器对厨房油锅起火效果好；干粉灭火器适用范围广，性价比高。</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>消防毯</strong></td>
+                                    <td><strong>推荐</strong></td>
+                                    <td>可快速扑灭油锅起火，或在逃生时披在身上作为隔热防护。选择尺寸适中、易于操作的型号。</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 <div class="warning-box">

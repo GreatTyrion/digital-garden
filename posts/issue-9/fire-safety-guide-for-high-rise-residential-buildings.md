@@ -115,3 +115,4 @@
 1. [视频丨高层起火如何逃生？记住这些危急时刻能救命](https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=3542062286691046628&t=1764202457940&toc_style_id=feeds_default&share_to=copy_url&track_id=67d277d7-b532-4228-81a6-6cb52bbaf0aa)
 2. [重庆加州花园高楼火灾：被困居民讲述惊魂时刻](https://news.qq.com/rain/a/20200104A0FET800?pc)
 3. [YouTube:高层火灾自救指南！](https://www.youtube.com/watch?v=3DMSwjhZN0k&t=781s)
+4. [YouTube:香港大埔火灾幸存者还原逃生经历](https://www.youtube.com/watch?v=ie-zStE6SOQ)

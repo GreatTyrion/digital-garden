@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我把AI Studio应用部署上线了，这是你需要知道的5个关键教训 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            color: #666;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-10.html" class="back-btn">← 返回第10期</a>
+        
+        <header class="header">
+            <h1>🚀 我把AI Studio应用部署上线了</h1>
+            <div class="subtitle">这是你需要知道的5个关键教训</div>
+            <div class="meta">
+                <span>📅 2025年</span>
+                <span>💻 技术分享</span>
+                <span>🔧 部署指南</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">引言：从AI实验场到真实世界</a></li>
+                <li><a href="#lesson1">1. 意外的"手动挡"：AI生成的代码也需要手动修复</a></li>
+                <li><a href="#lesson2">2. 安全第一课：API Key绝不能暴露在前端</a></li>
+                <li><a href="#lesson3">3. API Key的"保险箱"：两种主流的保护方案</a>
+                    <ul>
+                        <li><a href="#method1">第一种方法：Google Cloud一键部署</a></li>
+                        <li><a href="#method2">第二种方法：重构为前后端分离应用</a></li>
+                        <li><a href="#comparison">方案对比</a></li>
+                    </ul>
+                </li>
+                <li><a href="#lesson4">4. 用AI改造AI：让AI编程助手完成代码重构</a></li>
+                <li><a href="#lesson5">5. 免费的代价：部署平台选择的"地域智慧"</a></li>
+                <li><a href="#conclusion">结论：部署只是起点</a></li>
+                <li><a href="#references">参考资料</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>🚀 引言：从AI实验场到真实世界</h2>
+                    <p>近来，使用Google AI Studio和Gemini这类强大的工具，一句话就能生成一个有趣的应用，这种体验无疑是令人兴奋的。然而，当兴奋感褪去，所有开发者都会直面一个核心痛点：这些应用都运行在AI Studio的沙盒里，不仅自己使用不便，更难以轻松地分享给朋友或潜在用户。</p>
+                    <p>将这些AI实验品部署成一个公开的网站，是把想法变为现实的关键一步。但这个过程并非一帆风顺，我们需要区分两种情况：一种是不涉及实时AI调用的静态应用，另一种是需要与Gemini API交互的动态AI应用。它们的部署路径和遇到的"坑"截然不同。本文将分享我在部署这两种应用时总结出的几个最关键的实践心得，帮助你顺利地从AI实验场走向真实世界。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="lesson1" class="section">
+                <h2>1. 意外的"手动挡"：AI生成的代码也需要手动修复</h2>
+
+                <p>让我们先从最简单的静态应用开始。第一个令人惊讶的发现是，即便是从AI Studio直接导出的静态网页项目（例如基于React和Vite构建的应用），也无法直接部署成功。</p>
+
+                <p>问题出在一个容易被忽略的细节上：项目的核心文件index.html中，缺少了引用React入口文件的关键代码。这意味着，如果你不进行任何修改就直接部署，网站将无法正确加载和运行。</p>
+
+                <p>因此，在部署之前，你必须手动编辑index.html文件，在<code>&lt;body&gt;</code>标签的末尾添加下面这行缺失的代码：</p>
+
+                <pre><code>&lt;script type="module" src="/src/main.jsx"&gt;&lt;/script&gt;</code></pre>
+
+                <div class="info-box">
+                    <h4>💡 聪明的技巧</h4>
+                    <p>此外，还有一个聪明的技巧。这类静态项目虽然不调用AI，但其构建脚本可能仍然需要一个API Key环境变量才能成功运行。为了绕过这个问题，你可以在部署平台（如Vercel或Netlify）上设置一个假的API Key。例如，添加一个名为<code>GEMINI_API_KEY</code>的环境变量，值可以随便填写，比如"placeholder"。这能满足构建过程的需要，又不会带来任何安全风险。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="lesson2" class="section">
+                <h2>2. 安全第一课：API Key绝不能暴露在前端</h2>
+
+                <p>现在，我们进入更复杂的动态AI应用部署。这里最核心、也最严重的问题就是API Key的安全。</p>
+
+                <p>通俗地讲，前端代码是运行在用户浏览器里的，这意味着任何人都可以在你的网站上右键"查看网页源代码"，从而看到前端的所有代码。如果你的Gemini API Key直接写在前端代码里，就相当于把你的账户密钥公之于众。</p>
+
+                <div class="warning-box">
+                    <h4>⚠️ 严重风险</h4>
+                    <p>一旦API Key泄露，任何人都可以用你的密钥去调用API，由此产生的所有费用都将由你承担，这可能导致难以控制的经济损失。因此，将一个包含明文API Key的纯前端项目直接部署到Vercel或Netlify等平台是极其危险的行为。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="lesson3" class="section">
+                <h2>3. API Key的"保险箱"：两种主流的保护方案</h2>
+
+                <p>既然不能把API Key放在前端，我们该如何安全地保管它？目前主流的解决方案有两种。</p>
+
+                <h3 id="method1">第一种方法：Google Cloud一键部署</h3>
+                <p>这是AI Studio官方提供的便捷方案。它的原理是利用Google Cloud的网关功能（API Proxy）来自动保护你的API Key。</p>
+
+                <div class="info-box">
+                    <ul>
+                        <li><strong>工作流程</strong>：用户的浏览器请求会先发送到你网站的代理地址。接着，谷歌的服务器在后端接收到这个请求，自动附加上你真实的API Key，再将请求转发给Gemini。</li>
+                        <li><strong>优点</strong>：整个过程中，API Key从未出现在前端，从而得到了有效保护。</li>
+                        <li><strong>前提条件</strong>：你需要拥有一个已经绑定了信用卡并设置好结算信息的Google Cloud项目。</li>
+                    </ul>
+                </div>
+
+                <h3 id="method2">第二种方法：重构为前后端分离应用</h3>
+                <p>这是一种更通用、更灵活的专业方案，也是业界的标准做法。</p>
+
+                <div class="success-box">
+                    <ul>
+                        <li><strong>核心思路</strong>：将原本的纯前端项目，改造成一个包含后端服务的全栈应用（例如使用Next.js框架）。将API Key安全地存储在后端服务器的环境变量中，所有对Gemini API的调用都由后端代码来完成。</li>
+                        <li><strong>优点</strong>：前端只与我们自己的后端接口进行通信，用户的浏览器永远接触不到真实的API Key，实现了彻底的安全隔离。这种架构也为未来增加用户系统、数据库等复杂功能打下了坚实基础。</li>
+                    </ul>
+                </div>
+
+                <h3 id="comparison">方案对比</h3>
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>☁️ Google Cloud方案</h4>
+                        <p>最适合快速验证和便捷部署，但会将你锁定在Google的生态系统内，且需要绑定结算账户。</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🏗️ 后端重构方案</h4>
+                        <p>初期工作量稍大，但是一个平台无关、更安全、可扩展性更强的长远之计，是专业产品的必经之路。</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="lesson4" class="section">
+                <h2>4. 用AI改造AI：让AI编程助手完成代码重构</h2>
+
+                <p>将纯前端项目重构为Next.js全栈应用听起来可能很复杂，但这里有一个非常现代且高效的工作流程：使用AI编程工具来辅助完成这项工作。</p>
+
+                <p>你可以向AI编程助手提供一个清晰的指令，让它来执行代码改造。一个有效的提示词（Prompt）示例应该是这样的：</p>
+
+                <blockquote>
+                    "把这个项目改造成一个 Next.js 的前后端分离应用。注意：Gemini 的 API key 要安全地存放在后端，需要在后端调用 AI 功能，确保我的 API key 不会泄露。"
+                </blockquote>
+
+                <div class="highlight-box">
+                    <h4>💡 方法价值</h4>
+                    <p>这个方法的价值在于，它展示了AI不仅能生成应用原型，还能帮助开发者完成保障安全性的复杂代码重构。这极大地提升了开发效率，让开发者可以更专注于应用的核心逻辑。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="lesson5" class="section">
+                <h2>5. 免费的代价：部署平台选择的"地域智慧"</h2>
+
+                <p>当代码准备就绪后，无论部署的是静态还是动态应用，选择一个合适的免费平台都至关重要，特别是当你的目标用户在国内时。</p>
+
+                <p>根据实践经验，几个主流的免费平台在域名访问性上存在显著差异：</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>🌐 Vercel</h4>
+                        <p>它生成的默认域名（例如 xxx.vercel.app）在国内无法直接访问。如果你想让国内用户使用，必须为其绑定一个你自己的、已经备案的域名。</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>✅ Netlify 和 腾讯云 Webify</h4>
+                        <p>这两个平台生成的免费域名在国内可以直接访问。对于没有个人域名或不想进行复杂配置的开发者来说，它们是更方便快捷的选择。</p>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h4>💡 选择建议</h4>
+                    <p>因此，在选择部署平台时，务必考虑你的用户群体所在地，做出明智的"地域"选择。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="conclusion" class="section">
+                <h2>结论：部署只是起点</h2>
+
+                <p>回顾本文，我们分享了将AI Studio应用部署到真实网站的几个核心经验：从修复静态应用的手动挡问题，到保护动态AI应用API Key的两种主流方案，再到利用AI助手高效重构代码，以及根据用户地域选择合适的部署平台。</p>
+
+                <p>然而，成功部署一个能在线访问的应用，仅仅是漫长旅程的开始。一个真正的产品，还需要考虑更多，例如使用 Supabase 搭建用户系统和权限管理，或是集成 Stripe 实现支付功能。部署上线，意味着你的应用开始接受真实世界的考验。</p>
+
+                <div class="highlight-box">
+                    <h4>🌟 下一步</h4>
+                    <p>现在，你已经掌握了将AI应用从想法变为现实的关键步骤，你的下一个项目会是什么？更重要的是，你将如何让它不止是一个玩具，而是一个能稳定服务的真正产品？</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="references" class="section">
+                <h2>参考资料</h2>
+                <ul>
+                    <li><a href="https://youtu.be/1joStDlw9lg?list=TLGG5dSJHMV1HL4wOTEyMjAyNQ" target="_blank">Gemini应用：免费部署独立网站</a></li>
+                </ul>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-10.html" class="nav-btn">📖 返回第10期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

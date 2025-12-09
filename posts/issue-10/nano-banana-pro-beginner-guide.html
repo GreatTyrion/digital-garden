@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 创意入门指南：用 Nano banana Pro 点亮你的想象力 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .stats-table th,
+        .stats-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .stats-table th {
+            background: #667eea;
+            color: white;
+            font-weight: 600;
+        }
+
+        .stats-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-10.html" class="back-btn">← 返回第10期</a>
+        
+        <header class="header">
+            <h1>🎨 AI 创意入门指南</h1>
+            <div class="subtitle">用 Nano banana Pro 点亮你的想象力</div>
+            <div class="meta">
+                <span>📅 2025年</span>
+                <span>🛠️ AI工具</span>
+                <span>💡 创意设计</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">引言</a></li>
+                <li><a href="#chapter1">第一章：NBNA Pro 的"超能力"</a>
+                    <ul>
+                        <li><a href="#reasoning">能推理的大脑</a></li>
+                        <li><a href="#chinese-text">能写字的能力</a></li>
+                        <li><a href="#search">能搜索的工具</a></li>
+                    </ul>
+                </li>
+                <li><a href="#chapter2">第二章：实用创意任务大盘点</a>
+                    <ul>
+                        <li><a href="#task1">任务一：制作引人注目的海报和社交媒体内容</a></li>
+                        <li><a href="#task2">任务二：学校作业和学习资料的得力助手</a></li>
+                        <li><a href="#task3">任务三：个性化和风格转换</a></li>
+                    </ul>
+                </li>
+                <li><a href="#chapter3">第三章：如何开始使用</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <h2>🎨 引言</h2>
+                    <p>嗨，未来的创作者！你是否想过，不需要复杂的软件和专业技能，也能快速制作出令人惊艳的海报、社交媒体图或学校作业插画？</p>
+                    <p>现在，有了 <strong>Nano banana Pro (NBNA Pro)</strong>，这一切变得比以往任何时候都简单。这个强大的 AI 模型就像一位拥有超强"思考能力"和"设计经验"的助手，能够将你的文字想法瞬间变成高质量的图像。</p>
+                    <p>让我们一起探索 NBNA Pro 的神奇之处，了解它如何帮助你轻松完成各种创意任务！</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter1" class="section">
+                <h2>第一章：NBNA Pro 的"超能力"（它为什么如此强大？）</h2>
+
+                <p>NBNA Pro 区别于传统的 AI 绘图工具，因为它不仅会画画，更重要的是它<strong>懂得思考和理解</strong>。它的核心优势体现在三个方面：</p>
+
+                <h3 id="reasoning">1. 能推理的大脑（理解你的复杂需求）</h3>
+                <p>传统的 AI 只能根据你输入的关键词进行拼凑，但 NBNA Pro 拥有"思考过程"。</p>
+
+                <div class="info-box">
+                    <ul>
+                        <li><strong>它的价值：</strong> 它可以理解复杂的、甚至带有专业知识的指令。例如，你可以要求它根据一段长文总结信息，并将其排版成专业的杂志内页或简报。这意味着你的 AI 助手不仅能画图，还能帮你梳理信息、构思版面。</li>
+                        <li><strong>角色的连贯性：</strong> 如果你在创作漫画或系列内容，NBNA Pro 能让人物面部特征（甚至小到痣的位置和皮肤纹理）在多张不同场景的图片中都保持一致和稳定，彻底解决了角色"跑片"的烦恼。</li>
+                    </ul>
+                </div>
+
+                <h3 id="chinese-text">2. 能写字的能力（告别乱码！）</h3>
+                <p>对于中文创作者来说，过去 AI 图像生成器最大的痛点就是生成的中文常常是乱码、扭曲或错误百出的"鬼画符"。</p>
+
+                <div class="success-box">
+                    <p><strong>它的价值：</strong> NBNA Pro 完美解决了这个问题！无论是复杂的中文海报、YouTube 缩图标题，还是餐厅菜单，它都能生成<strong>工整、清晰的中文文字</strong>。它甚至能自动为文字添加阴影和描边，让设计感更强。</p>
+                </div>
+
+                <h3 id="search">3. 能搜索的工具（专业性和时效性）</h3>
+                <p>NBNA Pro 可以实时连接网络，搜索最新的资料并将信息可视化。</p>
+
+                <div class="info-box">
+                    <p><strong>它的价值：</strong> 如果你需要制作产品对比图或知识图表，它可以即时搜索最新的产品型号或专业知识，并自动配图、整理优缺点，甚至附上引用的链接，保证了信息的准确性和专业性。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter2" class="section">
+                <h2>第二章：实用创意任务大盘点（"做什么"和"怎么做"）</h2>
+
+                <p>有了这些强大的能力，NBNA Pro 能为你做什么呢？</p>
+
+                <h3 id="task1">任务一：制作引人注目的海报和社交媒体内容</h3>
+                <p>无论是为你的视频频道制作封面，还是为活动设计宣传海报，NBNA Pro 都能轻松应对：</p>
+
+                <div class="highlight-box">
+                    <h4>📊 创意应用表格</h4>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>创意应用</th>
+                                <th>价值（Why It Works）</th>
+                                <th>提示词方向（What to Ask）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>社交媒体缩图 (封面)</strong></td>
+                                <td><strong>效率高、中文清晰：</strong> 它可以模仿现有爆款封面的构图和风格，快速生成包含清晰中文大标题、红色箭头等元素的定制缩图，并且中文字体工整，自动带阴影。</td>
+                                <td>"模仿这个爆款封面的构图，生成一张以[主题]为内容的封面，标题使用粗体中文：[你的标题]。"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>活动海报设计</strong></td>
+                                <td><strong>美观且信息准确：</strong> 它可以根据你提供的日期、地点、主题等信息，生成美观的海报，并将这些信息自然地设计融入到画面中（例如写在路牌或横幅上），而非简单地贴上文字。</td>
+                                <td>"为我们公司的家庭日活动制作一张温馨活泼的手绘风格海报，主题是'动物三友会我来了'，注明日期和地点信息。"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>餐厅菜单设计</strong></td>
+                                <td><strong>专业级图片：</strong> 即使你用手机拍的菜品照片不尽人意，NBNA Pro 也能根据你的需求，将菜品图片"美化"成在专业摄影棚拍摄的高级感图片，并自动排版好菜名和价格。</td>
+                                <td>"根据我上传的菜品照片，生成一张精美的菜单，将所有菜品图片替换成在专业摄影棚拍摄、摆盘精致的高级感图片。"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 id="task2">任务二：学校作业和学习资料的得力助手</h3>
+                <p>NBNA Pro 的推理和信息可视化能力，让它成为学习和教学的绝佳工具：</p>
+
+                <div class="info-box">
+                    <h4>📚 学习应用表格</h4>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>创意应用</th>
+                                <th>价值（Why It Works）</th>
+                                <th>提示词方向（What to Ask）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>知识图解和图表</strong></td>
+                                <td><strong>信息密度高且易懂：</strong> 对于需要对比、总结或解释复杂过程的作业（如生物学、科技类），它可以根据你的要求，生成<strong>手绘风格</strong>或<strong>信息密度极高的知识图解</strong>，清楚列出优劣势、适用人群等，甚至能可视化细胞分类过程或编程函数逻辑。</td>
+                                <td>"请生成一张对比四大 AI 模型的知识图解，用手绘风格，清楚列出它们的优劣势和适合的人群。"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>儿童连环画与绘本</strong></td>
+                                <td><strong>角色一致性好、可定制：</strong> 它可以根据你提供的简单故事，生成连贯的、多页的连环画或绘本，主角（如斑马和大象）的形象在每一页都保持稳定，对话气泡中的中文清晰可读。</td>
+                                <td>"生成一个八页的连环画故事，给两岁半的小朋友听，主角是一只斑马和一只大象，故事主题是[你输入的故事内容]。"</td>
+                            </tr>
+                            <tr>
+                                <td><strong>解题步骤可视化</strong></td>
+                                <td><strong>逻辑清晰、手写感真实：</strong> 对于数学或逻辑推理题目，你可以直接把题目照片发给它，让它生成一张"手写"的白板解题图，包含完整的公式推导、辅助线和步骤说明。</td>
+                                <td>"请在白板上用手写体写出这道数学题的完整解题步骤，包含公式推导和图解辅助线。"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h3 id="task3">任务三：个性化和风格转换</h3>
+                <p>如果你想让自己的形象更有趣，或者需要为视频创建虚拟 IP：</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>🎭 风格快速转换</h4>
+                        <p>你可以上传自己的照片，让 NBNA Pro 瞬间将你变成《皮克斯 3D 动画》角色、<strong>GTA 游戏风</strong>人物，或者高写实度的 AI 手办。</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🎬 连续剧本分镜</h4>
+                        <p>基于其强大的角色一致性，你可以上传自己的照片作为主角，然后要求它根据你的剧本内容生成连续的分镜图，主角的脸在所有画面中都保持稳定，非常适合故事创作或广告脚本制作。</p>
+                    </div>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="chapter3" class="section">
+                <h2>第三章：如何开始使用（去哪里找到它）</h2>
+
+                <p>使用 NBNA Pro 并不需要复杂的安装过程，有多种途径可以体验它的强大功能：</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>💰 付费/高清途径</h4>
+                        <p>通过 <strong>Google 的 AI Studio</strong> 平台，你可以连接 API key 付费使用。这个途径支持生成最高 <strong>4K 画质</strong>的高清图像，适合需要印刷或制作复杂图表的高阶用户。</p>
+                    </div>
+                    <div class="tech-card">
+                        <h4>🆓 免费/限量途径</h4>
+                        <ul>
+                            <li><strong>JANDA 平台：</strong> 在聊天窗口选择 NBNA Pro 模型。不过免费用户每天有生成数量限制（例如一天四张），画质约为 1K 左右。</li>
+                            <li><strong>海螺 AI 平台：</strong> 免费用户每天可以生成 50 张图片。</li>
+                            <li><strong>LM Arena 平台：</strong> 这是一个完全免费且没有次数限制的平台，生成的画质约为 2K，对于大多数日常创意任务已经足够使用了。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>💡 使用建议</h4>
+                    <p>记住，使用 NBNA Pro 时，描述得越清楚、越具体，AI 生成的图片就会越接近你的想象。尽情享受这个强大的多模态工具带给你的创意乐趣吧！</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-10.html" class="nav-btn">📖 返回第10期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

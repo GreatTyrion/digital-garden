@@ -23,8 +23,8 @@ Browse the issues below to see what's currently growing.
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
 | [#11](posts/issue-11/issue-11.md) | 2025-12-15 | Security Vulnerability, AI Tools, Practical Tools | 🔒, 🤖, 🛠️, 🗺️ |
-| [#10](posts/issue-10/issue-10.md) | 2025-12-25 | AI Tools, Tech Sharing, Practical Tools, News | 🤖, 💻, 🛠️, 🗺️, 📰 |
-| [#9](posts/issue-9/issue-9.md) | 2025-12-20 | Fire Safety, World Observations, Geopolitical Analysis | 🔥, 🌍, 📊, 🗺️ |
+| [#10](posts/issue-10/issue-10.md) | 2025-12-09 | AI Tools, Tech Sharing, Practical Tools, News | 🤖, 💻, 🛠️, 🗺️, 📰 |
+| [#9](posts/issue-9/issue-9.md) | 2025-12-01 | Fire Safety, World Observations, Geopolitical Analysis | 🔥, 🌍, 📊, 🗺️ |
 | [#8](posts/issue-8/issue-8.md) | 2025-11-16 | Google Free AI Ecosystem | 🤖, ⚙️, 🧰, 🗺️ |
 | [#7](posts/issue-7/issue-7.md) | 2025-11-11 | Time Management and Budget Analysis. | ⏰, 📊, 🗺️ |
 | [#6](posts/issue-6/issue-6.md) | 2025-11-01 | AI Tech, GIS, Education, and Tools. | 🤖, 🗺️, 💡, 🛠️ |

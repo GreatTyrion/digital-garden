@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第11期 - 数字花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .issue-meta {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .issue-number {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .link-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .link-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .link-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .issue-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-btn">← 返回首页</a>
+        
+        <header class="header">
+            <h1>🌱 Digital Garden 第11期</h1>
+            <div class="issue-meta">
+                <span class="issue-number">#11</span>
+                <span>2025年</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 本期目录</h3>
+            <ul>
+                <li><a href="#react-bug">知识分享：React 满分核弹级漏洞技术分析</a></li>
+                <li><a href="#notebooklm">工具分享：谷歌 NotebookLM</a></li>
+                <li><a href="#rental-map">实用工具：纽芬兰圣约翰斯租房地图（更新版）</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="react-bug" class="section">
+                <h2>🔒 知识分享：React 满分核弹级漏洞 (React2Shell) 技术分析</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：这是一个被评为 CVSS 10.0（最高危级别）的严重安全漏洞，影响 React 19.x 和 Next.js 15.x/16.x 版本。</p>
+                </div>
+
+                <h3>核心要点</h3>
+                <ul>
+                    <li><strong>漏洞编号</strong>：CVE-2025-55182 (React) / CVE-2025-66478 (Next.js)</li>
+                    <li><strong>漏洞类型</strong>：CWE-502（不可信数据的反序列化）</li>
+                    <li><strong>影响范围</strong>：所有使用 React Server Components (RSC) 的框架</li>
+                    <li><strong>攻击后果</strong>：攻击者可在无需身份验证的情况下，通过单个 HTTP POST 请求实现远程代码执行 (RCE)</li>
+                </ul>
+
+                <h3>技术背景</h3>
+                <p>该漏洞源于 React Server Components 的 Flight 协议在反序列化过程中的安全缺陷。攻击者通过原型链污染技术，可以获取 JavaScript 的 Function 构造器，从而在服务器端执行任意代码。</p>
+
+                <h3>修复建议</h3>
+                <p>React 团队已发布紧急补丁，建议所有受影响的项目立即升级到安全版本。如果无法立即更新，应采取临时缓解措施，如禁用或限制 RSC 端点访问。</p>
+
+                <div class="link-card">
+                    <h4>📊 详细分析</h4>
+                    <p>查看完整的技术分析报告，深入了解漏洞原理、攻击链条和防护措施。</p>
+                    <a href="./react-ten-point-bug.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="notebooklm" class="section">
+                <h2>🤖 工具分享：谷歌 NotebookLM - 将信息变为创意的个人 AI 助理</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：NotebookLM 是谷歌推出的个人 AI 研究助理，基于 RAG（检索增强生成）技术，严格基于你提供的资料回答问题，杜绝 AI 幻觉。</p>
+                </div>
+
+                <h3>核心特性</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>高可靠性</strong>：基于你上传的资料回答问题，每个答案都会标注来源</li>
+                        <li><strong>多格式支持</strong>：轻松处理 PDF、Google 文档、YouTube 视频链接、音频文件等多种信息来源</li>
+                        <li><strong>强大的内容生成能力</strong>：不仅仅是整理笔记，更能一键生成简报、视频、播客等多种内容</li>
+                    </ul>
+                </div>
+
+                <h3>主要功能</h3>
+                <h4>信息管理</h4>
+                <ul>
+                    <li><strong>自动总结</strong>：上传资料后立即生成核心要点总结</li>
+                    <li><strong>精准问答</strong>：像与真人对话一样，向你的资料提问</li>
+                    <li><strong>深度研究</strong>：AI 驱动的深度研究功能，自动寻找补充来源并生成研究报告</li>
+                    <li><strong>知识可视化</strong>：将笔记转化为思维导图和信息图表</li>
+                </ul>
+
+                <h4>内容创作</h4>
+                <ul>
+                    <li><strong>演示文稿生成</strong>：一键生成专业级 PPT，支持多种视觉风格定制</li>
+                    <li><strong>视频与播客</strong>：将文字资料转化为生动的音视频内容</li>
+                    <li><strong>学习辅助</strong>：自动生成学习卡片和测验，帮助学生巩固知识点</li>
+                </ul>
+
+                <div class="link-card">
+                    <h4>📖 详细指南</h4>
+                    <p>查看完整的使用指南，深入了解如何利用 NotebookLM 从信息管理大师晋升为内容创作高手。</p>
+                    <a href="./a-personal-AI-assistant-that-turns-information-into-creativity.html">阅读详细指南 →</a>
+                </div>
+            </section>
+
+            <section id="rental-map" class="section">
+                <h2>🗺️ 实用工具：纽芬兰圣约翰斯租房地图（更新版）</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>项目简介</strong>：这是一个基于 Kijiji 租房信息爬虫项目生成的交互式租房地图，已在第一期 Digital Garden 中介绍过。</p>
+                </div>
+
+                <h3>功能特点</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>实时数据</strong>：定期更新最新的租房信息</li>
+                        <li><strong>交互式界面</strong>：支持地图浏览和房源筛选</li>
+                        <li><strong>地理位置</strong>：专注于纽芬兰圣约翰斯及其周边城市</li>
+                    </ul>
+                </div>
+
+                <h3>使用方式</h3>
+                <p>直接访问地图网站，即可查看最新的租房信息：</p>
+
+                <div class="link-card">
+                    <h4>🌍 地图网址</h4>
+                    <p>点击下方链接查看交互式租房地图，探索纽芬兰地区的租房信息。</p>
+                    <a href="https://greattyrion.github.io/localRentalPlace/" target="_blank">打开地图 →</a>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="../../index.html" class="nav-btn">🏠 返回首页</a>
+            <a href="../issue-10/issue-10.html" class="nav-btn">📖 第10期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" class="nav-btn secondary" target="_blank">💬 意见反馈</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 键返回顶部
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

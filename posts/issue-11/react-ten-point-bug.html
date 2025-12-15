@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>深度解析：React 满分核弹级漏洞 (React2Shell) 技术分析 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .alert-box h2 {
+            color: #721c24;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .alert-box p {
+            font-size: 1.1rem;
+            color: #721c24;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #dc3545;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section blockquote {
+            border-left: 4px solid #dc3545;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #666;
+            font-style: italic;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #dc3545;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #dc3545;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #c82333;
+            text-decoration: underline;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .code-block code {
+            color: #f8f8f2;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #dc3545, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-11.html" class="back-btn">← 返回第11期</a>
+        
+        <header class="header">
+            <h1>🔴 React 满分核弹级漏洞</h1>
+            <div class="subtitle">React2Shell 技术深度分析</div>
+            <div class="meta">
+                <span>🔒 安全漏洞</span>
+                <span>📅 2025年</span>
+                <span>⚠️ CVSS 10.0</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#alert">漏洞警报</a></li>
+                <li><a href="#background">一、核心背景：RSC 与 Flight 协议</a></li>
+                <li><a href="#root-cause">二、漏洞根源：盲目的信任</a></li>
+                <li><a href="#attack-chain">三、攻击链条：从伪造数据到 RCE</a>
+                    <ul>
+                        <li><a href="#step1">第一步：欺骗解析器（伪造 AST）</a></li>
+                        <li><a href="#step2">第二步：原型链攀升与污染</a></li>
+                        <li><a href="#step3">第三步：Payload 注入与触发执行</a></li>
+                    </ul>
+                </li>
+                <li><a href="#consequences">四、漏洞后果</a></li>
+                <li><a href="#fix">五、修复方案</a></li>
+                <li><a href="#attacks">六、已知攻击活动</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="alert" class="section">
+                <div class="alert-box">
+                    <h2>🚨 漏洞警报</h2>
+                    <p><strong>警报级别</strong>：🔴 <strong>CVSS 10.0 (Critical / 最高危)</strong></p>
+                    <p><strong>漏洞编号</strong>：CVE-2025-55182 (React) / CVE-2025-66478 (Next.js)</p>
+                    <p><strong>漏洞类型</strong>：CWE-502（不可信数据的反序列化）</p>
+                    <p><strong>影响范围</strong>：</p>
+                    <ul>
+                        <li>React 19.0.0, 19.1.0, 19.1.1, 19.2.0</li>
+                        <li>受影响的包：<code>react-server-dom-webpack</code>、<code>react-server-dom-parcel</code>、<code>react-server-dom-turbopack</code></li>
+                        <li>Next.js 15.x / 16.x，以及 Next.js 14.3.0-canary.77 及之后的 canary 版本（使用 App Router 时）</li>
+                        <li>所有使用 React Server Components (RSC) 的框架</li>
+                    </ul>
+                </div>
+                <p>根据"<a href="https://www.youtube.com/watch?v=bMiOYsDtpGM&list=TLGG3iTaldW4GG0xNDEyMjAyNQ" target="_blank">技术爬爬虾</a>"与"<a href="https://www.youtube.com/watch?v=LSiYdiMGS4U&list=TLGGeKSNyGPDaRAxNDEyMjAyNQ" target="_blank">原子能</a>"的深度解读，本文将剖析这一被称为 <strong>"React2Shell"</strong> 的严重漏洞，揭示攻击者如何利用 React 的底层协议攻破服务器。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="background" class="section">
+                <h2>一、核心背景：RSC 与 Flight 协议</h2>
+                <p>要理解这个漏洞，首先必须理解 React Server Components (RSC) 的通信基石——<strong>Flight 协议</strong>。</p>
+                <p>在 Next.js 等现代框架中，React 不再只是前端库，而是演变为全栈架构。服务器（Server）与客户端（Client）之间通过 Flight 协议通信，该协议将组件树序列化为文本流。</p>
+                <ul>
+                    <li><strong>数据块 (Chunks)</strong>：Flight 协议将数据序列化为一行行文本，通过 HTTP POST 发送。</li>
+                    <li><strong>特殊标记</strong>：解析器依赖特殊字符来识别数据类型：
+                        <ul>
+                            <li><code>$Q</code>：代表 Map 集合</li>
+                            <li><code>$@</code>：代表 Promise（异步任务）</li>
+                            <li><code>$B</code>：代表 Blob（二进制大对象）</li>
+                            <li><code>$</code>：用于引用其他数据块（如 <code>$1</code> 引用 ID 为 1 的块）</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>这种机制允许复杂对象（如 Promise）在网络间传输，但也埋下了"反序列化漏洞"的种子。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="root-cause" class="section">
+                <h2>二、漏洞根源：盲目的信任</h2>
+                <p>漏洞的核心在于 <strong>React 解析器（Parser）的盲目信任</strong>。</p>
+                <p>当服务器接收到客户端发来的 Flight 协议数据时，React 的内部函数（如 <code>parseModelString</code>）会执行递归解析。<strong>致命错误在于：服务器默认认为接收到的数据结构是安全的，未对反序列化过程中的对象类型和属性访问做严格限制。</strong></p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="attack-chain" class="section">
+                <h2>三、攻击链条：从伪造数据到 RCE</h2>
+                <p>攻击者无需任何身份验证，只需三个步骤即可接管服务器：</p>
+
+                <h3 id="step1">第一步：欺骗解析器（伪造 AST）</h3>
+                <p>攻击者构造一个恶意的 JSON Payload，伪装成合法的 Flight 数据流。利用 <code>$@</code> 标记，攻击者可以伪造一个处于 <code>resolved</code> 状态的 Promise 对象，强制服务器跳过等待，直接进入后续处理流程。</p>
+
+                <h3 id="step2">第二步：原型链攀升与污染</h3>
+                <p>这是攻击最关键的一环。利用 Flight 协议的"引用机制"，攻击者可以访问对象的深层属性。</p>
+                <ul>
+                    <li>由于缺乏 <code>hasOwnProperty</code> 检查，解析器允许通过引用遍历到对象的原型 <code>__proto__</code>。</li>
+                    <li>攻击者顺藤摸瓜找到 <code>constructor</code>（构造函数），最终获取到 JavaScript 中最危险的工具——<strong>Function 构造器</strong>。</li>
+                </ul>
+                <div class="warning-box">
+                    <h4>⚠️ 风险点</h4>
+                    <p>拥有 <code>Function</code> 构造器意味着你可以通过字符串（String）直接创建并运行任意 JavaScript 代码。</p>
+                </div>
+
+                <h3 id="step3">第三步：Payload 注入与触发执行 (The "Thenable" Trick)</h3>
+                <p>拿到执行权限后，攻击者需要通过巧妙的方式触发代码：</p>
+                <ol>
+                    <li><strong>注入恶意指令</strong>：利用 <code>$B</code> (Blob) 或其他标记的处理逻辑，将恶意代码（如 <code>require('child_process').exec(...)</code>）注入到对象的属性中。</li>
+                    <li><strong>触发执行</strong>：利用 JavaScript 的 <code>await</code> 特性。攻击者在 Payload 中构造一个带有 <code>then</code> 方法的对象（Thenable Object）。</li>
+                    <li><strong>自动化攻击</strong>：当服务器解析器尝试"await"这个伪造对象时，会自动执行 <code>then</code> 方法中的恶意构造流程，从而在服务器端执行任意代码。</li>
+                </ol>
+            </section>
+
+            <hr class="divider">
+
+            <section id="consequences" class="section">
+                <h2>四、漏洞后果</h2>
+                <p>一旦攻击成功，后果是灾难性的：</p>
+                <ul>
+                    <li><strong>任意命令执行 (RCE)</strong>：攻击者可调用 Node.js 的 <code>child_process</code> 执行系统命令（如 <code>rm -rf /</code>，安装挖矿木马等）。</li>
+                    <li><strong>数据泄露</strong>：完全读取服务器上的环境变量（AWS Keys, 数据库密码）、源代码和用户数据。</li>
+                    <li><strong>无痕入侵</strong>：攻击仅需一个 HTTP POST 请求，无需登录，且容易绕过传统的 WAF 防御。</li>
+                    <li><strong>供应链风险</strong>：攻击者可窃取 Git 凭据和云环境配置，导致更大范围的供应链攻击。</li>
+                    <li><strong>影响范围极广</strong>：React 被 Facebook、Instagram、Netflix 等大型平台广泛使用，潜在影响面巨大。</li>
+                </ul>
+            </section>
+
+            <hr class="divider">
+
+            <section id="fix" class="section">
+                <h2>五、修复方案</h2>
+                <p>React 团队已发布紧急补丁。</p>
+
+                <div class="success-box">
+                    <h4>✅ 已修复版本</h4>
+                    <ul>
+                        <li><strong>React</strong>: 19.0.1, 19.1.2, 19.2.1</li>
+                        <li><strong>Next.js</strong>: 15.0.5, 15.1.9, 15.2.6, 15.3.6, 15.4.8, 15.5.7, 16.0.7</li>
+                    </ul>
+                </div>
+
+                <h3>修复的核心逻辑</h3>
+                <p>官方补丁在解析器引用对象属性时，强制增加了 <code>hasOwnProperty</code> 检查。这就像给房子加了一道安检门：解析器现在<strong>只能读取对象自身拥有的属性</strong>，严厉禁止访问 <code>__proto__</code> 和 <code>constructor</code>。这一改动直接切断了攻击者攀升原型链获取 <code>Function</code> 构造器的路径。</p>
+
+                <div class="info-box">
+                    <h4>📋 临时缓解措施（无法立即更新时）</h4>
+                    <ul>
+                        <li>禁用或限制 RSC 端点的访问</li>
+                        <li>应用 Web 应用防火墙（WAF）规则，阻止包含特定路径标记的多部分请求</li>
+                        <li>加强对服务器日志的监控，注意异常的 HTTP POST 请求</li>
+                        <li><strong>AWS 用户</strong>：可启用 <code>AWSManagedRulesKnownBadInputsRuleSet</code>（v1.24+ 已包含此漏洞的防护规则），或部署自定义 WAF 规则检测 <code>next-action</code> / <code>rsc-action-id</code> 请求头与 <code>"status":"resolved_model"</code> 请求体的组合（详见 <a href="https://aws.amazon.com/security/security-bulletins/rss/aws-2025-030/" target="_blank">AWS 安全公告</a>）</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="attacks" class="section">
+                <h2>六、已知攻击活动</h2>
+                <p>根据安全研究机构报告，该漏洞在公开披露后<strong>数小时内</strong>就已被积极利用：</p>
+                <ul>
+                    <li><strong>国家级黑客组织</strong>：包括 Earth Lamia、Jackpot Panda 等组织，针对金融、零售、物流、IT、教育和政府等全球多个行业发起攻击，试图建立持久后门进行网络间谍活动。</li>
+                    <li><strong>恶意软件部署</strong>：攻击者利用该漏洞部署了多种恶意软件，包括 Mirai/Gafgyt 变种、加密货币挖矿程序和 RondoDox 僵尸网络。</li>
+                    <li><strong>凭据窃取</strong>：攻击者尝试窃取 Git 和云环境的凭据，可能导致云基础设施被入侵和供应链攻击。</li>
+                </ul>
+            </section>
+
+            <hr class="divider">
+
+            <section class="section">
+                <div class="highlight-box">
+                    <h4>🔧 建议操作</h4>
+                    <p>如果您正在维护使用 Next.js App Router 或 React 19 的项目，请立即执行以下命令检查并升级：</p>
+                    <div class="code-block">
+                        <code>npm audit<br># 或直接升级到最新版本<br>npm install next@latest react@latest react-dom@latest</code>
+                    </div>
+                    <p><strong>漏洞检测工具</strong>：可以使用专门的扫描工具检测您的应用程序是否存在该漏洞，例如访问 <a href="https://cve-2025-55182.com/" target="_blank">cve-2025-55182.com</a> 提供的检测器。</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-11.html" class="nav-btn">📖 返回第11期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

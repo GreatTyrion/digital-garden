@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第12期 - 数字花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .issue-meta {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .issue-number {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .link-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .link-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .link-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .issue-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-btn">← 返回首页</a>
+        
+        <header class="header">
+            <h1>🌱 Digital Garden 第12期</h1>
+            <div class="issue-meta">
+                <span class="issue-number">#12</span>
+                <span>2025年</span>
+            </div>
+        </header>
+
+                <div class="toc">
+            <h3>📋 本期目录</h3>
+            <ul>
+                <li><a href="#deepmind">知识分享：解密 DeepMind</a></li>
+                <li><a href="#alphafold2">知识分享：解构 AlphaFold2</a></li>
+                <li><a href="#roc">知识分享：远程操作中心的现实洞察</a></li>
+                <li><a href="#rental-map">实用工具：纽芬兰圣约翰斯租房地图（更新版）</a></li>
+                <li><a href="#news">新闻速览：纽芬兰与拉布拉多省新闻速览（六）</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="deepmind" class="section">
+                <h2>🧠 知识分享：解密 DeepMind</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：DeepMind 创始人 Demis Hassabis 曾提出过一个宏大的愿景："第一步，解决智能问题；第二步，用它解决其它所有问题。"这种智能被称为<strong>通用人工智能（Artificial General Intelligence, AGI）</strong>。本文将带你通过 DeepMind 的几个里程碑式项目——从玩复古游戏的算法到破解生物学难题的 AlphaFold，深入浅出地揭示这场正在重塑人类未来的"思考游戏"。</p>
+                </div>
+
+                <h3>核心内容</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>强化学习</strong>：AI 的进化论，从雅达利游戏到 AlphaGo</li>
+                        <li><strong>AlphaGo 的棋盘革命</strong>：从"斯普特尼克时刻"到机器创造力的觉醒</li>
+                        <li><strong>AlphaZero</strong>：从依赖人类数据到完全自主学习的终极进化</li>
+                        <li><strong>AlphaFold</strong>：从虚拟到现实，破解生命密码的科学新纪元</li>
+                    </ul>
+                </div>
+
+                <div class="link-card">
+                    <h4>📊 详细报告</h4>
+                    <p>查看完整的解密 DeepMind 文章，深入了解 DeepMind 从"玩游戏"到破解生命密码的 AGI 探索之路。</p>
+                    <a href="./deciphering-deepmind.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="alphafold2" class="section">
+                <h2>🔬 知识分享：解构 AlphaFold2</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：作为一名软件开发者，你一定熟悉"数据结构"和"算法"。要理解 AlphaFold2，我们不能只把它看作生物学魔法，而要把它看作一个<strong>处理几何约束的深度学习算法</strong>。简单来说，AlphaFold2 的工作本质是将一条<strong>一维的字符串</strong>（氨基酸序列）折叠成一个<strong>三维的图结构</strong>（蛋白质结构）。</p>
+                </div>
+
+                <h3>核心内容</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>核心挑战</strong>：一维如何变三维？从序列到结构的转换</li>
+                        <li><strong>图神经网络</strong>：节点和边的概念在蛋白质结构预测中的应用</li>
+                        <li><strong>Evoformer</strong>：AI 的"推理引擎"，48 个块的堆叠架构</li>
+                        <li><strong>结构模块</strong>：从抽象到具象，SE(3) 不变性的重要性</li>
+                        <li><strong>Recycling</strong>：迭代精炼机制，像画素描一样逐步完善</li>
+                    </ul>
+                </div>
+
+                <div class="link-card">
+                    <h4>📊 详细报告</h4>
+                    <p>查看完整的解构 AlphaFold2 文章，从程序员视角深入理解 AlphaFold2 的算法逻辑。</p>
+                    <a href="./deciphering-alphafold2.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="roc" class="section">
+                <h2>🏭 知识分享：远程操作中心的现实洞察</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：向远程操作中心（ROCs）的转型正在从根本上重塑海洋和石油天然气行业。虽然底层技术确实令人着迷，但最近由 <strong>Oliver Wyman</strong> 与行业合作伙伴 <strong>Atlantic Controls</strong>、<strong>Fugro</strong> 和 <strong>Emerson</strong> 共同举办的会议揭示了一个关键洞察：<strong>成功的实施与其说是关于线路和屏幕，不如说是关于人员、战略，以及找到"本地"和"远程"之间的正确平衡。</strong></p>
+                </div>
+
+                <h3>核心内容</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>ROC 的定义与驱动因素</strong>：标准化、自动化、技术集成和劳动力优化</li>
+                        <li><strong>可量化的收益</strong>：物流成本降低 20%，劳动力优化 50%，材料成本降低 10%</li>
+                        <li><strong>文化转变</strong>：管理从海上到岸上的人员转变</li>
+                        <li><strong>混合劳动力模式</strong>：不是"无人化"，而是"减员化"</li>
+                        <li><strong>延迟障碍的征服</strong>：Starlink 效应，从 VSAT 到 LEO 卫星的突破</li>
+                        <li><strong>ROC 设计的四大支柱</strong>：治理、组织能力、物理位置和技术栈</li>
+                        <li><strong>真实案例研究</strong>：纽芬兰与拉布拉多省的 ROC 实践</li>
+                    </ul>
+                </div>
+
+                <div class="link-card">
+                    <h4>📊 详细报告</h4>
+                    <p>查看完整的远程操作中心文章，深入了解远程操作在海洋和能源行业的现实应用。</p>
+                    <a href="./remote-operating-centers.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="rental-map" class="section">
+                <h2>🗺️ 实用工具：纽芬兰圣约翰斯租房地图（更新版）</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>项目简介</strong>：这是一个基于 Kijiji 租房信息爬虫项目生成的交互式租房地图，已在第一期 Digital Garden 中介绍过。</p>
+                </div>
+
+                <h3>功能特点</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>实时数据</strong>：定期更新最新的租房信息</li>
+                        <li><strong>交互式界面</strong>：支持地图浏览和房源筛选</li>
+                        <li><strong>地理位置</strong>：专注于纽芬兰圣约翰斯及其周边城市</li>
+                    </ul>
+                </div>
+
+                <h3>使用方式</h3>
+                <p>直接访问地图网站，即可查看最新的租房信息：</p>
+
+                <div class="link-card">
+                    <h4>🌍 地图网址</h4>
+                    <p>点击下方链接查看交互式租房地图，探索纽芬兰地区的租房信息。</p>
+                    <a href="https://greattyrion.github.io/localRentalPlace/" target="_blank">打开地图 →</a>
+                </div>
+            </section>
+
+            <section id="news" class="section">
+                <h2>📰 新闻速览：纽芬兰与拉布拉多省新闻速览（六）</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>报道背景</strong>：本期报道聚焦纽芬兰与拉布拉多省在12月初至中旬的最新动态，涵盖财政状况、公共安全、儿童保护、能源成本、社区支持等多个领域。</p>
+                </div>
+
+                <h3>主要内容</h3>
+                <p>从财政赤字到基础设施韧性，从移民政策创新到医疗系统压力，这些事件展现了该省在应对多重挑战和寻求发展机遇方面的最新进展。</p>
+
+                <div class="link-card">
+                    <h4>📊 详细报道</h4>
+                    <p>查看完整的纽芬兰与拉布拉多省新闻速览，了解2025年12月初至中旬的最新资讯汇总。</p>
+                    <a href="./newfoundland-news-december-02-2025.html">阅读详细报道 →</a>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="../../index.html" class="nav-btn">🏠 返回首页</a>
+            <a href="../issue-11/issue-11.html" class="nav-btn">📖 第11期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" class="nav-btn secondary" target="_blank">💬 意见反馈</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // ESC 键返回顶部
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

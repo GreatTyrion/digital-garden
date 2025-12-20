@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解构 AlphaFold2：从"序列"到"结构"的算法逻辑 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 25px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .code-block code {
+            color: #f8f8f2;
+        }
+
+        .code-block .comment {
+            color: #75715e;
+        }
+
+        .code-block .keyword {
+            color: #66d9ef;
+        }
+
+        .code-block .string {
+            color: #e6db74;
+        }
+
+        .code-block .function {
+            color: #a6e22e;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        .math {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .code-block {
+                padding: 15px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+
+            .code-block {
+                padding: 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-12.html" class="back-btn">← 返回第12期</a>
+        
+        <header class="header">
+            <h1>🔬 解构 AlphaFold2</h1>
+            <div class="subtitle">从"序列"到"结构"的算法逻辑</div>
+            <div class="meta">
+                <span>📅 2025年</span>
+                <span>💻 算法解析</span>
+                <span>🧬 生物信息学</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>📋 目录</h3>
+            <ul>
+                <li><a href="#overview">概述</a></li>
+                <li><a href="#challenge">1. 核心挑战：一维如何变三维？</a></li>
+                <li><a href="#graph">2. 这里的"图"（Graph）是什么？</a></li>
+                <li><a href="#evoformer">3. Evoformer：AI 的"推理引擎"</a>
+                    <ul>
+                        <li><a href="#msa-attention">3.1 进化信息的注意力（MSA Attention）</a></li>
+                        <li><a href="#triangle">3.2 三角机制——几何约束的归纳偏置</a></li>
+                    </ul>
+                </li>
+                <li><a href="#structure">4. 结构模块（Structure Module）：从抽象到具象</a></li>
+                <li><a href="#recycling">5. Recycling：迭代精炼</a></li>
+                <li><a href="#summary">6. 程序员视角的 AlphaFold2 总结</a></li>
+                <li><a href="#footnote">严谨性注脚</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="overview" class="section">
+                <div class="overview">
+                    <p>作为一名软件开发者，你一定熟悉"数据结构"和"算法"。要理解 AlphaFold2，我们不能只把它看作生物学魔法，而要把它看作一个<strong>处理几何约束的深度学习算法</strong>。</p>
+                    <p>简单来说，AlphaFold2 的工作本质是将一条<strong>一维的字符串</strong>（氨基酸序列）折叠成一个<strong>三维的图结构</strong>（蛋白质结构）。</p>
+                    <p>为了实现这一点，它主要依赖两个核心概念的深度融合：<strong>注意力机制（Attention）</strong> 和<strong>图神经网络（GNN）</strong> 的思想。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="challenge" class="section">
+                <h2>1. 核心挑战：一维如何变三维？</h2>
+                <p>想象你手里有一条长链子（蛋白质序列），上面穿了 100 个珠子（氨基酸）。</p>
+                <ul>
+                    <li><strong>输入</strong>：氨基酸序列（如 <code>M-K-F-L...</code>）、多序列比对（MSA）、<strong>以及同源蛋白质的结构模板（Templates）</strong>。Templates 就像"作弊小抄"——从 PDB 中检索到的相似蛋白质的已知结构，可以作为预测的参考。</li>
+                    <li><strong>输出</strong>：每个珠子在三维空间中的 <span class="math">(x, y, z)</span> 坐标。</li>
+                    <li><strong>难点</strong>：第 1 个珠子可能和第 100 个珠子在空间上紧紧贴在一起（远程相互作用），但在序列上它们隔得很远。</li>
+                </ul>
+                <p>传统的卷积神经网络（CNN）擅长处理局部信息（图像的相邻像素），但处理这种"长距离依赖"非常吃力。这时，<strong>注意力机制</strong>和<strong>图</strong>的概念就登场了。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="graph" class="section">
+                <h2>2. 这里的"图"（Graph）是什么？</h2>
+                <p>在计算机科学中，图由<strong>节点（Nodes）</strong> 和<strong>边（Edges）</strong> 组成。在 AlphaFold2 的眼里，蛋白质就是一个图：</p>
+                <ul>
+                    <li><strong>节点（Nodes）</strong>：每一个氨基酸残基。在 Evoformer 阶段，节点由 MSA 特征表示（<strong>256 维</strong>）；而在进入结构构建模块时，会转化为更丰富的单体表示（Single Representation，<strong>384 维</strong>）。</li>
+                    <li><strong>边（Edges）</strong>：两个氨基酸之间的"关系"，用一个 <strong>128 维的向量</strong>（称为 Pair Representation）表示。这种关系不仅仅是"是否连接"，而是包含丰富的信息：它们之间的距离是多少？角度是多少？是否可能存在化学相互作用？</li>
+                </ul>
+                <p>AlphaFold2 并不像传统 GNN 那样固定图的结构，而是通过<strong>不断更新"边"的信息</strong>，来推导节点（氨基酸）在空间中的位置。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="evoformer" class="section">
+                <h2>3. Evoformer：AI 的"推理引擎"</h2>
+                <p>AlphaFold2 的核心是一个叫 <strong>Evoformer</strong> 的模块，它由 <strong>48 个相同的块（Block）堆叠而成</strong>。每个块都在执行两类关键操作：</p>
+
+                <h3 id="msa-attention">A. 进化信息的注意力（MSA Attention）</h3>
+                <ul>
+                    <li><strong>原理</strong>：生物学有一个"作弊码"叫 <strong>MSA（多序列比对）</strong>。想象你正在破解一个密码，手里有上千条来自不同物种的"加密信息"（同源序列）。如果每次第 5 个字母变了，第 20 个字母总是跟着变，这说明它们在功能上有关联——很可能在空间上也靠在一起。</li>
+                    <li><strong>算法行为</strong>：AlphaFold2 使用<strong>行注意力（Row-wise Attention）</strong> 和<strong>列注意力（Column-wise Attention）</strong> 交替扫描这些进化序列。
+                        <ul>
+                            <li><em>行注意力</em>：让每条序列内的残基互相"交流"。</li>
+                            <li><em>列注意力</em>：让不同序列中相同位置的残基互相"对话"。</li>
+                        </ul>
+                    </li>
+                    <li><strong>结果</strong>：网络像福尔摩斯一样，从数千条进化序列中找出"共进化"的线索，推断出哪些残基在空间上应该靠近。</li>
+                </ul>
+
+                <h3 id="triangle">B. 三角机制——几何约束的归纳偏置</h3>
+                <p>这是 AlphaFold2 最精彩的创新，它<strong>诱导 AI 学习并遵守</strong>几何规则。</p>
+                <p><strong>直觉</strong>：假设有三个点 A、B、C。</p>
+                <ul>
+                    <li>如果你知道 A 到 B 的距离是 3。</li>
+                    <li>你也知道 B 到 C 的距离是 4。</li>
+                    <li>那么 A 到 C 的距离是 100 的<strong>概率极低</strong>（因为违反了三角形不等式）。</li>
+                </ul>
+                <p>需要注意的是，这不是"硬性约束"——网络并没有用代码禁止违反几何规则的输出。相反，它是一种<strong>软约束（Soft Inductive Bias）</strong>：通过门控机制和乘法更新，让网络在训练中"学会"——如果不遵守三角不等式，预测结果就会很差。</p>
+                <p>AlphaFold2 用两种机制来强制执行这种几何逻辑：</p>
+
+                <h4>三角乘法更新（Triangle Multiplicative Update）</h4>
+                <p>想象一个 <span class="math">N × N</span> 的"距离矩阵"，每个格子 <span class="math">(i, j)</span> 存储着残基 <span class="math">i</span> 和 <span class="math">j</span> 之间的关系。</p>
+                <ul>
+                    <li><strong>Outgoing 更新</strong>：对于边 <span class="math">(i, j)</span>，找到所有中间点 <span class="math">k</span>，综合边 <span class="math">(i, k)</span> 和 <span class="math">(j, k)</span> 的信息来更新 <span class="math">(i, j)</span>。</li>
+                    <li><strong>Incoming 更新</strong>：方向相反，用 <span class="math">(k, i)</span> 和 <span class="math">(k, j)</span> 来更新 <span class="math">(i, j)</span>。</li>
+                </ul>
+                <p><em>AI 的内心独白</em>："节点 <span class="math">i</span> 和节点 <span class="math">k</span> 离得很近，节点 <span class="math">j</span> 和节点 <span class="math">k</span> 也离得很近，那么 <span class="math">i</span> 和 <span class="math">j</span> 之间的距离也要相应调整。"</p>
+
+                <h4>三角注意力（Triangle Attention）</h4>
+                <p>在乘法更新的基础上，还有一层注意力机制，让每条边 <span class="math">(i, j)</span> 可以"查询"所有与它共享一个端点的边。这就像在玩一个巨大的<strong>3D 数独</strong>：每填入一个数字（距离），都会通过注意力机制影响其他格子的可能性，直到所有几何约束都完美自洽。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="structure" class="section">
+                <h2>4. 结构模块（Structure Module）：从抽象到具象</h2>
+                <p>经过 Evoformer 的 48 轮打磨，AI 手里拿到了一张极其详尽的"施工图纸"（包含所有氨基酸之间的距离和角度概率矩阵）。</p>
+                <p>最后一步，AlphaFold2 使用了一个<strong>不变量点注意力（Invariant Point Attention, IPA）</strong> 模块。它有一个关键特性：<strong>SE(3) 不变性</strong>。</p>
+
+                <h3>什么是 SE(3) 不变性？</h3>
+                <p>SE(3) 是三维空间中所有刚体变换（旋转 + 平移）的数学群。SE(3) 不变性意味着：如果你把整个蛋白质旋转或平移，网络的输出（原子间的相对位置）不会改变。这是物理世界的基本规律——蛋白质的功能不会因为你把它转个方向就变了。</p>
+
+                <h3>IPA 的工作原理</h3>
+                <ul>
+                    <li>它不再只看抽象的数字，而是直接操作三维坐标。</li>
+                    <li>它把每个氨基酸看作一个<strong>刚体骨架（Rigid Body）</strong>，用一个 4×4 的变换矩阵（包含旋转和平移）来描述其位置和朝向。</li>
+                    <li>根据前面算出的"施工图纸"，IPA 通过注意力机制不断调整每个骨架的位置，像拼乐高积木一样在三维空间中组装蛋白质。</li>
+                </ul>
+            </section>
+
+            <hr class="divider">
+
+            <section id="recycling" class="section">
+                <h2>5. Recycling：迭代精炼</h2>
+                <p>AlphaFold2 还有一个聪明的机制叫 <strong>Recycling（循环）</strong>。</p>
+                <p>整个预测过程不是"一次过"的，而是把 Structure Module 的输出<strong>反馈回 Evoformer 的输入</strong>，再跑一遍。通常循环 <strong>3 次</strong>。</p>
+                <p><em>类比</em>：就像画素描——先画大轮廓，再细化五官，最后添加阴影和细节。每一轮循环，预测的结构都会变得更加精确。</p>
+            </section>
+
+            <hr class="divider">
+
+            <section id="summary" class="section">
+                <h2>6. 程序员视角的 AlphaFold2 总结</h2>
+                <p>如果用伪代码的逻辑来类比，AlphaFold2 的流程是这样的：</p>
+                <div class="code-block">
+                    <pre><code><span class="comment"># 程序员视角的 AlphaFold2 伪代码</span>
+
+<span class="comment"># 1. 特征提取</span>
+<span class="comment"># 输入不仅是序列，还有 MSA 和同源结构模板(Templates)</span>
+<span class="function">msa_feat</span>, <span class="function">pair_feat</span> = <span class="function">extract_features</span>(sequence, msa, templates)
+
+<span class="comment"># 初始化</span>
+<span class="function">msa_rep</span>, <span class="function">pair_rep</span> = <span class="function">embed_inputs</span>(msa_feat, pair_feat)  <span class="comment"># [N_seq, L, 256], [L, L, 128]</span>
+<span class="function">prev_msa_first_row</span> = <span class="function">zeros</span>()  <span class="comment"># 用于 Recycling</span>
+<span class="function">prev_pair_rep</span> = <span class="function">zeros</span>()       <span class="comment"># 用于 Recycling</span>
+
+<span class="comment"># Recycling 循环（通常 3 轮）</span>
+<span class="keyword">for</span> cycle <span class="keyword">in</span> <span class="function">range</span>(<span class="string">3</span>):
+    <span class="comment"># 将上一轮的输出注入当前轮的输入（Recycling Embedding）</span>
+    <span class="function">msa_rep</span> += <span class="function">prev_msa_first_row</span>
+    <span class="function">pair_rep</span> += <span class="function">prev_pair_rep</span>
+
+    <span class="comment"># 2. Evoformer 堆叠（48 个块）</span>
+    <span class="keyword">for</span> block <span class="keyword">in</span> <span class="function">range</span>(<span class="string">48</span>):
+        <span class="comment"># MSA 注意力：提取共进化信息</span>
+        <span class="function">msa_rep</span> = <span class="function">row_attention</span>(msa_rep)
+        <span class="function">msa_rep</span> = <span class="function">column_attention</span>(msa_rep)
+        
+        <span class="comment"># 三角更新：学习几何一致性</span>
+        <span class="function">pair_rep</span> = <span class="function">triangle_multiply_outgoing</span>(pair_rep)
+        <span class="function">pair_rep</span> = <span class="function">triangle_multiply_incoming</span>(pair_rep)
+        <span class="function">pair_rep</span> = <span class="function">triangle_attention_starting</span>(pair_rep)
+        <span class="function">pair_rep</span> = <span class="function">triangle_attention_ending</span>(pair_rep)
+    
+    <span class="comment"># 提取单序列表示，维度从 256 映射到 384</span>
+    <span class="function">single_rep</span> = <span class="function">extract_single_rep</span>(msa_rep)  <span class="comment"># [L, 384]</span>
+
+    <span class="comment"># 3. 结构模块（8 个块）- 使用 IPA 计算 3D 坐标</span>
+    <span class="function">backbone_frames</span>, <span class="function">torsion_angles</span> = <span class="function">structure_module</span>(single_rep, pair_rep)
+
+    <span class="comment"># 准备下一轮 Recycling 的数据</span>
+    <span class="function">prev_msa_first_row</span> = <span class="function">msa_rep</span>[<span class="string">0</span>]
+    <span class="function">prev_pair_rep</span> = <span class="function">pair_rep</span>
+
+<span class="comment"># 最终输出：每个原子的 (x, y, z) 坐标</span>
+<span class="function">atom_positions</span> = <span class="function">compute_atom_coordinates</span>(backbone_frames, torsion_angles)</code></pre>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="footnote" class="section">
+                <h2>严谨性注脚</h2>
+                <p>AlphaFold2 并没有直接模拟物理力学（如牛顿力学或量子力学），它是通过学习 PDB（蛋白质数据银行）中<strong>约 17 万个</strong>已知蛋白质结构，<strong>"背诵"</strong> 并<strong>"归纳"</strong> 出了自然界中蛋白质折叠的几何模式。</p>
+                <p>它之所以强，是因为它用数学（图论、注意力机制和 SE(3) 群论）<strong>强行约束了预测结果</strong>，使其必须符合物理几何的逻辑。正如 DeepMind 团队所说，AlphaFold2 解决了一个困扰科学家 <strong>50 年</strong>的难题，并在 2020 年的 CASP14 竞赛中以远超第二名的成绩一举夺魁。</p>
+                <div class="info-box">
+                    <p>截至 2024 年，AlphaFold 数据库已预测并公开了<strong>超过 2 亿个</strong>蛋白质结构，覆盖了 UniProt 数据库中几乎所有已知蛋白质序列，为生物学和医学研究带来了革命性的影响。</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-12.html" class="nav-btn">📖 返回第12期</a>
+            <a href="../../index.html" class="nav-btn secondary">🏠 返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2025 Digital Garden. 用 ❤️ 和代码构建</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 添加键盘导航支持
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

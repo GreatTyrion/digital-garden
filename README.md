@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 |-------|------|-------------|----------|
+| [#13](posts/issue-13/issue-13.md) | 2025-12-28 | AI Tools, Psychology, News, Practical Tools | 🤖, 💭, 📰, 🗺️ |
 | [#12](posts/issue-12/issue-12.md) | 2025-12-20 | AI Technology, DeepMind, AlphaFold, Remote Operations, News | 🧠, 🤖, 🏭, 🗺️, 📰 |
 | [#11](posts/issue-11/issue-11.md) | 2025-12-15 | Security Vulnerability, AI Tools, Practical Tools | 🔒, 🤖, 🛠️, 🗺️ |
 | [#10](posts/issue-10/issue-10.md) | 2025-12-09 | AI Tools, Tech Sharing, Practical Tools, News | 🤖, 💻, 🛠️, 🗺️, 📰 |

@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Skills：重塑 AI 智能体的未来 - Digital Garden</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 50px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .header .meta {
+            font-size: 1rem;
+            opacity: 0.8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .overview {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 0 15px 15px 0;
+        }
+
+        .overview h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .overview p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #34495e;
+            margin: 30px 0 20px 0;
+            padding-left: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            color: #495057;
+            margin: 25px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .section p {
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .section ul, .section ol {
+            margin: 20px 0;
+            padding-left: 35px;
+        }
+
+        .section li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #ffc107;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            border-left: 4px solid #28a745;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            border-left: 4px solid #6c757d;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc > ul > li {
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .toc ul ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .toc ul ul li {
+            font-weight: normal;
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .layer-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .layer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .layer-card .layer-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .layer-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            display: inline;
+        }
+
+        .layer-card p {
+            color: #555;
+            margin: 15px 0 0 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .tech-card {
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .tech-card h4 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .tech-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .tech-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .constraint-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .constraint-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .constraint-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        .constraint-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .mode-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 15px 0;
+        }
+
+        .mode-card h4 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .mode-card p {
+            color: #555;
+            margin: 0;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 8px 20px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #667eea, transparent);
+            margin: 40px 0;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 30px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 1.6rem;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="./issue-14.html" class="back-btn">← 返回第14期</a>
+        
+        <header class="header">
+            <h1>Agent Skills</h1>
+            <div class="subtitle">重塑 AI 智能体的未来</div>
+            <div class="meta">
+                <span>2025年12月18日发布</span>
+                <span>AI技术</span>
+                <span>架构设计</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>目录</h3>
+            <ul>
+                <li><a href="#intro">引言：告别"指令堆砌"</a></li>
+                <li><a href="#progressive">核心突破一：渐进式披露</a></li>
+                <li><a href="#asset">核心突破二：提示词的资产化</a></li>
+                <li><a href="#script">核心突破三：Script 机制</a></li>
+                <li><a href="#comparison">深度辨析：Agent Skills vs MCP</a></li>
+                <li><a href="#practice">实战洞察：进阶路径</a></li>
+                <li><a href="#conclusion">总结：中间层革命</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="intro" class="section">
+                <div class="overview">
+                    <h2>引言：告别"指令堆砌"，走向智能体资产化时代</h2>
+                    <p>在 AI 智能体（Agent）的演进历程中，我们正经历一场从"提示词工程（Prompt Engineering）"向"<strong>Agent 架构设计</strong>"的范式转移。</p>
+                    <p>过去，开发者常陷入"提示词膨胀"的怪圈：为了让模型完成复杂任务，不得不编写成千上万字的 System Prompt。这不仅迅速榨干了宝贵的上下文窗口（Token），还导致模型在多轮对话中频繁出现指令遗忘。</p>
+                    <p><strong>2025年12月18日</strong>，随着 Agent Skills 开放标准的正式发布，一种全新的设计模式诞生了。它通过将逻辑从上下文空间中<strong>解耦（Decoupling）</strong>，将 AI 从"背诵说明书的复读机"重塑为"按需调用技能的专家助理"。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="progressive" class="section">
+                <h2>核心突破一：渐进式披露</h2>
+
+                <p>Agent Skills 解决上下文危机的核心利器是<strong>渐进式披露（Progressive Disclosure）</strong>机制。在架构层面，它实现了指令的"<strong>按需加载（Lazy Loading）</strong>"，这与传统模式中一次性塞入所有信息的"预加载"有着本质区别。</p>
+
+                <div class="info-box">
+                    <h4>Token 的"懒加载"革命</h4>
+                    <p>这种"目录与书"的设计，让智能体即便挂载数十个技能包，初始 Token 消耗依然极低，彻底解决了长 Prompt 挤占推理空间的痛点。</p>
+                </div>
+
+                <h3>三层过滤机制</h3>
+
+                <div class="layer-card">
+                    <span class="layer-number">1</span>
+                    <h4>元数据层 (Metadata)</h4>
+                    <p>始终对模型可见。仅包含技能的 <code>name</code>（名称）和 <code>description</code>（描述）。模型在响应前会快速检索此层，判断当前任务是否匹配特定技能。</p>
+                </div>
+
+                <div class="layer-card">
+                    <span class="layer-number">2</span>
+                    <h4>指令层 (Instructions)</h4>
+                    <p>存放于 <code>skill.md</code>。只有当模型明确选择该技能后，具体的 SOP 流程、规则约束和 Few-shot 示例才会被加载到当前对话上下文。</p>
+                </div>
+
+                <div class="layer-card">
+                    <span class="layer-number">3</span>
+                    <h4>资源层 (Resources)</h4>
+                    <p>包含参考文档（References）和脚本（Scripts）。这是更深层的"附录"，仅在模型根据指令逻辑判断需要执行代码或查阅特定文档时，才会被触发。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="asset" class="section">
+                <h2>核心突破二：提示词的资产化</h2>
+
+                <p>对于开发者而言，Agent Skills 最大的价值在于实现了<strong>提示词的资产化</strong>：将个人的隐性知识（Know-how）转化为了可规模化、可维护的数字资产。</p>
+
+                <div class="success-box">
+                    <h4>工程化转变</h4>
+                    <p>通过工程化的目录管理，零散的 Prompt 变成了可复用、可版本化、可团队协作的模块。</p>
+                </div>
+
+                <h3>关键技术约束</h3>
+
+                <div class="constraint-list">
+                    <ul>
+                        <li><strong>命名强一致性</strong>：在 <code>skill.md</code> 的元数据中，<code>name</code> 字段的值必须与文件夹名称完全一致，这是模型识别技能的唯一索引。</li>
+                        <li><strong>全局技能 (Global Skills)</strong>：存放在用户根目录（如 <code>~/.cloud/skills</code>），适用于跨项目的通用工具。</li>
+                        <li><strong>项目技能 (Local Skills)</strong>：存放在项目根目录（如 <code>./.skills</code>），随代码库进行版本管理，方便团队协作。</li>
+                        <li><strong>标准化结构</strong>：推荐采用 <code>/scripts</code>、<code>/references</code> 和 <code>/assets</code> 分离的组织方式，确保技能包在不同环境下的兼容性。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="script" class="section">
+                <h2>核心突破三：Script 机制</h2>
+
+                <p>Agent Skills 引入的 <strong>Script（脚本）</strong> 机制是迈向自动化执行的分水岭。它在 Token 效率上与 <strong>Reference（参考资料）</strong> 有着显著差异：</p>
+
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Reference 是"读取"</h4>
+                        <ul>
+                            <li>相当于翻书</li>
+                            <li>内容必须进入上下文才能被 AI 理解</li>
+                            <li>消耗 Token 较多</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h4>Script 是"运行"</h4>
+                        <ul>
+                            <li>相当于派发任务</li>
+                            <li>模型只关心调用参数和返回结果</li>
+                            <li>实现逻辑复杂度的屏蔽</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="highlight-box">
+                    <h4>架构师洞察</h4>
+                    <p>即使脚本内部包含了上万行复杂的业务代码，对模型而言，它只需发起一个执行指令。这种设计让模型能够处理重型逻辑（如大规模文件重命名或数据清洗），而无需在上下文窗口中"理解"代码细节。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="comparison" class="section">
+                <h2>深度辨析：Agent Skills vs MCP</h2>
+
+                <div class="quote-box">
+                    <p>"MCP 将数据连接给 AI，而 Skills 教会 AI 如何处理这些数据。"</p>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>维度</th>
+                            <th>Agent Skills</th>
+                            <th>MCP (Model Context Protocol)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>侧重点</strong></td>
+                            <td>软逻辑、SOP、知识资产化</td>
+                            <td>硬工具、外部数据连接、环境操作</td>
+                        </tr>
+                        <tr>
+                            <td><strong>加载模式</strong></td>
+                            <td>按需加载 (Lazy Loading)</td>
+                            <td>预加载 (Eager Loading) 工具描述</td>
+                        </tr>
+                        <tr>
+                            <td><strong>安全性</strong></td>
+                            <td>依赖本地脚本环境限制</td>
+                            <td>拥有独立的、标准化的 Server 隔离</td>
+                        </tr>
+                        <tr>
+                            <td><strong>编写门槛</strong></td>
+                            <td>极低（Markdown + 脚本）</td>
+                            <td>较高（需编写符合协议的 Server 代码）</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="info-box">
+                    <p>简单来说，MCP 是智能体的"传感器"和"机械臂"，而 Agent Skills 是指挥这些硬件如何协同工作的"标准作业程序（SOP）"。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="practice" class="section">
+                <h2>实战洞察：进阶路径</h2>
+
+                <p>在实际应用中，Agent Skills 正在重构开发工作流：</p>
+
+                <div class="mode-card">
+                    <h4>能力包模式 (Capability Pack)</h4>
+                    <p>将特定领域经验（如足球训练分析、代码合规审查）封装。通过 <code>skill.md</code> 规定严密的逻辑链条，强制模型"按规矩办事"，显著降低随机性。</p>
+                </div>
+
+                <div class="mode-card">
+                    <h4>软编排模式 (Soft Orchestration)</h4>
+                    <p>主技能充当"项目经理"，通过读取 SOP 流程调度多个子智能体（Sub-agents）。</p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>关键细节</h4>
+                    <p>在处理复杂流程时，子智能体之间通过<strong>文件</strong>（而非主对话上下文）传递中间状态。这种方式确保了主对话的 Token 消耗始终保持平稳，避免了因任务复杂度叠加导致的上下文崩溃。</p>
+                </div>
+            </section>
+
+            <hr class="divider">
+
+            <section id="conclusion" class="section">
+                <h2>总结：智能体时代的"中间层"革命</h2>
+
+                <div class="success-box">
+                    <p>Agent Skills 的深远意义在于，它在 Prompt 与 Agent 之间建立了一个稳固的<strong>抽象中间层</strong>。</p>
+                </div>
+
+                <p>它让我们能够将原本依靠"手工粘贴"的指令库，转化为可被 AI 主动调用、具备工程化结构的数字化资产。当我们不再需要手动维护长达数页的 System Prompt，而是让 AI 像人类专家一样根据情境自主"翻阅手册"时，真正的自动化才算拉开序幕。</p>
+
+                <div class="highlight-box">
+                    <h4>思考题</h4>
+                    <p>当 Prompt 不再是零散的文本，而是模块化的资产，你是否已经准备好将你的隐性知识"解耦"并转化为 AI 的核心组件？</p>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="./issue-14.html" class="nav-btn">返回第14期</a>
+            <a href="../../index.html" class="nav-btn secondary">返回首页</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2026 Digital Garden.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ESC键返回顶部
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

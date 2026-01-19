@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第14期 - 数字花园</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .issue-meta {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .issue-number {
+            background: rgba(255,255,255,0.2);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .section h3 {
+            font-size: 1.3rem;
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+
+        .section p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .section ul, .section ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        .section li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .link-card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+
+        .link-card h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .link-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .link-card a {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .link-card a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .feature-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: 600;
+        }
+
+        .comparison-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .navigation {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .nav-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.secondary {
+            background: #6c757d;
+        }
+
+        .nav-btn.secondary:hover {
+            background: #5a6268;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            border-left: 4px solid #6c757d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .issue-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-btn {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 8px 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 30px 0;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../index.html" class="back-btn">← 返回首页</a>
+        
+        <header class="header">
+            <h1>Digital Garden 第14期</h1>
+            <div class="issue-meta">
+                <span class="issue-number">#14</span>
+                <span>2026年1月</span>
+            </div>
+        </header>
+
+        <div class="toc">
+            <h3>本期目录</h3>
+            <ul>
+                <li><a href="#first-principles">知识分享：第一性原理思维方法论</a></li>
+                <li><a href="#agent-skills">技术分享：Agent Skills 重塑 AI 智能体</a></li>
+                <li><a href="#news">新闻速览：纽芬兰与拉布拉多省2026年1月资讯</a></li>
+                <li><a href="#rental-map">实用工具：纽芬兰圣约翰斯租房地图（更新版）</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <section id="first-principles" class="section">
+                <h2>知识分享：第一性原理思维方法论</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：英国科学记者马库斯·乔恩在其著作《第一性原理》中揭示了马斯克、乔布斯、贝索斯等顶尖人物共享的思维编码。</p>
+                </div>
+
+                <h3>核心要点</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>回归本质</strong>：第一性原理是一把"思维手术刀"，切开经验的表象，直达问题内核</li>
+                        <li><strong>三大陷阱</strong>：类比思维、从众心理、路径依赖——这些认知黑洞阻碍我们的升级</li>
+                        <li><strong>四步拆解法</strong>：定义问题 → 拆解问题 → 重构方案 → 验证迭代</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    <p>"用旧地图找不到新路。成功靠的是逻辑的严密重构，而非对运气的拙劣复制。"</p>
+                </div>
+
+                <div class="link-card">
+                    <h4>详细报告</h4>
+                    <p>查看完整的第一性原理思维方法论，了解如何习得马斯克与乔布斯的思维算法。</p>
+                    <a href="./the-one-thing-you-need-to-know.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="agent-skills" class="section">
+                <h2>技术分享：Agent Skills 重塑 AI 智能体</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：2025年12月18日，Agent Skills 开放标准正式发布，标志着从"提示词工程"向"Agent 架构设计"的范式转移。</p>
+                </div>
+
+                <h3>核心突破</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>渐进式披露</strong>：通过"按需加载"机制解决上下文危机，实现 Token 的"懒加载"革命</li>
+                        <li><strong>提示词资产化</strong>：将隐性知识转化为可规模化、可维护的数字资产</li>
+                        <li><strong>Script 机制</strong>：实现逻辑执行的"零成本"路径，屏蔽复杂度</li>
+                    </ul>
+                </div>
+
+                <h3>技术对比</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>维度</th>
+                            <th>Agent Skills</th>
+                            <th>MCP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>侧重点</td>
+                            <td>软逻辑、SOP、知识资产化</td>
+                            <td>硬工具、外部数据连接</td>
+                        </tr>
+                        <tr>
+                            <td>加载模式</td>
+                            <td>按需加载</td>
+                            <td>预加载</td>
+                        </tr>
+                        <tr>
+                            <td>编写门槛</td>
+                            <td>极低（Markdown + 脚本）</td>
+                            <td>较高（Server 代码）</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="link-card">
+                    <h4>详细报告</h4>
+                    <p>查看完整的 Agent Skills 技术解析，深入了解智能体时代的"中间层"革命。</p>
+                    <a href="./agent-skills.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="news" class="section">
+                <h2>新闻速览：纽芬兰与拉布拉多省2026年1月资讯</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>简介</strong>：本期报道聚焦纽芬兰与拉布拉多省在2026年新年伊始的最新动态，涵盖极端天气、医疗系统、市政服务、能源经济等多个领域。</p>
+                </div>
+
+                <h3>本期亮点</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>极端天气频发</strong>：新年首场冬季风暴、洪水风险、强风警报、Port aux Basques竞技场受损</li>
+                        <li><strong>医疗服务改善</strong>：圣约翰斯紧急护理中心开放（Costco变身社区医院）</li>
+                        <li><strong>流感疫情警惕</strong>：本季已有2人死亡，病例数高于往年同期</li>
+                        <li><strong>能源项目推进</strong>：Bay du Nord项目关键设备采购启动</li>
+                        <li><strong>教育系统压力</strong>：退休教师代课人数激增近10倍</li>
+                    </ul>
+                </div>
+
+                <div class="link-card">
+                    <h4>详细报告</h4>
+                    <p>查看完整的纽芬兰新闻汇总报告，了解15条重要新闻事件的详细信息。</p>
+                    <a href="./newfoundland-news-january-2026.html">阅读详细报告 →</a>
+                </div>
+            </section>
+
+            <section id="rental-map" class="section">
+                <h2>实用工具：纽芬兰圣约翰斯租房地图（更新版）</h2>
+                
+                <div class="highlight-box">
+                    <p><strong>项目简介</strong>：这是一个基于 Kijiji 租房信息爬虫项目生成的交互式租房地图，定期更新最新的租房信息。</p>
+                </div>
+
+                <h3>功能特点</h3>
+                <div class="feature-list">
+                    <ul>
+                        <li><strong>实时数据</strong>：定期更新最新的租房信息</li>
+                        <li><strong>交互式界面</strong>：支持地图浏览和房源筛选</li>
+                        <li><strong>地理位置</strong>：专注于纽芬兰圣约翰斯及其周边城市</li>
+                    </ul>
+                </div>
+
+                <h3>使用方式</h3>
+                <p>直接访问地图网站，即可查看最新的租房信息：</p>
+
+                <div class="link-card">
+                    <h4>地图网址</h4>
+                    <p>点击下方链接查看交互式租房地图，探索纽芬兰地区的租房信息。</p>
+                    <a href="https://greattyrion.github.io/localRentalPlace/" target="_blank">打开地图 →</a>
+                </div>
+            </section>
+        </div>
+
+        <nav class="navigation">
+            <a href="../../index.html" class="nav-btn">返回首页</a>
+            <a href="../issue-13/issue-13.html" class="nav-btn">第13期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" class="nav-btn secondary" target="_blank">意见反馈</a>
+        </nav>
+
+        <footer class="footer">
+            <p>© 2026 Digital Garden.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ESC键返回顶部
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

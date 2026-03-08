@@ -21,7 +21,8 @@ Browse the issues below to see what's currently growing.
 ## 📬 Latest Issues
 
 | Issue | Date | Description | Contains |
-|-------|------|-------------|----------|
+| ----- | ---- | ----------- | -------- |
+| [#15](posts/issue-15/issue-15.md) | 2026-03-07 | AI ship tracking, March news digest, and Newfoundland rental map | 🛰️, 📰, 🇨🇦, 🗺️ |
 | [#14](posts/issue-14/issue-14.md) | 2026-01-18 | First Principles, Agent Skills, Newfoundland News | 🧠, 🤖, 📰, 🗺️ |
 | [#13](posts/issue-13/issue-13.md) | 2025-12-28 | AI Tools, Psychology, News, Practical Tools | 🤖, 💭, 📰, 🗺️ |
 | [#12](posts/issue-12/issue-12.md) | 2025-12-20 | AI Technology, DeepMind, AlphaFold, Remote Operations, News | 🧠, 🤖, 🏭, 🗺️, 📰 |

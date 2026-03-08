@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Digest: International, Canada, and Newfoundland &amp; Labrador - Digital Garden</title>
+    <meta name="description" content="Mobile-friendly HTML edition of a March 2026 news digest covering international news, Canada, and Newfoundland & Labrador.">
+    <style>
+        :root {
+            --bg: #07131a;
+            --bg-2: #0c1d27;
+            --panel: rgba(10, 22, 30, 0.72);
+            --panel-strong: rgba(11, 24, 33, 0.92);
+            --line: rgba(161, 204, 219, 0.16);
+            --text: #eff8fc;
+            --muted: #99b7c3;
+            --soft: #c7dde5;
+            --international: #7be0ff;
+            --canada: #ff8484;
+            --nl: #9ff5c8;
+            --shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+            --radius-xl: 30px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: "Avenir Next", "Segoe UI", sans-serif;
+            line-height: 1.6;
+            background:
+                radial-gradient(circle at top left, rgba(123, 224, 255, 0.13), transparent 28%),
+                radial-gradient(circle at 85% 8%, rgba(255, 132, 132, 0.08), transparent 24%),
+                radial-gradient(circle at 50% 0%, rgba(159, 245, 200, 0.08), transparent 28%),
+                linear-gradient(180deg, #041017 0%, #07131a 38%, #0a1820 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 34px 34px;
+            mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent 85%);
+            opacity: 0.35;
+        }
+
+        a { color: inherit; }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--international), var(--canada), var(--nl));
+            box-shadow: 0 0 18px rgba(123, 224, 255, 0.5);
+        }
+
+        .page {
+            width: min(calc(100% - 28px), var(--max));
+            margin: 0 auto;
+            padding: 20px 0 96px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 28px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(135deg, rgba(8, 16, 23, 0.94), rgba(12, 29, 39, 0.82));
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -10% auto auto 58%;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(123, 224, 255, 0.22), transparent 66%);
+            filter: blur(10px);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--soft);
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, var(--international), var(--nl));
+            box-shadow: 0 0 12px rgba(123, 224, 255, 0.7);
+        }
+
+        h1, h2, h3 {
+            font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+            margin: 0;
+            letter-spacing: -0.03em;
+        }
+
+        h1 {
+            margin-top: 18px;
+            font-size: clamp(2.3rem, 8vw, 5rem);
+            line-height: 0.95;
+            max-width: 10ch;
+            text-wrap: balance;
+        }
+
+        .hero-intro {
+            margin-top: 18px;
+            max-width: 66ch;
+            font-size: clamp(1rem, 2.6vw, 1.14rem);
+            color: #d7ebf2;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .hero-meta span {
+            padding: 9px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.035);
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 22px;
+            align-items: end;
+        }
+
+        .hero-aside {
+            display: grid;
+            gap: 14px;
+        }
+
+        .hero-stat-grid {
+            display: grid;
+            gap: 12px;
+        }
+
+        .hero-stat {
+            padding: 16px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.045);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 4px 12px;
+            align-items: end;
+        }
+
+        .hero-stat strong {
+            font-size: 2rem;
+            line-height: 1;
+        }
+
+        .hero-stat-label, .hero-stat-note {
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .hero-stat.international strong { color: var(--international); }
+        .hero-stat.canada strong { color: var(--canada); }
+        .hero-stat.nl strong { color: var(--nl); }
+
+        .editor-note {
+            padding: 16px 18px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(3, 10, 14, 0.3);
+        }
+
+        .editor-note h2 { font-size: 1.2rem; margin-bottom: 8px; }
+        .editor-note p { margin: 0; color: var(--soft); }
+
+        .toc {
+            position: sticky;
+            top: 14px;
+            z-index: 30;
+            margin-top: 18px;
+            padding: 12px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            background: rgba(7, 19, 26, 0.82);
+            backdrop-filter: blur(18px);
+            display: grid;
+            gap: 10px;
+        }
+
+        .toc-title {
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            padding: 2px 4px 0;
+        }
+
+        .toc-row {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 2px;
+            scrollbar-width: none;
+        }
+
+        .toc-row::-webkit-scrollbar { display: none; }
+
+        .toc-pill {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            min-width: max-content;
+        }
+
+        .toc-pill small { color: var(--muted); }
+        .toc-pill.international { box-shadow: inset 0 0 0 1px rgba(123, 224, 255, 0.12); }
+        .toc-pill.canada { box-shadow: inset 0 0 0 1px rgba(255, 132, 132, 0.12); }
+        .toc-pill.nl { box-shadow: inset 0 0 0 1px rgba(159, 245, 200, 0.12); }
+
+        .sections {
+            margin-top: 28px;
+            display: grid;
+            gap: 24px;
+        }
+
+        .news-section {
+            padding: 22px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--line);
+            background: rgba(9, 22, 29, 0.72);
+            box-shadow: var(--shadow);
+        }
+
+        .section-heading {
+            display: grid;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            line-height: 1;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--soft);
+            max-width: 56ch;
+        }
+
+        .news-section.international h2 { color: var(--international); }
+        .news-section.canada h2 { color: var(--canada); }
+        .news-section.nl h2 { color: var(--nl); }
+
+        .card-stack {
+            display: grid;
+            gap: 14px;
+        }
+
+        .news-card {
+            position: relative;
+            padding: 18px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.025));
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 4px;
+            border-radius: 999px;
+        }
+
+        .news-card.international::before { background: linear-gradient(180deg, var(--international), transparent); }
+        .news-card.canada::before { background: linear-gradient(180deg, var(--canada), transparent); }
+        .news-card.nl::before { background: linear-gradient(180deg, var(--nl), transparent); }
+
+        .news-topline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .news-index {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 0.84rem;
+            letter-spacing: 0.08em;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--muted);
+        }
+
+        .news-date {
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .news-card h3 {
+            font-size: clamp(1.28rem, 3vw, 1.8rem);
+            line-height: 1.08;
+            margin-bottom: 12px;
+            text-wrap: balance;
+        }
+
+        .summary, .impact-box p, .detail-block p {
+            margin: 0;
+            color: #deedf3;
+        }
+
+        .impact-box {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .impact-label, .detail-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+        }
+
+        details { margin-top: 14px; }
+        details summary {
+            list-style: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--soft);
+        }
+
+        details summary::-webkit-details-marker { display: none; }
+        .summary-hint { color: var(--muted); font-size: 0.84rem; }
+        details[open] .summary-hint { color: var(--text); }
+
+        .detail-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .detail-block {
+            padding: 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .detail-block a {
+            color: var(--text);
+            text-decoration-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .summary-section {
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--line);
+            background: linear-gradient(180deg, rgba(9, 22, 29, 0.78), rgba(8, 18, 24, 0.9));
+            box-shadow: var(--shadow);
+        }
+
+        .summary-section h2 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            margin-bottom: 14px;
+        }
+
+        .summary-section p {
+            margin: 0;
+            max-width: 68ch;
+            color: var(--soft);
+            font-size: 1.02rem;
+        }
+
+        .back-top {
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            width: 48px;
+            height: 48px;
+            border: 0;
+            border-radius: 50%;
+            background: rgba(8, 20, 28, 0.84);
+            color: var(--text);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(8px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 40;
+        }
+
+        .back-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .hero { padding: 22px; }
+            .news-section { padding: 18px; }
+        }
+
+        @media (max-width: 640px) {
+            .page { width: min(calc(100% - 16px), var(--max)); padding-top: 12px; }
+            .hero { border-radius: 24px; }
+            .toc { top: 8px; border-radius: 18px; }
+            .summary, .impact-box p, .detail-block p { font-size: 0.98rem; }
+            .news-card { padding: 16px; }
+            .news-topline { align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+    <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+    <main class="page">
+        <header class="hero">
+            <div class="eyebrow">Digital Garden Issue 15</div>
+            <div class="hero-grid">
+                <div>
+                    <h1>News Digest: International, Canada, and Newfoundland &amp; Labrador</h1>
+                    <p class="hero-intro">This digest covers major news developments from <strong>2026-02-21 to 2026-03-07</strong>. It is organized into three sections: international news, Canada-wide news, and Newfoundland &amp; Labrador news, with <strong>15 items in each section</strong>.</p>
+                    <div class="hero-meta">
+                        <span>45 curated stories</span>
+                        <span>3 regions</span>
+                        <span>Mobile-friendly edition</span>
+                    </div>
+                </div>
+                <aside class="hero-aside">
+                    <div class="hero-stat-grid">
+                        <div class="hero-stat international"><span class="hero-stat-label">International News</span><strong>15</strong><span class="hero-stat-note">items</span></div><div class="hero-stat canada"><span class="hero-stat-label">Canada</span><strong>15</strong><span class="hero-stat-note">items</span></div><div class="hero-stat nl"><span class="hero-stat-label">Newfoundland &amp; Labrador</span><strong>15</strong><span class="hero-stat-note">items</span></div>
+                    </div>
+                    <div class="editor-note">
+                        <h2>Reading mode</h2>
+                        <p>Built as a compact long-form news brief for phones first: quick scanning up front, expandable detail when you want context, and direct source links for every item.</p>
+                    </div>
+                </aside>
+            </div>
+        </header>
+
+        <nav class="toc" aria-label="Section navigation">
+            <div class="toc-title">Jump to section</div>
+            <div class="toc-row">
+                <a class="toc-pill international" href="#international-news"><span>🌍</span><span>International News</span><small>15</small></a><a class="toc-pill canada" href="#canada"><span>🍁</span><span>Canada</span><small>15</small></a><a class="toc-pill nl" href="#newfoundland-labrador"><span>🧭</span><span>Newfoundland &amp; Labrador</span><small>15</small></a>
+            </div>
+        </nav>
+
+        <div class="sections">
+            
+    <section class="news-section international" id="international-news">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">🌍 Global fault lines</span>
+                <h2>International News</h2>
+            </div>
+            <p>Crises, diplomacy, energy and war</p>
+        </div>
+        <div class="card-stack">
+            
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">01</span>
+                <span class="news-date">2026-03-01</span>
+            </div>
+            <h3>Khamenei killing triggers succession crisis in Iran</h3>
+            <p class="summary">Reuters reported that the killing of Iran&#x27;s Supreme Leader Ayatollah Ali Khamenei in U.S.-Israeli strikes shattered Iran&#x27;s political order and opened a high-stakes succession struggle. The outcome was described as hinging on whether the Islamic Revolutionary Guard Corps stays united or fractures under wartime pressure.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The story points to a possible long-term shift in Iran&#x27;s power structure, with direct implications for regional stability, energy markets, and international diplomacy.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Iranian leadership, IRGC, U.S. government, Israeli government</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://reuters.com/world/middle-east/khamenei-killing-shatters-irans-order-triggers-high-stakes-succession-race-2026-03-01/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">02</span>
+                <span class="news-date">2026-03-01</span>
+            </div>
+            <h3>Tankers damaged as Strait of Hormuz traffic is disrupted</h3>
+            <p class="summary">At least three tankers were damaged in the Gulf and one seafarer was killed as the U.S.-Iran conflict escalated, according to Reuters. Iran said navigation through the Strait of Hormuz had been halted, while insurers and ship operators braced for higher war-risk costs.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The Strait of Hormuz is one of the world&#x27;s most important energy chokepoints, so even partial disruption can quickly lift oil prices and strain global trade.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Iranian authorities, global shippers, marine insurers, Gulf states</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://reuters.com/business/energy/three-tankers-damaged-gulf-us-iran-conflict-escalates-2026-03-01/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">03</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Lebanon bans Hezbollah military actions after renewed strikes</h3>
+            <p class="summary">Lebanon&#x27;s government banned military activity by Hezbollah after the group opened fire on Israel following Khamenei&#x27;s killing. Reuters described the decision as a dramatic shift in Lebanon&#x27;s internal balance, with Hezbollah rejecting the move.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The decision raises the risk of domestic confrontation inside Lebanon while also affecting the wider regional conflict with Israel and Iran.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Lebanese government, Hezbollah, Israeli military</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://stocks.us.reuters.com/world/middle-east/israeli-military-says-projectiles-were-fired-lebanon-2026-03-01/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">04</span>
+                <span class="news-date">2026-03-01</span>
+            </div>
+            <h3>EU calls for restraint and respect for international law</h3>
+            <p class="summary">The European Union&#x27;s 27 member states called for &quot;maximum restraint&quot; and full respect for international law as the Iran conflict widened. Reuters said the joint message also reflected differing views among European governments over the U.S.-Israeli strikes.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Europe is trying to limit escalation while also protecting its energy security and diplomatic credibility during a fast-moving regional war.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>European Union, EU member states, foreign ministries</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://polling.reuters.com/world/middle-east/eu-nations-call-maximum-restraint-respect-international-law-iran-conflict-2026-03-01/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">05</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Russia warns war could fuel nuclear proliferation</h3>
+            <p class="summary">Russia said the war against Iran could backfire by encouraging both Iran and nearby Arab states to seek nuclear weapons. Reuters said Moscow argued that military action might create exactly the outcome Washington and its allies claimed to be preventing.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The warning highlights how a regional war could reshape non-proliferation politics far beyond Iran itself.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Kremlin, Russian Foreign Ministry, Iran, Arab governments</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://reuters.com/world/russia-says-it-has-seen-no-evidence-that-iran-was-developing-nuclear-weapons-2026-03-03/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">06</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>France moves to expand nuclear deterrent</h3>
+            <p class="summary">President Emmanuel Macron said France would increase the size of its nuclear arsenal and involve European allies more directly in deterrence exercises. Reuters said Paris framed the move as a response to rising geopolitical risk.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The announcement signals a harder European security posture and could influence the continent&#x27;s long-term defence strategy.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>French government, French armed forces, European allies</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://reuters.com/world/europe/macron-says-france-will-increase-size-its-nuclear-arsenal-2026-03-02/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">07</span>
+                <span class="news-date">2026-03-01</span>
+            </div>
+            <h3>Afghanistan says it fired at Pakistani jets over Kabul</h3>
+            <p class="summary">Reuters reported that Afghanistan said it fired at Pakistani jets after blasts and gunfire rocked Kabul during the heaviest clashes in years between Afghan and Pakistani forces. Regional powers were said to be urging restraint and offering mediation.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Another conflict front in South Asia adds pressure to an already unstable regional environment.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Taliban-led Afghan authorities, Pakistani military, regional mediators</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://reuters.com/world/asia-pacific/blasts-heard-kabul-amid-clashes-between-afghan-pakistani-forces-2026-03-01/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">08</span>
+                <span class="news-date">2026-03-05</span>
+            </div>
+            <h3>Ukraine considers postponing peace talks with Russia</h3>
+            <p class="summary">President Volodymyr Zelenskiy said Ukraine had discussed postponing the next round of trilateral peace talks with Russia and the United States because the Iran conflict had destabilized the planned venue in Abu Dhabi. Reuters said Kyiv was considering other locations such as Turkey or Switzerland.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The Middle East war is now interfering with diplomatic efforts over Ukraine, showing how one major conflict can disrupt another.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Ukrainian government, U.S. government, Russian government</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/world/europe/ukraine-seeks-postpone-next-round-trilateral-talks-with-russia-amid-middle-east-2026-03-05/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">09</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Ukraine says it is nearly ready to open EU accession talks</h3>
+            <p class="summary">Zelenskiy said Ukraine would complete the technical work needed to begin negotiations across all chapters of EU accession within days. Reuters noted that Kyiv continues to press for a firm date despite political resistance from Hungary.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>EU membership remains central to Ukraine&#x27;s long-term security and reconstruction strategy.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Ukrainian government, European Union, Hungarian government</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://reuters.com/world/europe/ukraine-complete-preparation-days-start-eu-accession-talks-zelenskiy-says-2026-03-02/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">10</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Ukraine says its forces retook settlements in Zaporizhzhia</h3>
+            <p class="summary">Ukraine&#x27;s military said it had regained nine settlements in the Zaporizhzhia region since late January and had retaken more territory over the previous month than Russia had captured. Reuters described the move as a notable battlefield shift after months of grinding war.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Territorial gains could influence future negotiations and military planning on both sides.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Ukrainian military, Russian military</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://www.reuters.com/world/europe/ukraines-military-makes-gains-southeast-region-zaporizhzhia-kyiv-says-2026-03-02/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">11</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>Russian LNG tanker sinks in Mediterranean</h3>
+            <p class="summary">A Russian LNG tanker sank between Libya and Malta after explosions and a major fire, with Moscow blaming Ukrainian drones. Reuters said all 30 crew members were reported safe, but the incident raised the prospect of wider disruption to maritime energy routes.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Attacks on energy shipping add volatility to already strained fuel markets.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Russian government, Libyan maritime rescue agency, Ukrainian forces</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://www.reuters.com/world/russia-blames-ukrainian-drones-attack-lng-ship-mediterranean-2026-03-04/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">12</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>European capitals push back on fast-track EU membership for Ukraine</h3>
+            <p class="summary">Reuters reported that several European capitals resisted Ukraine&#x27;s push for a faster EU accession path, even as Kyiv argued it was ready to address outstanding concerns. Gradual integration appeared more likely than a rapid breakthrough.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The story underscores the political limits of European solidarity despite broad support for Ukraine.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>European capitals, European Union, Ukrainian government</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://mobile.reuters.com/world/european-capitals-push-back-ukraine-seeks-fast-track-eu-membership-2026-03-03/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">13</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>Russia floats possible halt to gas supplies to Europe</h3>
+            <p class="summary">President Vladimir Putin said Russia could halt gas supplies to Europe amid the energy shock caused by the Iran conflict and the EU&#x27;s effort to further reduce dependence on Russian gas. Reuters reported that Moscow had not made a final decision but was clearly signaling pressure.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The threat adds another layer of energy insecurity for Europe at a moment of already elevated prices.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Kremlin, European Union, gas markets</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/business/energy/putin-suggests-russia-could-stop-supplying-gas-european-markets-now-2026-03-04/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">14</span>
+                <span class="news-date">2026-03-06</span>
+            </div>
+            <h3>Iran war sends shockwaves through global business</h3>
+            <p class="summary">Reuters said the U.S.-Israeli war with Iran was hurting companies worldwide, driving up energy costs and disrupting trade flows, shipping, and air travel. Sectors from consumer goods to specialist materials were said to be facing billion-dollar risks.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>This is the clearest sign yet that the conflict has moved beyond a regional security crisis and into a global economic one.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Multinational companies, shipping industry, aviation sector, energy markets</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/world/europe/us-israel-war-with-iran-sends-shockwaves-through-global-business-2026-03-06/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card international" data-section="international-news">
+            <div class="news-topline">
+                <span class="news-index">15</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>Ukraine worries U.S. weapons could be diverted by Iran war</h3>
+            <p class="summary">Reuters reported that the Iran conflict could divert U.S. air defence resources away from Ukraine just as Russian attacks continued. Analysts said Patriot interceptors and other systems could become even more scarce if the Middle East war drags on.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The conflict may reduce Ukraine&#x27;s military resilience and reshape Western defence priorities.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Ukrainian government, U.S. defence establishment, Gulf allies</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://reuters.com/business/aerospace-defense/iran-conflict-may-divert-us-weapons-ukraine-2026-03-04/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        </div>
+    </section>
+    
+    <section class="news-section canada" id="canada">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">🍁 National signal</span>
+                <h2>Canada</h2>
+            </div>
+            <p>Trade, policy, economy and rights</p>
+        </div>
+        <div class="card-stack">
+            
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">01</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>India and Canada target a trade pact and sign a uranium deal</h3>
+            <p class="summary">Reuters reported that India and Canada agreed on terms of reference for a comprehensive economic partnership and also struck a uranium agreement during Prime Minister Mark Carney&#x27;s visit. Both countries said they aimed to conclude a broader trade pact by the end of the year.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The move signals a significant reset in Canada-India economic relations and opens room for energy and trade expansion.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Canada, Government of India</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://reuters.com/world/india/india-canada-agree-terms-reference-comprehensive-economic-partnership-2026-03-02/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">02</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Carney calls Iran conflict a failure of the international order</h3>
+            <p class="summary">Prime Minister Mark Carney said the Iran conflict reflected a failure of the international order and noted that the United States had not consulted allies before striking Iran. Reuters said Carney called for de-escalation and adherence to international law.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The comments show Canada balancing alliance politics with concerns about legality, escalation, and the safety of Canadians abroad.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Prime Minister&#x27;s Office, Government of Canada, U.S. government</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://reuters.com/world/canada-pm-carney-calls-de-escalation-middle-east-2026-03-03/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">03</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>Canada pushes for a buyers&#x27; alliance on critical minerals</h3>
+            <p class="summary">Reuters reported that Canada proposed a buyers&#x27; alliance aimed at reducing concentration in global critical-minerals supply chains. Ottawa said a coordinated approach would be more effective than setting price floors.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Critical minerals are essential to batteries, defence, and clean technology, making supply security a strategic national issue.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Natural Resources Canada, allied governments, mining sector</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/world/asia-pacific/canada-advocates-buyers-alliance-tackle-critical-minerals-supply-concentration-2026-03-04/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">04</span>
+                <span class="news-date">2026-03-05</span>
+            </div>
+            <h3>Australia and Canada deepen critical minerals partnership</h3>
+            <p class="summary">Australia and Canada signed new agreements on critical minerals, defence, trade, and AI during Carney&#x27;s visit to Australia. Reuters said the deals highlighted closer alignment between two &quot;middle powers&quot; seeking to diversify supply chains.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The agreements strengthen Canada&#x27;s role in allied industrial strategy and could support future mining investment.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Canada, Government of Australia</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://mobile.reuters.com/world/americas/australia-canada-sign-new-deals-critical-minerals-2026-03-05/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">05</span>
+                <span class="news-date">2026-03-06</span>
+            </div>
+            <h3>Canada and U.S. call USMCA review talks constructive</h3>
+            <p class="summary">Canada&#x27;s office for Canada-U.S. trade said discussions in Washington on reviewing the North American trade pact were constructive. Reuters noted that issues such as dairy and wine market access remain contentious.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The tone of the talks matters for tariffs, supply chains, and Canada&#x27;s broader economic relationship with the United States.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Canada, U.S. Trade Representative, Dominic LeBlanc&#x27;s office</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/business/canadian-minister-us-canada-trade-meet-us-trade-chief-washington-2026-03-06/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">06</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Canadian manufacturing posts its strongest reading in 13 months</h3>
+            <p class="summary">Reuters reported that Canada&#x27;s manufacturing PMI rose to 51.0 in February, its highest level since January 2025. New business improved even though export sales remained weak and inflation pressures persisted.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The data suggest industrial activity is stabilizing, even as trade headwinds and cost pressures remain.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>S&amp;P Global, Canadian manufacturers</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/world/americas/canadian-manufacturing-pmi-rises-13-month-high-february-2026-03-02/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">07</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>Canada&#x27;s services sector contracts again</h3>
+            <p class="summary">Reuters said Canada&#x27;s services PMI showed activity shrinking for a fourth straight month in February. Businesses reported weaker demand and more pressure on employment and output.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Since services make up a large share of the economy, continuing contraction could weigh on growth and hiring.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>S&amp;P Global, Canadian service-sector firms</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://reuters.com/world/americas/canadas-services-pmi-shows-activity-declining-further-february-2026-03-04/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">08</span>
+                <span class="news-date">2026-03-06</span>
+            </div>
+            <h3>Ivey PMI rises to a five-month high</h3>
+            <p class="summary">Reuters reported that Canada&#x27;s Ivey PMI rose to 56.6 in February, its highest level since September, indicating faster economic expansion. Inventories rose strongly, though the employment measure slipped below 50.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The report adds nuance to Canada&#x27;s economic picture by showing activity improving unevenly across sectors.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Ivey Business School, Canadian purchasing managers</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.reuters.com/world/americas/canadas-ivey-pmi-rises-5-month-high-february-2026-03-06/" target="_blank" rel="noreferrer">Reuters</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">09</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Ottawa signs rights and marine-management agreements with Musqueam</h3>
+            <p class="summary">CBC reported that the federal government released details of agreements with the Musqueam Indian Band recognizing Aboriginal title over an area that could cover much of greater Vancouver. The agreements also cover fishing and marine management, while leaving private land untouched.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The agreements represent a major development in Indigenous rights, governance, and resource management.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Canada, Musqueam Indian Band</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://www.cbc.ca/news/canada/british-columbia/canada-musqueam-title-agreements-vancouver-bc-9.7112809" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">10</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>B.C. and Cowichan chiefs begin negotiations after title ruling</h3>
+            <p class="summary">CBC reported that British Columbia and Cowichan leaders began negotiations after a landmark court ruling recognizing Aboriginal title over a former village site in Richmond. The parties said the case was about reconciliation rather than invalidating private ownership.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The negotiations could influence how future land title and reconciliation cases are resolved across Canada.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of British Columbia, Cowichan leadership</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/british-columbia/cowichan-chiefs-joint-statement-bc-land-aboriginal-rights-9.7112012" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">11</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>British Columbia moves to permanent daylight time</h3>
+            <p class="summary">CBC reported that Premier David Eby announced March 8 would be the last time most British Columbians change their clocks, as the province shifts to year-round daylight time. Public reaction was mixed, with some praising the end of time changes and others raising health concerns.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The decision affects daily life, business schedules, and interprovincial coordination, and may influence similar debates elsewhere in Canada.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of British Columbia</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/british-columbia/b-c-adopting-year-round-daylight-time-9.7111657" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">12</span>
+                <span class="news-date">2026-02-27</span>
+            </div>
+            <h3>Pharmacare expansion begins in British Columbia</h3>
+            <p class="summary">CBC reported that the national pharmacare program began in B.C. on March 1, expanding access to diabetes medication and menopausal support. Provincial officials said the program could benefit more than half a million residents with diabetes and about 160,000 people experiencing menopausal symptoms.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>This is one of the most concrete recent steps toward broader pharmacare coverage in Canada.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Canada, Government of British Columbia</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/british-columbia/pharmacare-program-bc-begins-diabetes-9.7107641" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">13</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Alberta cuts income support for many seniors</h3>
+            <p class="summary">CBC reported that thousands of Alberta seniors will lose an income supplement as the province tries to manage a rising deficit. The budget also reduces tax credits tied to caregiving.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The cuts underscore the social impact of provincial fiscal tightening, especially on older and lower-income residents.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Alberta</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://cbc.ca/news/canada/calgary/seniors-budget-cuts-welfare-alberta-9.7109257" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">14</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Alberta introduces a six-month cap on income support</h3>
+            <p class="summary">CBC reported that Alberta is introducing a six-month cap on income support for recipients who are not meeting expectations set by the province. Community organizations warned that a one-size-fits-all policy could harm vulnerable people.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The policy reflects a tougher welfare approach and could become a flashpoint in debates about social safety nets.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Alberta, community organizations</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/calgary/budget-income-support-nate-horner-benefits-9.7113048" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card canada" data-section="canada">
+            <div class="news-topline">
+                <span class="news-index">15</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>Manitoba revives a bill on the notwithstanding clause</h3>
+            <p class="summary">CBC reported that Manitoba&#x27;s NDP government reintroduced legislation meant to guard against future use of the notwithstanding clause to override the rights of protected groups. The government framed it as a democratic safeguard.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The bill speaks to a broader national debate over Charter rights and provincial power.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Manitoba, Manitoba Legislature</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/9.7114476" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        </div>
+    </section>
+    
+    <section class="news-section nl" id="newfoundland-labrador">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">🧭 Provincial pulse</span>
+                <h2>Newfoundland &amp; Labrador</h2>
+            </div>
+            <p>Energy, healthcare, fishery and daily life</p>
+        </div>
+        <div class="card-stack">
+            
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">01</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Province signs Bay du Nord agreement with Equinor and BP</h3>
+            <p class="summary">Newfoundland and Labrador announced a formal agreement on life-of-field benefits, royalties, and an equity option to advance the Bay du Nord offshore oil project. The provincial government said the deal could create thousands of jobs and generate billions in revenue.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The agreement marks a major turning point for the province&#x27;s offshore energy sector and its long-term fiscal outlook.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Newfoundland and Labrador, Equinor, BP</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.gov.nl.ca/releases/2026/exec/0303n05/" target="_blank" rel="noreferrer">Government of Newfoundland and Labrador</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">02</span>
+                <span class="news-date">2026-03-04</span>
+            </div>
+            <h3>TradesNL backs local-benefits package tied to Bay du Nord</h3>
+            <p class="summary">CBC reported that TradesNL said the Progressive Conservative government had delivered on local benefits for Bay du Nord. Labour leaders argued that a proposed floating dry dock at Bull Arm could offset the loss of topside work.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The reaction matters because labour support will shape the project&#x27;s local legitimacy and economic expectations.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>TradesNL, Government of Newfoundland and Labrador</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="http://www.cbc.ca/news/canada/newfoundland-labrador/trades-benefits-bay-du-nord-9.7113487" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">03</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Speech from the Throne opens spring sitting with healthcare focus</h3>
+            <p class="summary">The provincial government opened the spring sitting of the House of Assembly with a Speech from the Throne promising greater access to healthcare, safer communities, and support for families facing high costs. VOCM reported that the speech echoed the governing party&#x27;s &quot;For All of Us&quot; message.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The speech sets the policy agenda for the new session and signals what the government wants to prioritize politically.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>House of Assembly, Government of Newfoundland and Labrador</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://vocm.com/2026/03/02/293422/" target="_blank" rel="noreferrer">VOCM</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">04</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Opposition and government say healthcare will dominate spring politics</h3>
+            <p class="summary">CBC reported that as the House of Assembly reconvened, leaders across parties identified healthcare as the top issue for the session. Liberal opposition leader John Hogan said he was preparing to press the government on service delivery and accountability.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Healthcare remains the most politically sensitive issue in the province and will likely shape legislative debate this spring.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>House of Assembly, Liberal opposition, provincial government</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/newfoundland-labrador/as-house-of-assembly-reconvenes-for-spring-session-leaders-say-health-care-is-top-priority-9.7110576" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">05</span>
+                <span class="news-date">2026-03-03</span>
+            </div>
+            <h3>Bill introduced to create an Advocate for People with Disabilities</h3>
+            <p class="summary">CBC reported that the new government introduced legislation to create an Advocate for People with Disabilities. Supporters said it was an important first step toward more direct representation and oversight.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The bill could strengthen accountability and improve how disability-related concerns are handled in provincial policy.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Newfoundland and Labrador, disability advocacy groups</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://cbc.ca/news/canada/newfoundland-labrador/nl-disabilities-advocate-legislation-9.7112475" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">06</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Province reaffirms support for the fishing industry</h3>
+            <p class="summary">The provincial government announced a series of steps to support fishing and aquaculture, saying it had been working closely with FFAW-Unifor and the Association of Seafood Producers. Officials described the sector as central to the economy, culture, and survival of many rural communities.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Fishery policy remains one of the province&#x27;s most consequential economic and political files.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Government of Newfoundland and Labrador, FFAW-Unifor, Association of Seafood Producers</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.gov.nl.ca/releases/2026/exec/0302n01/" target="_blank" rel="noreferrer">Government of Newfoundland and Labrador</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">07</span>
+                <span class="news-date">2026-03-01</span>
+            </div>
+            <h3>Conservationists oppose ending south coast marine-conservation MOU</h3>
+            <p class="summary">CBC reported that salmon conservation advocates criticized the provincial government&#x27;s decision to withdraw from the memorandum of understanding for a proposed south coast National Marine Conservation Area. Opponents warned that the move could weaken long-term ecological protection.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The dispute reflects tension between conservation goals and resource development priorities.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Provincial government, salmon conservation groups</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://cbc.ca/news/canada/newfoundland-labrador/salmon-conservationists-oppose-termination-of-south-coast-mou-9.7102546" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">08</span>
+                <span class="news-date">2026-02-27</span>
+            </div>
+            <h3>St. John&#x27;s wastewater plant gets a $139 million upgrade</h3>
+            <p class="summary">CBC reported that the Riverhead Wastewater Treatment Facility in St. John&#x27;s will undergo a major expansion worth $139 million, funded by the federal, provincial, and municipal governments. The project is intended to raise capacity and improve environmental compliance.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>This is a major infrastructure project with implications for public health, environmental standards, and urban growth.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>City of St. John&#x27;s, Government of Newfoundland and Labrador, Government of Canada</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/newfoundland-labrador/st-john-s-wastewater-facility-to-undergo-139m-expansion-upgrade-9.7108614" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">09</span>
+                <span class="news-date">2026-02-28</span>
+            </div>
+            <h3>Patient describes freezing, drafty conditions at St. Clare&#x27;s</h3>
+            <p class="summary">CBC reported that a Conception Bay South man criticized conditions at St. Clare&#x27;s hospital in St. John&#x27;s after spending days in what he described as freezing and inhumane conditions. He said the experience showed a need for basic facility improvements.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The story adds to concerns about healthcare infrastructure and patient dignity.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>St. Clare&#x27;s hospital, Newfoundland and Labrador Health Services</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://cbc.ca/news/canada/newfoundland-labrador/st-clares-hospital-conditions-9.7108101" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">10</span>
+                <span class="news-date">2026-03-02</span>
+            </div>
+            <h3>Hydrogen developer seeks creditor protection after land dispute</h3>
+            <p class="summary">CBC reported that a consortium behind a proposed green hydrogen project in western Newfoundland sought creditor protection after the provincial government moved to reclaim Crown land. The company said the policy shift could make the project worthless.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The case illustrates the growing uncertainty around the province&#x27;s once-promoted wind-to-hydrogen industry.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>World Energy GH2 consortium, Government of Newfoundland and Labrador</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/newfoundland-labrador/hydrogen-outfit-seeks-creditor-protection-after-n-l-vows-to-take-back-crown-land-9.7111610" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">11</span>
+                <span class="news-date">2026-02-27</span>
+            </div>
+            <h3>Debate flares over extending the recreational food fishery</h3>
+            <p class="summary">VOCM reported that an MP said he was surprised government MPs opposed a motion to push for seven-day-a-week participation in the recreational food fishery instead of the current three-day model. The dispute highlighted frustration around access and fisheries policy.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Food fishery rules are politically sensitive in Newfoundland and Labrador because they touch culture, food access, and federal-provincial relations.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Federal MPs, Department of Fisheries and Oceans, provincial stakeholders</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://vocm.com/2026/02/27/293148/" target="_blank" rel="noreferrer">VOCM</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">12</span>
+                <span class="news-date">2026-03-01</span>
+            </div>
+            <h3>Province braces for a severe cold snap after a snowy winter</h3>
+            <p class="summary">VOCM reported that much of Newfoundland and Labrador was facing a deep freeze after one of the snowiest winters in decades. Forecasts called for wind chills in the minus twenties on the island and even colder conditions in Labrador.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Extreme cold affects energy demand, transportation, and household safety across the province.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Environment Canada, Newfoundland and Labrador Hydro</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://vocm.com/2026/03/01/293325/" target="_blank" rel="noreferrer">VOCM</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">13</span>
+                <span class="news-date">2026-03-06</span>
+            </div>
+            <h3>Fuel prices rise sharply in weekly adjustment</h3>
+            <p class="summary">VOCM reported that gasoline, diesel, furnace oil, and other fuels all rose notably in the Public Utilities Board&#x27;s weekly price adjustment. The increase was tied in part to the Middle East conflict and disruption around global oil shipments.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Higher fuel costs feed directly into household expenses, freight, and rural cost-of-living pressures.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Public Utilities Board, fuel retailers, global oil markets</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://vocm.com/2026/03/06/fuel-prices-way-up-in-pubs-weekly-adjustment/" target="_blank" rel="noreferrer">VOCM</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">14</span>
+                <span class="news-date">2026-03-06</span>
+            </div>
+            <h3>Corner Brook patients describe days spent on overflow stretchers</h3>
+            <p class="summary">CBC reported that patients at Western Memorial Regional Hospital in Corner Brook spent days on overflow stretchers, with one patient describing the experience as degrading and painful. Newfoundland and Labrador Health Services said it works to minimize such cases.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>The report highlights hospital-capacity problems and the human cost of healthcare system strain.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>Western Memorial Regional Hospital, Newfoundland and Labrador Health Services</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/newfoundland-labrador/a-terrible-experience-patients-spent-days-on-overflow-stretchers-in-corner-brook-hospital-9.7114011" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        <article class="news-card nl" data-section="newfoundland-labrador">
+            <div class="news-topline">
+                <span class="news-index">15</span>
+                <span class="news-date">2026-03-06</span>
+            </div>
+            <h3>Speaker warns MHAs to stop personal attacks in the legislature</h3>
+            <p class="summary">CBC reported that House Speaker Paul Lane warned he could remove members&#x27; speaking privileges if inappropriate comments and &quot;chirping&quot; continued during debate. The warning followed complaints about personal remarks and poor decorum.</p>
+            <div class="impact-box">
+                <span class="impact-label">Why it matters</span>
+                <p>Legislative conduct shapes public trust and affects how effectively the House can handle major policy debates.</p>
+            </div>
+            <details>
+                <summary>
+                    <span>More details</span>
+                    <span class="summary-hint">tap to expand</span>
+                </summary>
+                <div class="detail-grid">
+                    <div class="detail-block">
+                        <span class="detail-label">Key institutions</span>
+                        <p>House Speaker, House of Assembly, political parties</p>
+                    </div>
+                    <div class="detail-block">
+                        <span class="detail-label">Source</span>
+                        <p><a href="https://www.cbc.ca/news/canada/newfoundland-labrador/nl-house-decorum-9.7117649" target="_blank" rel="noreferrer">CBC News</a></p>
+                    </div>
+                </div>
+            </details>
+        </article>
+        
+        </div>
+    </section>
+    
+        </div>
+
+        <section class="summary-section">
+            <h2>Overall Takeaways</h2>
+            <p>Three themes stand out across the past two weeks. First, the widening Iran war has become the dominant international story, affecting diplomacy, shipping, energy prices, and even Ukraine-related negotiations. Second, Canada&#x27;s news cycle has been shaped by trade, critical-minerals strategy, and uneven economic indicators. Third, Newfoundland &amp; Labrador&#x27;s agenda has centered on energy development, healthcare strain, fisheries policy, and cost-of-living pressure.</p>
+        </section>
+    </main>
+
+    <script>
+        const progressBar = document.getElementById('progressBar');
+        const backTop = document.getElementById('backTop');
+
+        function updateProgress() {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+            backTop.classList.toggle('visible', scrollTop > 500);
+        }
+
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        window.addEventListener('load', updateProgress);
+        backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+</body>
+</html>

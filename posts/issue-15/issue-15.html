@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第15期 - 数字花园</title>
+    <style>
+        :root {
+            --bg: #f3f5fb;
+            --surface: #ffffff;
+            --surface-alt: #f8faff;
+            --text: #243043;
+            --muted: #5c6b80;
+            --line: #dfe5f2;
+            --primary: #5b6cff;
+            --primary-dark: #3d4cca;
+            --accent: #8d63ff;
+            --shadow: 0 18px 45px rgba(62, 84, 142, 0.12);
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(141, 99, 255, 0.18), transparent 32%),
+                radial-gradient(circle at top right, rgba(91, 108, 255, 0.16), transparent 28%),
+                var(--bg);
+            padding: 16px;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .shell {
+            max-width: 920px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 14px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            text-decoration: none;
+            color: var(--primary-dark);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(91, 108, 255, 0.12);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #5567ff 0%, #7f5cff 55%, #a855f7 100%);
+            color: #fff;
+            border-radius: 28px;
+            padding: 28px 22px;
+            box-shadow: var(--shadow);
+            margin-bottom: 18px;
+        }
+
+        .hero-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .issue-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 68px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.16);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            max-width: 62ch;
+            color: rgba(255, 255, 255, 0.92);
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .meta span {
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid rgba(110, 129, 173, 0.12);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            padding: 22px 18px;
+            margin-bottom: 18px;
+        }
+
+        .toc {
+            background: linear-gradient(180deg, #ffffff 0%, #f7f9ff 100%);
+        }
+
+        .toc h2,
+        .section h2 {
+            font-size: clamp(1.25rem, 4vw, 1.7rem);
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .toc-item {
+            display: block;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: var(--surface-alt);
+            border: 1px solid var(--line);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .toc-item:hover {
+            transform: translateY(-2px);
+            border-color: rgba(91, 108, 255, 0.35);
+            box-shadow: 0 10px 28px rgba(91, 108, 255, 0.12);
+        }
+
+        .toc-item strong {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .toc-item span {
+            color: var(--muted);
+            font-size: 0.94rem;
+        }
+
+        .section {
+            scroll-margin-top: 24px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: var(--primary-dark);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .lead {
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #f5f7ff 0%, #eef4ff 100%);
+            border: 1px solid #dfe7fb;
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            margin: 18px 0;
+        }
+
+        .bullet-list {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding: 14px 14px 14px 42px;
+            background: var(--surface-alt);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            color: var(--text);
+        }
+
+        .bullet-list li::before {
+            content: "";
+            position: absolute;
+            left: 16px;
+            top: 18px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 0 0 5px rgba(91, 108, 255, 0.08);
+        }
+
+        .bullet-list strong {
+            color: #1f2a44;
+        }
+
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 12px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 10px 22px rgba(91, 108, 255, 0.24);
+        }
+
+        .btn-secondary {
+            color: var(--primary-dark);
+            background: #eef2ff;
+            border: 1px solid #dbe3ff;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .mini-card {
+            padding: 16px;
+            border-radius: var(--radius-md);
+            background: var(--surface-alt);
+            border: 1px solid var(--line);
+        }
+
+        .mini-card h3 {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .mini-card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+            padding: 8px 0 12px;
+        }
+
+        @media (max-width: 820px) {
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mini-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            body {
+                padding: 12px;
+            }
+
+            .hero {
+                padding: 22px 18px;
+                border-radius: 24px;
+            }
+
+            .hero-top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .card {
+                padding: 18px 16px;
+                border-radius: 20px;
+            }
+
+            .bullet-list li {
+                padding: 13px 13px 13px 38px;
+            }
+
+            .action-row,
+            .navigation {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <a href="../../index.html" class="back-link">← 返回首页</a>
+
+        <header class="hero">
+            <div class="hero-top">
+                <div>
+                    <h1>Digital Garden 第15期</h1>
+                    <p>本期聚焦海上监测中的 AI 视觉能力、全球到地方的新闻联动，以及持续更新的纽芬兰租房地图。</p>
+                </div>
+                <span class="issue-badge">#15</span>
+            </div>
+            <div class="meta">
+                <span>2026年3月</span>
+                <span>技术分享</span>
+                <span>新闻速览</span>
+                <span>纽芬兰地图</span>
+            </div>
+        </header>
+
+        <section class="card toc">
+            <h2>本期目录</h2>
+            <div class="toc-grid">
+                <a class="toc-item" href="#tech">
+                    <strong>技术分享</strong>
+                    <span>AI 如何从卫星图像中估算船舶速度与航向</span>
+                </a>
+                <a class="toc-item" href="#news">
+                    <strong>新闻速览</strong>
+                    <span>2026年3月国际、加拿大与纽芬兰-拉布拉多资讯</span>
+                </a>
+                <a class="toc-item" href="#map">
+                    <strong>纽芬兰地图</strong>
+                    <span>圣约翰斯租房地图外链入口</span>
+                </a>
+            </div>
+        </section>
+
+        <main>
+            <section id="tech" class="card section">
+                <span class="eyebrow">技术分享</span>
+                <h2>AI 如何从卫星图像中估算船舶速度与航向</h2>
+                <p class="lead">研究团队把 SAR 图像中的多普勒“错位”从一种成像副作用，转成了用于计算船舶运动状态的关键信号。</p>
+
+                <div class="highlight">
+                    <p><strong>简介</strong>：面对关闭 AIS 的“暗船”，传统跟踪系统常常失效。这篇文章解释了多任务深度学习模型如何同时估计船舶航向与速度，让卫星雷达在黑夜、云层和复杂海况下仍具备更强的自动化识别能力。</p>
+                </div>
+
+                <ul class="bullet-list">
+                    <li><strong>物理现象可计算</strong>：船体与尾迹顶点之间的方位向偏移，可用于反推出船速。</li>
+                    <li><strong>多任务学习更稳</strong>：模型联合学习航向与偏移量，减少传统方法中的方向歧义。</li>
+                    <li><strong>数据规模更扎实</strong>：研究使用约 3 万张带 AIS 标注的船舶图像进行训练和验证。</li>
+                    <li><strong>海上监测更实用</strong>：对打击非法捕捞、走私和越界航行具有直接现实意义。</li>
+                </ul>
+
+                <div class="action-row">
+                    <a class="btn btn-primary" href="./speed-and-course-estimation.html">阅读详细文章</a>
+                    <a class="btn btn-secondary" href="./speed-and-course-estimation-english.md">查看英文原稿</a>
+                </div>
+            </section>
+
+            <section id="news" class="card section">
+                <span class="eyebrow">新闻速览</span>
+                <h2>2026年3月国际、加拿大与纽芬兰-拉布拉多资讯</h2>
+                <p class="lead">本期新闻覆盖国际局势、加拿大产业与贸易动向，以及纽芬兰-拉布拉多在能源、医疗和民生成本上的最新变化。</p>
+
+                <div class="highlight">
+                    <p><strong>简介</strong>：这份汇总从全球冲突、能源与航运风险，一路延伸到加拿大关键矿产政策和纽芬兰-拉布拉多的本地议题，适合快速建立对过去两周局势的整体感。</p>
+                </div>
+
+                <ul class="bullet-list">
+                    <li><strong>国际冲突外溢</strong>：中东局势升级，直接冲击能源市场、航运保险与全球企业成本。</li>
+                    <li><strong>加拿大重估供应链位置</strong>：贸易谈判、关键矿产和盟友合作成为高频主题。</li>
+                    <li><strong>纽芬兰能源项目推进</strong>：Bay du Nord 继续成为省内经济讨论的重要轴线。</li>
+                    <li><strong>医疗议题持续高压</strong>：议会、医院与公众讨论都高度集中在服务可及性与承载能力。</li>
+                    <li><strong>生活成本承压</strong>：燃油、天气和公共基础设施问题叠加，持续影响家庭支出。</li>
+                </ul>
+
+                <div class="mini-grid">
+                    <article class="mini-card">
+                        <h3>国际板块</h3>
+                        <p>关注伊朗局势、欧洲安全姿态、俄乌相关动向，以及全球能源与航运链条的震荡。</p>
+                    </article>
+                    <article class="mini-card">
+                        <h3>加拿大板块</h3>
+                        <p>聚焦贸易协议、关键矿产、制造业与服务业指标，以及公共政策的全国性变化。</p>
+                    </article>
+                    <article class="mini-card">
+                        <h3>纽芬兰-拉布拉多板块</h3>
+                        <p>覆盖 Bay du Nord、医疗承压、渔业、燃油价格和议会动态等地方核心议题。</p>
+                    </article>
+                    <article class="mini-card">
+                        <h3>阅读方式</h3>
+                        <p>适合先浏览亮点，再按板块阅读完整 45 条新闻，快速建立过去两周的全景视图。</p>
+                    </article>
+                </div>
+
+                <div class="action-row">
+                    <a class="btn btn-primary" href="./news-march-2026.html">阅读完整新闻汇总</a>
+                    <a class="btn btn-secondary" href="./news-march-2026.md">查看 Markdown 版本</a>
+                </div>
+            </section>
+
+            <section id="map" class="card section">
+                <span class="eyebrow">实用工具</span>
+                <h2>纽芬兰圣约翰斯租房地图</h2>
+                <p class="lead">如果你关心纽芬兰本地生活，这张地图依旧是本期最实用的入口之一。</p>
+
+                <div class="highlight">
+                    <p><strong>项目简介</strong>：基于租房信息整理的交互式地图，可帮助你按地理位置浏览圣约翰斯及周边区域房源，更直观地比较不同区域的居住选择。</p>
+                </div>
+
+                <ul class="bullet-list">
+                    <li><strong>持续更新</strong>：定期同步最新房源信息。</li>
+                    <li><strong>地图视角更直观</strong>：比纯文本列表更容易判断通勤与区域分布。</li>
+                    <li><strong>适合新到纽芬兰的人</strong>：找房、换房或了解区域差异都更方便。</li>
+                </ul>
+
+                <div class="action-row">
+                    <a class="btn btn-primary" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noopener noreferrer">打开租房地图</a>
+                </div>
+            </section>
+        </main>
+
+        <section class="card">
+            <div class="navigation">
+                <a href="../../index.html" class="btn btn-secondary">返回首页</a>
+                <a href="../issue-14/issue-14.html" class="btn btn-secondary">查看第14期</a>
+                <a href="https://github.com/GreatTyrion/digital-garden/issues" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">意见反馈</a>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>© 2026 Digital Garden.</p>
+        </footer>
+    </div>
+</body>
+</html>

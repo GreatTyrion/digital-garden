@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost Ships, AI Eyes, and Orbiting Radar - Digital Garden</title>
+    <meta name="description" content="A mobile-friendly, science-editorial HTML article about how AI and SAR imagery can estimate the speed and course of dark ships from orbit.">
+    <style>
+        :root {
+            --bg: #071018;
+            --bg-soft: rgba(10, 20, 32, 0.78);
+            --panel: rgba(11, 22, 35, 0.72);
+            --panel-strong: rgba(14, 27, 42, 0.92);
+            --text: #eef6ff;
+            --muted: #9ab0c7;
+            --line: rgba(110, 166, 214, 0.18);
+            --accent: #7cf0ff;
+            --accent-2: #78a6ff;
+            --accent-3: #88ffcf;
+            --warning: #ffd479;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 16px;
+            --max-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(60, 128, 255, 0.18), transparent 28%),
+                radial-gradient(circle at top right, rgba(124, 240, 255, 0.12), transparent 22%),
+                radial-gradient(circle at 50% 20%, rgba(136, 255, 207, 0.08), transparent 18%),
+                linear-gradient(180deg, #041018 0%, #071018 35%, #09131f 100%);
+            font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+            line-height: 1.75;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(124, 240, 255, 0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 240, 255, 0.045) 1px, transparent 1px);
+            background-size: 42px 42px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.3) 70%, transparent);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.06) 0 1px, transparent 1px),
+                radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.05) 0 1.5px, transparent 1.5px),
+                radial-gradient(circle at 32% 62%, rgba(255, 255, 255, 0.04) 0 1px, transparent 1px),
+                radial-gradient(circle at 74% 70%, rgba(255, 255, 255, 0.06) 0 1.2px, transparent 1.2px);
+            opacity: 0.9;
+            z-index: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 50;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+            box-shadow: 0 0 18px rgba(124, 240, 255, 0.55);
+        }
+
+        .shell {
+            position: relative;
+            z-index: 1;
+            width: min(calc(100% - 32px), var(--max-width));
+            margin: 0 auto;
+            padding: 28px 0 80px;
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            padding: 36px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background:
+                linear-gradient(135deg, rgba(10, 18, 28, 0.9), rgba(9, 24, 40, 0.8)),
+                rgba(8, 18, 30, 0.84);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(24px);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -16% auto auto 62%;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle, rgba(124, 240, 255, 0.22) 0%, rgba(124, 240, 255, 0.08) 25%, transparent 62%);
+            filter: blur(8px);
+            opacity: 0.9;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: -60px;
+            top: 34px;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            border: 1px solid rgba(124, 240, 255, 0.12);
+            box-shadow:
+                0 0 0 44px rgba(124, 240, 255, 0.045),
+                0 0 0 88px rgba(124, 240, 255, 0.03),
+                0 0 0 132px rgba(124, 240, 255, 0.015);
+            opacity: 0.7;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(124, 240, 255, 0.24);
+            background: rgba(124, 240, 255, 0.08);
+            color: var(--accent);
+            font-size: 0.76rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 14px rgba(124, 240, 255, 0.75);
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.8fr);
+            gap: 28px;
+            align-items: end;
+        }
+
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5.5vw, 5.3rem);
+            line-height: 0.96;
+            letter-spacing: -0.04em;
+            max-width: 12ch;
+            text-wrap: balance;
+        }
+
+        .standfirst {
+            margin-top: 24px;
+            max-width: 62ch;
+            color: #d2e4f7;
+            font-size: clamp(1rem, 1.8vw, 1.18rem);
+        }
+
+        .hero-meta {
+            margin-top: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .hero-meta span {
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .hero-radar {
+            position: relative;
+            min-height: 320px;
+            border-radius: 24px;
+            border: 1px solid rgba(124, 240, 255, 0.14);
+            background:
+                linear-gradient(180deg, rgba(5, 13, 24, 0.9), rgba(7, 19, 30, 0.7)),
+                rgba(7, 16, 24, 0.9);
+            overflow: hidden;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .hero-radar .ring,
+        .hero-radar .sweep,
+        .hero-radar .ship,
+        .hero-radar .wake,
+        .hero-radar .blip {
+            position: absolute;
+        }
+
+        .hero-radar .ring {
+            inset: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid rgba(124, 240, 255, 0.12);
+        }
+
+        .hero-radar .ring.r1 { width: 94px; height: 94px; }
+        .hero-radar .ring.r2 { width: 180px; height: 180px; }
+        .hero-radar .ring.r3 { width: 268px; height: 268px; }
+        .hero-radar .ring.r4 { width: 356px; height: 356px; opacity: 0.5; }
+
+        .hero-radar .cross-x,
+        .hero-radar .cross-y {
+            position: absolute;
+            background: rgba(124, 240, 255, 0.12);
+        }
+
+        .hero-radar .cross-x {
+            left: 0;
+            right: 0;
+            top: 50%;
+            height: 1px;
+            transform: translateY(-50%);
+        }
+
+        .hero-radar .cross-y {
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 1px;
+            transform: translateX(-50%);
+        }
+
+        .hero-radar .sweep {
+            inset: 50%;
+            width: 340px;
+            height: 340px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: conic-gradient(from 28deg, rgba(124, 240, 255, 0.2), transparent 54deg, transparent 360deg);
+            animation: spin 9s linear infinite;
+            filter: blur(2px);
+        }
+
+        .hero-radar .ship {
+            width: 18px;
+            height: 64px;
+            left: 58%;
+            top: 31%;
+            transform: rotate(27deg);
+            border-radius: 12px;
+            background: linear-gradient(180deg, #d5f7ff, #78a6ff);
+            box-shadow: 0 0 18px rgba(124, 240, 255, 0.55);
+        }
+
+        .hero-radar .wake {
+            width: 132px;
+            height: 2px;
+            left: 46%;
+            top: 43%;
+            transform: rotate(27deg);
+            transform-origin: left center;
+            background: linear-gradient(90deg, rgba(136, 255, 207, 0.85), rgba(136, 255, 207, 0.05));
+            box-shadow: 0 0 16px rgba(136, 255, 207, 0.35);
+        }
+
+        .hero-radar .blip {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--warning);
+            box-shadow: 0 0 16px rgba(255, 212, 121, 0.75);
+        }
+
+        .hero-radar .blip.b1 { left: 24%; top: 66%; }
+        .hero-radar .blip.b2 { left: 72%; top: 18%; background: var(--accent-3); box-shadow: 0 0 16px rgba(136, 255, 207, 0.6); }
+        .hero-radar .blip.b3 { left: 82%; top: 56%; background: var(--accent); }
+
+        .radar-caption {
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.74rem;
+            color: #9bc8df;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .stats {
+            margin: 22px 0 0;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .stat {
+            padding: 16px 16px 18px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(14px);
+        }
+
+        .stat-label {
+            display: block;
+            color: var(--muted);
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            display: block;
+            margin-top: 10px;
+            font-size: clamp(1.5rem, 3vw, 2.1rem);
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+        }
+
+        .stat-note {
+            display: block;
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.86rem;
+        }
+
+        .layout {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .toc {
+            position: sticky;
+            top: 22px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .toc-title,
+        .article-label {
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+            color: var(--accent);
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .toc h2 {
+            margin-top: 14px;
+            font-size: 1.55rem;
+            line-height: 1.05;
+        }
+
+        .toc p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin: 12px 0 18px;
+        }
+
+        .toc-nav {
+            display: grid;
+            gap: 8px;
+        }
+
+        .toc-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            text-decoration: none;
+            color: #d7e7f7;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.02);
+            transition: 180ms ease;
+        }
+
+        .toc-nav a:hover,
+        .toc-nav a.active {
+            border-color: rgba(124, 240, 255, 0.24);
+            background: rgba(124, 240, 255, 0.08);
+            transform: translateX(2px);
+        }
+
+        .toc-nav span {
+            display: inline-block;
+            min-width: 1.8em;
+            color: var(--accent);
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.8rem;
+        }
+
+        .article {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+
+        .article-header {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(240px, 0.7fr);
+            gap: 24px;
+            align-items: start;
+            margin-bottom: 28px;
+        }
+
+        .lede {
+            margin-top: 14px;
+            font-size: 1.12rem;
+            color: #d5e6f8;
+            max-width: 62ch;
+        }
+
+        .signal-card {
+            padding: 18px;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(124, 240, 255, 0.15);
+            background:
+                linear-gradient(180deg, rgba(124, 240, 255, 0.08), rgba(120, 166, 255, 0.05)),
+                rgba(255, 255, 255, 0.03);
+        }
+
+        .signal-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+        }
+
+        .signal-card ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #d2e4f7;
+        }
+
+        .signal-card li + li {
+            margin-top: 8px;
+        }
+
+        .story-section {
+            position: relative;
+            padding: 28px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .story-section:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .section-index {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.78rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .section-index::before {
+            content: "";
+            width: 36px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+
+        .story-section h2 {
+            font-size: clamp(1.8rem, 3vw, 2.8rem);
+            line-height: 1.05;
+            margin-bottom: 16px;
+            text-wrap: balance;
+        }
+
+        .story-section p {
+            margin: 0 0 16px;
+            font-size: 1.02rem;
+            color: #d6e5f5;
+        }
+
+        .story-section p strong {
+            color: #ffffff;
+        }
+
+        .story-section ul {
+            margin: 18px 0;
+            padding-left: 18px;
+        }
+
+        .story-section li {
+            margin-bottom: 12px;
+            color: #d6e5f5;
+        }
+
+        blockquote {
+            margin: 22px 0;
+            padding: 18px 20px 18px 24px;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 18px 18px 0;
+            background: rgba(124, 240, 255, 0.06);
+            color: #f4fbff;
+            font-size: 1.05rem;
+        }
+
+        code {
+            font-family: "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+            font-size: 0.92em;
+            padding: 0.16em 0.42em;
+            border-radius: 8px;
+            background: rgba(124, 240, 255, 0.09);
+            color: #b8fbff;
+        }
+
+        .grid-note {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .mini-card {
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        .mini-card strong {
+            display: block;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .mini-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .closing {
+            margin-top: 14px;
+            padding: 24px;
+            border-radius: 22px;
+            background:
+                radial-gradient(circle at top right, rgba(124, 240, 255, 0.12), transparent 35%),
+                linear-gradient(180deg, rgba(13, 29, 47, 0.95), rgba(8, 18, 30, 0.95));
+            border: 1px solid rgba(124, 240, 255, 0.16);
+        }
+
+        .footer {
+            margin-top: 18px;
+            padding: 20px 10px 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+            text-align: center;
+        }
+
+        @keyframes spin {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 1080px) {
+            .hero-grid,
+            .article-header,
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+            }
+
+            .toc-nav {
+                grid-auto-flow: column;
+                grid-auto-columns: minmax(220px, 1fr);
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+
+            .toc-nav a {
+                min-height: 100%;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .shell {
+                width: min(calc(100% - 20px), var(--max-width));
+                padding-top: 12px;
+                padding-bottom: 56px;
+            }
+
+            .hero,
+            .article {
+                padding: 20px;
+            }
+
+            .hero::after {
+                width: 240px;
+                height: 240px;
+                right: -70px;
+                top: auto;
+                bottom: -40px;
+            }
+
+            .hero-radar {
+                min-height: 240px;
+            }
+
+            .stats,
+            .grid-note {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .standfirst,
+            .lede,
+            .story-section p,
+            .story-section li,
+            blockquote {
+                font-size: 0.98rem;
+            }
+
+            .radar-caption {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .eyebrow,
+            .hero-meta span,
+            .toc-title,
+            .article-label,
+            .section-index {
+                letter-spacing: 0.12em;
+            }
+
+            .stats,
+            .grid-note {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                max-width: none;
+            }
+
+            .hero-meta {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main class="shell">
+        <section class="hero">
+            <div class="eyebrow">Orbital surveillance / maritime AI</div>
+
+            <div class="hero-grid">
+                <div class="hero-copy">
+                    <h1>Ghost Ships, AI Eyes, and the Physics of Not Staying Hidden</h1>
+                    <p class="standfirst">
+                        A science-editorial adaptation of the original article, tracing how SAR imagery and multitask deep learning can infer the speed and course of dark ships even after they disappear from AIS.
+                    </p>
+                    <div class="hero-meta">
+                        <span>Feature article</span>
+                        <span>Mobile-first reading</span>
+                        <span>Dark radar aesthetic</span>
+                    </div>
+                </div>
+
+                <div class="hero-radar" aria-hidden="true">
+                    <div class="ring r1"></div>
+                    <div class="ring r2"></div>
+                    <div class="ring r3"></div>
+                    <div class="ring r4"></div>
+                    <div class="cross-x"></div>
+                    <div class="cross-y"></div>
+                    <div class="sweep"></div>
+                    <div class="wake"></div>
+                    <div class="ship"></div>
+                    <div class="blip b1"></div>
+                    <div class="blip b2"></div>
+                    <div class="blip b3"></div>
+                    <div class="radar-caption">
+                        <span>Sentinel-1 / SAR acquisition</span>
+                        <span>Offset captured in azimuth</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats" aria-label="Key figures">
+                <div class="stat">
+                    <span class="stat-label">Satellite speed</span>
+                    <span class="stat-value">7.4</span>
+                    <span class="stat-note">km/s</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Training set</span>
+                    <span class="stat-value">30k</span>
+                    <span class="stat-note">AIS-annotated images</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">SOG error</span>
+                    <span class="stat-value">1.11</span>
+                    <span class="stat-note">m/s accuracy</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Blind spot</span>
+                    <span class="stat-value">2.5°</span>
+                    <span class="stat-note">reliable until near-parallel</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="layout">
+            <aside class="toc">
+                <div class="toc-title">Article map</div>
+                <h2>Track the story</h2>
+                <p>Seven sections, from AIS failure to orbital-scale maritime surveillance.</p>
+                <nav class="toc-nav" aria-label="Table of contents">
+                    <a href="#intro" class="active"><span>00</span> Intro</a>
+                    <a href="#problem"><span>01</span> The dark ship problem</a>
+                    <a href="#doppler"><span>02</span> The Doppler illusion</a>
+                    <a href="#multitask"><span>03</span> Multitask learning</a>
+                    <a href="#dataset"><span>04</span> 30,000 images</a>
+                    <a href="#blind-spot"><span>05</span> The blind spot</a>
+                    <a href="#conclusion"><span>06</span> What changes now</a>
+                </nav>
+            </aside>
+
+            <article class="article">
+                <header class="article-header" id="intro">
+                    <div>
+                        <div class="article-label">From the original markdown article</div>
+                        <p class="lede">
+                            On a foggy night in the English Channel, one of the world's busiest shipping lanes, a vessel slips through the waves with its lights dimmed and its digital voice silenced. This is a "dark ship." By disabling its Automatic Identification System (AIS) transponder, the vessel becomes a ghost, invisible to the standard tracking systems that global commerce and maritime security rely on.
+                        </p>
+                        <p class="lede">
+                            For decades, satellite imagery could prove that a ship was there, but not easily reveal where it was going or how fast it was moving. Now, a breakthrough in multitask deep learning is turning a fundamental "glitch" of satellite physics into a high-precision speedometer.
+                        </p>
+                    </div>
+
+                    <section class="signal-card" aria-label="Key takeaways">
+                        <h3>Signal Snapshot</h3>
+                        <ul>
+                            <li>Dark ships evade normal AIS-based tracking.</li>
+                            <li>SAR can see through clouds and total darkness.</li>
+                            <li>Apparent position error becomes a velocity clue.</li>
+                            <li>AI estimates both course and azimuth offset together.</li>
+                        </ul>
+                    </section>
+                </header>
+
+                <section class="story-section" id="problem">
+                    <div class="section-index">Section 01</div>
+                    <h2>The Problem with "Dark Ships" and AIS Tampering</h2>
+                    <p>
+                        Most modern vessels are required to broadcast their identity, position, and speed via AIS. In a perfect world, that would create a real-time map of global traffic. In reality, the system is fragile. Signals disappear in crowded ports, coverage gaps stretch across remote waters, and some ships intentionally go silent.
+                    </p>
+                    <p>
+                        That matters because dark ships are not merely inconvenient to track. They may be connected to piracy, smuggling, illegal fishing, oil spills, or trespassing, turning a technical visibility problem into a maritime safety problem.
+                    </p>
+                    <blockquote>
+                        "Dark ships are non-cooperative vessels that do not transmit AIS signals. They may be involved in criminal activities such as piracy, smuggling, oil spills, trespassing, or illegal fishing. These ships pose a risk to maritime traffic safety."
+                    </blockquote>
+                    <p>
+                        When AIS fails, authorities fall back on <code>SAR</code>, a radar-based imaging method that can see through clouds and darkness. But SAR introduces a physics quirk that makes moving ships look as if they are not where they should be.
+                    </p>
+                </section>
+
+                <section class="story-section" id="doppler">
+                    <div class="section-index">Section 02</div>
+                    <h2>The Doppler Illusion: Why a Ship Is Not Where It Appears to Be</h2>
+                    <p>
+                        In SAR imagery, the hull of a moving ship can appear physically disconnected from the vertex of its own wake. The image is not broken. The displacement is caused by Doppler shift, because the satellite itself is moving at around <code>7.4 km/s</code>.
+                    </p>
+                    <p>
+                        Any target moving perpendicular to the satellite's flight path experiences a frequency shift, and that shift pushes the ship's apparent position in the azimuth direction. To a human observer, the vessel can look like it is sailing beside its own wake rather than leading it.
+                    </p>
+                    <p>
+                        That visual oddity is exactly what makes speed estimation possible. By measuring the azimuth offset, researchers can work backward toward the ship's true motion.
+                    </p>
+                    <div class="grid-note">
+                        <div class="mini-card">
+                            <strong>Offset distance</strong>
+                            <p>The pixel gap between the radar return of the ship and the wake vertex.</p>
+                        </div>
+                        <div class="mini-card">
+                            <strong>Ship course</strong>
+                            <p>The vessel's heading relative to north.</p>
+                        </div>
+                        <div class="mini-card">
+                            <strong>Satellite parameters</strong>
+                            <p>Velocity, incidence angle, and slant-range distance.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="story-section" id="multitask">
+                    <div class="section-index">Section 03</div>
+                    <h2>Multitask Deep Learning Solves the 180-Degree Ambiguity</h2>
+                    <p>
+                        The real bottleneck has never been seeing the ship. It has been automating the interpretation of wakes in noisy, medium-resolution data. Traditional approaches such as Radon transforms can identify linear wake structures, but they often break down when the data becomes messy.
+                    </p>
+                    <p>
+                        The DTU team sidestepped that limitation with a multitask <code>CNN</code>. Instead of building one model for the ship and another for the wake, they trained a single network to estimate both the ship's course and the Doppler offset at the same time.
+                    </p>
+                    <p>
+                        That matters because static radar imagery suffers from a stubborn ambiguity: a ship's axis can suggest two opposite directions of travel. Multitask learning lets the model use physical coupling as a hint. If Course Over Ground lies within <code>0-180 degrees</code>, the offset is positive; if it lies within <code>180-360 degrees</code>, the offset is negative.
+                    </p>
+                    <blockquote>
+                        "The multitask loss effectively gives the algorithm a 'hint' that the azimuth offset and COG are coupled. Furthermore, the CNN is forced to share weights to estimate both parameters, which regularizes the model."
+                    </blockquote>
+                    <p>
+                        In effect, the model is not just detecting shapes. It is learning a compact version of the underlying physics.
+                    </p>
+                </section>
+
+                <section class="story-section" id="dataset">
+                    <div class="section-index">Section 04</div>
+                    <h2>Precision from Orbit: The Power of 30,000 Images</h2>
+                    <p>
+                        The study's most striking advantage is scale. Earlier attempts to validate ship velocity from space had only a tiny handful of ground-truth-validated samples. This dataset contains <code>30,000</code> AIS-annotated ship images.
+                    </p>
+                    <p>
+                        Those images come from the <code>Sentinel-1</code> constellation, which provides wide-coverage <code>C-band</code> SAR imagery at medium resolution, roughly <code>20 x 22 meters</code> per pixel. Historically, that level of detail was seen as a weakness because wakes could be too pixelated for manual measurement.
+                    </p>
+                    <p>
+                        The multitask model changed that assumption. It achieved a Speed Over Ground accuracy of <code>1.11 meters per second</code>, about <code>2 knots</code>, outperforming single-task models with a mean error of <code>1.36 m/s</code>.
+                    </p>
+                </section>
+
+                <section class="story-section" id="blind-spot">
+                    <div class="section-index">Section 05</div>
+                    <h2>The Blind Spot Shrinks from a Weakness to a Narrow Window</h2>
+                    <p>
+                        No model escapes the geometry of SAR entirely. The azimuth blind spot appears when a ship sails almost parallel to the satellite's flight path, causing the Doppler offset to nearly vanish.
+                    </p>
+                    <p>
+                        Older methods become unreliable when the vessel is within roughly <code>10 to 15 degrees</code> of the azimuth direction. The new approach remains reliable everywhere except within about <code>2.5 degrees</code>, making it <strong>4 to 6 times more effective</strong> for that especially difficult case.
+                    </p>
+                    <p>
+                        That is not just a benchmark improvement. It is the difference between a laboratory method and a system that begins to feel operational at scale.
+                    </p>
+                </section>
+
+                <section class="story-section" id="conclusion">
+                    <div class="section-index">Section 06</div>
+                    <h2>A New Era for Maritime Surveillance</h2>
+                    <p>
+                        The ability to automatically extract the velocity of dark ships from abundant, medium-resolution satellite data marks a genuine shift in maritime monitoring. What used to require manual wake interpretation can now be folded into an automated orbital workflow.
+                    </p>
+                    <div class="closing">
+                        <p>
+                            By turning the Doppler "glitch" into a high-precision tool, this system makes one thing clear: turning off a transponder is no longer a reliable way to vanish. In a world of AI eyes and orbiting radar, the ocean is becoming harder to disappear into.
+                        </p>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <footer class="footer">
+            Built from <code>speed-and-course-estimation-english.md</code> as a responsive science-editorial HTML document for Digital Garden.
+        </footer>
+    </main>
+
+    <script>
+        const progressBar = document.getElementById("progressBar");
+        const links = [...document.querySelectorAll(".toc-nav a")];
+        const sections = links
+            .map((link) => document.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
+
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + "%";
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const id = "#" + entry.target.id;
+                links.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === id);
+                });
+            });
+        }, {
+            rootMargin: "-35% 0px -45% 0px",
+            threshold: 0
+        });
+
+        sections.forEach((section) => observer.observe(section));
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+    </script>
+</body>
+</html>

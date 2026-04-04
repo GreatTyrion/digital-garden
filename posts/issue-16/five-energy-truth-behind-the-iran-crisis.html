@@ -518,6 +518,9 @@
             box-shadow: var(--shadow);
             cursor: pointer;
             z-index: 40;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 180ms ease, transform 180ms ease, background 180ms ease;
         }
 
         @media (max-width: 1080px) {
@@ -536,6 +539,13 @@
                 grid-auto-columns: minmax(220px, 1fr);
                 overflow-x: auto;
                 padding-bottom: 4px;
+                scroll-snap-type: x proximity;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+            }
+
+            .toc-nav a {
+                scroll-snap-align: start;
             }
         }
 
@@ -551,9 +561,35 @@
                 border-radius: 22px;
             }
 
+            .hero {
+                padding-top: 20px;
+            }
+
             h1 {
                 max-width: none;
                 font-size: clamp(2.1rem, 11vw, 3.5rem);
+            }
+
+            .standfirst,
+            .lede,
+            .body-copy p,
+            .body-copy li,
+            .body-copy ol,
+            .body-copy ul,
+            .quote,
+            .section-desc {
+                font-size: 0.98rem;
+            }
+
+            .hero-meta,
+            .hero-actions {
+                gap: 8px;
+            }
+
+            .hero-actions .btn,
+            .hero-meta .pill {
+                width: 100%;
+                justify-content: center;
             }
 
             .stat-grid,
@@ -565,8 +601,161 @@
                 grid-template-columns: 1fr;
             }
 
+            .badge {
+                justify-self: start;
+            }
+
+            .toc {
+                padding: 16px;
+                border-radius: 18px;
+            }
+
+            .toc h2 {
+                font-size: 1.25rem;
+            }
+
+            .toc p {
+                font-size: 0.9rem;
+                margin-bottom: 12px;
+            }
+
+            .toc-nav {
+                gap: 10px;
+                margin-right: -2px;
+            }
+
+            .toc-nav a {
+                min-height: 48px;
+                min-width: 210px;
+                padding: 12px 14px;
+            }
+
+            .lede-box {
+                gap: 14px;
+                margin-bottom: 20px;
+            }
+
+            .section {
+                padding: 22px 0;
+            }
+
+            .section-head {
+                margin-bottom: 12px;
+            }
+
+            .quote,
+            .key-box,
+            .takeaway {
+                padding: 14px;
+                border-radius: 16px;
+            }
+
+            .compare {
+                border-radius: 14px;
+            }
+
             table {
                 min-width: 540px;
+            }
+
+            th,
+            td {
+                padding: 12px 12px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .page {
+                width: min(calc(100% - 12px), var(--max));
+                padding-top: 8px;
+            }
+
+            .hero,
+            .article,
+            .toc {
+                border-radius: 18px;
+            }
+
+            .hero,
+            .article {
+                padding: 16px 14px;
+            }
+
+            h1 {
+                font-size: clamp(1.9rem, 11.5vw, 2.8rem);
+                line-height: 1.02;
+            }
+
+            .eyebrow,
+            .panel-label,
+            .section-kicker,
+            .story-index {
+                letter-spacing: 0.12em;
+            }
+
+            .standfirst {
+                margin-top: 14px;
+            }
+
+            .hero-side {
+                padding: 14px;
+                border-radius: 18px;
+            }
+
+            .stat strong {
+                font-size: 1.2rem;
+            }
+
+            .toc {
+                padding: 14px;
+            }
+
+            .toc-nav {
+                grid-auto-columns: minmax(180px, 82vw);
+            }
+
+            .toc-nav a {
+                min-width: 180px;
+                padding: 11px 12px;
+            }
+
+            .toc-nav a span {
+                font-size: 0.74rem;
+            }
+
+            .section {
+                scroll-margin-top: 44px;
+            }
+
+            .section-head h2 {
+                font-size: 1.5rem;
+                line-height: 1.14;
+            }
+
+            .body-copy p + p,
+            .body-copy ul + p,
+            .body-copy table + p,
+            .body-copy blockquote + p,
+            .body-copy ol + p {
+                margin-top: 14px;
+            }
+
+            .body-copy ul,
+            .body-copy ol {
+                padding-left: 18px;
+            }
+
+            .quote footer,
+            .footer {
+                font-size: 0.84rem;
+            }
+
+            .back-top {
+                right: 10px;
+                bottom: calc(10px + env(safe-area-inset-bottom));
+                width: 44px;
+                height: 44px;
             }
         }
 

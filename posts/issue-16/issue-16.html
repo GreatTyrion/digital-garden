@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第16期 - 数字花园</title>
+    <meta name="description" content="Digital Garden 第16期：全球新闻、农业与化肥月报、伊朗危机能源分析、地缘政治专题，以及纽芬兰租房地图。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Serif+4:wght@400;600&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1612;
+            --ink-soft: #3c352d;
+            --paper: #f4efe7;
+            --paper-2: #ede6db;
+            --paper-3: #e3dbce;
+            --line: rgba(26, 22, 18, 0.14);
+            --line-strong: rgba(26, 22, 18, 0.24);
+            --muted: #7f7366;
+            --shadow: 0 16px 40px rgba(26, 22, 18, 0.08);
+            --news: #1d4e6b;
+            --agri: #536d2d;
+            --energy: #a65f11;
+            --geo: #8a1c24;
+            --logic: #4f3f7f;
+            --map: #2b6f68;
+            --display: "Playfair Display", "Noto Serif SC", serif;
+            --serif: "Source Serif 4", "Noto Serif SC", serif;
+            --sans: "DM Sans", "PingFang SC", system-ui, sans-serif;
+            --mono: "DM Mono", "SFMono-Regular", monospace;
+            --max: 1180px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--sans);
+            background:
+                radial-gradient(circle at top left, rgba(166, 95, 17, 0.05), transparent 28%),
+                radial-gradient(circle at top right, rgba(29, 78, 107, 0.08), transparent 24%),
+                var(--paper);
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.04);
+            z-index: 100;
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--news), var(--agri), var(--energy), var(--geo), var(--logic), var(--map));
+            transition: width 0.08s linear;
+        }
+
+        .masthead {
+            position: relative;
+            overflow: hidden;
+            background: var(--ink);
+            color: var(--paper);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .masthead::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 44px,
+                    rgba(255,255,255,0.035) 44px,
+                    rgba(255,255,255,0.035) 45px
+                );
+            pointer-events: none;
+        }
+
+        .masthead-inner,
+        .page,
+        .footer-inner {
+            width: min(calc(100% - 40px), var(--max));
+            margin: 0 auto;
+        }
+
+        .masthead-inner {
+            position: relative;
+            padding: 28px 0 44px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+            margin-bottom: 28px;
+        }
+
+        .back-link,
+        .issue-stamp {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(244, 239, 231, 0.7);
+            border: 1px solid rgba(244, 239, 231, 0.16);
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        .back-link:hover {
+            background: rgba(255,255,255,0.06);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.7fr);
+            gap: 36px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(244, 239, 231, 0.45);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+        }
+
+        .hero-title .muted {
+            color: rgba(244, 239, 231, 0.48);
+            font-style: italic;
+        }
+
+        .hero-summary {
+            margin-top: 18px;
+            max-width: 62ch;
+            color: rgba(244, 239, 231, 0.75);
+            font-size: 1.03rem;
+        }
+
+        .hero-meta {
+            display: grid;
+            gap: 14px;
+            padding: 22px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-meta-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            font-family: var(--mono);
+            font-size: 0.77rem;
+            letter-spacing: 0.08em;
+            color: rgba(244, 239, 231, 0.54);
+        }
+
+        .hero-meta-line strong {
+            color: rgba(244, 239, 231, 0.82);
+            font-weight: 500;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(244, 239, 231, 0.82);
+            font-size: 0.84rem;
+        }
+
+        .section-rail {
+            position: sticky;
+            top: 3px;
+            z-index: 40;
+            background: rgba(244, 239, 231, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line-strong);
+        }
+
+        .section-rail-inner {
+            width: min(calc(100% - 40px), var(--max));
+            margin: 0 auto;
+            padding: 12px 0;
+            overflow-x: auto;
+            display: flex;
+            gap: 8px;
+            scrollbar-width: none;
+        }
+
+        .section-rail-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+        .rail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            white-space: nowrap;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transition: 160ms ease;
+        }
+
+        .rail-link:hover,
+        .rail-link.active {
+            color: var(--ink);
+            background: rgba(255,255,255,0.56);
+            border-color: var(--line);
+        }
+
+        .rail-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .rail-link.news { --accent: var(--news); }
+        .rail-link.agri { --accent: var(--agri); }
+        .rail-link.energy { --accent: var(--energy); }
+        .rail-link.geo { --accent: var(--geo); }
+        .rail-link.logic { --accent: var(--logic); }
+        .rail-link.map { --accent: var(--map); }
+
+        .page {
+            padding: 34px 0 80px;
+        }
+
+        .index-board {
+            margin-bottom: 56px;
+            padding: 28px 0 8px;
+        }
+
+        .board-kicker {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 20px;
+            align-items: end;
+        }
+
+        .board-kicker h2 {
+            font-family: var(--display);
+            font-size: clamp(1.9rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .board-kicker p {
+            max-width: 54ch;
+            color: var(--muted);
+        }
+
+        .index-list {
+            border-top: 1px solid var(--line-strong);
+        }
+
+        .index-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 24px;
+            align-items: center;
+            padding: 24px 0;
+            border-bottom: 1px solid var(--line-strong);
+        }
+
+        .index-row-main {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .row-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.1rem;
+            background: var(--soft);
+            box-shadow: inset 0 0 0 1px rgba(0,0,0,0.05);
+        }
+
+        .index-row h3 {
+            font-family: var(--display);
+            font-size: clamp(1.65rem, 2.4vw, 2.5rem);
+            line-height: 1.02;
+            letter-spacing: -0.03em;
+            color: var(--accent);
+        }
+
+        .row-meta {
+            margin-top: 4px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .row-excerpt {
+            margin-top: 12px;
+            max-width: 70ch;
+            color: var(--ink-soft);
+        }
+
+        .row-range {
+            align-self: start;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            padding: 12px 16px;
+            min-width: 86px;
+            text-align: center;
+            background: rgba(255,255,255,0.45);
+        }
+
+        .index-row.news { --accent: var(--news); --soft: rgba(29, 78, 107, 0.1); }
+        .index-row.agri { --accent: var(--agri); --soft: rgba(83, 109, 45, 0.1); }
+        .index-row.energy { --accent: var(--energy); --soft: rgba(166, 95, 17, 0.1); }
+        .index-row.geo { --accent: var(--geo); --soft: rgba(138, 28, 36, 0.1); }
+        .index-row.logic { --accent: var(--logic); --soft: rgba(79, 63, 127, 0.1); }
+        .index-row.map { --accent: var(--map); --soft: rgba(43, 111, 104, 0.1); }
+
+        .story-grid {
+            display: grid;
+            gap: 28px;
+        }
+
+        .story {
+            scroll-margin-top: 84px;
+            background: rgba(255,255,255,0.52);
+            border: 1px solid rgba(26, 22, 18, 0.09);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .story-head {
+            display: grid;
+            grid-template-columns: 150px minmax(0, 1fr);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-label {
+            padding: 24px 18px;
+            background: var(--soft);
+            border-right: 1px solid rgba(26, 22, 18, 0.08);
+        }
+
+        .story-index {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .story-label h2 {
+            font-family: var(--display);
+            font-size: 1.65rem;
+            line-height: 1.05;
+            color: var(--accent);
+        }
+
+        .story-body {
+            padding: 28px 30px 32px;
+        }
+
+        .story-kicker {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .story-body h3 {
+            font-family: var(--display);
+            font-size: clamp(1.7rem, 3vw, 2.5rem);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+
+        .story-summary {
+            font-family: var(--serif);
+            font-size: 1.08rem;
+            color: var(--ink-soft);
+            max-width: 65ch;
+            margin-bottom: 18px;
+        }
+
+        .signal-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin: 18px 0 24px;
+        }
+
+        .signal-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+
+        .signal-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.8em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .story-footer {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+        }
+
+        .story-note {
+            color: var(--muted);
+            font-size: 0.95rem;
+            max-width: 46ch;
+        }
+
+        .story-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            background: var(--ink);
+            color: var(--paper);
+            font-weight: 500;
+            transition: transform 140ms ease, background 140ms ease;
+        }
+
+        .story-link:hover {
+            transform: translateY(-2px);
+            background: #2b241d;
+        }
+
+        .story.news { --accent: var(--news); --soft: rgba(29, 78, 107, 0.1); }
+        .story.agri { --accent: var(--agri); --soft: rgba(83, 109, 45, 0.1); }
+        .story.energy { --accent: var(--energy); --soft: rgba(166, 95, 17, 0.1); }
+        .story.geo { --accent: var(--geo); --soft: rgba(138, 28, 36, 0.1); }
+        .story.logic { --accent: var(--logic); --soft: rgba(79, 63, 127, 0.1); }
+        .story.map { --accent: var(--map); --soft: rgba(43, 111, 104, 0.1); }
+
+        .bottom-nav {
+            margin-top: 42px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .bottom-nav a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.55);
+            color: var(--ink-soft);
+            transition: 140ms ease;
+        }
+
+        .bottom-nav a:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            margin-top: 56px;
+        }
+
+        .footer-inner {
+            padding: 24px 0 46px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.94rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .story-head {
+                grid-template-columns: 1fr;
+            }
+
+            .story-label {
+                border-right: 0;
+                border-bottom: 1px solid rgba(26, 22, 18, 0.08);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .masthead-inner,
+            .page,
+            .footer-inner,
+            .section-rail-inner {
+                width: min(calc(100% - 28px), var(--max));
+            }
+
+            .topbar,
+            .board-kicker,
+            .index-row {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+
+            .topbar {
+                gap: 12px;
+            }
+
+            .hero-meta-line {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+
+            .index-row {
+                gap: 14px;
+            }
+
+            .index-row-main {
+                gap: 14px;
+            }
+
+            .row-range {
+                justify-self: start;
+            }
+
+            .story-body {
+                padding: 24px 20px 26px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .story-label,
+            .hero-meta {
+                padding: 18px;
+            }
+
+            .story-body h3 {
+                font-size: 1.58rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="topbar">
+                <a class="back-link" href="../../index.html">Back to Index</a>
+                <div class="issue-stamp">Issue 16 / 2026.04.03</div>
+            </div>
+
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Digital Garden Special Dossier</div>
+                    <h1 class="hero-title">Issue 16<span class="muted"> / Energy, Grain, Order</span></h1>
+                    <p class="hero-summary">
+                        这一期不再是松散的“杂记”，而更像一份专题索引：从纽芬兰与加拿大的新闻切面，到全球农业、霍尔木兹海峡、美元秩序与旧全球化逻辑的裂缝，再回到一张仍然有现实价值的纽芬兰租房地图。
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">全球新闻</span>
+                        <span class="tag">农业化肥</span>
+                        <span class="tag">能源危机</span>
+                        <span class="tag">地缘政治</span>
+                        <span class="tag">Global Logic</span>
+                        <span class="tag">纽芬兰地图</span>
+                    </div>
+                </div>
+
+                <aside class="hero-meta">
+                    <div class="hero-meta-line"><span>Period</span><strong>2026-04-03</strong></div>
+                    <div class="hero-meta-line"><span>Stories</span><strong>06 Sections</strong></div>
+                    <div class="hero-meta-line"><span>Tone</span><strong>Editorial / Briefing</strong></div>
+                    <div class="hero-meta-line"><span>Focus</span><strong>Energy, Food, Order</strong></div>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-rail" aria-label="专题导航">
+        <div class="section-rail-inner">
+            <a class="rail-link news" href="#news"><span class="rail-dot"></span><span>News</span></a>
+            <a class="rail-link agri" href="#agriculture"><span class="rail-dot"></span><span>Agriculture</span></a>
+            <a class="rail-link energy" href="#energy"><span class="rail-dot"></span><span>Energy</span></a>
+            <a class="rail-link geo" href="#geopolitics"><span class="rail-dot"></span><span>Geopolitics</span></a>
+            <a class="rail-link logic" href="#global-logic"><span class="rail-dot"></span><span>Logic</span></a>
+            <a class="rail-link map" href="#rental-map"><span class="rail-dot"></span><span>Map</span></a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="index-board" aria-labelledby="indexTitle">
+            <div class="board-kicker">
+                <div>
+                    <div class="eyebrow" style="color: var(--muted);">Section Index</div>
+                    <h2 id="indexTitle">本期索引</h2>
+                </div>
+                <p>这里延续 `news-april-03.html` 的编辑部气质，把本期内容处理成“专题目录页”，让读者先扫描，再决定深入阅读哪一篇完整 HTML。</p>
+            </div>
+
+            <div class="index-list">
+                <a class="index-row news" href="#news">
+                    <div class="index-row-main">
+                        <div class="row-icon">📰</div>
+                        <div>
+                            <h3>全球新闻速览</h3>
+                            <div class="row-meta"><span>News Desk</span><span>2026 / 04 / 03</span></div>
+                            <p class="row-excerpt">纽芬兰、加拿大、中国与国际局势的四线并进，构成本期的现实背景板。</p>
+                        </div>
+                    </div>
+                    <div class="row-range">01 - 10</div>
+                </a>
+
+                <a class="index-row agri" href="#agriculture">
+                    <div class="index-row-main">
+                        <div class="row-icon">🌾</div>
+                        <div>
+                            <h3>全球农业</h3>
+                            <div class="row-meta"><span>Food Chain</span><span>Fertilizer / Grain</span></div>
+                            <p class="row-excerpt">化肥供给、春播结构、粮食安全与食品通胀，正在重新捆绑成一条链。</p>
+                        </div>
+                    </div>
+                    <div class="row-range">11 - 20</div>
+                </a>
+
+                <a class="index-row energy" href="#energy">
+                    <div class="index-row-main">
+                        <div class="row-icon">⚡</div>
+                        <div>
+                            <h3>能源真相</h3>
+                            <div class="row-meta"><span>Hormuz</span><span>Oil / LNG</span></div>
+                            <p class="row-excerpt">五个能源真相解释，为什么一个海峡可以同时撬动亚洲工业和美国通胀。</p>
+                        </div>
+                    </div>
+                    <div class="row-range">21 - 30</div>
+                </a>
+
+                <a class="index-row geo" href="#geopolitics">
+                    <div class="index-row-main">
+                        <div class="row-icon">🌍</div>
+                        <div>
+                            <h3>地缘政治</h3>
+                            <div class="row-meta"><span>Dollar / Power</span><span>Shock</span></div>
+                            <p class="row-excerpt">从“主权过路费”到“精致穷”的崩塌，这一部分试图解释旧秩序为何突然不稳定。</p>
+                        </div>
+                    </div>
+                    <div class="row-range">31 - 40</div>
+                </a>
+
+                <a class="index-row logic" href="#global-logic">
+                    <div class="index-row-main">
+                        <div class="row-icon">📖</div>
+                        <div>
+                            <h3>Global Logic</h3>
+                            <div class="row-meta"><span>Essay</span><span>Post-war Order</span></div>
+                            <p class="row-excerpt">一篇英文长文，讨论霍尔木兹冲突如何击穿战后全球化的心理基础。</p>
+                        </div>
+                    </div>
+                    <div class="row-range">41 - 50</div>
+                </a>
+
+                <a class="index-row map" href="#rental-map">
+                    <div class="index-row-main">
+                        <div class="row-icon">🗺️</div>
+                        <div>
+                            <h3>纽芬兰地图</h3>
+                            <div class="row-meta"><span>Utility</span><span>Saint John's</span></div>
+                            <p class="row-excerpt">在宏大叙事之外，保留一个仍然日常、仍然具体、仍然有用的入口。</p>
+                        </div>
+                    </div>
+                    <div class="row-range">51 - 60</div>
+                </a>
+            </div>
+        </section>
+
+        <section class="story-grid">
+            <article id="news" class="story news">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 01</div>
+                        <h2>News</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Global Briefing / Apr 03, 2026</div>
+                        <h3>全球新闻速览（第16期）</h3>
+                        <p class="story-summary">过去两周，全球新闻被四条主线贯穿：加拿大联邦大选进入倒计时，纽芬兰在渔业配额削减与能源开发突破之间寻找平衡，中国制造业意外反弹但贸易战阴云未散，而国际社会仍被霍尔木兹海峡危机与特朗普新一轮关税冲击拖拽。</p>
+                        <ul class="signal-list">
+                            <li>纽芬兰与拉布拉多：Bay du Nord 油田开发提速，地方经济与资源战略重新升温。</li>
+                            <li>加拿大联邦政治：贸易战与主权议题成为选战核心背景。</li>
+                            <li>中国与全球经济：制造业 PMI 回升，但外部冲击仍在持续传导。</li>
+                            <li>国际局势：油价、运费、保费与关税一起重塑短期预期。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">入口页只做导览，完整内容保留在独立报道页中。</p>
+                            <a class="story-link" href="./news-april-03.html">打开完整新闻速览</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="agriculture" class="story agri">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 02</div>
+                        <h2>Grain</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Monthly Brief / Agriculture</div>
+                        <h3>全球农业、化肥与食品生产月度简报</h3>
+                        <p class="story-summary">这一部分把“粮食安全”从抽象概念拉回到现实链条：化肥供应、天然气价格、春播结构、进口来源和食品通胀，正在被同一套地缘冲击重新连接。</p>
+                        <ul class="signal-list">
+                            <li>化肥重新成为全球农业风险中心，霍尔木兹与天然气风险直接抬升种植成本。</li>
+                            <li>美国、印度、巴西等主要农业国开始调整作物结构和肥料采购策略。</li>
+                            <li>粮食安全再次回到国家战略高度，种子、土壤与海外通道同步被强调。</li>
+                            <li>食品价格风险开始从农业投入品向零售端传导。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">如果你更关心“粮价为什么会涨”，这一篇是最值得先点开的。</p>
+                            <a class="story-link" href="./agriculture.html">打开农业简报</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="energy" class="story energy">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 03</div>
+                        <h2>Energy</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Deep Dive / Hormuz</div>
+                        <h3>伊朗危机背后，你必须看懂的 5 个能源真相</h3>
+                        <p class="story-summary">国际原油价格从 65 美元区间迅速上冲至 110 美元以上，并不只是地缘政治情绪的放大，而是全球能源供应链本身过于脆弱的暴露。文章用五个真相拆解这次危机的底层结构。</p>
+                        <ul class="signal-list">
+                            <li>霍尔木兹海峡是典型的“扁担型”咽喉，影响中东产油国和东亚工业体。</li>
+                            <li>再保险和财政背书并不能真正买回商船、船员和承运市场的信心。</li>
+                            <li>高油价与通胀会直接反馈到美国选举与货币政策。</li>
+                            <li>人民币国际化、能源安全与不对称战争，在这篇里被放到同一框架下讨论。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这一篇适合作为整个 issue 的“机制解释器”。</p>
+                            <a class="story-link" href="./five-energy-truth-behind-the-iran-crisis.html">打开能源分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="geopolitics" class="story geo">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 04</div>
+                        <h2>Power</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">World Order / Shock</div>
+                        <h3>全球地缘政治的五个震撼真相</h3>
+                        <p class="story-summary">这篇不是按新闻事件展开，而是按“底层逻辑”展开：谁在给海峡收过路费、美元为什么会出现悖论式走强、日韩为何显露脆弱、中东资本为何转向香港，以及低频导弹如何锁住全球通胀。</p>
+                        <ul class="signal-list">
+                            <li>“主权过路费”揭示能源通道与货币主权正在重新绑定。</li>
+                            <li>去美元化没有停止，只是在战争阶段被避险本能短暂打断。</li>
+                            <li>日韩的脆弱性，不只体现在能源依赖，也体现在制度与金融结构。</li>
+                            <li>香港在资本流向里扮演的角色，开始超出传统“避险”叙事。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">比起“发生了什么”，这一篇更关心“为什么会这样”。</p>
+                            <a class="story-link" href="./analyzing-five-shocking-truths-of-current-global-geopolitics.html">打开地缘政治分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="global-logic" class="story logic">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 05</div>
+                        <h2>Essay</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">English Essay / Post-war Order</div>
+                        <h3>The Death of the Global Logic</h3>
+                        <p class="story-summary">一篇英文专题长文，讨论霍尔木兹冲突如何打碎“全球化天然会持续运转”的心理前提。它把迪拜、物流成本、人民币、美国盟友与所谓“硬壳国家”放到同一个叙事弧线里。</p>
+                        <ul class="signal-list">
+                            <li>The “Gulf Oasis” model loses credibility once outsourced security becomes the source of fire.</li>
+                            <li>Logistics are no longer friction; they become a weapon with explicit tolls and war taxes.</li>
+                            <li>Currency power shifts from banking norms to physical chokepoint control.</li>
+                            <li>Resilience replaces growth as the central political and economic question.</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">如果你想看更完整的英文论述，这一篇是本期最接近 essay 的部分。</p>
+                            <a class="story-link" href="./the-death-of-the-global-logic.html">Read the full essay</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="rental-map" class="story map">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 06</div>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Useful Link / Saint John's</div>
+                        <h3>纽芬兰圣约翰斯租房地图（更新版）</h3>
+                        <p class="story-summary">在全球能源、战争与秩序这些大尺度议题之外，这张地图继续保留本系列最实用、也最贴近日常生活的一面：一个能直接打开、直接查看房源分布的入口。</p>
+                        <ul class="signal-list">
+                            <li>持续更新圣约翰斯及周边地区的租房信息。</li>
+                            <li>支持地图浏览与基础筛选，适合快速看区域分布。</li>
+                            <li>作为长期工具入口，它与专题内容形成“宏观 / 微观”的对照。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这一节保留了 Digital Garden 一贯的“有用链接”传统。</p>
+                            <a class="story-link" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noreferrer">打开纽芬兰地图</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <nav class="bottom-nav" aria-label="页面底部导航">
+            <a href="../../index.html">返回首页</a>
+            <a href="../issue-15/issue-15.html">打开第15期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" target="_blank" rel="noreferrer">意见反馈</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p>© 2026 Digital Garden</p>
+            <p>Issue 16 作为专题导览页，链接到各篇独立 HTML 正文。</p>
+        </div>
+    </footer>
+
+    <script>
+        const progressFill = document.getElementById('progressFill');
+        const railLinks = Array.from(document.querySelectorAll('.rail-link'));
+        const sections = railLinks
+            .map((link) => {
+                const section = document.querySelector(link.getAttribute('href'));
+                return section ? { link, section } : null;
+            })
+            .filter(Boolean);
+
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressFill.style.width = `${Math.min(Math.max(ratio, 0), 100)}%`;
+        }
+
+        function updateActiveRail() {
+            const threshold = window.innerHeight * 0.28;
+            let active = sections[0];
+
+            sections.forEach((item) => {
+                const rect = item.section.getBoundingClientRect();
+                if (rect.top <= threshold) {
+                    active = item;
+                }
+            });
+
+            railLinks.forEach((link) => link.classList.remove('active'));
+            if (active) {
+                active.link.classList.add('active');
+            }
+        }
+
+        function onScroll() {
+            updateProgress();
+            updateActiveRail();
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('load', onScroll);
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

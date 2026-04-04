@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球农业、化肥与食品生产季报 - Digital Garden</title>
+    <meta name="description" content="2026年2月至4月全球农业季报：化肥供应扰动、春播结构调整、食品价格风险与粮食安全布局。22条精选新闻，4个主题切面。">
+    <style>
+        :root {
+            --bg: #080f09;
+            --bg-soft: #0d1710;
+            --panel: rgba(14, 24, 15, 0.92);
+            --panel-2: rgba(18, 30, 19, 0.95);
+            --line: rgba(180, 210, 160, 0.12);
+            --text: #e8ead4;
+            --muted: #9aaa82;
+            --accent: #c8a96e;
+            --accent-soft: rgba(200, 169, 110, 0.14);
+            --green: #6db87a;
+            --green-soft: rgba(109, 184, 122, 0.13);
+            --rust: #d4724a;
+            --rust-soft: rgba(212, 114, 74, 0.13);
+            --blue: #7ab4d4;
+            --blue-soft: rgba(122, 180, 212, 0.13);
+            --shadow: 0 24px 72px rgba(0, 0, 0, 0.52);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --max: 1280px;
+            --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+            --mono: "SFMono-Regular", "IBM Plex Mono", Menlo, monospace;
+
+            /* category colors */
+            --cat-fertilizer: #d4724a;
+            --cat-production: #6db87a;
+            --cat-food: #c8a96e;
+            --cat-livestock: #7ab4d4;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: "Avenir Next", "PingFang SC", "Segoe UI", sans-serif;
+            line-height: 1.75;
+            background:
+                radial-gradient(ellipse at 8% 0%, rgba(109, 184, 122, 0.16) 0%, transparent 30%),
+                radial-gradient(ellipse at 92% 5%, rgba(200, 169, 110, 0.12) 0%, transparent 28%),
+                radial-gradient(ellipse at 50% 60%, rgba(14, 40, 16, 0.6) 0%, transparent 55%),
+                linear-gradient(180deg, #050c06 0%, #080f09 30%, #0a1409 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                linear-gradient(rgba(180, 210, 160, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(180, 210, 160, 0.018) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.25) 70%, transparent);
+            opacity: 0.5;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 0% 100%, rgba(109, 184, 122, 0.07), transparent 40%),
+                radial-gradient(ellipse at 100% 80%, rgba(200, 169, 110, 0.06), transparent 36%);
+            mix-blend-mode: screen;
+        }
+
+        a { color: inherit; }
+
+        /* ── Progress bar ── */
+        .progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: rgba(255,255,255,0.04);
+            z-index: 80;
+        }
+        .progress-bar {
+            height: 100%; width: 0;
+            background: linear-gradient(90deg, var(--green), var(--accent), var(--rust));
+            box-shadow: 0 0 18px rgba(109, 184, 122, 0.5);
+            transition: width 80ms linear;
+        }
+
+        /* ── Page wrapper ── */
+        .page {
+            position: relative;
+            z-index: 1;
+            width: min(calc(100% - 32px), var(--max));
+            margin: 0 auto;
+            padding: 20px 0 80px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            padding: 38px 40px 36px;
+            background:
+                linear-gradient(150deg, rgba(14, 28, 15, 0.97), rgba(10, 20, 11, 0.92)),
+                rgba(8, 15, 9, 0.9);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(24px);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            right: -80px; top: -60px;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(109, 184, 122, 0.22) 0%, transparent 65%);
+            filter: blur(18px);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            left: 40%; bottom: -100px;
+            width: 380px; height: 200px;
+            background: radial-gradient(circle, rgba(200, 169, 110, 0.14), transparent 60%);
+            filter: blur(24px);
+            transform: translateX(-50%);
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+            gap: 28px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.74rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-family: var(--mono);
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 12px rgba(109, 184, 122, 0.8);
+        }
+
+        h1, h2, h3 {
+            margin: 0;
+            font-family: var(--serif);
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            margin-top: 16px;
+            font-size: clamp(2.6rem, 5.5vw, 5rem);
+            line-height: 0.95;
+            max-width: 12ch;
+            text-wrap: balance;
+            color: #eef0da;
+        }
+
+        .standfirst {
+            max-width: 58ch;
+            margin: 22px 0 0;
+            color: #cdd4b8;
+            font-size: clamp(0.98rem, 1.6vw, 1.14rem);
+            line-height: 1.72;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(180, 210, 160, 0.14);
+            background: rgba(180, 210, 160, 0.04);
+            font-size: 0.88rem;
+            color: #cdd4b8;
+        }
+
+        .action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.04);
+            text-decoration: none;
+            color: #dde4c8;
+            font-size: 0.9rem;
+            transition: 160ms ease;
+        }
+
+        .btn-primary {
+            border-color: rgba(109, 184, 122, 0.3);
+            background: linear-gradient(180deg, rgba(109, 184, 122, 0.16), rgba(109, 184, 122, 0.07));
+        }
+
+        .btn:hover { transform: translateY(-1px); }
+
+        /* Hero aside stats */
+        .hero-stats {
+            position: relative;
+            border: 1px solid rgba(180, 210, 160, 0.1);
+            border-radius: 22px;
+            padding: 22px;
+            background: rgba(10, 18, 11, 0.82);
+        }
+
+        .stats-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .stat-box {
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(180, 210, 160, 0.08);
+            background: rgba(180, 210, 160, 0.03);
+        }
+
+        .stat-box strong {
+            display: block;
+            font-size: 1.6rem;
+            line-height: 1;
+            color: #eef0da;
+            font-family: var(--serif);
+        }
+
+        .stat-box span {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .hero-signals {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(200, 169, 110, 0.14);
+            background: rgba(200, 169, 110, 0.04);
+        }
+
+        .hero-signals p {
+            margin: 0 0 8px;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        .hero-signals ul {
+            margin: 0;
+            padding-left: 16px;
+            color: #c8d0b0;
+            font-size: 0.9rem;
+        }
+
+        .hero-signals li + li { margin-top: 6px; }
+
+        /* ── Filter chips ── */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 18px 0 0;
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(180, 210, 160, 0.14);
+            background: rgba(180, 210, 160, 0.04);
+            font-size: 0.86rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition: 160ms ease;
+            user-select: none;
+        }
+
+        .chip::before {
+            content: "";
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--chip-color, var(--muted));
+            flex-shrink: 0;
+        }
+
+        .chip.active {
+            border-color: var(--chip-color, var(--green));
+            background: rgba(var(--chip-rgb, 109,184,122), 0.12);
+            color: #eef0da;
+        }
+
+        .chip[data-cat="all"] { --chip-color: var(--green); --chip-rgb: 109,184,122; }
+        .chip[data-cat="fertilizer"] { --chip-color: var(--cat-fertilizer); --chip-rgb: 212,114,74; }
+        .chip[data-cat="production"] { --chip-color: var(--cat-production); --chip-rgb: 109,184,122; }
+        .chip[data-cat="food"] { --chip-color: var(--cat-food); --chip-rgb: 200,169,110; }
+        .chip[data-cat="livestock"] { --chip-color: var(--cat-livestock); --chip-rgb: 122,180,212; }
+
+        /* ── Layout ── */
+        .layout {
+            display: grid;
+            grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            align-items: start;
+        }
+
+        /* ── TOC ── */
+        .toc {
+            position: sticky;
+            top: 18px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: var(--panel);
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow);
+            padding: 20px;
+        }
+
+        .toc-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--green);
+        }
+
+        .toc h2 {
+            margin-top: 10px;
+            font-size: 1.4rem;
+            line-height: 1.1;
+            color: #eef0da;
+        }
+
+        .toc p {
+            margin: 10px 0 16px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .toc-nav {
+            display: grid;
+            gap: 6px;
+        }
+
+        .toc-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 11px 13px;
+            border-radius: 12px;
+            text-decoration: none;
+            border: 1px solid transparent;
+            background: rgba(255,255,255,0.02);
+            transition: 160ms ease;
+            font-size: 0.9rem;
+        }
+
+        .toc-nav a .toc-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .toc-nav a .toc-count {
+            font-family: var(--mono);
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .toc-nav a:hover, .toc-nav a.active {
+            border-color: rgba(180, 210, 160, 0.2);
+            background: rgba(180, 210, 160, 0.06);
+            transform: translateX(2px);
+        }
+
+        /* ── Article ── */
+        .article {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            padding: 30px;
+        }
+
+        .article-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+            gap: 20px;
+            margin-bottom: 26px;
+        }
+
+        .lede {
+            margin-top: 12px;
+            font-size: 1.04rem;
+            color: #cdd4b8;
+            line-height: 1.72;
+        }
+
+        .reading-tip {
+            border: 1px solid rgba(200, 169, 110, 0.16);
+            border-radius: 18px;
+            padding: 18px;
+            background: rgba(200, 169, 110, 0.05);
+        }
+
+        .reading-tip h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+
+        .reading-tip ul {
+            margin: 0;
+            padding-left: 16px;
+            color: #c8d0b0;
+            font-size: 0.9rem;
+        }
+
+        .reading-tip li + li { margin-top: 6px; }
+
+        /* ── Section ── */
+        .section {
+            padding: 26px 0;
+            border-top: 1px solid rgba(180, 210, 160, 0.08);
+            scroll-margin-top: 70px;
+        }
+
+        .section:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 16px;
+            align-items: end;
+            margin-bottom: 16px;
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .section-kicker::before {
+            content: "";
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--section-color, var(--green));
+            box-shadow: 0 0 10px var(--section-color, var(--green));
+        }
+
+        .section-head h2 {
+            margin-top: 8px;
+            font-size: clamp(1.5rem, 2.8vw, 2rem);
+            color: #eef0da;
+        }
+
+        .section-head p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 64ch;
+        }
+
+        .section-badge {
+            align-self: start;
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-family: var(--mono);
+            border: 1px solid currentColor;
+            opacity: 0.7;
+        }
+
+        /* ── Cards ── */
+        .cards { display: grid; gap: 12px; }
+
+        .news-card {
+            border: 1px solid rgba(180, 210, 160, 0.09);
+            border-radius: 18px;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.022), rgba(255,255,255,0.012)),
+                rgba(255,255,255,0.012);
+            overflow: hidden;
+            transition: 180ms ease;
+        }
+
+        .news-card.open {
+            box-shadow: 0 12px 36px rgba(0,0,0,0.28);
+        }
+
+        .news-card.fertilizer { --card-color: var(--cat-fertilizer); }
+        .news-card.production { --card-color: var(--cat-production); }
+        .news-card.food       { --card-color: var(--cat-food); }
+        .news-card.livestock  { --card-color: var(--cat-livestock); }
+
+        .card-top {
+            position: relative;
+            padding: 17px 18px 15px 22px;
+            cursor: pointer;
+        }
+
+        .card-top::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--card-color, var(--green));
+            border-radius: 4px 0 0 4px;
+        }
+
+        .card-heading {
+            display: grid;
+            grid-template-columns: 36px 1fr auto;
+            gap: 12px;
+            align-items: start;
+        }
+
+        .card-num {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.07);
+            color: var(--card-color, var(--green));
+            flex-shrink: 0;
+        }
+
+        .card-title {
+            font-size: clamp(1.06rem, 1.8vw, 1.32rem);
+            line-height: 1.2;
+            color: #e8ead4;
+            font-family: var(--serif);
+        }
+
+        .card-toggle {
+            border: 0;
+            background: transparent;
+            color: var(--muted);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 2px 0 0;
+            line-height: 1;
+            transition: 160ms ease;
+        }
+
+        .news-card.open .card-toggle { transform: rotate(180deg); }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .card-meta span {
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .card-summary {
+            margin-top: 10px;
+            color: #c8d0b0;
+            font-size: 0.95rem;
+            line-height: 1.68;
+        }
+
+        .card-details {
+            display: none;
+            padding: 0 22px 18px;
+            border-top: 1px solid rgba(180, 210, 160, 0.07);
+            background: rgba(255,255,255,0.012);
+        }
+
+        .news-card.open .card-details { display: block; }
+
+        .detail-grid {
+            display: grid;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 10px;
+            align-items: start;
+        }
+
+        .detail-row strong {
+            color: #d8dfc0;
+            font-size: 0.87rem;
+        }
+
+        .detail-row div, .detail-row a {
+            color: #c4ccaa;
+            font-size: 0.93rem;
+            overflow-wrap: anywhere;
+        }
+
+        .detail-row a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            color: var(--card-color, var(--green));
+        }
+
+        /* ── Summary panel ── */
+        .summary-panel {
+            margin-top: 20px;
+            border: 1px solid rgba(180, 210, 160, 0.1);
+            border-radius: 24px;
+            padding: 26px;
+            background:
+                radial-gradient(ellipse at top right, rgba(109, 184, 122, 0.1), transparent 40%),
+                linear-gradient(180deg, rgba(14, 26, 15, 0.98), rgba(8, 16, 9, 0.96));
+        }
+
+        .summary-panel h2 {
+            margin-top: 10px;
+            font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+            color: #eef0da;
+        }
+
+        .summary-body {
+            margin-top: 16px;
+            color: #c4ccaa;
+            font-size: 0.97rem;
+            line-height: 1.78;
+        }
+
+        .summary-body p { margin: 0 0 14px; }
+        .summary-body p:last-child { margin-bottom: 0; }
+
+        .watchlist {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .watch-item {
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid rgba(180, 210, 160, 0.1);
+            background: rgba(180, 210, 160, 0.03);
+        }
+
+        .watch-item strong {
+            display: block;
+            color: #dde4c8;
+            margin-bottom: 6px;
+            font-size: 0.94rem;
+        }
+
+        .watch-item p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.88rem;
+            padding: 10px 8px 0;
+        }
+
+        /* ── Back to top ── */
+        .back-top {
+            position: fixed;
+            right: 18px; bottom: 18px;
+            width: 44px; height: 44px;
+            border: 1px solid rgba(180, 210, 160, 0.18);
+            border-radius: 50%;
+            background: rgba(8, 15, 9, 0.85);
+            color: var(--green);
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+            z-index: 30;
+            font-size: 1rem;
+            display: grid;
+            place-items: center;
+            transition: 160ms ease;
+        }
+
+        .back-top:hover { transform: translateY(-2px); }
+
+        /* ── Hidden cards ── */
+        .news-card.hidden { display: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 1100px) {
+            .layout, .hero-grid, .article-intro {
+                grid-template-columns: 1fr;
+            }
+            .toc {
+                position: static;
+            }
+            .toc-nav {
+                grid-auto-flow: column;
+                grid-auto-columns: minmax(200px, 1fr);
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(calc(100% - 20px), var(--max));
+                padding-top: 12px;
+                padding-bottom: 56px;
+            }
+            .hero {
+                padding: 20px;
+                border-radius: 22px;
+            }
+            .article {
+                padding: 18px;
+                border-radius: 22px;
+            }
+            h1 {
+                font-size: clamp(2rem, 11vw, 3.2rem);
+                max-width: none;
+            }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .watchlist { grid-template-columns: 1fr; }
+            .toc-nav {
+                grid-auto-flow: row;
+                grid-auto-columns: auto;
+                overflow: visible;
+            }
+            .section-head, .card-heading, .detail-row {
+                grid-template-columns: 1fr;
+            }
+            .card-heading {
+                grid-template-columns: 36px 1fr auto;
+                gap: 10px;
+            }
+            .back-top { right: 10px; bottom: 10px; }
+        }
+
+        @media (max-width: 520px) {
+            body::before, body::after,
+            .hero::before, .hero::after { display: none; }
+            .hero, .article, .toc { border-radius: 16px; }
+            .card-top, .card-details { padding-left: 16px; padding-right: 16px; }
+            .hero-meta, .action-row { gap: 7px; }
+            .meta-pill, .btn { font-size: 0.82rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main class="page">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Field notes / seasonal briefing</div>
+                    <h1>全球农业与食品生产季报</h1>
+                    <p class="standfirst">
+                        化肥供应扰动、春播结构调整、食品价格风险与粮食安全布局——过去五周，农业正在成为能源、地缘政治与国家安全的交叉战场。22 条精选新闻，带你看懂这场静悄悄的结构性变化。
+                    </p>
+                    <div class="hero-meta">
+                        <span class="meta-pill">覆盖时间 2026-02-28 至 2026-04-03</span>
+                        <span class="meta-pill">22 条精选</span>
+                        <span class="meta-pill">4 个主题切面</span>
+                    </div>
+                    <div class="action-row">
+                        <a class="btn btn-primary" href="./agriculture.md">查看 Markdown 版本</a>
+                        <a class="btn" href="../../index.html">返回首页</a>
+                    </div>
+                </div>
+
+                <aside class="hero-stats">
+                    <div class="stats-label">Key numbers</div>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <strong>+50%</strong>
+                            <span>尿素价格涨幅（战前至今）</span>
+                        </div>
+                        <div class="stat-box">
+                            <strong>−3%</strong>
+                            <span>美国玉米意向播种面积</span>
+                        </div>
+                        <div class="stat-box">
+                            <strong>41</strong>
+                            <span>国家仍需外部粮食援助</span>
+                        </div>
+                        <div class="stat-box">
+                            <strong>65–70%</strong>
+                            <span>全球尿素供应受威胁比例</span>
+                        </div>
+                    </div>
+                    <div class="hero-signals">
+                        <p>Watch signals</p>
+                        <ul>
+                            <li>化肥成本已实质改变春播结构。</li>
+                            <li>食品通胀尾部效应将滞后 4 个月显现。</li>
+                            <li>欧盟 4 月 13 日化肥紧急会议值得关注。</li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Filter chips -->
+            <div class="filter-bar" id="filterBar">
+                <div class="chip active" data-cat="all">全部 <span style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">22</span></div>
+                <div class="chip" data-cat="fertilizer">化肥供应与种植成本 <span style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">7</span></div>
+                <div class="chip" data-cat="production">农业生产与粮食安全 <span style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">7</span></div>
+                <div class="chip" data-cat="food">食品价格与农产品市场 <span style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">6</span></div>
+                <div class="chip" data-cat="livestock">畜牧业与食品供应链 <span style="font-family:var(--mono);font-size:0.78rem;color:var(--muted)">3</span></div>
+            </div>
+        </section>
+
+        <div class="layout">
+            <!-- TOC -->
+            <aside class="toc">
+                <div class="toc-label">Topic map</div>
+                <h2>本页结构</h2>
+                <p>按主题浏览，不按时间线滚动。</p>
+                <nav class="toc-nav" id="tocNav">
+                    <a href="#sec-fertilizer">
+                        <span style="display:flex;align-items:center;gap:8px">
+                            <span class="toc-dot" style="background:var(--cat-fertilizer)"></span>
+                            化肥供应与种植成本
+                        </span>
+                        <span class="toc-count">7</span>
+                    </a>
+                    <a href="#sec-production">
+                        <span style="display:flex;align-items:center;gap:8px">
+                            <span class="toc-dot" style="background:var(--cat-production)"></span>
+                            农业生产与粮食安全
+                        </span>
+                        <span class="toc-count">7</span>
+                    </a>
+                    <a href="#sec-food">
+                        <span style="display:flex;align-items:center;gap:8px">
+                            <span class="toc-dot" style="background:var(--cat-food)"></span>
+                            食品价格与农产品市场
+                        </span>
+                        <span class="toc-count">6</span>
+                    </a>
+                    <a href="#sec-livestock">
+                        <span style="display:flex;align-items:center;gap:8px">
+                            <span class="toc-dot" style="background:var(--cat-livestock)"></span>
+                            畜牧业与食品供应链
+                        </span>
+                        <span class="toc-count">3</span>
+                    </a>
+                    <a href="#summary">
+                        <span style="display:flex;align-items:center;gap:8px">
+                            <span class="toc-dot" style="background:var(--green)"></span>
+                            总结与展望
+                        </span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Article -->
+            <article class="article">
+                <header class="article-intro">
+                    <div>
+                        <div class="toc-label">Issue 16 / field notes</div>
+                        <p class="lede">
+                            这不是一份"农业新闻汇编"，而是一次对过去五周全球农业结构性变化的系统梳理。每条新闻都标注了日期、来源和一句话意义判断，帮助你快速判断哪些是成本冲击，哪些是政策响应，哪些又在重塑全球粮食安全格局。
+                        </p>
+                    </div>
+                    <div class="reading-tip">
+                        <h3>阅读提示</h3>
+                        <ul>
+                            <li>先看每节导语，再展开单条卡片。</li>
+                            <li>顶部筛选按钮可按主题过滤。</li>
+                            <li>链接均指向原始来源。</li>
+                        </ul>
+                    </div>
+                </header>
+
+                <div id="sectionsRoot"></div>
+
+                <!-- Summary -->
+                <section class="summary-panel" id="summary">
+                    <div class="section-kicker" style="--section-color: var(--green)">Key takeaways</div>
+                    <h2>总结与四条观察线索</h2>
+                    <div class="summary-body">
+                        <p>过去五周，全球农业领域出现了一个越来越清晰的结构性变化：<strong>农业正在重新被看作能源、地缘政治、工业政策和粮食安全交叉点上的战略行业</strong>。短期看，最直接的风险来自化肥和运输，这决定了春播成本、作物结构和部分国家的保供动作；中期看，真正重要的是各国如何通过种子、土壤、进口多元化和农业技术来提升单产、降低脆弱性；长期看，农业的波动将不再只体现为"丰收或歉收"，而会越来越多地通过食品通胀、供应链中断和国家安全叙事表现出来。</p>
+                        <p>最新一周的进展让这一判断更加具体：USDA 春播报告确认化肥成本已实质性改变美国种植结构；欧盟在化肥碳边境税问题上的政策博弈，揭示了气候目标与农业成本危机之间难以调和的张力；而路透社 Breakingviews 的两篇评论则点明了最深层的风险——粮食安全没有战略储备可以缓冲，食品通胀一旦形成，央行的工具箱也难以快速奏效。</p>
+                    </div>
+                    <div class="watchlist">
+                        <div class="watch-item">
+                            <strong>北半球春播执行情况</strong>
+                            <p>实际播种与 USDA 意向报告的偏差，将决定下半年玉米和饲料价格走向。</p>
+                        </div>
+                        <div class="watch-item">
+                            <strong>欧盟 4/13 化肥紧急会议</strong>
+                            <p>能否拿出支持本土化肥生产的实质性政策，是欧洲农业成本能否缓解的关键节点。</p>
+                        </div>
+                        <div class="watch-item">
+                            <strong>FAO 3 月食品价格指数</strong>
+                            <p>预计 4 月初发布，将是判断食品通胀是否已进入上行通道的最直接指标。</p>
+                        </div>
+                        <div class="watch-item">
+                            <strong>美国农业破产率</strong>
+                            <p>Chapter 12 破产申请同比已增长近 36%，是否触发国会立法响应值得持续跟踪。</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <footer class="footer">
+            Digital Garden Issue 16 · 全球农业与食品生产季报
+        </footer>
+    </main>
+
+    <button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+    <script>
+    const report = {
+        categories: [
+            {
+                id: "sec-fertilizer",
+                cat: "fertilizer",
+                color: "var(--cat-fertilizer)",
+                title: "化肥供应与种植成本",
+                kicker: "Fertilizer & input costs",
+                intro: "这一组关注化肥供应链的直接冲击：从霍尔木兹封锁到中国出口限制，从亚洲春播前夕的价格飙升到欧盟的政策博弈，再到 USDA 春播报告确认的种植结构调整。",
+                items: [
+                    {
+                        n: 1,
+                        title: "伊朗战争冲击全球化肥供应与粮食安全",
+                        date: "2026-03-17",
+                        source: "Reuters",
+                        url: "http://www.reuters.com/business/energy/how-does-iran-war-affect-fertiliser-supplies-prices-food-security-2026-03-17/",
+                        summary: "霍尔木兹海峡承担全球约三分之一海运化肥贸易，战争导致运输中断与天然气供应受扰，直接抬高肥料生产与运输成本。",
+                        orgs: "Reuters、中东化肥生产商、全球农业市场",
+                        impact: "化肥冲击比单纯油价上涨更容易传导为下一季减产与粮价上行。"
+                    },
+                    {
+                        n: 2,
+                        title: "亚洲播种季前夕，农户面对化肥涨价和供应短缺",
+                        date: "2026-03-05",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/business/energy/iran-war-threatens-asia-fertiliser-supplies-ahead-planting-season-2026-03-05/",
+                        summary: "伊朗战争导致亚洲化肥流动受阻，尿素等关键产品价格飙升。春播临近，农户既担心买不到肥，也担心高成本吞掉有限的种植利润。",
+                        orgs: "亚洲农户、化肥贸易商",
+                        impact: "\"播种前冲击\"最危险，会直接改变农民种什么、种多少以及是否减施肥料。"
+                    },
+                    {
+                        n: 3,
+                        title: "巴西对化肥价格飙升发出警报，农户转向更便宜替代品",
+                        date: "2026-03-18",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/business/brazil-sounds-alarm-fertilizers-price-spike-spurs-cheaper-alternatives-2026-03-18/",
+                        summary: "巴西尿素价格两周内大涨，农户开始更多考虑硫酸铵等相对便宜的替代品。",
+                        orgs: "巴西农业部门、巴西农户、化肥进口商",
+                        impact: "价格冲击已开始改变投入结构，而不只是让农户\"多花钱\"。"
+                    },
+                    {
+                        n: 4,
+                        title: "印度与俄罗斯、白俄罗斯、摩洛哥洽谈扩大化肥进口",
+                        date: "2026-03-19",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/world/india/india-talks-with-russia-belarus-morocco-boost-fertiliser-imports-sources-say-2026-03-19/",
+                        summary: "印度正与俄罗斯、白俄罗斯和摩洛哥接触，希望扩大化肥进口来源，降低对中东和单一路线的依赖。",
+                        orgs: "印度政府、俄罗斯、白俄罗斯、摩洛哥",
+                        impact: "化肥已上升为国家级保供问题，而不再只是企业采购问题。"
+                    },
+                    {
+                        n: 5,
+                        title: "中国限制部分化肥出口，进一步收紧本已紧张的供应",
+                        date: "2026-03-19",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/world/asia-pacific/china-restricts-fertiliser-exports-further-crimping-war-tightened-supply-2026-03-19/",
+                        summary: "中国限制氮钾复合肥及部分磷肥出口，在战争已扰乱全球贸易的背景下进一步压缩市场供应。",
+                        orgs: "中国出口商、全球化肥进口国",
+                        impact: "地缘冲击叠加出口限制，全球化肥短缺从\"短期物流问题\"变成\"政策放大后的供应危机\"。"
+                    },
+                    {
+                        n: 18,
+                        title: "USDA 春播报告：美国玉米面积创多年新低，大豆大幅扩张",
+                        date: "2026-03-31",
+                        source: "Reuters / USDA NASS",
+                        url: "https://nass.usda.gov/Newsroom/2026/03-31-2026.php",
+                        summary: "USDA 确认玉米意向播种降至 9530 万英亩（-3%），大豆升至 8470 万英亩（+4%），春小麦创 1970 年以来最低。根本原因是化肥和柴油成本上升，玉米比大豆需要更多氮肥。",
+                        orgs: "美国农业部（USDA）、美国玉米和大豆种植者、芝加哥期货市场",
+                        impact: "这是化肥成本冲击从\"预期\"变为\"实际种植决策\"的最直接证据。玉米面积缩减将影响全球饲料和乙醇供应。"
+                    },
+                    {
+                        n: 19,
+                        title: "欧盟拒绝暂停化肥碳边境税，但宣布召开紧急会议",
+                        date: "2026-03-30",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/sustainability/boards-policy-regulation/eu-resists-french-request-pause-carbon-border-tax-fertilisers-2026-03-30/",
+                        summary: "法国、意大利、克罗地亚要求暂停 CBAM 化肥税，欧委会以\"加剧进口依赖\"为由拒绝，但承诺 4 月 13 日召开紧急会议研究支持欧洲本土化肥生产的措施。",
+                        orgs: "欧盟委员会、法国农业部、欧洲化肥生产商",
+                        impact: "揭示了欧盟在\"气候政策\"与\"农业成本危机\"之间的两难困境。政策走向值得持续关注。"
+                    }
+                ]
+            },
+            {
+                id: "sec-production",
+                cat: "production",
+                color: "var(--cat-production)",
+                title: "农业生产与粮食安全布局",
+                kicker: "Production & food security",
+                intro: "这一组关注各国在高成本环境下的战略应对：中国的种子与土壤战略、FAO 的全球援助警报、美国农户的卖粮时机选择、育种技术的长期押注，以及美国农场经济的持续恶化。",
+                items: [
+                    {
+                        n: 6,
+                        title: "中国押注种子、土壤与海外供应通道来保障粮食安全",
+                        date: "2026-03-05",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/world/asia-pacific/china-bets-seeds-soil-stable-overseas-supply-lift-crop-yields-ensure-food-2026-03-05/",
+                        summary: "中国把未来粮食安全更多押在种子创新、黑土地保护、盐碱地治理以及更稳定的海外农产品供应通道上，明确转向\"靠单产而不是靠面积\"。",
+                        orgs: "中国政府、农业科研体系、海外农产品供应链",
+                        impact: "大型粮食消费国正在系统性重塑农业战略，从\"保面积\"转向\"保技术、保土壤、保进口渠道\"。"
+                    },
+                    {
+                        n: 7,
+                        title: "FAO 三月报告称仍有 41 个国家需要外部粮食援助",
+                        date: "2026-03-06",
+                        source: "FAO",
+                        url: "https://www.fao.org/markets-and-trade/do-not-touch/all-widgets/crop-prospects-and-food-situation---triannual-global-report--no.-1--march-2026/en",
+                        summary: "FAO 在 3 月版报告中指出，全球仍有 41 个国家需要外部粮食援助，其中大部分位于非洲，也包括部分亚洲和拉美国家。",
+                        orgs: "FAO、低收入缺粮国、国际粮食援助体系",
+                        impact: "全球粮食安全的底盘仍然脆弱，只要新增冲击出现，弱势国家最先承压。"
+                    },
+                    {
+                        n: 8,
+                        title: "美国农户趁谷物价格反弹加快卖粮",
+                        date: "2026-03-13",
+                        source: "Reuters",
+                        url: "http://today.reuters.com/business/us-farmers-rush-sell-crops-iran-war-fuels-rally-2026-03-13/",
+                        summary: "受中东局势推动，玉米、大豆和小麦价格阶段性反弹，美国农户抓紧出售库存作物，以锁定难得的利润窗口。",
+                        orgs: "美国农户、芝加哥期货市场、谷物贸易商",
+                        impact: "农产品价格反弹并不意味着农业景气，很多时候只是农户在高波动环境中被动寻找止损时机。"
+                    },
+                    {
+                        n: 9,
+                        title: "北京要求生猪养殖户更重视产能控制",
+                        date: "2026-03-04",
+                        source: "Reuters",
+                        url: "http://today.reuters.com/world/asia-pacific/beijing-urges-hog-producers-focus-capacity-control-2026-03-04/",
+                        summary: "北京要求生猪养殖行业继续落实产能控制目标，中国猪肉供给偏宽松、需求偏弱，导致价格长期承压。",
+                        orgs: "中国农业农村部门、生猪养殖企业",
+                        impact: "即便在全球粮食安全焦虑上升时，部分农业子行业仍面临\"供给过剩而不是短缺\"的周期压力。"
+                    },
+                    {
+                        n: 10,
+                        title: "美国研究者押注杂交和转基因小麦，以提升单产和盈利性",
+                        date: "2026-03-25",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/world/china/us-researchers-bet-hybrid-gmo-seeds-make-wheat-profitable-again-2026-03-25/",
+                        summary: "美国研究机构与种业公司正在推进杂交和转基因小麦，希望通过提高单产、改善抗性与稳定利润，扭转小麦长期收益偏弱的问题。",
+                        orgs: "美国农业研究机构、种业公司、小麦种植者",
+                        impact: "在高成本环境下，农业增产越来越依赖育种和技术，而不只是扩大播种面积。"
+                    },
+                    {
+                        n: 22,
+                        title: "美国农场经济裂缝扩大：净农业收入连续第四年下滑，破产率飙升",
+                        date: "2026-03-29",
+                        source: "Reuters",
+                        url: "https://reut.rs/4bywn3W",
+                        summary: "美国净农业收入预计连续第四年下降，Chapter 12 破产申请同比增长近 36%。政府补贴将占农民收入约 29%，但仍不足以弥补成本上升。",
+                        orgs: "美国农户、美国农业部（USDA）、美国国会",
+                        impact: "破产率上升意味着小农场将加速退出，农业集中度可能进一步提高。"
+                    },
+                    {
+                        n: 11,
+                        title: "FAO 表示 2 月全球食品价格指数五个月来首次回升",
+                        date: "2026-03-06",
+                        source: "FAO",
+                        url: "https://www.fao.org/newsroom/detail/fao-food-price-index-rises-in-february-for-first-time-in-five-months/en",
+                        summary: "FAO 表示，全球食品价格指数在 2 月结束此前连续数月回落，重新出现上涨，同时 2026 年小麦播种前景因低价与生产激励不足而偏弱。",
+                        orgs: "FAO、全球食品市场、谷物生产国",
+                        impact: "在新的地缘与投入成本冲击叠加前，全球粮价本身就已经开始止跌回升。"
+                    }
+                ]
+            },
+            {
+                id: "sec-food",
+                cat: "food",
+                color: "var(--cat-food)",
+                title: "食品价格与农产品市场",
+                kicker: "Food prices & commodity markets",
+                intro: "这一组关注从化肥、能源到食品端的价格传导：发展中国家的通胀脆弱性、可可市场的天气与投资周期、以及两篇 Breakingviews 对粮食安全和央行困境的深度分析。",
+                items: [
+                    {
+                        n: 12,
+                        title: "伊朗战争威胁发展中国家迎来新一轮食品涨价冲击",
+                        date: "2026-03-20",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/world/middle-east/war-iran-threatens-fresh-food-price-shock-across-developing-world-2026-03-20/",
+                        summary: "发展中国家的通胀篮子里食品和燃料占比更高，因此比发达国家更容易受到化肥、能源和运输成本冲击。若冲突延续，面包、禽蛋、饲料和主粮价格都可能进一步上行。",
+                        orgs: "Reuters、发展中国家政府、全球食品市场",
+                        impact: "粮食安全问题最先表现为价格问题，而价格问题最先压到低收入经济体和脆弱家庭。"
+                    },
+                    {
+                        n: 13,
+                        title: "象牙海岸充沛降雨有利于可可中间产季",
+                        date: "2026-03-09",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/business/environment/healthy-rains-bode-well-ivory-coast-cocoa-mid-crop-farmers-say-2026-03-09/",
+                        summary: "全球最大可可生产国象牙海岸在 3 月迎来良好降雨，有利于 3 月至 8 月的中间产季。此前全球可可市场经历了长时间高价与供应紧张。",
+                        orgs: "象牙海岸农户、全球可可市场",
+                        impact: "局部天气改善仍可能显著改变全球单一农产品的供需预期，农业市场并不只有坏消息。"
+                    },
+                    {
+                        n: 14,
+                        title: "巴西工业化可可种植热潮因价格暴跌而降温",
+                        date: "2026-03-12",
+                        source: "Reuters",
+                        url: "http://polling.reuters.com/business/environment/brazils-dreams-industrial-scale-cocoa-farms-fading-after-price-crash-2026-03-12/",
+                        summary: "随着可可价格较此前高点大幅回落，巴西原本计划推进的大型工业化可可农场项目中，约一半面临取消风险。",
+                        orgs: "巴西农业投资者、可可种植项目、全球巧克力产业链",
+                        impact: "农产品投资具有明显周期性，高价并不总会自动转化为长期新增产能。"
+                    },
+                    {
+                        n: 20,
+                        title: "路透 Breakingviews：伊朗战争将粮食安全暴露于连锁风险之中",
+                        date: "2026-03-24",
+                        source: "Reuters Breakingviews",
+                        url: "https://www.reuters.com/commentary/breakingviews/iran-war-exposes-food-security-cascading-risks-2026-03-24/",
+                        summary: "霍尔木兹封锁威胁全球 65-70% 的尿素供应，中东还供应全球近半数硫磺。与俄乌战争不同，这次冲击同时打击化肥生产、能源和航运三个维度，且全球没有化肥战略储备可缓冲。",
+                        orgs: "Reuters Breakingviews、全球化肥市场、粮食进口国",
+                        impact: "\"无战略储备可缓冲\"意味着一旦冲突延长，粮食安全冲击将比能源冲击更难控制。"
+                    },
+                    {
+                        n: 21,
+                        title: "路透 Breakingviews：食品通胀让央行进退两难",
+                        date: "2026-03-31",
+                        source: "Reuters Breakingviews",
+                        url: "https://www.reuters.com/commentary/breakingviews/food-inflation-is-hard-digest-central-banks-2026-03-31/",
+                        summary: "食品通胀不同于能源通胀：消费者可以减少开车但无法减少吃饭，加息对食品通胀的抑制效果远弱于能源。历史数据显示能源价格峰值后约 4 个月食品通胀会\"卷土重来\"；若食品价格涨幅与能源相当，对核心通胀的冲击约为能源的 10 倍。",
+                        orgs: "Reuters Breakingviews、美联储、欧洲央行",
+                        impact: "即便战争停火，食品通胀的尾部效应仍可能持续数个季度，给各国货币政策带来额外压力。"
+                    }
+                ]
+            },
+            {
+                id: "sec-livestock",
+                cat: "livestock",
+                color: "var(--cat-livestock)",
+                title: "畜牧业与食品供应链",
+                kicker: "Livestock & food supply chain",
+                intro: "这一组关注农业供应链的末端环节：英国奶业的价格挤压、美国牧场的自然灾害冲击，以及肉类加工行业的劳资冲突——这些都在提醒我们，农业风险并不止于田间。",
+                items: [
+                    {
+                        n: 15,
+                        title: "英国奶价下滑，乳业农场濒临经营边缘",
+                        date: "2026-03-18",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/world/uk/milk-price-slide-leaves-uk-dairy-farmers-brink-2026-03-18/",
+                        summary: "英国原奶价格自 2025 年秋季以来显著下跌，部分奶农的售价已低于生产成本。全球供应偏宽松、成本压力仍高，使不少乳业农场经营承压。",
+                        orgs: "英国奶农、乳制品加工企业、英国农业部门",
+                        impact: "有些子行业同时面临价格走低和成本不降的双重挤压，农业新闻不只是\"东西变贵\"。"
+                    },
+                    {
+                        n: 16,
+                        title: "内布拉斯加草场火灾威胁美国牛群恢复计划",
+                        date: "2026-03-19",
+                        source: "Reuters",
+                        url: "https://www.reuters.com/business/environment/nebraska-fires-burn-grazing-lands-threaten-plans-grow-us-cattle-herd-2026-03-19/",
+                        summary: "美国内布拉斯加州草场火灾烧毁大面积放牧土地，影响约数万头牛的饲草来源。美国牛群库存已处于多年低位，火灾让原本的扩群计划再次受挫。",
+                        orgs: "美国内布拉斯加牧场主、美国畜牧业",
+                        impact: "极端天气与自然灾害同样会改变未来肉类供应，畜牧生产受到的不只是价格和饲料影响。"
+                    },
+                    {
+                        n: 17,
+                        title: "美国肉类加工行业出现 40 年来首次重大罢工",
+                        date: "2026-03-16",
+                        source: "Reuters",
+                        url: "http://www.reuters.com/business/world-at-work/jbs-workers-launch-first-us-meatpacking-strike-40-years-union-says-2026-03-16/",
+                        summary: "JBS 美国工厂工人发起重大罢工，这是美国肉类加工行业约 40 年来首次大型劳资冲突，可能影响牛肉加工能力并放大肉类价格压力。",
+                        orgs: "JBS、美国肉类加工工人、美国食品供应链",
+                        impact: "农业供给链并不止于农场，屠宰和加工环节的劳工问题同样会传导为食品价格问题。"
+                    }
+                ]
+            }
+        ]
+    };
+
+    function createCard(item, catClass) {
+        const card = document.createElement('div');
+        card.className = `news-card ${catClass}`;
+        card.dataset.cat = catClass;
+        card.innerHTML = `
+            <div class="card-top">
+                <div class="card-heading">
+                    <div class="card-num">${String(item.n).padStart(2,'0')}</div>
+                    <h3 class="card-title">${item.title}</h3>
+                    <button class="card-toggle" aria-label="展开详情">▾</button>
+                </div>
+                <div class="card-meta">
+                    <span>📅 ${item.date}</span>
+                    <span>📰 ${item.source}</span>
+                </div>
+                <p class="card-summary">${item.summary}</p>
+            </div>
+            <div class="card-details">
+                <div class="detail-grid">
+                    <div class="detail-row">
+                        <strong>涉及机构</strong>
+                        <div>${item.orgs}</div>
+                    </div>
+                    <div class="detail-row">
+                        <strong>影响与意义</strong>
+                        <div>${item.impact}</div>
+                    </div>
+                    <div class="detail-row">
+                        <strong>信息来源</strong>
+                        <div><a href="${item.url}" target="_blank" rel="noopener">${item.source} →</a></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        card.querySelector('.card-top').addEventListener('click', () => {
+            card.classList.toggle('open');
+        });
+        return card;
+    }
+
+    function buildSections() {
+        const root = document.getElementById('sectionsRoot');
+        report.categories.forEach(cat => {
+            const sec = document.createElement('section');
+            sec.className = 'section';
+            sec.id = cat.id;
+
+            const countLabel = `${cat.items.length} 条`;
+            sec.innerHTML = `
+                <div class="section-head">
+                    <div>
+                        <div class="section-kicker" style="--section-color:${cat.color}; color:${cat.color}">${cat.kicker}</div>
+                        <h2>${cat.title}</h2>
+                        <p>${cat.intro}</p>
+                    </div>
+                    <div class="section-badge" style="color:${cat.color}">${countLabel}</div>
+                </div>
+                <div class="cards" id="cards-${cat.id}"></div>
+            `;
+            root.appendChild(sec);
+
+            const cardsEl = sec.querySelector(`#cards-${cat.id}`);
+            cat.items.forEach(item => {
+                cardsEl.appendChild(createCard(item, cat.cat));
+            });
+        });
+    }
+
+    buildSections();
+
+    // Filter chips
+    const chips = document.querySelectorAll('.chip');
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+            const cat = chip.dataset.cat;
+            document.querySelectorAll('.news-card').forEach(card => {
+                if (cat === 'all' || card.dataset.cat === cat) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            // Show/hide sections based on visible cards
+            document.querySelectorAll('.section').forEach(sec => {
+                if (cat === 'all') {
+                    sec.style.display = '';
+                } else {
+                    const visible = sec.querySelectorAll('.news-card:not(.hidden)');
+                    sec.style.display = visible.length ? '' : 'none';
+                }
+            });
+        });
+    });
+
+    // Progress bar
+    const bar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+        const total = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (window.scrollY / total * 100) + '%';
+    }, { passive: true });
+
+    // Back to top
+    document.getElementById('backTop').addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Active TOC
+    const tocLinks = document.querySelectorAll('.toc-nav a');
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                tocLinks.forEach(l => l.classList.remove('active'));
+                const link = document.querySelector(`.toc-nav a[href="#${entry.target.id}"]`);
+                if (link) link.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    document.querySelectorAll('.section[id]').forEach(sec => observer.observe(sec));
+    </script>
+</body>
+</html>

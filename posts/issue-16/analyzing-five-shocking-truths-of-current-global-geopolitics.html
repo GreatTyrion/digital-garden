@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五个震撼真相：霍尔木兹海峡的"过路费"与美元的黄金枷锁</title>
+    <meta name="description" content="解析当前全球地缘政治的五个震撼真相：伊朗货币奇袭、去美元化悖论、日韩生存陷阱、香港资本蓄水池、不对称战争通胀陷阱。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ─── Tokens ─── */
+        :root {
+            --void: #080810;
+            --deep: #0d0d1a;
+            --surface: #12121f;
+            --surface-2: #181828;
+            --border: rgba(255,255,255,0.07);
+            --border-bright: rgba(255,255,255,0.14);
+            --text: #e8e6f0;
+            --text-2: #a8a4c0;
+            --text-3: #6a6680;
+
+            /* accent: electric amber */
+            --amber: #f5c842;
+            --amber-dim: rgba(245,200,66,0.12);
+            --amber-glow: rgba(245,200,66,0.25);
+
+            /* chapter colors */
+            --c1: #ff6b4a;   /* Hormuz — danger red-orange */
+            --c2: #4a9eff;   /* De-dollarization — cold blue */
+            --c3: #ff4a8a;   /* Japan/Korea — neon pink */
+            --c4: #ffd700;   /* Hong Kong — gold */
+            --c5: #7cff6b;   /* Asymmetric war — acid green */
+
+            --serif: "Noto Serif SC", "Georgia", serif;
+            --sans: "Space Grotesk", "PingFang SC", system-ui, sans-serif;
+            --mono: "Space Mono", monospace;
+
+            --max: 780px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background: var(--void);
+            color: var(--text);
+            font-family: var(--serif);
+            line-height: 1.85;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ─── Noise texture overlay ─── */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        /* ─── Progress bar ─── */
+        .progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: transparent;
+            z-index: 100;
+        }
+        .progress-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--c1), var(--amber), var(--c4));
+            box-shadow: 0 0 12px var(--amber-glow);
+            transition: width 60ms linear;
+        }
+
+        /* ─── Floating chapter nav ─── */
+        .chapter-nav {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cnav-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--border-bright);
+            cursor: pointer;
+            transition: 200ms ease;
+            position: relative;
+        }
+
+        .cnav-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            white-space: nowrap;
+            color: var(--text-2);
+            opacity: 0;
+            transition: opacity 160ms ease;
+            pointer-events: none;
+        }
+
+        .cnav-dot:hover::after,
+        .cnav-dot.active::after { opacity: 1; }
+
+        .cnav-dot.active,
+        .cnav-dot:hover { transform: scale(1.5); }
+
+        /* ─── Cover ─── */
+        .cover {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 0 max(20px, calc((100% - var(--max)) / 2));
+            padding-bottom: 60px;
+            overflow: hidden;
+        }
+
+        .cover-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(245,200,66,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 100% 100%, rgba(255,107,74,0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 50% 60% at 0% 60%, rgba(74,158,255,0.07) 0%, transparent 50%),
+                linear-gradient(180deg, var(--void) 0%, var(--deep) 100%);
+            z-index: 0;
+        }
+
+        /* Animated scan line */
+        .cover-bg::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--amber-glow), transparent);
+            animation: scan 6s ease-in-out infinite;
+        }
+
+        @keyframes scan {
+            0% { top: -2px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 0.3; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cover-eyebrow::before {
+            content: "";
+            width: 32px; height: 1px;
+            background: var(--amber);
+        }
+
+        .cover-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            font-weight: 900;
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            max-width: 18ch;
+        }
+
+        .cover-title .highlight {
+            color: var(--amber);
+            position: relative;
+            display: inline;
+        }
+
+        .cover-subtitle {
+            margin-top: 20px;
+            font-family: var(--sans);
+            font-size: 0.88rem;
+            color: var(--text-2);
+            letter-spacing: 0.06em;
+        }
+
+        .cover-lede {
+            margin-top: 28px;
+            font-size: clamp(0.95rem, 2vw, 1.06rem);
+            color: #c0bcd8;
+            max-width: 56ch;
+            line-height: 1.8;
+            border-left: 2px solid var(--amber);
+            padding-left: 18px;
+        }
+
+        .cover-meta {
+            margin-top: 36px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .meta-chip {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            border: 1px solid var(--border-bright);
+            padding: 6px 12px;
+            border-radius: 2px;
+        }
+
+        .scroll-hint {
+            margin-top: 48px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            color: var(--text-3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scroll-hint::after {
+            content: "";
+            width: 1px; height: 40px;
+            background: linear-gradient(180deg, var(--text-3), transparent);
+            display: block;
+        }
+
+        /* ─── Chapter index ─── */
+        .chapter-index {
+            position: relative;
+            z-index: 1;
+            padding: 60px max(20px, calc((100% - var(--max)) / 2));
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .index-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-3);
+            margin-bottom: 28px;
+        }
+
+        .index-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .index-item {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 16px;
+            align-items: start;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: 140ms ease;
+        }
+
+        .index-item:last-child { border-bottom: none; }
+
+        .index-item:hover { padding-left: 6px; }
+        .index-item:hover .index-num { color: var(--chapter-color); }
+
+        .index-num {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-3);
+            padding-top: 3px;
+            transition: 140ms ease;
+        }
+
+        .index-title {
+            font-family: var(--sans);
+            font-size: 0.96rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .index-kicker {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            color: var(--chapter-color);
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* ─── Article body ─── */
+        .article-body {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── Chapter ─── */
+        .chapter {
+            padding: 80px max(20px, calc((100% - var(--max)) / 2));
+            border-bottom: 1px solid var(--border);
+            scroll-margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chapter::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--chapter-color);
+            opacity: 0.7;
+        }
+
+        /* Chapter ambient glow */
+        .chapter::after {
+            content: "";
+            position: absolute;
+            left: -100px; top: -100px;
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--chapter-color) 0%, transparent 70%);
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .chapter[data-n="1"] { --chapter-color: var(--c1); background: var(--void); }
+        .chapter[data-n="2"] { --chapter-color: var(--c2); background: var(--deep); }
+        .chapter[data-n="3"] { --chapter-color: var(--c3); background: var(--void); }
+        .chapter[data-n="4"] { --chapter-color: var(--c4); background: var(--deep); }
+        .chapter[data-n="5"] { --chapter-color: var(--c5); background: var(--void); }
+
+        .chapter-header {
+            margin-bottom: 36px;
+        }
+
+        .chapter-number {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--chapter-color);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chapter-number::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--chapter-color), transparent);
+            opacity: 0.4;
+            max-width: 80px;
+        }
+
+        .chapter-title {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: var(--text);
+        }
+
+        .chapter-title .accent {
+            color: var(--chapter-color);
+        }
+
+        /* ─── Body text ─── */
+        .chapter p {
+            font-size: clamp(0.97rem, 2vw, 1.08rem);
+            color: #ccc8e0;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            max-width: 62ch;
+        }
+
+        .chapter p:last-child { margin-bottom: 0; }
+
+        /* ─── Pullquote ─── */
+        .pullquote {
+            margin: 32px 0;
+            padding: 24px 24px 24px 28px;
+            border-left: 3px solid var(--chapter-color);
+            background: rgba(255,255,255,0.025);
+            border-radius: 0 4px 4px 0;
+            position: relative;
+        }
+
+        .pullquote::before {
+            content: "\201C";
+            position: absolute;
+            top: -8px; left: 16px;
+            font-family: var(--serif);
+            font-size: 4rem;
+            line-height: 1;
+            color: var(--chapter-color);
+            opacity: 0.3;
+        }
+
+        .pullquote p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(1rem, 2.2vw, 1.14rem) !important;
+            color: var(--text) !important;
+            line-height: 1.75 !important;
+            margin: 0 !important;
+        }
+
+        /* ─── Key concept callout ─── */
+        .callout {
+            margin: 28px 0;
+            padding: 20px 22px;
+            background: var(--amber-dim);
+            border: 1px solid rgba(245,200,66,0.2);
+            border-radius: 3px;
+        }
+
+        .callout-label {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 8px;
+        }
+
+        .callout p {
+            font-size: 0.94rem !important;
+            color: #d8d4e8 !important;
+            margin: 0 !important;
+            line-height: 1.7 !important;
+        }
+
+        /* ─── Conclusion ─── */
+        .conclusion {
+            padding: 80px max(20px, calc((100% - var(--max)) / 2));
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .conclusion::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 100%, rgba(245,200,66,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .conclusion-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--amber);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .conclusion-label::before {
+            content: "";
+            width: 32px; height: 1px;
+            background: var(--amber);
+        }
+
+        .conclusion h2 {
+            font-family: var(--serif);
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 900;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+            color: var(--text);
+        }
+
+        .conclusion p {
+            font-size: clamp(0.97rem, 2vw, 1.08rem);
+            color: #ccc8e0;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            max-width: 62ch;
+        }
+
+        .conclusion-question {
+            margin-top: 40px;
+            padding: 28px;
+            border: 1px solid var(--border-bright);
+            border-radius: 3px;
+            background: rgba(255,255,255,0.02);
+            position: relative;
+        }
+
+        .conclusion-question::before {
+            content: "?";
+            position: absolute;
+            top: -18px; right: 24px;
+            font-family: var(--mono);
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--amber);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .conclusion-question p {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(1rem, 2.2vw, 1.12rem) !important;
+            color: var(--text) !important;
+            margin: 0 !important;
+            line-height: 1.8 !important;
+        }
+
+        /* ─── Footer ─── */
+        .site-footer {
+            position: relative;
+            z-index: 1;
+            padding: 32px max(20px, calc((100% - var(--max)) / 2));
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            color: var(--text-3);
+        }
+
+        .footer-link {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-3);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border-bright);
+            padding-bottom: 1px;
+            transition: color 140ms ease;
+        }
+
+        .footer-link:hover { color: var(--amber); }
+
+        /* ─── Back to top ─── */
+        .back-top {
+            position: fixed;
+            right: 20px; bottom: 20px;
+            width: 40px; height: 40px;
+            background: var(--surface-2);
+            border: 1px solid var(--border-bright);
+            color: var(--text-2);
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: grid;
+            place-items: center;
+            z-index: 40;
+            border-radius: 2px;
+            transition: 140ms ease;
+            font-family: var(--mono);
+        }
+
+        .back-top:hover {
+            background: var(--amber-dim);
+            border-color: var(--amber);
+            color: var(--amber);
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .chapter-nav { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .cover { min-height: 100svh; padding-bottom: 48px; }
+            .cover-title { font-size: clamp(1.8rem, 9vw, 2.6rem); }
+            .chapter { padding-top: 56px; padding-bottom: 56px; }
+            .conclusion { padding-top: 56px; padding-bottom: 56px; }
+            .pullquote { padding: 18px 18px 18px 22px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .cover-bg::after { animation: none; }
+            *, *::before, *::after { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- Floating chapter nav -->
+<nav class="chapter-nav" aria-label="章节导航" id="chapterNav">
+    <div class="cnav-dot" data-target="ch1" data-label="霍尔木兹过路费" style="--dot-color: var(--c1)"></div>
+    <div class="cnav-dot" data-target="ch2" data-label="去美元化悖论" style="--dot-color: var(--c2)"></div>
+    <div class="cnav-dot" data-target="ch3" data-label="日韩生存陷阱" style="--dot-color: var(--c3)"></div>
+    <div class="cnav-dot" data-target="ch4" data-label="香港资本蓄水池" style="--dot-color: var(--c4)"></div>
+    <div class="cnav-dot" data-target="ch5" data-label="不对称战争" style="--dot-color: var(--c5)"></div>
+</nav>
+
+<!-- ── Cover ── -->
+<section class="cover" id="cover">
+    <div class="cover-bg"></div>
+    <div class="cover-content">
+        <div class="cover-eyebrow">地缘政治深度分析 · Issue 16</div>
+        <h1 class="cover-title">
+            霍尔木兹的<span class="highlight">「过路费」</span><br>与美元的黄金枷锁
+        </h1>
+        <p class="cover-subtitle">解析当前全球地缘政治的五个震撼真相</p>
+        <p class="cover-lede">
+            全球经济正站在一个危险的临界点。随着原油价格强势冲破每桶 100 美元大关，这不仅是能源市场的震荡，更是投向全球中产阶级生存根基的一枚"深水炸弹"。在这场看似混乱的博弈中，旧有的地缘政治规则正在崩解。真正的赢家和输家，其身份可能完全出乎你的意料。
+        </p>
+        <div class="cover-meta">
+            <span class="meta-chip">5 个震撼真相</span>
+            <span class="meta-chip">霍尔木兹危机</span>
+            <span class="meta-chip">美元体系</span>
+            <span class="meta-chip">不对称战争</span>
+        </div>
+        <div class="scroll-hint">向下阅读</div>
+    </div>
+</section>
+
+<!-- ── Chapter index ── -->
+<nav class="chapter-index">
+    <div class="index-label">目录 · Contents</div>
+    <div class="index-list">
+        <a class="index-item" href="#ch1" style="--chapter-color: var(--c1)">
+            <div class="index-num">01</div>
+            <div>
+                <div class="index-title">霍尔木兹的「主权过路费」</div>
+                <div class="index-kicker" style="color: var(--c1)">伊朗的货币奇袭</div>
+            </div>
+        </a>
+        <a class="index-item" href="#ch2" style="--chapter-color: var(--c2)">
+            <div class="index-num">02</div>
+            <div>
+                <div class="index-title">去美元化的「中断悖论」</div>
+                <div class="index-kicker" style="color: var(--c2)">战争引发的避险错觉</div>
+            </div>
+        </a>
+        <a class="index-item" href="#ch3" style="--chapter-color: var(--c3)">
+            <div class="index-num">03</div>
+            <div>
+                <div class="index-title">「精致穷」的崩塌</div>
+                <div class="index-kicker" style="color: var(--c3)">日韩的生存陷阱</div>
+            </div>
+        </a>
+        <a class="index-item" href="#ch4" style="--chapter-color: var(--c4)">
+            <div class="index-num">04</div>
+            <div>
+                <div class="index-title">财富的「蓄水池」</div>
+                <div class="index-kicker" style="color: var(--c4)">香港的中东资本主场</div>
+            </div>
+        </a>
+        <a class="index-item" href="#ch5" style="--chapter-color: var(--c5)">
+            <div class="index-num">05</div>
+            <div>
+                <div class="index-title">不对称战争的代价</div>
+                <div class="index-kicker" style="color: var(--c5)">每周一枚导弹的通胀陷阱</div>
+            </div>
+        </a>
+    </div>
+</nav>
+
+<!-- ── Article body ── -->
+<main class="article-body">
+
+    <!-- Chapter 1 -->
+    <section class="chapter" id="ch1" data-n="1">
+        <div class="chapter-header">
+            <div class="chapter-number">真相 01 · Hormuz Strait</div>
+            <h2 class="chapter-title">霍尔木兹的<span class="accent">「主权过路费」</span>：<br>伊朗的货币奇袭</h2>
+        </div>
+
+        <p>伊朗议会近期通过的一项法案，宣告了霍尔木兹海峡博弈的底层逻辑已发生质变。这不再仅仅是关于"封锁与反封锁"的军事威胁，而是一场旨在确立"货币主权"的立法突袭。</p>
+
+        <div class="callout">
+            <div class="callout-label">核心动作</div>
+            <p>伊朗通过立法形式要求对过往海峡的船只行使正式管辖权，并提出一个让华盛顿战栗的要求：<strong>过路费必须以"伊朗货币"支付。</strong></p>
+        </div>
+
+        <p>这一举动将地缘政治杠杆精准地转化为金融筹码。在全球能源贸易长期向美元"交税"的背景下，伊朗正在强行剥离美元在这一枢纽的霸权，将其领海主权直接锚定在本币价值上。</p>
+
+        <p>对于美元体系而言，这无异于在最坚固的城墙上凿开了一道无法修补的裂缝。</p>
+    </section>
+
+    <!-- Chapter 2 -->
+    <section class="chapter" id="ch2" data-n="2">
+        <div class="chapter-header">
+            <div class="chapter-number">真相 02 · De-dollarization</div>
+            <h2 class="chapter-title">去美元化的<span class="accent">「中断悖论」</span>：<br>战争引发的避险错觉</h2>
+        </div>
+
+        <p>一个极其反直觉的现象正在上演：尽管全球央行在短时间内疯狂抛售了超过 <strong>800 亿美元</strong>的美债，但美元指数却诡异走强。这种"去美元化进程被战争打断"的假象，实际上是历史惯性的重演。</p>
+
+        <p>回顾 1971 年"尼克松冲击"后，美元信誉一度跌至谷底，甚至沦为巴厘岛街头擦鞋的废纸。然而，随后爆发的中东战争引发了恶性通胀，由于全球大宗商品仍以美元计价，各国为了求生，不得不产生对美元的刚性需求。</p>
+
+        <div class="pullquote">
+            <p>这就像是在一场起火的音乐会上，大伙儿都在急着逃命，没有人再能顾得上自己的仪表是否体面，更无人顾及去美元化的长远宏图。</p>
+        </div>
+
+        <p>当前的美元走强并非信用的重塑，而是一种基于"生存本能"的虚假回光返照。当战争迫使各国必须持有美元去抢购昂贵的能源与粮食时，美元指数的攀升实际上是建立在全球新兴市场贬值痛苦之上的。</p>
+    </section>
+
+    <!-- Chapter 3 -->
+    <section class="chapter" id="ch3" data-n="3">
+        <div class="chapter-header">
+            <div class="chapter-number">真相 03 · Japan & Korea</div>
+            <h2 class="chapter-title">「精致穷」的<span class="accent">崩塌</span>：<br>日韩的生存陷阱</h2>
+        </div>
+
+        <p>在能源短缺的阴影下，曾经作为发达国家范本的日韩，其"精致生活"的外壳正在层层剥落。日本加油站前竖起了"去问特朗普为什么没油"的告示牌，韩国则被迫限制公务车出行。</p>
+
+        <div class="callout">
+            <div class="callout-label">日本的加息陷阱</div>
+            <p>为遏制输入型通胀，日本理应加息——但一旦加息，不仅本国沉重的债务利息将拖垮财政，更可能引发美债市场的全面崩盘。这种被"精神阉割"后的结构性矛盾，让日本在能源与安全的天平上毫无还手之力。</p>
+        </div>
+
+        <p>当美元兑日元汇率跌破 160 大关，日本社会长期维持的"精致穷"——在高昂生活成本下勉力维持体面消费的平衡——彻底崩塌。只能眼睁睁看着国家潜力在汇率震荡中消亡。</p>
+    </section>
+
+    <!-- Chapter 4 -->
+    <section class="chapter" id="ch4" data-n="4">
+        <div class="chapter-header">
+            <div class="chapter-number">真相 04 · Hong Kong</div>
+            <h2 class="chapter-title">财富的<span class="accent">「蓄水池」</span>：<br>香港的中东资本主场</h2>
+        </div>
+
+        <p>在这场冲突中，香港正在悄然成为中东资本（王爷们）的终极避风港。随着西方频繁动用资产没收手段（如对俄制裁），中东富豪对迪拜和西方资产的安全感降至冰点。</p>
+
+        <p>香港建设的巨型黄金库不仅是物理上的安抚，更是一种对"主体性"的追求。尽管目前的港币仍被视为"美元兑换券"，但资本的流动逻辑已经转向：</p>
+
+        <div class="pullquote">
+            <p>他们正通过香港，将从石油中赚取的财富赌在下一个时代的锚点——AI 与科技革命上。</p>
+        </div>
+
+        <p>与此对应的是，如果中国这种"工业克苏鲁"式的庞大体系能够主导下一次技术革命的落地，香港将从单纯的"避险蓄水池"进化为全球新秩序的金融心脏。</p>
+    </section>
+
+    <!-- Chapter 5 -->
+    <section class="chapter" id="ch5" data-n="5">
+        <div class="chapter-header">
+            <div class="chapter-number">真相 05 · Asymmetric War</div>
+            <h2 class="chapter-title">不对称战争的<span class="accent">代价</span>：<br>每周一枚导弹的通胀陷阱</h2>
+        </div>
+
+        <p>伊朗展现了一种极低成本、高杀伤力的不对称战略，令传统强权无所适从。伊朗近期展示的 <strong>4000 公里导弹射程</strong>——足以覆盖迪戈加西亚等关键美军基地——证明了其手中握有足以掀翻牌桌的"隐藏底牌"。</p>
+
+        <div class="callout">
+            <div class="callout-label">核心策略</div>
+            <p>伊朗的策略极其狡黠：它不求正面大决战，只需维持"每周发射一枚导弹或无人机"的不确定性。这种低频度的骚扰足以让全球航运保险、原油保费和粮食成本维持在高位。</p>
+        </div>
+
+        <p>这种由能源驱动的全球恶性通胀，是特朗普等西方领导人无法摆脱的陷阱。即便试图通过贸易壁垒拉回制造业，高昂的能源成本也会让"美国制造"在起跑线上就失去竞争力。</p>
+
+        <p>这种"阴干"式的消耗战，正在一点点耗尽旧秩序的血量。</p>
+    </section>
+
+    <!-- Conclusion -->
+    <section class="conclusion" id="conclusion">
+        <div class="conclusion-label">结语 · Conclusion</div>
+        <h2>历史交叉口的<br>无声转折</h2>
+
+        <p>我们正处于一个比 1971 年更为动荡且复杂的转折点。当年美国通过将美元与石油绑定，并帮助连垃圾处理都要靠山羊的沙特实现现代化，从而续命了美元体系。</p>
+
+        <p>但今天，当信用的锚点摇摇欲坠，能源通道被立法接管，以及一个具备"工业克苏鲁"规模的新兴力量矗立于东方时，旧的教科书已经失效。</p>
+
+        <div class="conclusion-question">
+            <p>当避险的幻觉消散，当信用不再，下一个十年的全球"锚点"究竟是在黄金、科技主权，还是在某种尚未成型的多边体系中？在这个历史的十字路口，唯一的真相是：旧世界的门票已不再通行。</p>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    <span class="footer-brand">Digital Garden · Issue 16 · 地缘政治深度分析</span>
+    <a class="footer-link" href="./news-april-03.html">← 返回新闻速览</a>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+<script>
+// Progress bar
+const fill = document.getElementById('progressFill');
+window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.width = (window.scrollY / total * 100) + '%';
+}, { passive: true });
+
+// Back to top
+document.getElementById('backTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Chapter nav dots
+const dots = document.querySelectorAll('.cnav-dot');
+const chapters = document.querySelectorAll('.chapter[id]');
+
+dots.forEach(dot => {
+    dot.style.background = getComputedStyle(document.documentElement)
+        .getPropertyValue('--border-bright');
+    dot.addEventListener('click', () => {
+        const target = document.getElementById(dot.dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+// Color map for dots
+const dotColors = {
+    ch1: 'var(--c1)',
+    ch2: 'var(--c2)',
+    ch3: 'var(--c3)',
+    ch4: 'var(--c4)',
+    ch5: 'var(--c5)'
+};
+
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const id = e.target.id;
+            dots.forEach(dot => {
+                const isActive = dot.dataset.target === id;
+                dot.classList.toggle('active', isActive);
+                dot.style.background = isActive
+                    ? `var(${dotColors[id].replace('var(','').replace(')','')}, #fff)`
+                    : 'rgba(255,255,255,0.14)';
+                dot.style.boxShadow = isActive
+                    ? `0 0 8px var(${dotColors[id].replace('var(','').replace(')','')}, #fff)`
+                    : 'none';
+            });
+        }
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+chapters.forEach(c => io.observe(c));
+</script>
+</body>
+</html>

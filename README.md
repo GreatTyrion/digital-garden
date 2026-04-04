@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 | ----- | ---- | ----------- | -------- |
+| [#16](posts/issue-16/issue-16.md) | 2026-04-03 | 全球新闻、农业简报、伊朗能源危机、地缘政治分析 | 🌍, ⚡, 🌾, 📰, 🗺️ |
 | [#15](posts/issue-15/issue-15.md) | 2026-03-07 | AI ship tracking, March news digest, and Newfoundland rental map | 🛰️, 📰, 🇨🇦, 🗺️ |
 | [#14](posts/issue-14/issue-14.md) | 2026-01-18 | First Principles, Agent Skills, Newfoundland News | 🧠, 🤖, 📰, 🗺️ |
 | [#13](posts/issue-13/issue-13.md) | 2025-12-28 | AI Tools, Psychology, News, Practical Tools | 🤖, 💭, 📰, 🗺️ |

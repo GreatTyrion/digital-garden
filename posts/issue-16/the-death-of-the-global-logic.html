@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Death of the Global Logic - Digital Garden</title>
+    <meta name="description" content="A long-form editorial webpage based on The Death of the Global Logic: How the Hormuz Chokepoint Shattered the Post-War Order.">
+    <style>
+        :root {
+            --bg: #07090d;
+            --bg-soft: #0d121a;
+            --paper: rgba(17, 22, 31, 0.9);
+            --line: rgba(255, 255, 255, 0.1);
+            --text: #efe7dc;
+            --muted: #b8ad9d;
+            --accent: #ff9d5c;
+            --accent-cold: #84c2ff;
+            --danger: #ff6b6b;
+            --radius-xl: 28px;
+            --radius-lg: 18px;
+            --shadow: 0 24px 80px rgba(0, 0, 0, 0.46);
+            --max-width: 1240px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+            line-height: 1.75;
+            background:
+                radial-gradient(circle at 12% 8%, rgba(255, 157, 92, 0.18), transparent 24%),
+                radial-gradient(circle at 82% 10%, rgba(132, 194, 255, 0.12), transparent 22%),
+                linear-gradient(180deg, #06070a 0%, #0a0d13 40%, #0c1118 100%);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 46px 46px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.35) 72%, transparent);
+            opacity: 0.35;
+            z-index: 0;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 30;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #ffd2a8, var(--accent-cold));
+            box-shadow: 0 0 18px rgba(255, 157, 92, 0.8);
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: min(calc(100% - 26px), var(--max-width));
+            margin: 0 auto;
+            padding: 18px 0 calc(70px + env(safe-area-inset-bottom));
+        }
+
+        .hero {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background:
+                linear-gradient(145deg, rgba(18, 22, 31, 0.96), rgba(10, 14, 21, 0.9)),
+                var(--paper);
+            padding: 32px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            right: -140px;
+            top: -150px;
+            background: radial-gradient(circle, rgba(255, 157, 92, 0.22), transparent 66%);
+            filter: blur(8px);
+            pointer-events: none;
+        }
+
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: #ffd7b8;
+            font-family: "Menlo", "Monaco", monospace;
+        }
+
+        .hero-kicker::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 14px rgba(255, 157, 92, 0.8);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            letter-spacing: -0.02em;
+            font-family: "Baskerville", "Iowan Old Style", "Palatino Linotype", serif;
+        }
+
+        h1 {
+            margin-top: 16px;
+            max-width: 13ch;
+            font-size: clamp(2.5rem, 5.4vw, 4.8rem);
+            line-height: 0.95;
+            text-wrap: balance;
+        }
+
+        .standfirst {
+            margin: 20px 0 0;
+            max-width: 70ch;
+            color: #ddd3c6;
+            font-size: clamp(1.02rem, 1.8vw, 1.16rem);
+        }
+
+        .hero-meta {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 13px;
+            min-height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: #f2e7da;
+            text-decoration: none;
+        }
+
+        .layout {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: minmax(0, 290px) minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .toc {
+            position: sticky;
+            top: 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: var(--paper);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            backdrop-filter: blur(16px);
+        }
+
+        .toc h2 {
+            margin-top: 10px;
+            font-size: 1.52rem;
+        }
+
+        .toc p {
+            margin: 12px 0 14px;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .toc-nav {
+            display: grid;
+            gap: 8px;
+        }
+
+        .toc-nav a {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            min-height: 44px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+            text-decoration: none;
+            font-size: 0.93rem;
+            transition: 180ms ease;
+        }
+
+        .toc-nav a:hover,
+        .toc-nav a.active {
+            border-color: rgba(255, 157, 92, 0.4);
+            background: rgba(255, 157, 92, 0.12);
+        }
+
+        .article {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background: var(--paper);
+            padding: 28px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .stat {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.35rem;
+            line-height: 1.1;
+            color: #ffe8d1;
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        .section {
+            padding: 26px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            scroll-margin-top: 68px;
+        }
+
+        .section:first-of-type {
+            padding-top: 0;
+            border-top: 0;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: flex-end;
+            margin-bottom: 14px;
+        }
+
+        .index {
+            color: var(--accent-cold);
+            font-family: "Menlo", "Monaco", monospace;
+            font-size: 0.82rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .section p {
+            margin: 0 0 12px;
+            color: #e7ddd1;
+        }
+
+        .section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .callout {
+            margin-top: 12px;
+            border-left: 3px solid var(--danger);
+            background: rgba(255, 107, 107, 0.08);
+            padding: 10px 12px;
+            border-radius: 0 10px 10px 0;
+            color: #ffd8d8;
+        }
+
+        .source {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.2);
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 16px;
+            color: var(--muted);
+            font-size: 0.88rem;
+        }
+
+        .back-top {
+            position: fixed;
+            right: max(16px, env(safe-area-inset-right));
+            bottom: max(16px, env(safe-area-inset-bottom));
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(8, 10, 15, 0.82);
+            color: #fff;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            opacity: 0;
+            pointer-events: none;
+            transition: 180ms ease;
+        }
+
+        @media (max-width: 1080px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+            }
+
+            .toc-nav {
+                grid-auto-flow: column;
+                grid-auto-columns: minmax(190px, 1fr);
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(calc(100% - 16px), var(--max-width));
+                padding-top: 10px;
+            }
+
+            .hero,
+            .article {
+                padding: 18px;
+                border-radius: 20px;
+            }
+
+            .hero-kicker {
+                letter-spacing: 0.13em;
+            }
+
+            h1 {
+                max-width: none;
+                font-size: clamp(2rem, 12vw, 3.2rem);
+            }
+
+            .standfirst {
+                font-size: 1rem;
+                line-height: 1.7;
+            }
+
+            .toc {
+                padding: 14px;
+            }
+
+            .toc p {
+                margin-bottom: 10px;
+            }
+
+            .toc-nav {
+                scroll-snap-type: x proximity;
+            }
+
+            .toc-nav a {
+                scroll-snap-align: start;
+                white-space: nowrap;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .section-head {
+                display: grid;
+                grid-template-columns: 1fr;
+                align-items: start;
+                gap: 6px;
+            }
+
+            .section {
+                scroll-margin-top: 24px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            body::before {
+                display: none;
+            }
+
+            .hero-meta {
+                gap: 8px;
+            }
+
+            .pill {
+                width: 100%;
+                min-height: 44px;
+                font-size: 0.88rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .stat {
+                padding: 11px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main class="page">
+        <header class="hero">
+            <div class="hero-kicker">Issue 16 / Editorial Long Read</div>
+            <h1>The Death of the Global Logic</h1>
+            <p class="standfirst">
+                How the Hormuz chokepoint shattered the post-war order, and why global integration is giving way to a harsher era of resilience-first states.
+            </p>
+            <div class="hero-meta">
+                <span class="pill">Topic: Geopolitics & Energy</span>
+                <span class="pill">Format: Long-form Essay</span>
+                <a class="pill" href="./the-death-of-the-global-logic.md">查看 Markdown 原文</a>
+                <a class="pill" href="../../index.html">返回首页</a>
+            </div>
+        </header>
+
+        <div class="layout">
+            <aside class="toc">
+                <div class="hero-kicker">Reading Map</div>
+                <h2>章节导航</h2>
+                <p>从海湾安全模型崩塌到“硬壳国家”崛起，按章节快速跳读。</p>
+                <nav class="toc-nav" id="tocNav">
+                    <a href="#section-1">01 Gulf Oasis Collapse</a>
+                    <a href="#section-2">02 Logistics as Weapon</a>
+                    <a href="#section-3">03 RMB Ticket</a>
+                    <a href="#section-4">04 Strategic Vacuum</a>
+                    <a href="#section-5">05 Allies Jump Ship</a>
+                    <a href="#section-6">06 Hard-Shell Nations</a>
+                </nav>
+            </aside>
+
+            <article class="article">
+                <section class="stats" aria-label="关键数字">
+                    <div class="stat">
+                        <strong>$12M</strong>
+                        <span>霍尔木兹油轮中国航次成本</span>
+                    </div>
+                    <div class="stat">
+                        <strong>-95%</strong>
+                        <span>海峡交通量下跌</span>
+                    </div>
+                    <div class="stat">
+                        <strong>2/6</strong>
+                        <span>关键防空系统拦截率</span>
+                    </div>
+                    <div class="stat">
+                        <strong>$11.3B</strong>
+                        <span>美国前 6 天冲突支出</span>
+                    </div>
+                </section>
+
+                <section class="section" id="section-1">
+                    <div class="section-head">
+                        <h2>The Collapse of the "Gulf Oasis" and the Hired Guard</h2>
+                        <span class="index">Section 01</span>
+                    </div>
+                    <p>For nearly half a century, globalization ran on an implicit guarantee: stable sea lanes, cheap oil, and outsourced security under a U.S.-led umbrella. The Gulf monarchies turned this into an economic operating system. Dubai became a neutral vault for global capital, while Saudi Arabia tried to scale the model through mega-projects such as NEOM.</p>
+                    <p>That architecture now looks fragile. The core dependency, externalized security, has flipped from asset to liability. Once investors no longer trust the surrounding security perimeter, the "safe haven premium" evaporates. Capital retreats, flagship projects stall, and the region's branding as a neutral business sanctuary starts to unravel.</p>
+                    <div class="callout">关键判断：当“雇佣保安”本身成为火源，地区中立红利会在极短时间内归零。</div>
+                </section>
+
+                <section class="section" id="section-2">
+                    <div class="section-head">
+                        <h2>The $12 Million Toll: When Logistics Become a Weapon</h2>
+                        <span class="index">Section 02</span>
+                    </div>
+                    <p>The rupture becomes concrete at Hormuz. A route that once cost roughly $600,000 can jump to around $12 million, turning shipping economics into a strategic choke. This is not ordinary friction but systemic amputation: traffic collapse, war-risk surcharges, and cascading delays across global manufacturing networks.</p>
+                    <p>The second-order effects are the real shock. Helium disruptions hit semiconductors and advanced cooling. Aluminium shortages pressure European auto and aerospace production. "Low inventory" optimization fails when maritime certainty disappears. In this world, logistics itself becomes a weaponized layer of conflict.</p>
+                </section>
+
+                <section class="section" id="section-3">
+                    <div class="section-head">
+                        <h2>The "RMB Ticket": The Psychological Weaponization of Currency</h2>
+                        <span class="index">Section 03</span>
+                    </div>
+                    <p>Beyond missiles and tankers, the conflict extends into currency signaling. Conditioning passage on settlement in Renminbi reframes the chokepoint as a monetary gate. The message is strategic: transactional norms are no longer set only by financial centers, but by whoever controls critical physical corridors.</p>
+                    <p>For China, this creates opportunity and risk at once: a milestone for RMB internationalization, but also potential instability if offshore liquidity rapidly boomerangs home. The broader implication is psychological and structural: petrodollar assumptions weaken when trade currency starts to follow geography rather than institutions.</p>
+                </section>
+
+                <section class="section" id="section-4">
+                    <div class="section-head">
+                        <h2>The Strategic Vacuum and the Paper Tiger Realization</h2>
+                        <span class="index">Section 04</span>
+                    </div>
+                    <p>The essay argues that Washington's strategic center has hollowed out: messaging is inconsistent, campaign objectives drift, and escalation control appears reactive rather than designed. Divergent statements from top leadership amplify the perception that the hegemon can still start wars, but struggles to shape endings.</p>
+                    <p>Military and fiscal metrics deepen this narrative: expensive interception, heavy munitions burn rates, and diplomatic signaling that looks improvised. The "paper tiger" label emerges not from a single tactical miss, but from repeated evidence that power projection and conflict resolution are no longer synchronized.</p>
+                </section>
+
+                <section class="section" id="section-5">
+                    <div class="section-head">
+                        <h2>The "Save Yourself" Era: Why Allies are Jumping Ship</h2>
+                        <span class="index">Section 05</span>
+                    </div>
+                    <p>Allied reactions become a referendum on system credibility. When partners conclude U.S. stockpiles may be prioritized over alliance guarantees, strategic autonomy accelerates. South Korea debates command sovereignty, Japan burns strategic reserves, and Europe revisits reserve allocation under energy and growth stress.</p>
+                    <p>This creates a double fear among allies: the U.S. may be too weak to uphold order, yet still powerful enough to drag them into conflicts they cannot absorb. The post-war security bargain then mutates from "collective assurance" into "individual hedging."</p>
+                </section>
+
+                <section class="section" id="section-6">
+                    <div class="section-head">
+                        <h2>Conclusion: The Rise of the Hard-Shell Nations</h2>
+                        <span class="index">Section 06</span>
+                    </div>
+                    <p>The closing thesis is stark: the cooperative globalization script is being replaced by "Safety First" statecraft. Nations are shifting toward hardened domestic productivity, strategic redundancy, and resilience buffers over efficiency-maximizing openness.</p>
+                    <p>In this framing, the central policy question is no longer growth rate optimization under stable rules. It is shock survivability under unstable rules. The old guarantees have dissolved; durability becomes the only durable metric.</p>
+                </section>
+
+                <div class="source">
+                    Source text adapted from <em>The Death of the Global Logic: How the Hormuz Chokepoint Shattered the Post-War Order</em>.
+                </div>
+            </article>
+        </div>
+
+        <footer class="footer">Digital Garden · Issue 16 · Editorial Web Edition</footer>
+    </main>
+
+    <button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+    <script>
+        const progressBar = document.getElementById("progressBar");
+        const backTop = document.getElementById("backTop");
+        const tocLinks = [...document.querySelectorAll(".toc-nav a")];
+        const sections = [...document.querySelectorAll(".section")];
+
+        const updateProgress = () => {
+            const top = window.scrollY;
+            const full = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = full > 0 ? (top / full) * 100 : 0;
+            progressBar.style.width = progress + "%";
+            backTop.style.opacity = top > 300 ? "1" : "0";
+            backTop.style.pointerEvents = top > 300 ? "auto" : "none";
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const id = "#" + entry.target.id;
+                tocLinks.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === id);
+                });
+            });
+        }, {
+            rootMargin: "-30% 0px -55% 0px",
+            threshold: 0
+        });
+
+        sections.forEach((section) => observer.observe(section));
+
+        backTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+    </script>
+</body>
+</html>

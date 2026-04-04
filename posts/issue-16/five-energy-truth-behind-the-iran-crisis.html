@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伊朗危机背后，你必须看懂的 5 个能源真相 - Digital Garden</title>
+    <meta name="description" content="将伊朗危机、霍尔木兹海峡、航运保险、油价、金融市场与长期能源格局串起来的长文分析页面。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #07090d;
+            --bg-soft: #0d121a;
+            --panel: rgba(16, 21, 30, 0.9);
+            --panel-2: rgba(22, 28, 39, 0.94);
+            --line: rgba(255, 255, 255, 0.1);
+            --text: #efe7dc;
+            --muted: #b6ab9d;
+            --accent: #ff9d5c;
+            --accent-soft: rgba(255, 157, 92, 0.12);
+            --cold: #89c8ff;
+            --cold-soft: rgba(137, 200, 255, 0.12);
+            --danger: #ff6b6b;
+            --ok: #83d8a2;
+            --shadow: 0 26px 80px rgba(0, 0, 0, 0.48);
+            --radius-xl: 30px;
+            --radius-lg: 20px;
+            --radius-md: 14px;
+            --max: 1240px;
+            --serif: "Libre Baskerville", "Iowan Old Style", Georgia, serif;
+            --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: "Avenir Next", "Segoe UI", "PingFang SC", sans-serif;
+            line-height: 1.8;
+            background:
+                radial-gradient(circle at 14% 8%, rgba(255, 157, 92, 0.18), transparent 22%),
+                radial-gradient(circle at 84% 10%, rgba(137, 200, 255, 0.13), transparent 24%),
+                linear-gradient(180deg, #06070a 0%, #0b0f15 42%, #0c1118 100%);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.28) 76%, transparent);
+            opacity: 0.38;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #ffd2a8, var(--cold));
+            box-shadow: 0 0 20px rgba(255, 157, 92, 0.75);
+        }
+
+        .page {
+            position: relative;
+            z-index: 1;
+            width: min(calc(100% - 24px), var(--max));
+            margin: 0 auto;
+            padding: 18px 0 calc(72px + env(safe-area-inset-bottom));
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background:
+                linear-gradient(145deg, rgba(15, 20, 29, 0.98), rgba(10, 14, 21, 0.92)),
+                var(--panel);
+            box-shadow: var(--shadow);
+            padding: 30px 22px 22px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 460px;
+            height: 460px;
+            right: -160px;
+            top: -170px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 157, 92, 0.2), transparent 66%);
+            filter: blur(10px);
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.72fr);
+            gap: 22px;
+            align-items: end;
+        }
+
+        .eyebrow,
+        .panel-label,
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ffd7b8;
+        }
+
+        .eyebrow::before,
+        .section-kicker::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 14px rgba(255, 157, 92, 0.82);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-family: var(--serif);
+            letter-spacing: -0.03em;
+        }
+
+        h1 {
+            margin-top: 14px;
+            max-width: 11ch;
+            font-size: clamp(2.5rem, 6.5vw, 4.9rem);
+            line-height: 0.96;
+            text-wrap: balance;
+        }
+
+        .standfirst {
+            margin-top: 18px;
+            max-width: 66ch;
+            color: #ddd4c8;
+            font-size: clamp(1rem, 2vw, 1.14rem);
+        }
+
+        .hero-meta,
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .pill,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 9px 13px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: #f2e7da;
+        }
+
+        .btn-primary {
+            border-color: rgba(255, 157, 92, 0.28);
+            background: linear-gradient(180deg, rgba(255, 157, 92, 0.18), rgba(255, 157, 92, 0.08));
+        }
+
+        .hero-side {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 18px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+                rgba(9, 13, 19, 0.84);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .stat {
+            border-radius: 16px;
+            padding: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .stat strong {
+            display: block;
+            font-family: var(--mono);
+            font-size: 1.35rem;
+            line-height: 1;
+            color: var(--accent);
+        }
+
+        .stat span {
+            display: block;
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+
+        .signal-list {
+            margin: 16px 0 0;
+            padding-left: 18px;
+            color: #e9dfd4;
+        }
+
+        .signal-list li + li {
+            margin-top: 8px;
+        }
+
+        .layout {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: minmax(0, 290px) minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .toc {
+            position: sticky;
+            top: 14px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            padding: 18px;
+            backdrop-filter: blur(16px);
+        }
+
+        .toc h2 {
+            margin-top: 10px;
+            font-size: 1.48rem;
+        }
+
+        .toc p {
+            margin: 12px 0 14px;
+            font-size: 0.94rem;
+            color: var(--muted);
+        }
+
+        .toc-nav {
+            display: grid;
+            gap: 8px;
+        }
+
+        .toc-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            min-height: 44px;
+            padding: 10px 12px;
+            border-radius: 12px;
+            border: 1px solid transparent;
+            background: rgba(255, 255, 255, 0.03);
+            text-decoration: none;
+            transition: 160ms ease;
+        }
+
+        .toc-nav a span {
+            font-family: var(--mono);
+            color: var(--muted);
+            font-size: 0.78rem;
+        }
+
+        .toc-nav a:hover,
+        .toc-nav a.active {
+            border-color: rgba(255, 157, 92, 0.28);
+            background: rgba(255, 157, 92, 0.08);
+            color: #fff3e7;
+        }
+
+        .article {
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background: var(--panel);
+            box-shadow: var(--shadow);
+            padding: 28px 22px;
+        }
+
+        .lede-box {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(220px, 0.85fr);
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+
+        .lede {
+            color: #e6ddd1;
+            font-size: 1.04rem;
+        }
+
+        .key-box {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 16px;
+            background:
+                linear-gradient(180deg, rgba(255, 157, 92, 0.08), rgba(137, 200, 255, 0.04)),
+                rgba(255, 255, 255, 0.02);
+        }
+
+        .key-box h3 {
+            font-size: 1.04rem;
+            margin-bottom: 10px;
+        }
+
+        .key-box ul {
+            margin: 0;
+            padding-left: 18px;
+            color: #e9dfd4;
+        }
+
+        .key-box li + li {
+            margin-top: 7px;
+        }
+
+        .section {
+            padding: 26px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            scroll-margin-top: 64px;
+        }
+
+        .section:first-of-type {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .section-head {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 16px;
+            align-items: end;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            margin-top: 12px;
+            color: var(--muted);
+            max-width: 65ch;
+        }
+
+        .badge {
+            min-height: 38px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 157, 92, 0.28);
+            background: rgba(255, 157, 92, 0.08);
+            color: #ffd7b8;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+        }
+
+        .body-copy p {
+            margin: 0;
+            color: #ebdfd2;
+        }
+
+        .body-copy p + p,
+        .body-copy ul + p,
+        .body-copy table + p,
+        .body-copy blockquote + p,
+        .body-copy ol + p {
+            margin-top: 16px;
+        }
+
+        .body-copy ul,
+        .body-copy ol {
+            margin: 16px 0 0;
+            padding-left: 20px;
+            color: #e6ddd3;
+        }
+
+        .body-copy li + li {
+            margin-top: 10px;
+        }
+
+        .body-copy strong {
+            color: #fff3e7;
+        }
+
+        .quote {
+            margin-top: 18px;
+            padding: 18px;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 16px 16px 0;
+            background: rgba(255, 157, 92, 0.08);
+            color: #f2e7db;
+        }
+
+        .quote footer {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .compare {
+            margin-top: 18px;
+            overflow-x: auto;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        table {
+            width: 100%;
+            min-width: 620px;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 14px 14px;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        th {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ffd7b8;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        td {
+            color: #e6ddd3;
+        }
+
+        .takeaways {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .takeaway {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 16px;
+        }
+
+        .takeaway strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff2e4;
+        }
+
+        .takeaway p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .footer {
+            margin-top: 18px;
+            padding: 10px 8px 0;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .back-top {
+            position: fixed;
+            right: 14px;
+            bottom: 14px;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            background: rgba(8, 12, 18, 0.82);
+            color: #fff;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            z-index: 40;
+        }
+
+        @media (max-width: 1080px) {
+            .hero-grid,
+            .layout,
+            .lede-box {
+                grid-template-columns: 1fr;
+            }
+
+            .toc {
+                position: static;
+            }
+
+            .toc-nav {
+                grid-auto-flow: column;
+                grid-auto-columns: minmax(220px, 1fr);
+                overflow-x: auto;
+                padding-bottom: 4px;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .page {
+                width: min(calc(100% - 16px), var(--max));
+                padding-top: 10px;
+            }
+
+            .hero,
+            .article {
+                padding: 18px;
+                border-radius: 22px;
+            }
+
+            h1 {
+                max-width: none;
+                font-size: clamp(2.1rem, 11vw, 3.5rem);
+            }
+
+            .stat-grid,
+            .takeaways {
+                grid-template-columns: 1fr;
+            }
+
+            .section-head {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                min-width: 540px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <main class="page">
+        <section class="hero">
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Energy crisis dossier / issue 16</div>
+                    <h1>伊朗危机背后，你必须看懂的 5 个能源真相</h1>
+                    <p class="standfirst">
+                        这不是一篇单纯讲油价的文章，而是一份把霍尔木兹海峡、航运保险、美国政治、金融定价和长期能源格局连成一条线的能源危机解剖报告。它真正讨论的是：为什么一个狭窄海峡，可以让全球经济同时感到窒息。
+                    </p>
+                    <div class="hero-meta">
+                        <span class="pill">长文分析</span>
+                        <span class="pill">5 个核心真相</span>
+                        <span class="pill">能源 / 金融 / 地缘政治</span>
+                    </div>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="./five-energy-truth-behind-the-iran-crisis.md">查看 Markdown 版本</a>
+                        <a class="btn" href="../../index.html">返回首页</a>
+                    </div>
+                </div>
+
+                <aside class="hero-side">
+                    <div class="panel-label">Signal board</div>
+                    <div class="stat-grid">
+                        <div class="stat">
+                            <strong>33km</strong>
+                            <span>海峡最窄处物理宽度</span>
+                        </div>
+                        <div class="stat">
+                            <strong>20%</strong>
+                            <span>全球原油与 LNG 核心流量受影响</span>
+                        </div>
+                        <div class="stat">
+                            <strong>$20B</strong>
+                            <span>美国曾试图用再保险计划恢复信心</span>
+                        </div>
+                        <div class="stat">
+                            <strong>2050</strong>
+                            <span>化石能源仍将深嵌全球结构</span>
+                        </div>
+                    </div>
+                    <ul class="signal-list">
+                        <li>海峡问题本质上是供应链脆弱性的放大器。</li>
+                        <li>油价问题在美国大选年会立即转化为政治问题。</li>
+                        <li>下一轮能源权力竞争将从“井口”转向“矿口”。</li>
+                    </ul>
+                </aside>
+            </div>
+        </section>
+
+        <div class="layout">
+            <aside class="toc">
+                <div class="panel-label">Article map</div>
+                <h2>阅读路径</h2>
+                <p>如果你只有 3 分钟，就按顺序看这 5 个真相；如果你有 10 分钟，这一页能把能源、市场与政治串成一条完整逻辑链。</p>
+                <nav class="toc-nav" id="tocNav" aria-label="目录导航">
+                    <a href="#intro"><span>00</span>引言</a>
+                    <a href="#truth-1"><span>01</span>霍尔木兹扁担效应</a>
+                    <a href="#truth-2"><span>02</span>为什么保险也无能为力</a>
+                    <a href="#truth-3"><span>03</span>特朗普的死亡三角</a>
+                    <a href="#truth-4"><span>04</span>黄金跌美元涨的逻辑</a>
+                    <a href="#truth-5"><span>05</span>煤炭与 2050 年现实</a>
+                    <a href="#ending"><span>06</span>下一个三十年</a>
+                </nav>
+            </aside>
+
+            <article class="article">
+                <header class="lede-box">
+                    <div>
+                        <div class="section-kicker">Reading note</div>
+                        <p class="lede">
+                            这篇文章的核心观点很简单：真正让全球紧张的，不是伊朗本身，而是全球能源体系早已在高依赖、低冗余、强联动的结构上运行。霍尔木兹危机只是把这层脆弱性突然照亮了。
+                        </p>
+                    </div>
+                    <section class="key-box" aria-label="快速结论">
+                        <h3>先看结论</h3>
+                        <ul>
+                            <li>霍尔木兹是全球能源链条中最危险的单点故障。</li>
+                            <li>高油价对美国来说是经济问题，也是选举问题。</li>
+                            <li>金融市场最终交易的是“货币政策预期”，不是战争情绪本身。</li>
+                        </ul>
+                    </section>
+                </header>
+
+                <section class="section" id="intro">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">00 / Opening</div>
+                            <h2>引言：110 美元油价背后的脆弱平衡</h2>
+                            <p class="section-desc">从价格跳升开始，真正要理解的是支撑全球经济的那条隐形能源神经到底有多细、多脆弱。</p>
+                        </div>
+                        <div class="badge">Oil shock</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>全球能源市场正在经历一场地缘政治溢价的集中爆发。近期，伊朗局势的剧烈扰动令国际原油价格在短时间内从 65 美元区间飙升至 110 美元以上。这种震荡烈度不仅让年初的委内瑞拉局势显得波澜不惊，其冲击力甚至超越了 2022 年俄乌冲突初期。</p>
+                        <p>在霍尔木兹海峡周边，人们正目睹一种极端的视觉反差：海峡外围是黑压压一片、停滞观望的巨型油轮，而核心航道内却空空如也。石油不仅是金融资产，更是连接全球经济起居的底层神经。为什么一个地理上的狭窄出口能让全球经济如此战栗？其背后反映的是全球能源供应链中供需紧平衡的极度脆弱。</p>
+                    </div>
+                </section>
+
+                <section class="section" id="truth-1">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">01 / Truth</div>
+                            <h2>霍尔木兹海峡的扁担效应</h2>
+                            <p class="section-desc">真正可怕的不是它窄，而是全球能源流量、地缘控制和消费结构同时在这里叠加。</p>
+                        </div>
+                        <div class="badge">Chokepoint</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>霍尔木兹海峡被公认为地球上最重要的“能源咽喉”，它连接着波斯湾与阿拉伯海。其地理特征决定了它在全球能源版图中不可替代的统治力。</p>
+                        <ul>
+                            <li><strong>物理尺度</strong>：海峡最窄处仅 33 公里，而真正能供巨型油轮通行的深水航道只有“一进一出”两条，每条仅约 3 公里宽，中间还有缓冲带。</li>
+                            <li><strong>流量压力</strong>：全球约五分之一的原油消费与约五分之一的 LNG 流量必须通过此处。</li>
+                            <li><strong>地缘控制</strong>：这种屏障最危险的地方在于“非对称性”，海峡周边关键岛屿多数受伊朗控制。</li>
+                        </ul>
+                        <p>霍尔木兹海峡像一根“扁担”，一头挑起中东的产油大国，另一头挑起东亚的工业巨头。一旦这根扁担折断，两端的水桶会同时坍塌。虽然中国在进口总量上最大，但从依赖比例看，日本和韩国的脆弱性更直接、更致命。</p>
+                        <p>这也是为什么局势恶化当天，韩国股市会出现剧烈抛售。市场并不是在交易“石油会不会少一点”，而是在交易“整个工业文明的节奏会不会被卡住”。</p>
+                    </div>
+                </section>
+
+                <section class="section" id="truth-2">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">02 / Truth</div>
+                            <h2>为什么 200 亿美元也买不回商船的信心</h2>
+                            <p class="section-desc">当航运风险进入战争维度，保险不再只是价格工具，而是“不值得赌”的信号本身。</p>
+                        </div>
+                        <div class="badge">Shipping risk</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>为了恢复航道秩序，特朗普政府曾提出一项 200 亿美元的“再保险计划”，试图由政府背书来对冲私人保险公司不敢承保的风险。然而，这种典型的商人思维在战争逻辑面前几乎失效。</p>
+                        <p>在安全危机中，保费不仅是成本问题，更是“不可保”的风险信号。对船东和船员来说，真正的问题从来不是保费涨了多少，而是是否还值得把命和船押进那条航道。</p>
+                        <div class="compare">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>项目</th>
+                                        <th>常态化时期</th>
+                                        <th>地缘危机 / 战时状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>单船保费</td>
+                                        <td>20 万至 40 万美元</td>
+                                        <td>300 万至 500 万美元</td>
+                                    </tr>
+                                    <tr>
+                                        <td>经济可行性</td>
+                                        <td>商业套利空间大</td>
+                                        <td>利润可能被完全吞噬</td>
+                                    </tr>
+                                    <tr>
+                                        <td>核心风险</td>
+                                        <td>机械故障、自然灾害</td>
+                                        <td>水雷、无人机、非对称打击</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <blockquote class="quote">
+                            “这不是钱的事。水雷就在水面下，自杀式无人机就在头顶。我们和对方语言不通，刀剑是不长眼睛的。”
+                            <footer>某跨国航运公司船长</footer>
+                        </blockquote>
+                        <p>这种风险已经到了“经济不可行”的程度。即便保费有人买单，船员生命风险与昂贵资产损耗也足以让这类航行变成一种自杀式博弈。</p>
+                    </div>
+                </section>
+
+                <section class="section" id="truth-3">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">03 / Truth</div>
+                            <h2>特朗普的软肋：高油价、通胀与大选的死亡三角</h2>
+                            <p class="section-desc">油价对美国并不是一个遥远的外交变量，而是能直接进入家庭支出、利率路径和选票情绪的政治炸药。</p>
+                        </div>
+                        <div class="badge">Political pressure</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>对于现任美国政府而言，油价暴涨是其内政外交中最大的软肋。由于绝大多数美国人依赖汽车通勤，油价变动会很快转化为消费者愤怒，并触发一条危险的连锁反应。</p>
+                        <ol>
+                            <li><strong>输入型通胀</strong>：能源成本飙升抬高全社会价格水平，直接打击购买力。</li>
+                            <li><strong>货币政策反噬</strong>：通胀预期上升会迫使美联储停止宽松，甚至重回更强硬立场。</li>
+                            <li><strong>债务杠杆压力</strong>：在高债务背景下，利率高位意味着财政利息支出急剧膨胀。</li>
+                        </ol>
+                        <p>为了压住油价，白宫不得不采取一系列务实甚至矛盾的组合拳：释放战略储备、部署航母护航，甚至默许部分现实主义式的能源妥协。这些动作本身已经说明，高油价是美国大选年几乎不能碰的红线。</p>
+                    </div>
+                </section>
+
+                <section class="section" id="truth-4">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">04 / Truth</div>
+                            <h2>反直觉的金融市场：为什么会出现“黄金跌、美元涨”</h2>
+                            <p class="section-desc">战争情绪只是表层，真正决定价格的是市场如何重估通胀和美联储。</p>
+                        </div>
+                        <div class="badge">Macro pricing</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>在战争阴影下，市场资产价格的波动逻辑呈现出一种“先避险、后紧缩”的层次感，其深层动力源于投资者对美联储政策路径的重新定价。</p>
+                        <ol>
+                            <li><strong>瞬时避险</strong>：冲突刚爆发时，资金会短线涌入黄金与美债。</li>
+                            <li><strong>通胀定价</strong>：当市场意识到海峡封锁会推高长期油价后，避险逻辑开始让位于通胀逻辑。</li>
+                            <li><strong>紧缩预期</strong>：投资者进一步推演，美联储为对抗通胀将维持强硬立场，于是收益率抬升、美元走强，而黄金反而承压。</li>
+                        </ol>
+                        <p>所以，战争环境下出现“黄金跌、美元涨”的反直觉场景并不奇怪。最终主导市场的，不是恐慌本身，而是恐慌如何改变未来的利率和流动性预期。</p>
+                    </div>
+                </section>
+
+                <section class="section" id="truth-5">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">05 / Truth</div>
+                            <h2>煤炭的倔强与 2050 年之前的现实</h2>
+                            <p class="section-desc">舆论场讨论的是转型，现实世界运转的仍然是传统能源和资源密集型产业。</p>
+                        </div>
+                        <div class="badge">Long cycle</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>尽管“能源转型”在舆论场中如火如荼，但宏观数据揭示了一个更冷酷的现实：化石能源的支柱地位在短期内不可动摇。</p>
+                        <ul>
+                            <li><strong>煤炭的基础作用</strong>：煤炭仍占据全球大约 27% 的能源消耗和 36% 的发电量。</li>
+                            <li><strong>资源的经济权重</strong>：像鄂尔多斯这样的资源型城市，仍能清晰展示传统能源在当前经济结构中的硬支撑作用。</li>
+                        </ul>
+                        <p>根据 IEA 的预测，到 2050 年，化石能源预计仍将占据全球能源结构的大约 60%。这意味着，虽然石油仍是当前能源博弈的中心，但能源权力的深层版图已经在悄悄位移。</p>
+                        <div class="takeaways">
+                            <div class="takeaway">
+                                <strong>短期现实</strong>
+                                <p>石油、天然气和煤炭仍将继续定义工业体系和地缘政治压力。</p>
+                            </div>
+                            <div class="takeaway">
+                                <strong>长期迁移</strong>
+                                <p>能源竞争将逐步从油气田，转向锂、钴、镍等关键矿产供应链。</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" id="ending">
+                    <div class="section-head">
+                        <div>
+                            <div class="section-kicker">06 / Ending</div>
+                            <h2>能源博弈的下一个三十年</h2>
+                            <p class="section-desc">未来最重要的，不是油气会不会立刻退出舞台，而是谁能在旧能源和新矿产之间同时握住关键节点。</p>
+                        </div>
+                        <div class="badge">Next 30 years</div>
+                    </div>
+                    <div class="body-copy">
+                        <p>石油作为全球能源主战场的地位，在未来二十至三十年内仍将稳固。然而，两个重要的结构性转变值得每一位观察者持续关注。</p>
+                        <p>首先，天然气正在加速从“管道时代”迈向“海运时代”。随着 LNG 技术成熟，天然气的全球化和金融化程度将越来越接近原油，成为新的博弈筹码。</p>
+                        <p>其次，能源权力的游戏正在从“井口”向“矿口”迁移。当发电设备不再主要依赖燃料，而开始依赖锂、钴、镍等关键矿产时，冲突点就会从油气田转移到矿石开采、提炼与控制链条上。</p>
+                        <p>下一个三十年，谁掌握了关键矿产，谁就掌握了全球经济的下一根“扁担”。</p>
+                    </div>
+                </section>
+            </article>
+        </div>
+
+        <footer class="footer">
+            Digital Garden Issue 16 · Mobile friendly long-form editorial
+        </footer>
+    </main>
+
+    <button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+    <script>
+        const progressBar = document.getElementById("progressBar");
+        const backTop = document.getElementById("backTop");
+        const tocLinks = [...document.querySelectorAll(".toc-nav a")];
+        const sections = [...document.querySelectorAll(".section")];
+
+        const updateProgress = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = progress + "%";
+            backTop.style.opacity = scrollTop > 320 ? "1" : "0";
+            backTop.style.pointerEvents = scrollTop > 320 ? "auto" : "none";
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const id = "#" + entry.target.id;
+                tocLinks.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === id);
+                });
+            });
+        }, {
+            rootMargin: "-28% 0px -54% 0px",
+            threshold: 0
+        });
+
+        sections.forEach((section) => observer.observe(section));
+
+        backTop.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+    </script>
+</body>
+</html>

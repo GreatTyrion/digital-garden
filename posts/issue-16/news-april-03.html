@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全球新闻速览 · 2026年4月3日 — Digital Garden</title>
+    <meta name="description" content="2026年3月20日至4月3日全球新闻速览：纽芬兰、加拿大、中国与国际，共40条精选报道。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ─── Design System ─── */
+        :root {
+            --ink: #1a1612;
+            --ink-2: #2e2820;
+            --paper: #f5f0e8;
+            --paper-2: #ede8de;
+            --paper-3: #e4ddd0;
+            --rule: rgba(26, 22, 18, 0.12);
+            --rule-strong: rgba(26, 22, 18, 0.22);
+            --muted: #7a6f62;
+            --muted-2: #9e9186;
+
+            /* region colors */
+            --nl: #1d4e6b;       /* Newfoundland — deep Atlantic blue */
+            --nl-soft: rgba(29, 78, 107, 0.1);
+            --ca: #8b1a1a;       /* Canada — maple red */
+            --ca-soft: rgba(139, 26, 26, 0.1);
+            --cn: #c4860a;       /* China — imperial gold */
+            --cn-soft: rgba(196, 134, 10, 0.1);
+            --intl: #2d5a27;     /* International — global green */
+            --intl-soft: rgba(45, 90, 39, 0.1);
+
+            --serif: "Playfair Display", "Noto Serif SC", Georgia, serif;
+            --sans: "DM Sans", "PingFang SC", system-ui, sans-serif;
+            --mono: "DM Mono", "SFMono-Regular", monospace;
+
+            --max: 1200px;
+            --col-gap: 24px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            font-size: 16px;
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        /* ─── Reading progress ─── */
+        .progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--paper-3);
+            z-index: 100;
+        }
+        .progress-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--nl), var(--ca), var(--cn), var(--intl));
+            transition: width 60ms linear;
+        }
+
+        /* ─── Masthead ─── */
+        .masthead {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .masthead::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 39px,
+                    rgba(255,255,255,0.03) 39px,
+                    rgba(255,255,255,0.03) 40px
+                );
+            pointer-events: none;
+        }
+
+        .masthead-inner {
+            position: relative;
+            width: min(calc(100% - 40px), var(--max));
+            margin: 0 auto;
+            padding: 40px 0 36px;
+        }
+
+        .masthead-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.14);
+            margin-bottom: 28px;
+        }
+
+        .issue-badge {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            border: 1px solid rgba(255,255,255,0.18);
+            padding: 6px 12px;
+            border-radius: 3px;
+        }
+
+        .masthead-date {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .masthead-title {
+            font-family: var(--serif);
+            font-size: clamp(3rem, 8vw, 7.5rem);
+            font-weight: 900;
+            line-height: 0.88;
+            letter-spacing: -0.03em;
+            color: var(--paper);
+        }
+
+        .masthead-title em {
+            font-style: italic;
+            color: rgba(245, 240, 232, 0.55);
+        }
+
+        .masthead-deck {
+            margin-top: 22px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 24px;
+            align-items: end;
+        }
+
+        .masthead-summary {
+            font-size: 1.06rem;
+            color: rgba(245, 240, 232, 0.72);
+            max-width: 60ch;
+            line-height: 1.65;
+        }
+
+        .masthead-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .stat-line {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.38);
+            letter-spacing: 0.08em;
+        }
+
+        .stat-line strong {
+            color: rgba(255,255,255,0.7);
+            font-weight: 500;
+        }
+
+        /* ─── Region nav strip ─── */
+        .region-nav {
+            background: var(--paper-2);
+            border-bottom: 2px solid var(--rule-strong);
+            position: sticky;
+            top: 3px;
+            z-index: 50;
+        }
+
+        .region-nav-inner {
+            width: min(calc(100% - 40px), var(--max));
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .region-nav-inner::-webkit-scrollbar { display: none; }
+
+        .rnav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: 140ms ease;
+        }
+
+        .rnav-item:hover { color: var(--ink); }
+        .rnav-item.active { color: var(--ink); border-bottom-color: var(--region-color); }
+
+        .rnav-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--region-color);
+            flex-shrink: 0;
+        }
+
+        .rnav-item[data-region="nl"] { --region-color: var(--nl); }
+        .rnav-item[data-region="ca"] { --region-color: var(--ca); }
+        .rnav-item[data-region="cn"] { --region-color: var(--cn); }
+        .rnav-item[data-region="intl"] { --region-color: var(--intl); }
+
+        /* ─── Page body ─── */
+        .page-body {
+            width: min(calc(100% - 40px), var(--max));
+            margin: 0 auto;
+            padding: 40px 0 80px;
+        }
+
+        /* ─── Region section ─── */
+        .region-section {
+            margin-bottom: 60px;
+            scroll-margin-top: 80px;
+        }
+
+        .region-header {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 16px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--rule-strong);
+            margin-bottom: 28px;
+        }
+
+        .region-flag {
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            background: var(--region-bg);
+            flex-shrink: 0;
+        }
+
+        .region-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1;
+            color: var(--region-accent);
+        }
+
+        .region-subtitle {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        .region-count {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--muted-2);
+            border: 1px solid var(--rule);
+            padding: 6px 12px;
+            border-radius: 3px;
+        }
+
+        .region-section[data-region="nl"] {
+            --region-accent: var(--nl);
+            --region-bg: var(--nl-soft);
+        }
+        .region-section[data-region="ca"] {
+            --region-accent: var(--ca);
+            --region-bg: var(--ca-soft);
+        }
+        .region-section[data-region="cn"] {
+            --region-accent: var(--cn);
+            --region-bg: var(--cn-soft);
+        }
+        .region-section[data-region="intl"] {
+            --region-accent: var(--intl);
+            --region-bg: var(--intl-soft);
+        }
+
+        /* ─── News grid ─── */
+        .news-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        /* ─── News card ─── */
+        .card {
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            background: #fff;
+            overflow: hidden;
+            transition: box-shadow 160ms ease;
+        }
+
+        .card:hover { box-shadow: 0 4px 20px rgba(26,22,18,0.1); }
+
+        .card-header {
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            gap: 14px;
+            align-items: start;
+            padding: 18px 18px 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card-header::after {
+            content: "";
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--region-accent);
+        }
+
+        .card-num {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            border: 1.5px solid var(--rule-strong);
+            display: grid;
+            place-items: center;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            color: var(--muted);
+            flex-shrink: 0;
+        }
+
+        .card-title-block {}
+
+        .card-title {
+            font-family: var(--serif);
+            font-size: clamp(1rem, 1.8vw, 1.22rem);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--ink);
+        }
+
+        .card-byline {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .card-tag {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--muted-2);
+            background: var(--paper-2);
+            padding: 3px 8px;
+            border-radius: 2px;
+        }
+
+        .card-chevron {
+            color: var(--muted-2);
+            font-size: 0.9rem;
+            padding-top: 2px;
+            transition: transform 200ms ease;
+            flex-shrink: 0;
+        }
+
+        .card.open .card-chevron { transform: rotate(180deg); }
+
+        .card-summary {
+            padding: 0 18px 16px 80px;
+            font-size: 0.95rem;
+            color: #3d3530;
+            line-height: 1.7;
+        }
+
+        .card-details {
+            display: none;
+            border-top: 1px solid var(--rule);
+            background: var(--paper);
+            padding: 16px 18px 18px 80px;
+        }
+
+        .card.open .card-details { display: block; }
+
+        .detail-item {
+            display: grid;
+            grid-template-columns: 90px 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .detail-item:last-child { margin-bottom: 0; }
+
+        .detail-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-top: 2px;
+        }
+
+        .detail-value { color: #3d3530; line-height: 1.6; }
+
+        .detail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--region-accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-size: 0.88rem;
+            word-break: break-all;
+        }
+
+        /* ─── Summary section ─── */
+        .summary-section {
+            border-top: 2px solid var(--rule-strong);
+            padding-top: 40px;
+            margin-top: 20px;
+        }
+
+        .summary-title {
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .summary-card {
+            border: 1px solid var(--rule);
+            padding: 20px;
+            border-radius: 4px;
+            background: #fff;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .summary-card[data-region="nl"] { --accent-color: var(--nl); }
+        .summary-card[data-region="ca"] { --accent-color: var(--ca); }
+        .summary-card[data-region="cn"] { --accent-color: var(--cn); }
+        .summary-card[data-region="intl"] { --accent-color: var(--intl); }
+
+        .summary-card-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent-color);
+            margin-bottom: 8px;
+        }
+
+        .summary-card-text {
+            font-size: 0.94rem;
+            color: #3d3530;
+            line-height: 1.68;
+        }
+
+        /* ─── Footer ─── */
+        .site-footer {
+            background: var(--ink-2);
+            color: rgba(245, 240, 232, 0.45);
+            text-align: center;
+            padding: 24px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.1em;
+        }
+
+        /* ─── Back to top ─── */
+        .back-top {
+            position: fixed;
+            right: 20px; bottom: 20px;
+            width: 42px; height: 42px;
+            background: var(--ink);
+            color: var(--paper);
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 1rem;
+            display: grid;
+            place-items: center;
+            box-shadow: 0 4px 16px rgba(26,22,18,0.25);
+            z-index: 40;
+            transition: 140ms ease;
+        }
+
+        .back-top:hover { background: var(--ink-2); transform: translateY(-2px); }
+
+        /* ─── Divider ─── */
+        .section-rule {
+            border: none;
+            border-top: 1px solid var(--rule);
+            margin: 12px 0;
+        }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 900px) {
+            .masthead-deck { grid-template-columns: 1fr; }
+            .masthead-stats { align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 12px; }
+            .summary-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .masthead-inner { padding: 28px 0 24px; }
+            .masthead-title { font-size: clamp(2.4rem, 13vw, 4rem); }
+            .masthead-top { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .card-header { grid-template-columns: 36px 1fr auto; gap: 10px; }
+            .card-summary { padding-left: 60px; }
+            .card-details { padding-left: 60px; }
+            .detail-item { grid-template-columns: 1fr; gap: 4px; }
+            .region-header { grid-template-columns: auto 1fr; }
+            .region-count { display: none; }
+            .back-top { right: 12px; bottom: 12px; }
+        }
+
+        @media (max-width: 420px) {
+            .card-summary, .card-details { padding-left: 18px; }
+            .card-header { grid-template-columns: 1fr auto; }
+            .card-num { display: none; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition: none !important; animation: none !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true">
+    <div class="progress-fill" id="progressFill"></div>
+</div>
+
+<!-- Masthead -->
+<header class="masthead">
+    <div class="masthead-inner">
+        <div class="masthead-top">
+            <span class="issue-badge">Digital Garden · Issue 16</span>
+            <span class="masthead-date">2026年4月3日</span>
+        </div>
+        <h1 class="masthead-title">全球新闻<br><em>速览</em></h1>
+        <div class="masthead-deck">
+            <p class="masthead-summary">
+                过去两周，加拿大联邦大选倒计时、纽芬兰能源开发突破、中国制造业意外反弹、霍尔木兹海峡危机与特朗普关税新一轮升级——四条主线交织，构成一幅充满张力的全球图景。
+            </p>
+            <div class="masthead-stats">
+                <div class="stat-line">覆盖时间 <strong>2026-03-20 至 2026-04-03</strong></div>
+                <div class="stat-line">精选新闻 <strong>40 条</strong></div>
+                <div class="stat-line">地区板块 <strong>4 个</strong></div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Region nav -->
+<nav class="region-nav" aria-label="地区导航">
+    <div class="region-nav-inner">
+        <a class="rnav-item active" data-region="nl" href="#sec-nl">
+            <span class="rnav-dot"></span>纽芬兰
+        </a>
+        <a class="rnav-item" data-region="ca" href="#sec-ca">
+            <span class="rnav-dot"></span>加拿大
+        </a>
+        <a class="rnav-item" data-region="cn" href="#sec-cn">
+            <span class="rnav-dot"></span>中国
+        </a>
+        <a class="rnav-item" data-region="intl" href="#sec-intl">
+            <span class="rnav-dot"></span>国际
+        </a>
+        <a class="rnav-item" data-region="nl" href="#summary" style="margin-left:auto">
+            <span class="rnav-dot" style="background:var(--muted)"></span>总结
+        </a>
+    </div>
+</nav>
+
+<!-- Page body -->
+<main class="page-body">
+
+    <!-- ── Newfoundland ── -->
+    <section class="region-section" id="sec-nl" data-region="nl">
+        <div class="region-header">
+            <div class="region-flag">🌊</div>
+            <div>
+                <div class="region-title">纽芬兰与拉布拉多</div>
+                <div class="region-subtitle">Newfoundland &amp; Labrador · 10 条</div>
+            </div>
+            <div class="region-count">01 – 10</div>
+        </div>
+        <div class="news-grid" id="grid-nl"></div>
+    </section>
+
+    <!-- ── Canada ── -->
+    <section class="region-section" id="sec-ca" data-region="ca">
+        <div class="region-header">
+            <div class="region-flag">🍁</div>
+            <div>
+                <div class="region-title">加拿大</div>
+                <div class="region-subtitle">Canada · 10 条</div>
+            </div>
+            <div class="region-count">11 – 20</div>
+        </div>
+        <div class="news-grid" id="grid-ca"></div>
+    </section>
+
+    <!-- ── China ── -->
+    <section class="region-section" id="sec-cn" data-region="cn">
+        <div class="region-header">
+            <div class="region-flag">🏮</div>
+            <div>
+                <div class="region-title">中国</div>
+                <div class="region-subtitle">China · 10 条</div>
+            </div>
+            <div class="region-count">21 – 30</div>
+        </div>
+        <div class="news-grid" id="grid-cn"></div>
+    </section>
+
+    <!-- ── International ── -->
+    <section class="region-section" id="sec-intl" data-region="intl">
+        <div class="region-header">
+            <div class="region-flag">🌐</div>
+            <div>
+                <div class="region-title">国际</div>
+                <div class="region-subtitle">International · 10 条</div>
+            </div>
+            <div class="region-count">31 – 40</div>
+        </div>
+        <div class="news-grid" id="grid-intl"></div>
+    </section>
+
+    <!-- ── Summary ── -->
+    <section class="summary-section" id="summary">
+        <h2 class="summary-title">本期四条主线</h2>
+        <div class="summary-grid">
+            <div class="summary-card" data-region="nl">
+                <div class="summary-card-label">🌊 纽芬兰</div>
+                <div class="summary-card-text">Bay du Nord 协议签署是历史性突破，但渔业配额削减、生活成本危机和托育短缺同步压力，折射出资源省份在全球能源转型中的复杂处境。</div>
+            </div>
+            <div class="summary-card" data-region="ca">
+                <div class="summary-card-label">🍁 加拿大</div>
+                <div class="summary-card-text">大选进入倒计时，卡尼以"贸易主权"叙事应对特朗普关税，移民改革争议、住房协议和财政赤字共同构成选举背景。4月28日结果将决定未来数年对外政策走向。</div>
+            </div>
+            <div class="summary-card" data-region="cn">
+                <div class="summary-card-label">🏮 中国</div>
+                <div class="summary-card-text">制造业PMI反弹至一年高点，BRI战略转型和清洁技术出口显示中国正主动重塑全球经济角色；但贸易战升级、化肥出口限制和能源冲击的滞后效应正在积聚。</div>
+            </div>
+            <div class="summary-card" data-region="intl">
+                <div class="summary-card-label">🌐 国际</div>
+                <div class="summary-card-text">霍尔木兹海峡危机已演变为全球系统性风险，英国主导多边外交在美国缺席下艰难推进。J.P.摩根将全球衰退概率上调至60%，全球经济正进入2008年以来最不确定的时期。</div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    Digital Garden · Issue 16 · 全球新闻速览 · 2026年4月3日
+</footer>
+
+<button class="back-top" id="backTop" aria-label="回到顶部">↑</button>
+
+<script>
+const data = {
+    nl: [
+        {
+            n: 1,
+            title: "纽芬兰与 Equinor、BP 签署协议，Bay du Nord 油田开发正式提速",
+            date: "2026年3月初",
+            tags: ["能源", "经济"],
+            summary: "纽芬兰省政府与 Equinor 及 BP 签署收益协议，为 Bay du Nord 深海油田扫清障碍。省长 Wakeham 宣布“纽芬兰正式重返油气业务”。协议保证首阶段带来最高 64 亿加元直接收入，25 年内提供逾 3100 万人工时就业，95% 以上海底设备将在省内建造。最终投资决定定于 2027 年，首批原油预计 2031 年生产。",
+            orgs: "纽芬兰省政府、Equinor、BP、加拿大联邦政府",
+            impact: "Bay du Nord 是纽芬兰近年最重要的经济项目，将为省财政和就业带来长期支撑，也被总理卡尼视为稳定全球能源市场的关键项目。",
+            source: "CBC News",
+            url: "https://cbc.ca/news/canada/newfoundland-labrador/equinor-oil-agreement-nl-9.7112423"
+        },
+        {
+            n: 2,
+            title: "总理卡尼访问挪威，力推 Bay du Nord 为全球能源稳定器",
+            date: "2026年3月中旬",
+            tags: ["能源", "外交"],
+            summary: "加拿大总理马克·卡尼在访问挪威期间公开为 Bay du Nord 背书，称其是在中东局势动荡背景下稳定全球能源供应的关键项目，强调加拿大深海油气开发的战略意义。",
+            orgs: "加拿大总理办公室、挪威政府、Equinor",
+            impact: "将纽芬兰地方能源项目提升至国际地缘政治层面，有助于吸引更多国际投资关注。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/very-attractive-project-carney-touts-bay-du-nord-as-key-project-in-stabilizing-global-energy-markets-9.7128897"
+        },
+        {
+            n: 3,
+            title: "联邦政府削减雪蟹配额，纽芬兰部分渔区降幅达 30%",
+            date: "2026年3月27日",
+            tags: ["渔业", "经济"],
+            summary: "联邦渔业和海洋部宣布 2026 年纽芬兰雪蟹总允许捕捞量为 61,004 吨，较 2025 年减少 3%。五个捕捞区中，3Ps 区降幅高达 30%，2HJ 区降幅 20%，3K 区降幅 18%。联邦同时启动雪蟹预防性管理框架综合审查。",
+            orgs: "加拿大渔业和海洋部、纽芬兰渔业协会、渔民群体",
+            impact: "雪蟹产业年产值逾 7 亿加元，部分渔区大幅削减将对依赖该产业的沿海社区造成显著冲击。",
+            source: "NTV",
+            url: "https://ntv.ca/news/canada-announces-2026-snow-crab-management-decision-and-launch-of-precautionary-approach-review-for-newfoundland-and-labrador/"
+        },
+        {
+            n: 4,
+            title: "纽芬兰推进护士执业者公费覆盖，4月1日起免收患者费用",
+            date: "2026年3月",
+            tags: ["医疗", "政策"],
+            summary: "纽芬兰省卫生部长 Lela Evans 宣布，省政府将试点项目转为永久政策，自 4 月 1 日起公费覆盖护士执业者诊疗服务，患者无需再自付费用，以符合联邦《加拿大卫生法》要求。",
+            orgs: "纽芬兰省卫生部、护士执业者群体、联邦卫生部",
+            impact: "在省内家庭医生严重短缺的背景下，有助于缓解基层医疗压力，让更多居民获得可负担的初级医疗服务。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/nl-publicly-funded-nurse-practitioners-9.7127137"
+        },
+        {
+            n: 5,
+            title: "圣约翰斯食物银行需求激增，30% 省民面临食品不安全",
+            date: "2026年3月",
+            tags: ["社会", "生活成本"],
+            summary: "圣约翰斯食物银行 Bridges to Hope 报告，2025 至 2026 年间服务人次增长 30%，自 2019 年以来累计增长 70%。每月约 1500 人次来访，其中约 30% 为 17 岁以下儿童。据统计加拿大局数据，全省逾 16 万人面临食品不安全。",
+            orgs: "Bridges to Hope、纽芬兰省社会服务部、Statistics Canada",
+            impact: "数据揭示纽芬兰生活成本危机的严峻程度，在能源和食品价格双重压力下，弱势群体处境持续恶化。",
+            source: "CBC News",
+            url: "http://www.cbc.ca/news/canada/newfoundland-labrador/st-johns-food-banks-shelters-rising-demand-nl-9.7118180"
+        },
+        {
+            n: 6,
+            title: "心脏导管室完成扩建，等待名单从 600 人降至 400 人以下",
+            date: "2026年3月",
+            tags: ["医疗", "基础设施"],
+            summary: "圣约翰斯卫生科学中心心脏导管室完成重大扩建，新增第四个手术室及术后恢复区。自 2025 年 10 月新手术室启用以来，等待名单已从逾 600 人降至 400 人以下。",
+            orgs: "纽芬兰拉布拉多卫生服务机构、卫生科学中心",
+            impact: "心脏手术等待时间过长是纽芬兰医疗系统长期痛点，此次扩建是改善心脏病患者就医体验的具体进展。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/cardiac-catheterization-lab-9.7135071"
+        },
+        {
+            n: 7,
+            title: "报告显示纽芬兰仅 8% 儿童有足够托育名额，远未达联邦目标",
+            date: "2026年3月底",
+            tags: ["托育", "政策"],
+            summary: "YWCA 报告指出，纽芬兰拉布拉多省仅有约 8% 的儿童能够获得足够的托育名额，远未达到联邦政府设定的每日 10 加元托育目标，呼吁省政府加快投资和扩充托育基础设施。",
+            orgs: "YWCA、纽芬兰省儿童家庭服务部、联邦政府",
+            impact: "托育短缺制约女性劳动参与率，加剧家庭经济压力，是省内人口留存和经济发展的结构性障碍。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/ywca-childcare-report-9.7143844"
+        },
+        {
+            n: 8,
+            title: "柴油和家用取暖油价格大幅下跌，但年内累计仍大涨 74 分",
+            date: "2026年3月27日",
+            tags: ["能源", "生活成本"],
+            summary: "公共事业委员会（PUB）周度调价中，纽芬兰柴油每升下调 12.6 分，炉油每升下调 10.9 分。然而，炉油价格自 1 月 9 日以来累计仍上涨约 74 分，中东战争被认为是推高全球油价的主因。",
+            orgs: "纽芬兰公共事业委员会（PUB）、省内燃料零售商",
+            impact: "取暖油价格高企对依赖燃油取暖的低收入家庭冲击尤为明显，是当前生活成本危机的重要组成部分。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/nl-fuel-prices-march-27-26-9.7143893"
+        },
+        {
+            n: 9,
+            title: "原住民主导的初级医疗诊所有望每年为省节省数百万",
+            date: "2026年3月",
+            tags: ["医疗", "原住民"],
+            summary: "圣约翰斯原住民服务机构 First Light 向省政府申请每年 100 万加元资助，拟建立原住民主导的初级医疗诊所。该诊所预计服务 1300 名患者，每年为省医疗系统节省 190 万至 440 万加元，预计 2026 年底开放。",
+            orgs: "First Light、纽芬兰省卫生部、原住民社区",
+            impact: "原住民社区长期面临医疗服务不平等，此类文化适应性诊所既能改善健康结果，也能减轻公共医疗系统负担。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/st-john-s-indigenous-health-clinic-9.7124136"
+        },
+        {
+            n: 10,
+            title: "维多利亚镇议会被解散后，特别选举定于 5 月 14 日举行",
+            date: "2026年3月底",
+            tags: ["市政", "治理"],
+            summary: "纽芬兰省政府去年 12 月以“功能失调和内讧”为由解散了维多利亚镇（人口约 1700 人）的全体议会。省政府宣布特别选举将于 5 月 14 日举行，提名日期为 4 月 16 日。",
+            orgs: "纽芬兰省政府、维多利亚镇",
+            impact: "此案是纽芬兰省级政府干预地方治理的罕见案例，凸显小型市政机构治理脆弱性问题。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/canada/newfoundland-labrador/victoria-election-council-9.7143201"
+        }
+    ],
+    ca: [
+        {
+            n: 11,
+            title: "卡尼宣布联邦大选定于 4 月 28 日举行，37 天竞选期正式启动",
+            date: "2026年3月23日",
+            tags: ["大选", "政治"],
+            summary: "加拿大总理马克·卡尼宣布联邦大选将于 4 月 28 日举行，采用法定最短 37 天竞选期。卡尼将在渥太华地区的 Nepean 选区参选，保守党领袖波利耶夫在邻近的 Carleton 选区迎战。民调显示自由党以 37.8% 对 37.2% 的微弱优势领先。",
+            orgs: "加拿大自由党、保守党、总督府",
+            impact: "此次大选在美加贸易战、中东战争冲击和国内生活成本危机三重压力下举行，结果将深刻影响加拿大未来数年的对外政策走向。",
+            source: "CBC News",
+            url: "https://cbc.ca/lite/story/1.7490793"
+        },
+        {
+            n: 12,
+            title: "移民改革法案 C-12 正式生效，难民权利倡导者提出法律挑战",
+            date: "2026年3月26日",
+            tags: ["移民", "政策"],
+            summary: "联邦移民改革法案 C-12 获皇家批准正式成法。新法规定入境超过一年后才提出的庇护申请将被拒绝受理；非正式口岸入境且 14 天后才申请庇护者，将不得转介至移民和难民委员会。国际特赦组织等团体批评该法违反国际法义务，并预告将提出法律挑战。",
+            orgs: "加拿大移民部、移民和难民委员会、国际特赦组织、加拿大难民律师协会",
+            impact: "此法是加拿大近年最重大的移民制度改革，将显著收紧庇护申请渠道，引发关于人道主义义务与边境管控的深层争议。",
+            source: "CBC News",
+            url: "https://www.cbc.ca/news/politics/canada-immigration-reform-law-9.7145624"
+        },
+        {
+            n: 13,
+            title: "联邦-安大略省住房协议：取消新房 HST，降低开发费用最高 50%",
+            date: "2026年3月30日",
+            tags: ["住房", "经济"],
+            summary: "总理卡尼宣布联邦与安大略省达成住房合作协议：10 年内共投入 88 亿加元，将市政开发费用削减最高 50%；对 100 万加元以下新房全额免除 13% HST，购房者最多可节省 13 万加元。",
+            orgs: "加拿大总理办公室、安大略省政府、市政府",
+            impact: "住房可负担性是本次联邦大选的核心议题，此协议是卡尼政府在竞选期间展示执政成果的重要举措。",
+            source: "Prime Minister of Canada",
+            url: "https://www.pm.gc.ca/en/news/news-releases/2026/03/30/prime-minister-carney-secures-new-partnership-ontario-cut-taxes"
+        },
+        {
+            n: 14,
+            title: "加拿大财政赤字前十个月升至 312 亿加元，同比扩大逾 16%",
+            date: "2026年3月27日",
+            tags: ["财政", "经济"],
+            summary: "加拿大 2025/26 财年前十个月累计财政赤字升至 312.1 亿加元，高于上年同期的 268.5 亿加元，增幅逾 16%。政府支出增速超过税收增速是赤字扩大的主因。",
+            orgs: "加拿大财政部、加拿大统计局",
+            impact: "赤字扩大将成为大选期间保守党攻击自由党财政纪律的重要弹药，也将制约下届政府的政策空间。",
+            source: "Reuters",
+            url: "https://www.reuters.com/world/americas/canada-budget-deficit-over-first-ten-months-202526-rises-c3121-bln-2026-03-27/"
+        },
+        {
+            n: 15,
+            title: "加拿大央行 3 月维持利率不变，警惕伊朗战争引发通胀风险",
+            date: "2026年3月18日",
+            tags: ["货币政策", "经济"],
+            summary: "加拿大银行管理委员会在 3 月 18 日议息会议上决定维持基准利率不变。会议纪要显示，委员会密切关注伊朗战争引发的能源价格上涨和全球金融条件波动，并讨论了通胀风险上行和经济增长下行的双重情景。",
+            orgs: "加拿大银行（央行）、联邦财政部",
+            impact: "在大选期间维持利率稳定，体现央行独立性；但中东局势若持续恶化，可能迫使央行在下半年重新评估货币政策立场。",
+            source: "Bank of Canada",
+            url: "https://www.bankofcanada.ca/2026/04/summary-governing-council-deliberations-fixed-announcement-date-of-march-18-2026/"
+        },
+        {
+            n: 16,
+            title: "加拿大对美国汽车征 25% 反制关税，卡尼：若美不领导贸易，加拿大来领",
+            date: "2026年4月3日",
+            tags: ["贸易", "关税"],
+            summary: "总理卡尼宣布，对所有不符合 CUSMA 的美国进口汽车征收 25% 关税，与特朗普对加拿大汽车的关税税率对等。汽车零部件被豁免，以保护两国整合的汽车供应链。卡尼表示：“如果美国不愿领导世界贸易，加拿大来领。”",
+            orgs: "加拿大总理办公室、加拿大边境服务局、汽车制造商",
+            impact: "此举将贸易主权叙事与大选竞选深度绑定，民调显示卡尼在处理特朗普关系方面的信任度显著高于对手。",
+            source: "CP24",
+            url: "https://www.cp24.com/federal-election-2025/2025/04/03/carney-launches-25-counter-tariffs-on-us-vehicles-poilievre-promises-to-cut-gst-on-canadian-cars-live-election-updates-here/"
+        },
+        {
+            n: 17,
+            title: "4 月 13 日三个联邦补选举行，为 4 月 28 日大选预热",
+            date: "2026年3月8日（宣布）",
+            tags: ["大选", "政治"],
+            summary: "总理卡尼宣布在 Scarborough Southwest、University-Rosedale 和 Terrebonne 三个选区举行联邦补选，投票日定于 4 月 13 日。三场补选被视为大选前的民意风向标，各党均将其作为检验竞选策略的演练场。",
+            orgs: "加拿大选举局、自由党、保守党、新民主党",
+            impact: "补选结果将影响各党对大选策略的调整，尤其是在城市多元选区的竞争态势。",
+            source: "Prime Minister of Canada",
+            url: "https://www.pm.gc.ca/en/news/news-releases/2026/03/08/prime-minister-carney-announces-elections"
+        },
+        {
+            n: 18,
+            title: "特朗普对药品和金属加征新关税，加拿大供应链面临新冲击",
+            date: "2026年4月2日",
+            tags: ["贸易", "关税"],
+            summary: "美国总统特朗普宣布对部分进口品牌药品征收 100% 关税，同时将钢铁、铝、铜衍生品关税减半至 25%，但大宗商品关税维持 50%。这是特朗普“解放日”关税一周年之际推出的新一轮升级措施。",
+            orgs: "美国贸易代表办公室、加拿大工业部、制药企业",
+            impact: "药品关税将推高加拿大医疗系统采购成本；金属关税调整对加拿大钢铁和铝业的影响需进一步评估。",
+            source: "Reuters",
+            url: "https://www.reuters.com/world/us/year-after-liberation-day-trump-sets-new-drug-tariffs-adjusts-metals-duties-2026-04-02/"
+        },
+        {
+            n: 19,
+            title: "加拿大参与英国主导的霍尔木兹海峡国际协调会议",
+            date: "2026年4月2-3日",
+            tags: ["外交", "能源"],
+            summary: "加拿大作为参与国之一，出席了由英国外交大臣伊薇特·库珀主持的霍尔木兹海峡国际协调会议，讨论通过联合国施压伊朗、实施经济制裁、协助被困船只和海员等措施。美国未参与此次会议。",
+            orgs: "加拿大外交部、英国外交部、联合国、国际海事组织",
+            impact: "加拿大积极参与多边外交框架，体现卡尼政府在美国缺席情况下寻求国际合作的外交立场。",
+            source: "NPR",
+            url: "https://www.npr.org/2026/04/02/nx-s1-5771446/u-k-convenes-40-nations-to-discuss-strait-of-hormuz"
+        },
+        {
+            n: 20,
+            title: "大选民调：自由党与保守党势均力敌，贸易战成最大变量",
+            date: "2026年3月底至4月初",
+            tags: ["大选", "民调"],
+            summary: "最新民调显示，自由党支持率为 37.8%，保守党 37.2%，差距在误差范围内。预测模型显示自由党可能获 176 席，保守党 133 席。在“谁更能处理特朗普”这一关键问题上，卡尼的信任度显著领先波利耶夫。",
+            orgs: "各主要民调机构、加拿大自由党、保守党",
+            impact: "大选结果将决定加拿大未来数年的对美政策、移民政策和财政走向，是本期最值得持续追踪的事件。",
+            source: "CBC News",
+            url: "https://cbc.ca/lite/story/1.7490793"
+        }
+    ],
+    cn: [
+        {
+            n: 21,
+            title: "中国 3 月制造业 PMI 升至 50.4，创一年来最快扩张速度",
+            date: "2026年3月31日",
+            tags: ["经济", "制造业"],
+            summary: "国家统计局数据显示，中国 3 月官方制造业 PMI 从 2 月的 49.0 升至 50.4，为近一年最高值。生产指数升至 51.4，新订单指数大幅反弹至 51.6。然而，就业指数仍处于收缩区间（48.6），原材料采购价格指数从 54.8 跳升至 63.9，反映伊朗战争推高大宗商品价格的压力。",
+            orgs: "国家统计局、中国物流与采购联合会",
+            impact: "制造业反弹提振市场信心，但原材料成本上升和就业疲软显示复苏基础仍不稳固，伊朗战争的能源冲击尚未完全传导。",
+            source: "Reuters",
+            url: "http://www.reuters.com/world/asia-pacific/chinas-factory-activity-returns-expansion-pmi-shows-2026-03-31/"
+        },
+        {
+            n: 22,
+            title: "私人 PMI 显示中国 2 月制造业扩张速度创五年多来最快",
+            date: "2026年3月4日",
+            tags: ["经济", "制造业"],
+            summary: "财新/RatingDog 私人制造业 PMI 在 2 月升至 52.1，创五年多来最高水平，主要受国内外新订单强劲增长驱动。私人 PMI 侧重中小型出口导向企业，显示中国制造业在伊朗战争爆发前已积累了较强的扩张动能。",
+            orgs: "财新传媒、RatingDog、中国制造业企业",
+            impact: "私人 PMI 与官方 PMI 共同指向 2026 年初中国制造业的强劲开局，但后续能否维持仍取决于外部贸易环境。",
+            source: "Reuters",
+            url: "https://www.reuters.com/world/china/chinas-factory-activity-expands-quickest-pace-over-5-years-private-pmi-shows-2026-03-04/"
+        },
+        {
+            n: 23,
+            title: "中国修订《对外贸易法》正式施行，从贸易自由化转向战略治理",
+            date: "2026年3月1日",
+            tags: ["贸易", "政策"],
+            summary: "中国修订版《对外贸易法》正式施行，条款从 69 条扩展至 83 条。修订将国家安全、技术管控、供应链审查和知识产权保护纳入贸易法律框架，标志着中国贸易政策从“贸易自由化”向“战略性治理”的重大转型。",
+            orgs: "中国商务部、全国人大、在华外资企业",
+            impact: "新法为中国在贸易争端中采取反制措施提供更完整的法律工具，也将增加外资企业的合规成本和不确定性。",
+            source: "China Briefing",
+            url: "https://www.china-briefing.com/news/chinas-revised-foreign-trade-law-2026-business-implications/"
+        },
+        {
+            n: 24,
+            title: "一带一路项目价值 2025 年反弹至 2135 亿美元，超越 2016 年峰值",
+            date: "2026年4月3日",
+            tags: ["一带一路", "外交"],
+            summary: "《外交政策》分析指出，中国一带一路倡议 2025 年项目总值反弹至 2135 亿美元，超越 2016 年高峰。BRI 已从大型基础设施项目转型为以清洁技术、关键矿产供应链和出口扩张为核心的工业政策延伸。",
+            orgs: "中国国家发改委、商务部、BRI 参与国政府",
+            impact: "BRI 的战略重心转移反映中国应对国内产能过剩、拓展全球市场的新路径，也是中国绿色技术出口战略的重要组成部分。",
+            source: "Foreign Policy",
+            url: "https://foreignpolicy.com/2026/04/03/china-belt-and-road-initiative-reinvention-trade/"
+        },
+        {
+            n: 25,
+            title: "中国经济 2026 年初展现韧性，但伊朗战争和贸易战构成双重下行风险",
+            date: "2026年3月16日",
+            tags: ["经济", "风险"],
+            summary: "路透社报道，中国 1-2 月工业产出同比增长 6.3%，超出预期；零售销售增长 2.8%。然而，伊朗战争推高能源价格、威胁供应链，叠加美国关税压力和国内房地产持续低迷，经济学家警告下行风险正在快速积聚。中国领导层将 2026 年增长目标设定为 4.5%-5%。",
+            orgs: "中国国家统计局、国务院、路透社",
+            impact: "中国经济开局稳健为全球增长提供支撑，但能源冲击的滞后效应和贸易战升级可能在下半年显现。",
+            source: "Reuters",
+            url: "https://www.reuters.com/world/asia-pacific/chinas-economy-enters-2026-firmer-footing-risks-build-2026-03-16/"
+        },
+        {
+            n: 26,
+            title: "中国限制化肥出口，在全球供应已趋紧的背景下再添压力",
+            date: "2026年3月19日",
+            tags: ["贸易", "农业"],
+            summary: "路透社报道，中国宣布限制氮钾复合肥及部分磷肥出口。在伊朗战争已严重扰乱霍尔木兹海峡化肥贸易的背景下，中国作为全球最重要化肥出口国之一的出口限制，进一步压缩了全球市场供应。",
+            orgs: "中国商务部、全球化肥进口国、农业市场",
+            impact: "地缘冲击叠加出口限制，将全球化肥短缺从“短期物流问题”放大为“政策驱动的供应危机”，对全球粮食安全构成中期威胁。",
+            source: "Reuters",
+            url: "https://www.reuters.com/world/asia-pacific/china-restricts-fertiliser-exports-further-crimping-war-tightened-supply-2026-03-19/"
+        },
+        {
+            n: 27,
+            title: "中国“绿色丝绸之路”2026 年加速推进，“新三样”出口增长 22%",
+            date: "2026年初",
+            tags: ["一带一路", "清洁能源"],
+            summary: "中国在一带一路框架下加速推进可再生能源项目，包括在乌兹别克斯坦和哈萨克斯坦建设 500MW 风电场，以及利用 AI 驱动电网的“智慧能源枢纽”。2026 年前两个月，电动汽车、锂电池和太阳能产品“新三样”出口同比增长近 22%。",
+            orgs: "中国国家能源局、BRI 参与国政府、中国清洁能源企业",
+            impact: "中国正将清洁技术出口与地缘政治影响力深度绑定，在全球能源转型中抢占战略位置。",
+            source: "Travel and Tour World",
+            url: "https://www.travelandtourworld.com/news/article/chinas-green-silk-road-how-2026-renewable-energy-projects-are-powering-a-global-sustainable-future/"
+        },
+        {
+            n: 28,
+            title: "中国邻国在能源合作上遭遇“冷肩”，BRI 战略重心向远端市场转移",
+            date: "2026年3月30日",
+            tags: ["一带一路", "外交"],
+            summary: "路透社报道，中国在一带一路能源合作中对邻近国家的投入有所收缩，将更多资源导向东南亚、非洲和拉美等更远端市场。分析人士认为，这一转变反映中国在处理与邻国政治关系时的战略审慎，以及对更广泛市场多元化的需求。",
+            orgs: "中国国家能源局、BRI 参与国、路透社",
+            impact: "这一战略转移将影响中亚和南亚国家的能源发展路径，也反映中国对外投资逻辑的深层调整。",
+            source: "Reuters",
+            url: "https://www.reuters.com/business/energy/belt-road-belt-tightening-chinas-neighbours-get-cold-shoulder-energy-2026-03-30/"
+        },
+        {
+            n: 29,
+            title: "中国 2025 年清洁电力发电量创纪录，太阳能增长 43%",
+            date: "2026年1月（年度回顾）",
+            tags: ["清洁能源", "经济"],
+            summary: "路透社年度回顾报道，中国 2025 年清洁电力发电量达 4326 太瓦时（TWh），同比增长 15.4%，其中太阳能发电增长 43%，风电扩张 14%。中国已成为全球最大的可再生能源生产国。",
+            orgs: "中国国家能源局、国家电网",
+            impact: "中国清洁能源的快速扩张不仅改变国内能源结构，也为其在全球绿色转型中扮演主导角色奠定基础。",
+            source: "Reuters",
+            url: "http://today.reuters.com/markets/commodities/chinas-power-energy-clean-technology-milestones-2025-2026-01-23/"
+        },
+        {
+            n: 30,
+            title: "美台贸易协议 2 月最终确认，台湾关税降至 15%，半导体豁免",
+            date: "2026年2月12日",
+            tags: ["贸易", "地缘政治"],
+            summary: "美国与台湾最终确认贸易协议，台湾出口商品适用 15% 关税，半导体及相关设备豁免或适用更低税率。作为交换，台湾承诺在四年内购买近 850 亿美元美国能源、飞机和机械。中国对此强烈反对，视其为干涉两岸关系。",
+            orgs: "美国贸易代表办公室、台湾经济部、中国商务部",
+            impact: "美台贸易协议深化双边经济绑定，将进一步加剧中美在台湾问题上的战略竞争。",
+            source: "Reuters",
+            url: "http://polling.reuters.com/business/aerospace-defense/us-taiwan-finalize-deal-cut-tariffs-boost-purchases-us-goods-2026-02-12/"
+        }
+    ],
+    intl: [
+        {
+            n: 31,
+            title: "英国召集 40 国举行霍尔木兹海峡峰会，美国缺席",
+            date: "2026年4月2-3日",
+            tags: ["外交", "能源"],
+            summary: "英国外交大臣伊薇特·库珀主持虚拟峰会，召集逾 40 个国家讨论应对伊朗封锁霍尔木兹海峡的协调措施。会议讨论通过联合国施压、经济制裁、协助约 2 万名被困海员及数千艘船只等方案。特朗普告知其他国家“自己去拿”海峡，美国未参与。",
+            orgs: "英国外交部、联合国、国际海事组织、40+ 参与国",
+            impact: "美国缺席凸显特朗普政府的单边主义倾向，英国主导的多边外交框架能否奏效将是未来数周的关键观察点。",
+            source: "NPR",
+            url: "https://www.npr.org/2026/04/03/nx-s1-5771559/over-40-countries-meet-to-discuss-ways-to-reopen-the-strait-of-hormuz"
+        },
+        {
+            n: 32,
+            title: "霍尔木兹海峡危机：每日通行船只从 1000 艘骤降至 130 艘，油价涨 57%",
+            date: "2026年4月初",
+            tags: ["能源", "航运"],
+            summary: "伊朗封锁霍尔木兹海峡已造成全球航运严重瘫痪。每日通行船只从正常的约 1000 艘骤降至 130 艘，约 1000 艘船只滞留，2 万名海员被困。布伦特原油价格较战前上涨 57%，达到每桶 113 美元。伊朗提出通过阿曼建立许可证制度，但多国拒绝接受。",
+            orgs: "伊朗政府、国际海事组织、全球航运公司、能源市场",
+            impact: "海峡封锁已从“局部冲突”演变为影响全球能源、化肥和食品供应链的系统性危机，每延续一周都将加深全球经济损伤。",
+            source: "Washington Post",
+            url: "https://www.washingtonpost.com/business/2026/04/02/hormuz-strait-shipping-summit-uk-iran/"
+        },
+        {
+            n: 33,
+            title: "特朗普“解放日”一周年：制造业就业减少 8.9 万，通胀仍高企",
+            date: "2026年4月2日",
+            tags: ["贸易", "经济"],
+            summary: "NPR 盘点显示，特朗普“解放日”关税实施一年来，美国制造业就业减少 8.9 万人，2 月通胀率仍维持 2.4%，部分受关税推动。美国家庭平均每年因关税多支出约 3800 美元。尽管如此，特朗普政府在周年纪念日宣布新一轮药品和金属关税升级。",
+            orgs: "美国贸易代表办公室、美国劳工统计局、美国消费者",
+            impact: "关税政策的实际效果与预期存在显著落差，但特朗普政府仍在加码，全球贸易体系面临持续重构压力。",
+            source: "NPR",
+            url: "https://www.npr.org/2026/04/02/nx-s1-5766424/trump-tariffs-inflation-economy"
+        },
+        {
+            n: 34,
+            title: "联合国安理会通过加沙停火决议，但重建进展迟缓，以色列空袭持续",
+            date: "2026年3月",
+            tags: ["中东", "人道主义"],
+            summary: "联合国安理会以 14 票赞成、俄罗斯弃权通过决议，支持美国主导的加沙停火方案。停火自 2025 年 10 月起已维持约六个月，国际稳定部队已获印尼、摩洛哥等国承诺派兵。然而，以色列自伊朗战争爆发后持续对加沙实施空袭，重建材料仍受限制。",
+            orgs: "联合国安理会、美国、以色列、哈马斯、国际稳定部队参与国",
+            impact: "加沙停火的脆弱性在伊朗战争背景下更加凸显，国际社会注意力的分散可能削弱对加沙重建的持续投入。",
+            source: "UN News",
+            url: "https://news.un.org/en/story/2026/03/1167194"
+        },
+        {
+            n: 35,
+            title: "特朗普允许俄罗斯油轮向古巴运油，打破燃料封锁",
+            date: "2026年3月29日",
+            tags: ["外交", "能源"],
+            summary: "美国总统特朗普允许俄罗斯油轮“阿纳托利·科洛德金”号进入古巴水域，运送近 73 万桶原油，打破了美国对古巴的燃料封锁。古巴此前因能源危机面临严重停电和人道主义挑战。",
+            orgs: "美国白宫、俄罗斯能源企业、古巴政府",
+            impact: "此举体现特朗普外交政策的不可预测性，也显示在全球能源危机背景下，传统制裁框架正面临新的压力测试。",
+            source: "CNN",
+            url: "https://www.cnn.com/2026/03/29/americas/us-russian-oil-tanker-access-cuba-intl-hnk"
+        },
+        {
+            n: 36,
+            title: "联合国成立 40 人科学委员会，确保人工智能“始终处于人类控制之下”",
+            date: "2026年3月底至4月初",
+            tags: ["科技", "治理"],
+            summary: "联合国秘书长古特雷斯在新德里全球人工智能峰会上宣布，联合国将成立由 40 名不同学科科学家组成的国际委员会，确保人工智能“始终处于人类控制之下”，强调需要“可信赖的事实”来评估 AI 对经济和社会的影响。",
+            orgs: "联合国、新德里 AI 峰会参与国、科学界",
+            impact: "在 AI 技术快速演进背景下，国际社会寻求建立超越单一国家的治理框架，但委员会的实际约束力仍有待观察。",
+            source: "Athens24",
+            url: "https://www.athens24.com/news/un-establishes-a-committee-to-ensure-ai-remains-under-human-control.html"
+        },
+        {
+            n: 37,
+            title: "伊朗提议通过阿曼建立船只许可证制度，多国拒绝接受",
+            date: "2026年4月初",
+            tags: ["外交", "航运"],
+            summary: "路透社报道，伊朗提出通过阿曼建立许可证制度，要求商船在通过霍尔木兹海峡前获得伊朗批准的通行许可。这一方案被多国视为变相承认伊朗对国际水道的主权主张，遭到美国、欧洲和亚洲主要航运国拒绝。谈判陷入僵局，油价再度上涨。",
+            orgs: "伊朗政府、阿曼政府、美国、欧盟、亚洲航运国",
+            impact: "伊朗的许可证方案若被接受将开创危险先例，若被拒绝则封锁僵局将持续，两种结果都对全球能源市场构成持续压力。",
+            source: "Reuters",
+            url: "http://www.reuters.com/world/asia-pacific/hopes-dim-swift-end-iran-war-after-trump-speech-oil-prices-surge-anew-2026-04-02/"
+        },
+        {
+            n: 38,
+            title: "特朗普关税扩张重塑全球贸易：中国有效税率达 65%，衰退风险上升",
+            date: "2026年4月",
+            tags: ["贸易", "经济"],
+            summary: "特朗普 2026 年关税体系已形成对几乎所有美国进口商品征收 10% 基准关税、叠加国别升级税率的架构。中国商品有效综合税率约 65%，欧盟、日本等盟友也面临不同程度的额外关税。美国家庭平均每年因此多支出约 3800 美元。J.P. 摩根将全球经济衰退概率从 40% 上调至 60%。",
+            orgs: "美国贸易代表办公室、J.P. 摩根、全球贸易伙伴",
+            impact: "特朗普关税体系的全面落地正在重塑全球供应链格局，衰退风险上升将成为 2026 年下半年最重要的宏观风险之一。",
+            source: "Altitudes Magazine",
+            url: "https://www.altitudesmagazine.com/trumps-sweeping-2026-tariff-expansion-is-reshaping-global-trade-and-am/"
+        },
+        {
+            n: 39,
+            title: "俄罗斯拒绝泽连斯基复活节停火提议，乌克兰战争面临“被遗忘”风险",
+            date: "2026年4月2日",
+            tags: ["战争", "外交"],
+            summary: "乌克兰总统泽连斯基提议在复活节期间实现停火，俄罗斯予以拒绝，双方无人机袭击持续。在伊朗战争占据国际注意力的背景下，乌克兰战争正面临“被遗忘”的风险，西方援助和媒体关注度均有所下降。",
+            orgs: "乌克兰政府、俄罗斯政府、北约、欧盟",
+            impact: "两场同时进行的大规模地区冲突正在消耗国际社会的外交资源和注意力，乌克兰的长期支持前景面临不确定性。",
+            source: "The Guardian",
+            url: "http://browse.guardian.co.uk/world/2026/apr/02/ukraine-war-briefing-russia-responds-zelenskyy-easter-truce-drone-attack"
+        },
+        {
+            n: 40,
+            title: "J.P. 摩根将全球衰退概率上调至 60%，贸易战与能源危机叠加",
+            date: "2026年4月初",
+            tags: ["经济", "金融"],
+            summary: "J.P. 摩根将 2026 年全球经济衰退概率从 40% 上调至 60%，理由是特朗普关税升级与霍尔木兹海峡危机形成双重冲击。中国宣布对美国商品征收 34% 报复性关税，全球股市大幅下跌。分析师指出贸易战和能源危机的叠加效应远超单一冲击。",
+            orgs: "J.P. 摩根、美联储、全球主要央行、国际货币基金组织",
+            impact: "衰退概率升至 60% 是市场对当前地缘政治和贸易格局的集体判断，将深刻影响各国央行政策、企业投资决策和消费者信心。",
+            source: "Reuters",
+            url: "https://www.reuters.com/markets/europe/europe-prepares-response-trump-tariffs-global-markets-plunge-2025-04-04/"
+        }
+    ]
+};
+
+const regionColors = {
+    nl: 'var(--nl)',
+    ca: 'var(--ca)',
+    cn: 'var(--cn)',
+    intl: 'var(--intl)'
+};
+
+function buildCard(item, region) {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.style.setProperty('--region-accent', regionColors[region]);
+
+    const tags = item.tags.map(t => `<span class="card-tag">${t}</span>`).join('');
+
+    card.innerHTML = `
+        <div class="card-header">
+            <div class="card-num">${String(item.n).padStart(2,'0')}</div>
+            <div class="card-title-block">
+                <h3 class="card-title">${item.title}</h3>
+                <div class="card-byline">
+                    <span class="card-tag">📅 ${item.date}</span>
+                    ${tags}
+                </div>
+            </div>
+            <span class="card-chevron">▾</span>
+        </div>
+        <p class="card-summary">${item.summary}</p>
+        <div class="card-details">
+            <div class="detail-item">
+                <div class="detail-label">涉及机构</div>
+                <div class="detail-value">${item.orgs}</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">影响意义</div>
+                <div class="detail-value">${item.impact}</div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-label">信息来源</div>
+                <div class="detail-value">
+                    <a class="detail-link" href="${item.url}" target="_blank" rel="noopener">
+                        ${item.source} →
+                    </a>
+                </div>
+            </div>
+        </div>
+    `;
+
+    card.querySelector('.card-header').addEventListener('click', () => {
+        card.classList.toggle('open');
+    });
+
+    return card;
+}
+
+// Build grids
+['nl','ca','cn','intl'].forEach(region => {
+    const grid = document.getElementById(`grid-${region}`);
+    data[region].forEach(item => grid.appendChild(buildCard(item, region)));
+});
+
+// Progress bar
+const fill = document.getElementById('progressFill');
+window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    fill.style.width = (window.scrollY / total * 100) + '%';
+}, { passive: true });
+
+// Back to top
+document.getElementById('backTop').addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Active nav
+const sections = document.querySelectorAll('.region-section[id]');
+const navItems = document.querySelectorAll('.rnav-item[data-region]');
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const reg = e.target.dataset.region;
+            navItems.forEach(n => {
+                n.classList.toggle('active', n.dataset.region === reg && n.getAttribute('href') !== '#summary');
+            });
+        }
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
+sections.forEach(s => io.observe(s));
+</script>
+</body>
+</html>

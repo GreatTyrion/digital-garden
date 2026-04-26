@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 | ----- | ---- | ----------- | -------- |
+| [#17](posts/issue-17/issue-17.md) | 2026-04-26 | 聚焦 DeepSeek V4、量子力学认知重构与纽芬兰地图入口 | 🤖, ⚛️, 🗺️ |
 | [#16](posts/issue-16/issue-16.md) | 2026-04-03 | 全球新闻、农业简报、伊朗能源危机、地缘政治分析 | 🌍, ⚡, 🌾, 📰, 🗺️ |
 | [#15](posts/issue-15/issue-15.md) | 2026-03-07 | AI ship tracking, March news digest, and Newfoundland rental map | 🛰️, 📰, 🇨🇦, 🗺️ |
 | [#14](posts/issue-14/issue-14.md) | 2026-01-18 | First Principles, Agent Skills, Newfoundland News | 🧠, 🤖, 📰, 🗺️ |

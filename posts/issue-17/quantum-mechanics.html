@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>量子力学：5个颠覆常识的宇宙真相 - Digital Garden</title>
+    <meta name="description" content="从普朗克量子假设、光电效应、双缝实验、薛定谔的猫到多元宇宙，理解量子力学如何颠覆我们的日常直觉。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@500;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #03050b;
+            --space: #070c18;
+            --space-soft: #0d1527;
+            --panel: rgba(9, 17, 34, 0.82);
+            --panel-strong: rgba(13, 25, 48, 0.94);
+            --line: rgba(174, 216, 255, 0.16);
+            --line-strong: rgba(174, 216, 255, 0.34);
+            --text: #eff7ff;
+            --muted: #9fb2ca;
+            --soft: #c8d9eb;
+            --cyan: #65e7ff;
+            --violet: #a994ff;
+            --gold: #f3d17a;
+            --rose: #ff7aa8;
+            --green: #7dffbe;
+            --shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+            --radius-xl: 32px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
+            --max: 1160px;
+            --display: "ZCOOL XiaoWei", "Noto Serif SC", serif;
+            --serif: "Noto Serif SC", "Songti SC", serif;
+            --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: var(--serif);
+            line-height: 1.9;
+            background:
+                radial-gradient(circle at 18% 8%, rgba(101, 231, 255, 0.2), transparent 28%),
+                radial-gradient(circle at 86% 18%, rgba(169, 148, 255, 0.2), transparent 26%),
+                radial-gradient(circle at 54% 72%, rgba(243, 209, 122, 0.08), transparent 30%),
+                linear-gradient(180deg, var(--void) 0%, var(--space) 46%, #050812 100%);
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        body::before {
+            z-index: 0;
+            background:
+                repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 54px),
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.018) 0 1px, transparent 1px 54px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 82%);
+        }
+
+        body::after {
+            z-index: 1;
+            opacity: 0.32;
+            background-image:
+                radial-gradient(circle, rgba(255, 255, 255, 0.75) 0 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(101, 231, 255, 0.85) 0 1px, transparent 1.5px);
+            background-size: 120px 120px, 180px 180px;
+            background-position: 10px 18px, 68px 92px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 40;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--cyan), var(--violet), var(--gold), var(--rose));
+            box-shadow: 0 0 22px rgba(101, 231, 255, 0.78);
+        }
+
+        .page {
+            position: relative;
+            z-index: 2;
+            width: min(calc(100% - 26px), var(--max));
+            margin: 0 auto;
+            padding: 14px 0 calc(76px + env(safe-area-inset-bottom));
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            background:
+                linear-gradient(135deg, rgba(14, 26, 51, 0.96), rgba(5, 10, 22, 0.86)),
+                var(--panel);
+            box-shadow: var(--shadow);
+            padding: clamp(22px, 5vw, 48px);
+            min-height: min(720px, calc(100vh - 28px));
+            display: grid;
+            align-items: end;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 620px;
+            height: 620px;
+            right: -250px;
+            top: -210px;
+            border-radius: 50%;
+            background:
+                repeating-radial-gradient(circle, rgba(101, 231, 255, 0.18) 0 2px, transparent 2px 26px),
+                radial-gradient(circle, rgba(169, 148, 255, 0.2), transparent 64%);
+            filter: blur(0.2px);
+            animation: drift 18s linear infinite;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: auto -12% -28% -12%;
+            height: 46%;
+            background: repeating-linear-gradient(
+                92deg,
+                transparent 0 22px,
+                rgba(101, 231, 255, 0.08) 22px 24px,
+                transparent 24px 46px,
+                rgba(243, 209, 122, 0.07) 46px 48px
+            );
+            transform: rotate(-7deg);
+            opacity: 0.72;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.58fr);
+            gap: clamp(22px, 5vw, 54px);
+            align-items: end;
+        }
+
+        .eyebrow,
+        .tag,
+        .section-kicker,
+        .nav-title {
+            font-family: var(--mono);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--cyan);
+            font-size: 0.76rem;
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 18px rgba(101, 231, 255, 0.9);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+            font-family: var(--display);
+            font-weight: 400;
+            letter-spacing: -0.03em;
+        }
+
+        h1 {
+            max-width: 820px;
+            font-size: clamp(3.25rem, 11vw, 7.4rem);
+            line-height: 0.94;
+            text-wrap: balance;
+        }
+
+        .subtitle {
+            max-width: 720px;
+            margin: 22px 0 0;
+            color: var(--soft);
+            font-size: clamp(1.03rem, 2.6vw, 1.24rem);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .tag {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 8px 11px;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.68rem;
+        }
+
+        .observer-card {
+            position: relative;
+            border: 1px solid var(--line-strong);
+            border-radius: 26px;
+            padding: 20px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+                rgba(5, 11, 23, 0.74);
+            box-shadow: inset 0 1px rgba(255, 255, 255, 0.1), 0 22px 80px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(16px);
+        }
+
+        .orbital {
+            position: relative;
+            display: grid;
+            place-items: center;
+            aspect-ratio: 1;
+            margin: 0 auto 18px;
+            max-width: 260px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(101, 231, 255, 0.12), transparent 62%);
+        }
+
+        .orbital span {
+            position: absolute;
+            inset: 16%;
+            border: 1px solid rgba(101, 231, 255, 0.35);
+            border-radius: 50%;
+        }
+
+        .orbital span:nth-child(2) {
+            transform: rotate(62deg) scaleX(0.58);
+            border-color: rgba(169, 148, 255, 0.42);
+        }
+
+        .orbital span:nth-child(3) {
+            transform: rotate(-38deg) scaleX(0.62);
+            border-color: rgba(243, 209, 122, 0.38);
+        }
+
+        .orbital::before {
+            content: "";
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 34% 32%, #fff, var(--cyan) 34%, rgba(101, 231, 255, 0.15) 70%);
+            box-shadow: 0 0 34px rgba(101, 231, 255, 0.95);
+        }
+
+        .orbital::after {
+            content: "";
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--gold);
+            transform: translate(78px, -42px);
+            box-shadow: 0 0 22px rgba(243, 209, 122, 0.8);
+        }
+
+        .observer-card p {
+            margin: 0;
+            color: var(--soft);
+            font-size: 0.98rem;
+        }
+
+        .nav-shell {
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            margin: 14px 0 18px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(4, 9, 20, 0.78);
+            backdrop-filter: blur(18px);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-shell::-webkit-scrollbar {
+            display: none;
+        }
+
+        .quick-nav {
+            display: flex;
+            gap: 6px;
+            min-width: max-content;
+            padding: 8px;
+        }
+
+        .quick-nav a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            border-radius: 999px;
+            padding: 0 14px;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .quick-nav a:hover,
+        .quick-nav a.active {
+            color: var(--text);
+            background: rgba(101, 231, 255, 0.14);
+        }
+
+        .truth-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .truth-card,
+        .article,
+        .closing-card {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            box-shadow: 0 18px 70px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(16px);
+        }
+
+        .truth-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            min-height: 172px;
+        }
+
+        .truth-card::before {
+            content: attr(data-index);
+            display: block;
+            width: 36px;
+            height: 36px;
+            margin-bottom: 16px;
+            border-radius: 50%;
+            color: var(--space);
+            background: var(--cyan);
+            font-family: var(--mono);
+            font-weight: 600;
+            line-height: 36px;
+            text-align: center;
+            box-shadow: 0 0 28px rgba(101, 231, 255, 0.42);
+        }
+
+        .truth-card:nth-child(2)::before {
+            background: var(--violet);
+        }
+
+        .truth-card:nth-child(3)::before {
+            background: var(--gold);
+        }
+
+        .truth-card:nth-child(4)::before {
+            background: var(--rose);
+        }
+
+        .truth-card:nth-child(5)::before {
+            background: var(--green);
+        }
+
+        .truth-card h2 {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            line-height: 1.45;
+        }
+
+        .truth-card p {
+            margin: 10px 0 0;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .article {
+            border-radius: var(--radius-xl);
+            padding: clamp(20px, 5vw, 58px);
+        }
+
+        .section {
+            scroll-margin-top: 92px;
+            padding: 28px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .section:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--cyan);
+            font-size: 0.72rem;
+        }
+
+        .section h2 {
+            font-size: clamp(1.95rem, 5vw, 3.4rem);
+            line-height: 1.12;
+            text-wrap: balance;
+        }
+
+        .section p {
+            margin: 18px 0 0;
+            color: var(--soft);
+            font-size: clamp(1.02rem, 2.4vw, 1.15rem);
+        }
+
+        .note-list {
+            display: grid;
+            gap: 12px;
+            margin: 22px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .note-list li {
+            position: relative;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 14px 15px 14px 44px;
+            color: var(--soft);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .note-list li::before {
+            content: "";
+            position: absolute;
+            left: 17px;
+            top: 24px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 16px rgba(101, 231, 255, 0.75);
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        blockquote {
+            margin: 26px 0 0;
+            border-left: 3px solid var(--gold);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            padding: 18px 20px;
+            color: #fff4d0;
+            background: rgba(243, 209, 122, 0.08);
+            font-size: clamp(1.04rem, 2.4vw, 1.22rem);
+        }
+
+        .experiment {
+            display: grid;
+            grid-template-columns: 0.72fr 1fr;
+            gap: 18px;
+            align-items: center;
+            margin: 26px 0 4px;
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            padding: 18px;
+            background: linear-gradient(135deg, rgba(101, 231, 255, 0.08), rgba(169, 148, 255, 0.05));
+        }
+
+        .slits {
+            display: flex;
+            justify-content: center;
+            gap: 22px;
+            min-height: 150px;
+            padding: 18px;
+            border-radius: 18px;
+            background:
+                repeating-linear-gradient(90deg, rgba(101, 231, 255, 0.08) 0 2px, transparent 2px 16px),
+                rgba(0, 0, 0, 0.2);
+        }
+
+        .slits span {
+            width: 18px;
+            border-radius: 999px;
+            background: linear-gradient(180deg, transparent, var(--cyan), transparent);
+            box-shadow: 0 0 22px rgba(101, 231, 255, 0.62);
+        }
+
+        .experiment p {
+            margin: 0;
+            color: var(--soft);
+        }
+
+        .closing-card {
+            position: relative;
+            overflow: hidden;
+            margin-top: 18px;
+            border-radius: var(--radius-xl);
+            padding: clamp(24px, 5vw, 46px);
+        }
+
+        .closing-card::before {
+            content: "";
+            position: absolute;
+            inset: -40% -20% auto auto;
+            width: 460px;
+            height: 460px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 122, 168, 0.2), transparent 64%);
+        }
+
+        .closing-card h2,
+        .closing-card p {
+            position: relative;
+        }
+
+        .closing-card h2 {
+            font-size: clamp(2.1rem, 7vw, 4.5rem);
+            line-height: 1;
+        }
+
+        .closing-card p {
+            max-width: 780px;
+            margin: 20px 0 0;
+            color: var(--soft);
+            font-size: clamp(1.02rem, 2.6vw, 1.2rem);
+        }
+
+        .footer {
+            padding: 28px 0 0;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            text-align: center;
+        }
+
+        @keyframes drift {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 920px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-inner,
+            .experiment {
+                grid-template-columns: 1fr;
+            }
+
+            .observer-card {
+                max-width: 420px;
+            }
+
+            .truth-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                width: min(calc(100% - 18px), var(--max));
+                padding-top: 9px;
+            }
+
+            .hero,
+            .article,
+            .closing-card {
+                border-radius: 24px;
+            }
+
+            .hero {
+                padding: 24px 18px;
+            }
+
+            h1 {
+                font-size: clamp(3rem, 16vw, 4.55rem);
+            }
+
+            .subtitle {
+                margin-top: 18px;
+            }
+
+            .observer-card {
+                padding: 16px;
+            }
+
+            .orbital {
+                max-width: 210px;
+            }
+
+            .truth-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .truth-card {
+                min-height: auto;
+            }
+
+            .nav-shell {
+                margin-inline: -2px;
+                border-radius: 18px;
+            }
+
+            .quick-nav a {
+                min-height: 46px;
+                padding-inline: 13px;
+            }
+
+            .section {
+                scroll-margin-top: 86px;
+                padding: 24px 0;
+            }
+
+            .note-list li {
+                padding-right: 13px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true"><div class="progress-fill"></div></div>
+
+    <main class="page">
+        <header class="hero">
+            <div class="hero-inner">
+                <div>
+                    <div class="eyebrow">Digital Garden / Quantum Field Note</div>
+                    <h1>量子力学：5个颠覆常识的宇宙真相</h1>
+                    <p class="subtitle">从电影里的平行时空，到实验室里的双缝干涉，量子力学把我们习以为常的“确定现实”拆成了一片仍在颤动的可能性森林。</p>
+                    <div class="hero-meta" aria-label="文章关键词">
+                        <span class="tag">Planck 1900</span>
+                        <span class="tag">Photoelectric Effect</span>
+                        <span class="tag">Double Slit</span>
+                        <span class="tag">Many Worlds</span>
+                    </div>
+                </div>
+
+                <aside class="observer-card" aria-label="主题视觉卡片">
+                    <div class="orbital" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>在量子尺度里，能量不是河流，光不只是波，电子也不总是走一条路。观察本身，成了现实生成的一部分。</p>
+                </aside>
+            </div>
+        </header>
+
+        <nav class="nav-shell" aria-label="文章目录">
+            <div class="quick-nav">
+                <a href="#intro">引言</a>
+                <a href="#quantum">能量量子化</a>
+                <a href="#photon">光电效应</a>
+                <a href="#double-slit">双缝实验</a>
+                <a href="#cat">薛定谔的猫</a>
+                <a href="#many-worlds">多元宇宙</a>
+                <a href="#closing">结语</a>
+            </div>
+        </nav>
+
+        <section class="truth-grid" aria-label="五个核心真相">
+            <article class="truth-card" data-index="01">
+                <h2>能量是一份一份出现的</h2>
+                <p>普朗克用“不连续”解决紫外灾难。</p>
+            </article>
+            <article class="truth-card" data-index="02">
+                <h2>光同时拥有波与粒子的面孔</h2>
+                <p>频率决定单个光子的能量。</p>
+            </article>
+            <article class="truth-card" data-index="03">
+                <h2>电子在被观察前保持多种可能</h2>
+                <p>双缝实验把叠加态推到台前。</p>
+            </article>
+            <article class="truth-card" data-index="04">
+                <h2>微观诡异会挑战宏观直觉</h2>
+                <p>薛定谔的猫迫使我们追问观测。</p>
+            </article>
+            <article class="truth-card" data-index="05">
+                <h2>每一次选择都可能分出新现实</h2>
+                <p>多世界诠释保留所有可能性。</p>
+            </article>
+        </section>
+
+        <article class="article">
+            <section class="section" id="intro">
+                <span class="section-kicker">01 / From Cinema To Physics</span>
+                <h2>引言：从电影幻想走进现实的“量子谜团”</h2>
+                <p>在电影《彗星来的那一夜》中，一个彗星掠过的夜晚让原本平行的时空发生了交集；在漫威电影里，“量子隧道”则是穿越时空、逆转乾坤的关键。这些情节总能引起我们的思考：在另一个宇宙里，是否有一个生活得更好的“我”？</p>
+                <p>这些听起来如同玄学的概念，其科学基石正是量子力学。作为一名长期观察科技前沿的专栏作家，我发现人们常开玩笑说“遇事不决，量子力学”，但这门学科绝非科幻迷信。它揭示了宇宙运行最深层的隐秘规律。今天，我将带大家从光与电的本质出发，重塑认知体系，看看科学眼中的真实世界究竟有多奇妙。</p>
+            </section>
+
+            <section class="section" id="quantum">
+                <span class="section-kicker">02 / Packeted Energy</span>
+                <h2>能量不是“流动的河流”，而是“一袋袋的饼干”</h2>
+                <p>在经典物理的世界里，我们默认能量是连续的，就像一条奔腾不息的河流。然而在19世纪末，物理学界遇到了一朵著名的“乌云”——紫外灾难。</p>
+                <p>当时，科学家们试图推导黑体辐射的能量规律，但用权威的经典理论算出的高频电磁波能量竟然“炸到了天上”——其数值趋向于无穷大，这与现实完全不符。</p>
+                <p>1900 年，普朗克（Planck）提出了一个极其大胆且颠覆性的假设：能量是不连续的。</p>
+                <ul class="note-list">
+                    <li><strong>量子（Quantum）</strong>：普朗克认为，能量不能取任意数值，而是以“一份一份”的形式传播的。</li>
+                    <li><strong>形象比喻</strong>：能量不再是“流动的河水”，而是“一袋袋的饼干”或者“一杯杯的水”。你只能取整袋、整杯，而不能取其中的 0.523 份。</li>
+                </ul>
+                <p>这种“不连续性”在当时看来极其荒谬，却完美解决了紫外灾难。普朗克的这一小步，正式开启了人类认知的量子时代。</p>
+            </section>
+
+            <section class="section" id="photon">
+                <span class="section-kicker">03 / Wave And Particle</span>
+                <h2>光的“双重人格”：胖子、瘦子与光电效应</h2>
+                <p>光到底是什么？牛顿认为是“微粒”，麦克斯韦证明了是“波”。1905 年，爱因斯坦利用普朗克的量子概念，通过“光电效应”终结了这场争论。</p>
+                <p>为了让大家理解其中的逻辑，我们引入一个生动的比喻：金属表面的电子就像一位稳坐如山的“大胖哥”，而光则是前来挑战的人。</p>
+                <ul class="note-list">
+                    <li><strong>“瘦子”与频率</strong>：低频率的光就像一群“瘦子”。哪怕光线再亮（瘦子数量再多），他们轮流上场也拉不动大胖哥（电子）。</li>
+                    <li><strong>“胖子”与能量包</strong>：高频率的光则是“胖子”。哪怕光线很弱（只有一个胖子），他也有足够的力气一把将大胖哥拽走，产生电流。</li>
+                </ul>
+                <p>这就是爱因斯坦提出的<strong>“光子”概念。光具有“双重人格”，即波粒二象性</strong>。关于这种超越人类直觉的本质，爱因斯坦曾感叹道：</p>
+                <blockquote>“关于光到底是什么，我思考了整整 50 年，但我从未觉得接近过真相。如果谁声称他找到了答案，那他一定是在做白日梦。”</blockquote>
+            </section>
+
+            <section class="section" id="double-slit">
+                <span class="section-kicker">04 / Observation Collapse</span>
+                <h2>宇宙在被观察前是“模糊”的：电子双缝实验</h2>
+                <p>量子力学中最诡异的实验莫过于“电子双缝实验”。它揭示了微观世界最底层的运作方式。</p>
+                <p>当我们将电子一粒粒打向双缝，如果不去观察，电子在后方屏幕上会形成明暗相间的干涉条纹。</p>
+                <div class="experiment" aria-label="双缝实验示意">
+                    <div class="slits" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <p>双缝不是普通障碍物，而像一台“现实选择器”：不观察时，可能性互相干涉；观察路径后，世界只留下两条确定痕迹。</p>
+                </div>
+                <ul class="note-list">
+                    <li><strong>波峰与波谷</strong>：这里的原理在于电子像波一样，当“波峰遇见波峰”时，光芒更盛；当“波峰遇见波谷”时，两者抵消，变成了“平地”（暗条纹）。这说明电子处于一种叠加态，它竟然同时穿过了两条缝隙。</li>
+                    <li><strong>观测即坍缩</strong>：可一旦我们在缝口放置探测器想“看清”它的路径，干涉条纹瞬间消失，电子变回了乖乖听话的“粒子”，屏幕上只剩下两条痕迹。</li>
+                </ul>
+                <p>现实似乎知道我们在盯着它看。在观测发生的瞬间，无数种可能性瞬间“坍缩”成了单一的确定状态。</p>
+            </section>
+
+            <section class="section" id="cat">
+                <span class="section-kicker">05 / Cat In Superposition</span>
+                <h2>薛定谔的猫：微观的诡异是如何“传染”给宏观的？</h2>
+                <p>为了指出“叠加态”在宏观世界有多荒谬，薛定谔提出了著名的思想实验。</p>
+                <p>想象一个密封盒子，里面有一只名叫“八机”的猫（Baji），以及一个联动装置：如果一个放射性原子衰变（概率 50%），就会触发锤子打碎毒药，八机就会死；如果不衰变，八机就活。</p>
+                <ul class="note-list">
+                    <li><strong>纠缠的命运</strong>：原子、仪器、毒药与八机的命运被“纠缠”在了一起。在没打开盒子前，原子处于衰变/未衰变的叠加态，那么八机就处于<strong>“既死又活”</strong>的叠加态。</li>
+                    <li><strong>认知的冲突</strong>：薛定谔本意是想讽刺这种逻辑：一个客观的仪器甚至人的意识，真的能决定现实的坍缩吗？</li>
+                </ul>
+                <p>直到今天，微观规律如何衔接宏观世界（如 LK99 超导研究等前沿领域）依然是物理学的顶峰课题。八机到底是生是死，取决于我们如何定义“观测”。</p>
+            </section>
+
+            <section class="section" id="many-worlds">
+                <span class="section-kicker">06 / Decoherence</span>
+                <h2>多元宇宙：每一次选择都在创造新的现实</h2>
+                <p>如果不接受“坍缩”，另一种避开矛盾的理论是埃弗雷特（Everett）的多世界诠释。</p>
+                <p>该理论认为，现实并没有消失，而是发生了<strong>“退相干”</strong>（Decoherence）。当你打开盒子时，宇宙分裂成了两个：在一个宇宙里你抱起了活着的八机，在另一个宇宙里你面对的是死去的八机。</p>
+                <p>这正是《彗星来的那一夜》的科学背景。电影中的彗星让原本已经“退相干”的多个世界重新发生了“相干”，导致不同分支的自己发生了交集。虽然听起来像科幻，但在数学推导上，多元宇宙是完全自洽的。</p>
+            </section>
+        </article>
+
+        <section class="closing-card" id="closing">
+            <h2>在量子的森林里，我们依然是求索者</h2>
+            <p>从牛顿的经典体系到量子的微观矩阵，人类的认知正在经历范式的转移。为什么我们在日常生活中感受不到这种诡异？答案在于尺度。物体越小，波动性越明显；在宏观世界，量子效应微弱到可以忽略，因此经典力学依然有效。</p>
+            <p>但在宇宙的底色里，量子规律才是基石。如果我们的每一次观测都在改变微观世界的命运，那么我们感知的“确定现实”，或许真的只是浩瀚可能性中的冰山一角。</p>
+        </section>
+
+        <footer class="footer">
+            Digital Garden · Quantum Mechanics · Mobile First Reading
+        </footer>
+    </main>
+
+    <script>
+        const progressFill = document.querySelector(".progress-fill");
+        const navLinks = [...document.querySelectorAll(".quick-nav a")];
+        const sections = navLinks
+            .map((link) => document.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
+
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const percent = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+            progressFill.style.width = `${percent}%`;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+                });
+            });
+        }, {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0
+        });
+
+        sections.forEach((section) => observer.observe(section));
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+    </script>
+</body>
+</html>

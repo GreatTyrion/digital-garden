@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掀翻算力霸权：DeepSeek V4 如何在“土路”上跑赢了 GPT-5.5？ - Digital Garden</title>
+    <meta name="description" content="从异构算力、MoE 架构、压缩注意力、成本优势到系统脆性，理解 DeepSeek V4 如何改写大模型竞争逻辑。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Serif+SC:wght@500;700;900&family=Zen+Dots&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black: #050607;
+            --asphalt: #0b0d0e;
+            --road: #121514;
+            --panel: rgba(19, 23, 21, 0.86);
+            --panel-strong: rgba(24, 30, 27, 0.96);
+            --line: rgba(214, 255, 204, 0.14);
+            --line-strong: rgba(214, 255, 204, 0.3);
+            --text: #f2f7ec;
+            --soft: #d2ddc9;
+            --muted: #9ba894;
+            --lime: #c8ff5d;
+            --green: #36f2a2;
+            --amber: #ffb84c;
+            --red: #ff5f56;
+            --blue: #65c7ff;
+            --shadow: 0 30px 90px rgba(0, 0, 0, 0.5);
+            --radius-xl: 32px;
+            --radius-lg: 22px;
+            --radius-md: 15px;
+            --max: 1180px;
+            --display: "Zen Dots", "Noto Serif SC", serif;
+            --serif: "Noto Serif SC", "Songti SC", serif;
+            --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            color: var(--text);
+            font-family: var(--serif);
+            line-height: 1.9;
+            background:
+                radial-gradient(circle at 20% 8%, rgba(200, 255, 93, 0.16), transparent 28%),
+                radial-gradient(circle at 82% 18%, rgba(54, 242, 162, 0.13), transparent 26%),
+                radial-gradient(circle at 56% 80%, rgba(255, 184, 76, 0.1), transparent 30%),
+                linear-gradient(180deg, var(--black) 0%, var(--asphalt) 46%, #080907 100%);
+            overflow-x: hidden;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        body::before {
+            z-index: 0;
+            background:
+                linear-gradient(90deg, transparent 0 49%, rgba(200, 255, 93, 0.12) 49% 50%, transparent 50% 100%),
+                repeating-linear-gradient(18deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 42px);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent 82%);
+        }
+
+        body::after {
+            z-index: 1;
+            opacity: 0.28;
+            background:
+                radial-gradient(circle, rgba(200, 255, 93, 0.75) 0 1px, transparent 1.5px),
+                radial-gradient(circle, rgba(101, 199, 255, 0.72) 0 1px, transparent 1.5px);
+            background-size: 104px 104px, 168px 168px;
+            background-position: 14px 24px, 72px 88px;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 50;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--lime), var(--green), var(--amber), var(--red));
+            box-shadow: 0 0 22px rgba(200, 255, 93, 0.8);
+        }
+
+        .page {
+            position: relative;
+            z-index: 2;
+            width: min(calc(100% - 26px), var(--max));
+            margin: 0 auto;
+            padding: 14px 0 calc(76px + env(safe-area-inset-bottom));
+        }
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            min-height: min(720px, calc(100vh - 28px));
+            display: grid;
+            align-items: end;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-xl);
+            padding: clamp(22px, 5vw, 48px);
+            background:
+                linear-gradient(145deg, rgba(24, 30, 27, 0.98), rgba(7, 9, 8, 0.9)),
+                var(--panel);
+            box-shadow: var(--shadow);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 72%;
+            height: 180%;
+            left: 50%;
+            bottom: -78%;
+            transform: translateX(-50%) perspective(480px) rotateX(64deg);
+            background:
+                linear-gradient(90deg, transparent 0 47%, rgba(255, 184, 76, 0.65) 47% 49%, transparent 49% 51%, rgba(255, 184, 76, 0.65) 51% 53%, transparent 53% 100%),
+                repeating-linear-gradient(0deg, rgba(200, 255, 93, 0.16) 0 2px, transparent 2px 46px);
+            opacity: 0.7;
+            filter: blur(0.2px);
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            right: -200px;
+            top: -170px;
+            border-radius: 50%;
+            background:
+                repeating-radial-gradient(circle, rgba(200, 255, 93, 0.18) 0 2px, transparent 2px 24px),
+                radial-gradient(circle, rgba(54, 242, 162, 0.18), transparent 66%);
+            animation: rotateGrid 22s linear infinite;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.58fr);
+            gap: clamp(22px, 5vw, 52px);
+            align-items: end;
+        }
+
+        .eyebrow,
+        .tag,
+        .section-kicker,
+        .metric-label {
+            font-family: var(--mono);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            color: var(--lime);
+            font-size: 0.75rem;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            background: var(--lime);
+            box-shadow: 0 0 18px rgba(200, 255, 93, 0.9);
+            transform: rotate(45deg);
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+        }
+
+        h1 {
+            max-width: 860px;
+            font-family: var(--serif);
+            font-size: clamp(2.75rem, 9.2vw, 6.8rem);
+            line-height: 0.98;
+            letter-spacing: -0.055em;
+            font-weight: 900;
+            text-wrap: balance;
+        }
+
+        .accent {
+            color: var(--lime);
+            text-shadow: 0 0 28px rgba(200, 255, 93, 0.34);
+        }
+
+        .subtitle {
+            max-width: 730px;
+            margin: 22px 0 0;
+            color: var(--soft);
+            font-size: clamp(1.02rem, 2.5vw, 1.22rem);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .tag {
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 8px 11px;
+            color: var(--muted);
+            background: rgba(255, 255, 255, 0.04);
+            font-size: 0.68rem;
+        }
+
+        .console-card {
+            border: 1px solid var(--line-strong);
+            border-radius: 24px;
+            padding: 16px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+                rgba(5, 7, 6, 0.78);
+            box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 22px 70px rgba(0, 0, 0, 0.38);
+            backdrop-filter: blur(18px);
+        }
+
+        .terminal-top {
+            display: flex;
+            gap: 7px;
+            margin-bottom: 14px;
+        }
+
+        .terminal-top span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--red);
+        }
+
+        .terminal-top span:nth-child(2) {
+            background: var(--amber);
+        }
+
+        .terminal-top span:nth-child(3) {
+            background: var(--green);
+        }
+
+        .console-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 13px 0;
+            font-family: var(--mono);
+            font-size: 0.86rem;
+            color: var(--soft);
+        }
+
+        .console-line:first-of-type {
+            border-top: 0;
+        }
+
+        .console-line strong {
+            color: var(--lime);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .nav-shell {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            margin: 14px 0 18px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: rgba(8, 10, 9, 0.8);
+            backdrop-filter: blur(18px);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .nav-shell::-webkit-scrollbar {
+            display: none;
+        }
+
+        .quick-nav {
+            display: flex;
+            gap: 6px;
+            min-width: max-content;
+            padding: 8px;
+        }
+
+        .quick-nav a {
+            display: inline-flex;
+            align-items: center;
+            min-height: 42px;
+            border-radius: 999px;
+            padding: 0 14px;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            transition: color 0.2s ease, background 0.2s ease;
+        }
+
+        .quick-nav a:hover,
+        .quick-nav a.active {
+            color: var(--text);
+            background: rgba(200, 255, 93, 0.14);
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .metric-card,
+        .article,
+        .closing-card {
+            border: 1px solid var(--line);
+            background: var(--panel);
+            box-shadow: 0 18px 70px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(16px);
+        }
+
+        .metric-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            min-height: 150px;
+        }
+
+        .metric-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(200, 255, 93, 0.12), transparent 55%);
+            opacity: 0.86;
+        }
+
+        .metric-card > * {
+            position: relative;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-size: 0.66rem;
+        }
+
+        .metric-value {
+            margin-top: 12px;
+            color: var(--lime);
+            font-family: var(--display);
+            font-size: clamp(1.6rem, 4vw, 2.65rem);
+            line-height: 1;
+        }
+
+        .metric-card p {
+            margin: 12px 0 0;
+            color: var(--soft);
+            font-size: 0.92rem;
+        }
+
+        .article {
+            border-radius: var(--radius-xl);
+            padding: clamp(20px, 5vw, 58px);
+        }
+
+        .section {
+            scroll-margin-top: 92px;
+            padding: 28px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .section:first-child {
+            border-top: 0;
+            padding-top: 0;
+        }
+
+        .section-kicker {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--lime);
+            font-size: 0.72rem;
+        }
+
+        .section h2 {
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: clamp(1.85rem, 5vw, 3.35rem);
+            line-height: 1.14;
+            letter-spacing: -0.035em;
+            text-wrap: balance;
+        }
+
+        .section p {
+            margin: 18px 0 0;
+            color: var(--soft);
+            font-size: clamp(1.01rem, 2.4vw, 1.14rem);
+        }
+
+        .note-list {
+            display: grid;
+            gap: 12px;
+            margin: 22px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .note-list li {
+            position: relative;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 14px 15px 14px 44px;
+            color: var(--soft);
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .note-list li::before {
+            content: "";
+            position: absolute;
+            left: 17px;
+            top: 24px;
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            background: var(--lime);
+            box-shadow: 0 0 16px rgba(200, 255, 93, 0.72);
+            transform: rotate(45deg);
+        }
+
+        strong {
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .route-map {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            align-items: stretch;
+            margin: 26px 0 4px;
+        }
+
+        .route-node {
+            position: relative;
+            min-height: 96px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.035);
+            font-family: var(--mono);
+            color: var(--soft);
+            font-size: 0.8rem;
+        }
+
+        .route-node::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -11px;
+            width: 12px;
+            height: 2px;
+            background: var(--lime);
+            box-shadow: 0 0 12px rgba(200, 255, 93, 0.74);
+        }
+
+        .route-node:last-child::after {
+            display: none;
+        }
+
+        .route-node strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--lime);
+            font-family: var(--display);
+            font-size: 0.94rem;
+            letter-spacing: 0.02em;
+        }
+
+        .warning {
+            margin: 24px 0 0;
+            border: 1px solid rgba(255, 95, 86, 0.35);
+            border-radius: var(--radius-lg);
+            padding: 18px;
+            color: #ffd9d5;
+            background: rgba(255, 95, 86, 0.08);
+        }
+
+        .closing-card {
+            position: relative;
+            overflow: hidden;
+            margin-top: 18px;
+            border-radius: var(--radius-xl);
+            padding: clamp(24px, 5vw, 46px);
+        }
+
+        .closing-card::before {
+            content: "";
+            position: absolute;
+            inset: -40% -20% auto auto;
+            width: 460px;
+            height: 460px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(200, 255, 93, 0.18), transparent 64%);
+        }
+
+        .closing-card h2,
+        .closing-card p {
+            position: relative;
+        }
+
+        .closing-card h2 {
+            max-width: 820px;
+            font-family: var(--serif);
+            font-weight: 900;
+            font-size: clamp(2rem, 7vw, 4.4rem);
+            line-height: 1.02;
+            letter-spacing: -0.045em;
+        }
+
+        .closing-card p {
+            max-width: 800px;
+            margin: 20px 0 0;
+            color: var(--soft);
+            font-size: clamp(1.02rem, 2.6vw, 1.2rem);
+        }
+
+        .footer {
+            padding: 28px 0 0;
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            text-align: center;
+        }
+
+        @keyframes rotateGrid {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 940px) {
+            .hero {
+                min-height: auto;
+            }
+
+            .hero-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .console-card {
+                max-width: 460px;
+            }
+
+            .metrics {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .route-map {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .route-node::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page {
+                width: min(calc(100% - 18px), var(--max));
+                padding-top: 9px;
+            }
+
+            .hero,
+            .article,
+            .closing-card {
+                border-radius: 24px;
+            }
+
+            .hero {
+                padding: 24px 18px;
+            }
+
+            h1 {
+                font-size: clamp(2.55rem, 13.5vw, 4.25rem);
+            }
+
+            .console-card {
+                padding: 14px;
+            }
+
+            .console-line {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .metrics,
+            .route-map {
+                grid-template-columns: 1fr;
+            }
+
+            .metric-card {
+                min-height: auto;
+            }
+
+            .nav-shell {
+                margin-inline: -2px;
+                border-radius: 18px;
+            }
+
+            .quick-nav a {
+                min-height: 46px;
+                padding-inline: 13px;
+            }
+
+            .section {
+                scroll-margin-top: 86px;
+                padding: 24px 0;
+            }
+
+            .note-list li {
+                padding-right: 13px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true"><div class="progress-fill"></div></div>
+
+    <main class="page">
+        <header class="hero">
+            <div class="hero-inner">
+                <div>
+                    <div class="eyebrow">Digital Garden / Efficiency Frontier</div>
+                    <h1>掀翻算力霸权：DeepSeek V4 如何在<span class="accent">“土路”</span>上跑赢了 GPT-5.5？</h1>
+                    <p class="subtitle">这不是单纯的模型发布，而是一场关于稀缺资源、异构算力、路由算法和成本曲线的工业叙事：当昂贵的高速公路不再是唯一答案，AI 竞争的规则开始改写。</p>
+                    <div class="hero-meta" aria-label="文章关键词">
+                        <span class="tag">MoE Routing</span>
+                        <span class="tag">Heterogeneous Cluster</span>
+                        <span class="tag">Cost Collapse</span>
+                        <span class="tag">Open Evolution</span>
+                    </div>
+                </div>
+
+                <aside class="console-card" aria-label="成本与架构速览">
+                    <div class="terminal-top" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="console-line"><span>20 分钟高强度任务</span><strong>$0.2-$0.4</strong></div>
+                    <div class="console-line"><span>模型规模</span><strong>1.6T Params</strong></div>
+                    <div class="console-line"><span>单次激活</span><strong>~47B Params</strong></div>
+                    <div class="console-line"><span>核心变量</span><strong>Routing Wins</strong></div>
+                </aside>
+            </div>
+        </header>
+
+        <nav class="nav-shell" aria-label="文章目录">
+            <div class="quick-nav">
+                <a href="#intro">引言</a>
+                <a href="#scarcity">稀缺性</a>
+                <a href="#architecture">架构折叠</a>
+                <a href="#margin">消失的 3%</a>
+                <a href="#business">商业逻辑</a>
+                <a href="#fragility">脆性代价</a>
+                <a href="#closing">结语</a>
+            </div>
+        </nav>
+
+        <section class="metrics" aria-label="核心判断">
+            <article class="metric-card">
+                <div class="metric-label">Cost Shift</div>
+                <div class="metric-value">分角</div>
+                <p>推理成本从稀缺资源滑向日常消耗品。</p>
+            </article>
+            <article class="metric-card">
+                <div class="metric-label">Architecture</div>
+                <div class="metric-value">MoE</div>
+                <p>只激活必要专家，而不是全脑燃烧。</p>
+            </article>
+            <article class="metric-card">
+                <div class="metric-label">Benchmark Gap</div>
+                <div class="metric-value">3%</div>
+                <p>尖端领先开始面对价格解释压力。</p>
+            </article>
+            <article class="metric-card">
+                <div class="metric-label">Strategy</div>
+                <div class="metric-value">土路</div>
+                <p>异构集群靠调度和压缩榨干余量。</p>
+            </article>
+        </section>
+
+        <article class="article">
+            <section class="section" id="intro">
+                <span class="section-kicker">01 / Bill Shock</span>
+                <h2>引言：被账单惊醒的清晨</h2>
+                <p>想象这样一个典型的开发者清晨：你正同时开启四个高强度任务窗口——左边在运行解释深度学习架构的交互式权杖网络，右边在实时生成复杂的植物生长动力学动画，第三个窗口是一个嵌套了物理引擎的网页版卡丁车，而第四个则在处理系外行星的实测数据追踪。</p>
+                <p>在过去，这 20 分钟的“极限输出”如果是由 OpenAI 的旗舰模型驱动，算力成本至少要烧掉上百美金。然而，当你盯着 OpenCode 账单上的数字时，却会陷入一种认知失调：按用量折算，这番暴力操作仅花费了 0.2 到 0.4 美元。</p>
+                <p>DeepSeek V4 的空降，不仅是一场产品的遭遇战，更是一场针对“算力霸权”的范式革命。它以一种近乎冷酷的极效比，强行将大模型应用推入了“分角时代”。</p>
+            </section>
+
+            <section class="section" id="scarcity">
+                <span class="section-kicker">02 / Scarcity As Weapon</span>
+                <h2>稀缺性的逻辑：作为地缘政治武器的路由算法</h2>
+                <p>DeepSeek V4 的诞生，本质上是一个在极端制裁阴影下的技术奇迹。当大洋彼岸的实验室在讨论如何消耗掉数万张 H100 显卡时，DeepSeek 面临的是近乎绝望的硬件荒原：没有单价 5 亿美元的 EUV 光刻机支持，无法大规模获取顶尖 GPU，甚至连算力集群都是由华为昇腾、旧款 NVIDIA A100 以及极少量非正规渠道进入的 H100 组成的“大杂烩”。</p>
+                <p>如果说 OpenAI 拥有的是全新的、双向八车道的“算力高速公路”，那么 DeepSeek 手里只有一张由“乡间土路”和破旧国道硬拼出来的交通网。在 1.6 万亿参数模型的训练中，异构芯片混用的底层通讯几乎是技术噩梦。</p>
+                <div class="route-map" aria-label="异构算力路由示意">
+                    <div class="route-node"><strong>Ascend</strong>国产算力入口</div>
+                    <div class="route-node"><strong>A100</strong>旧款稳定节点</div>
+                    <div class="route-node"><strong>H100</strong>稀缺峰值资源</div>
+                    <div class="route-node"><strong>Router</strong>零拥堵调度</div>
+                </div>
+                <p>然而，DeepSeek 的真正洞察在于其变态级的流量路由算法。他们意识到，限制算力的不是卡车的载重，而是网络的拥堵。通过这套算法，他们精准调度了每一束数据流，确保在这张“破旧土网”上实现了零拥堵，彻底榨干了每一滴残存算力。这不仅是技术的突破，更是对资源匮乏的暴力回应。</p>
+            </section>
+
+            <section class="section" id="architecture">
+                <span class="section-kicker">03 / Folded Compute</span>
+                <h2>告别“暴力美学”：算力平权下的深度折叠</h2>
+                <p>长期以来，AI 行业被一种“大力出奇迹”的逻辑统治，认为智能的深度必须由金钱和显存厚度来定义。DeepSeek V4 却通过对底层架构的极致压榨，掀翻了这张贵族游戏的牌桌。</p>
+                <ul class="note-list">
+                    <li><strong>极效能的 MoE 架构</strong>：虽有 1.6 万亿参数的惊人身量，但 DeepSeek V4 绝非“全脑运作”。通过专家模型架构，它在处理任务时仅激活约 470 亿参数。这种精准的局部激活，使其成为了一个极度节能的“庞大大脑”。</li>
+                    <li><strong>从“换大桌子”到“写速记”</strong>：相比于竞争对手通过不断增加显存（VRAM）来“换更大的桌子”以铺开 1000 页的参考书，DeepSeek V4 的核心创新 CSA（压缩系数注意力）与 HCA（重度压缩注意力）则选择了“写更好的速记”。它将前 900 页的上下文压缩成高密度的语义摘要，仅对当前关键点保持高分辨率注意力。</li>
+                    <li><strong>演化速度的范式转移</strong>：这种创新并非闭门造车。DeepSeek 大胆借鉴了国产开源模型 TM2.5 的优化器。这种开源社区内的“协同进化”，正在形成一种封闭实验室（如 OpenAI 或 Anthropic）难以企及的演化速率。</li>
+                </ul>
+            </section>
+
+            <section class="section" id="margin">
+                <span class="section-kicker">04 / The Missing 3 Percent</span>
+                <h2>消失的 3%：精英阶层的边际效应递减</h2>
+                <p>在基准测试的数字游戏里，DeepSeek V4 的表现极具冲击力。它在 SimpleQA 和代码能力（Code Forces）等实战测试中，直接击败了 o1-4.6 甚至 GPT-5.4。</p>
+                <p>尽管我们必须理智地承认：在 GPQA Diamond 专家推理和 SWE-bench Pro 软件工程等尖端测试中，DeepSeek V4 依然落后于 GPT-5.5 和 o1-4.7 约 3%。</p>
+                <p>但作为一个行业观察者，我们必须反思：这 3% 真的致命吗？在 97% 的日常开发、自动化流和企业级应用场景中，用户并不需要 AI 解决诺贝尔奖级的难题。当这种微小的性能阶级差距，撞上 7 倍的成本优势时，那 3% 的领先更像是属于“AI 高定”的溢价。对于大众市场而言，这笔昂贵的溢价正变得愈发难以解释。</p>
+            </section>
+
+            <section class="section" id="business">
+                <span class="section-kicker">05 / Disposable Intelligence</span>
+                <h2>商业逻辑的降维打击：当 AI 成为“一次性工具”</h2>
+                <p>当推理成本从百美元降至“角分”级别时，商业逻辑将发生根本性的扭转。</p>
+                <p>同样的 20 分钟高强度任务，在 OpenAI 体系下是数百美元的昂贵实验，在 DeepSeek V4 体系下则是 0.2 美元的日常消耗。这种成本的断崖式下跌，意味着 AI 正在从一种“珍稀资源”转变为一种“易耗品”。</p>
+                <p>这对企业主和开发者的诱惑是致命的。它意味着“进化工作室”模式的开启：开发者可以进行高频率的自博弈、暴力试错以及大规模的 Agent 自我演化，因为失败的成本已经低到可以忽略不计。这正是美国顶尖实验室感到焦虑的根源——DeepSeek 正在发动一场大模型界的“平权运动”。</p>
+            </section>
+
+            <section class="section" id="fragility">
+                <span class="section-kicker">06 / Fragile Miracle</span>
+                <h2>天才的代价：奇迹背后的“脆性”</h2>
+                <p>然而，作为一个理性的观察者，我们也必须直视这种“极端压榨”产物的硬伤。</p>
+                <p>首先是底层的脆弱性。DeepSeek V4 的训练周期长达 14 到 16 个月，而在 2025 年中期，该集群遭遇了一次严重的硬件故障，导致庞大的进度被迫重来。这揭示了在非标准异构硬件上构建奇迹的代价——系统极其脆弱。</p>
+                <p>其次是压缩后的性能断崖。虽然号称拥有百万 Token 窗口，但受 CSA 机制所限，当上下文超过 12.8 万或 20 万 Token 后，模型会出现明显的“健忘症”。摘要精度的丢失让它在处理超长文本时，稳定性远逊于 GPT-5.5。</p>
+                <div class="warning">使用 DeepSeek V4 就像雇佣了一个天才厨师却给了他一个空荡荡的厨房。缺乏 Agent Harness 等工具链时，开发者往往要用大量提示词和维护成本换取性能。</div>
+                <p>最后是交互的“原始感”。开发者往往需要手动编写数千字、包含复杂 HTML 格式的提示词来调教它。这种高昂的维护成本和“挤牙膏”式的响应速度，构成了它的准入门槛。</p>
+            </section>
+        </article>
+
+        <section class="closing-card" id="closing">
+            <h2>数字达尔文主义的赛点</h2>
+            <p>DeepSeek V4 的出现，标志着 AI 竞赛正式从“算力霸权时代”跨入了“极效比时代”。它用事实证明：在极度受限的环境下，架构创新可以强行抹平硬件的代差。</p>
+            <p>当开源社区在数月内迭代出量化版和配套工具链后，那些依然坚持“贵族游戏”、依赖暴力堆砌算力的霸权模型，还能维持多久的优越感？或许真正统治未来的，往往不是最强壮的，而是最高效的。</p>
+        </section>
+
+        <footer class="footer">
+            Digital Garden · DeepSeek V4 · Mobile First Reading
+        </footer>
+    </main>
+
+    <script>
+        const progressFill = document.querySelector(".progress-fill");
+        const navLinks = [...document.querySelectorAll(".quick-nav a")];
+        const sections = navLinks
+            .map((link) => document.querySelector(link.getAttribute("href")))
+            .filter(Boolean);
+
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const percent = maxScroll > 0 ? (scrollTop / maxScroll) * 100 : 0;
+            progressFill.style.width = `${percent}%`;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach((link) => {
+                    link.classList.toggle("active", link.getAttribute("href") === `#${entry.target.id}`);
+                });
+            });
+        }, {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0
+        });
+
+        sections.forEach((section) => observer.observe(section));
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        updateProgress();
+    </script>
+</body>
+</html>

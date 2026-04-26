@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第17期 - 数字花园</title>
+    <meta name="description" content="Digital Garden 第17期：DeepSeek V4 深度分析、量子力学科普，以及纽芬兰地图入口。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Source+Serif+4:wght@400;600&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1612;
+            --ink-soft: #3c352d;
+            --paper: #f4efe7;
+            --line: rgba(26, 22, 18, 0.14);
+            --line-strong: rgba(26, 22, 18, 0.24);
+            --muted: #7f7366;
+            --shadow: 0 16px 40px rgba(26, 22, 18, 0.08);
+            --ai: #264f93;
+            --quantum: #7a2f9e;
+            --map: #2b6f68;
+            --display: "Playfair Display", "Noto Serif SC", serif;
+            --serif: "Source Serif 4", "Noto Serif SC", serif;
+            --sans: "DM Sans", "PingFang SC", system-ui, sans-serif;
+            --mono: "DM Mono", "SFMono-Regular", monospace;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--sans);
+            background:
+                radial-gradient(circle at top left, rgba(38, 79, 147, 0.09), transparent 30%),
+                radial-gradient(circle at top right, rgba(122, 47, 158, 0.08), transparent 34%),
+                var(--paper);
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(0, 0, 0, 0.04);
+            z-index: 100;
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--ai), var(--quantum), var(--map));
+            transition: width 0.08s linear;
+        }
+
+        .masthead {
+            background: var(--ink);
+            color: var(--paper);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .masthead-inner,
+        .section-rail-inner,
+        .page,
+        .footer-inner {
+            width: min(calc(100% - 38px), var(--max));
+            margin: 0 auto;
+        }
+
+        .masthead-inner { padding: 28px 0 44px; }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .back-link,
+        .issue-stamp {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(244, 239, 231, 0.75);
+            border: 1px solid rgba(244, 239, 231, 0.16);
+            padding: 8px 12px;
+            border-radius: 2px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.7fr);
+            gap: 30px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(244, 239, 231, 0.48);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(2.4rem, 7vw, 5.3rem);
+            line-height: 0.95;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+        }
+
+        .hero-title .muted {
+            color: rgba(244, 239, 231, 0.48);
+            font-style: italic;
+        }
+
+        .hero-summary {
+            margin-top: 16px;
+            max-width: 60ch;
+            color: rgba(244, 239, 231, 0.78);
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .tag {
+            font-size: 0.84rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 12px;
+            color: rgba(244, 239, 231, 0.85);
+        }
+
+        .hero-meta {
+            display: grid;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-meta-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            color: rgba(244, 239, 231, 0.6);
+        }
+
+        .hero-meta-line strong {
+            color: rgba(244, 239, 231, 0.85);
+            font-weight: 500;
+        }
+
+        .section-rail {
+            position: sticky;
+            top: 3px;
+            z-index: 40;
+            background: rgba(244, 239, 231, 0.92);
+            border-bottom: 1px solid var(--line-strong);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-rail-inner {
+            padding: 12px 0;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .section-rail-inner::-webkit-scrollbar { display: none; }
+
+        .rail-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+
+        .rail-link:hover,
+        .rail-link.active {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.62);
+            border-color: var(--line);
+        }
+
+        .rail-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+
+        .rail-link.ai { --accent: var(--ai); }
+        .rail-link.quantum { --accent: var(--quantum); }
+        .rail-link.map { --accent: var(--map); }
+
+        .page { padding: 34px 0 80px; }
+
+        .story-grid {
+            display: grid;
+            gap: 26px;
+        }
+
+        .story {
+            background: rgba(255, 255, 255, 0.56);
+            border: 1px solid rgba(26, 22, 18, 0.1);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 84px;
+        }
+
+        .story-head {
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-label {
+            padding: 22px 16px;
+            background: var(--soft);
+            border-right: 1px solid rgba(26, 22, 18, 0.08);
+        }
+
+        .story-index {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .story-label h2 {
+            font-family: var(--display);
+            font-size: 1.58rem;
+            line-height: 1.04;
+            color: var(--accent);
+        }
+
+        .story-body { padding: 28px 28px 30px; }
+
+        .story-kicker {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+
+        .story-body h3 {
+            font-family: var(--display);
+            font-size: clamp(1.6rem, 2.8vw, 2.35rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+
+        .story-summary {
+            font-family: var(--serif);
+            font-size: 1.06rem;
+            color: var(--ink-soft);
+            max-width: 66ch;
+        }
+
+        .signal-list {
+            list-style: none;
+            display: grid;
+            gap: 10px;
+            margin: 18px 0 24px;
+        }
+
+        .signal-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+
+        .signal-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.8em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .story-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+
+        .story-note {
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 45ch;
+        }
+
+        .story-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            font-weight: 500;
+            transition: transform 140ms ease;
+        }
+
+        .story-link:hover { transform: translateY(-2px); }
+
+        .story.ai { --accent: var(--ai); --soft: rgba(38, 79, 147, 0.12); }
+        .story.quantum { --accent: var(--quantum); --soft: rgba(122, 47, 158, 0.12); }
+        .story.map { --accent: var(--map); --soft: rgba(43, 111, 104, 0.12); }
+
+        .bottom-nav {
+            margin-top: 38px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .bottom-nav a {
+            display: inline-flex;
+            align-items: center;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.58);
+            color: var(--ink-soft);
+        }
+
+        footer {
+            border-top: 1px solid var(--line);
+            margin-top: 48px;
+        }
+
+        .footer-inner {
+            padding: 24px 0 44px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: 0.93rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .story-head { grid-template-columns: 1fr; }
+            .story-label {
+                border-right: 0;
+                border-bottom: 1px solid rgba(26, 22, 18, 0.08);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .masthead-inner,
+            .section-rail-inner,
+            .page,
+            .footer-inner {
+                width: min(calc(100% - 26px), var(--max));
+            }
+            .topbar { flex-direction: column; align-items: flex-start; }
+            .hero-meta-line { display: grid; grid-template-columns: 1fr; }
+            .story-body { padding: 24px 18px 26px; }
+            .story-link { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 520px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-meta,
+            .story-label { padding: 16px; }
+            .story-body h3 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="topbar">
+                <a class="back-link" href="../../index.html">Back to Index</a>
+                <div class="issue-stamp">Issue 17 / 2026.04.26</div>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Digital Garden Curated Index</div>
+                    <h1 class="hero-title">Issue 17<span class="muted"> / AI, Quantum, Map</span></h1>
+                    <p class="hero-summary">
+                        第17期聚焦三件事：一是 DeepSeek V4 如何用工程效率挑战算力霸权；二是量子力学如何颠覆我们对现实的直觉；三是保留一个日常可用的纽芬兰地图入口。
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">DeepSeek V4</span>
+                        <span class="tag">AI 成本革命</span>
+                        <span class="tag">量子力学</span>
+                        <span class="tag">多世界诠释</span>
+                        <span class="tag">纽芬兰地图</span>
+                    </div>
+                </div>
+                <aside class="hero-meta">
+                    <div class="hero-meta-line"><span>Period</span><strong>2026-04-26</strong></div>
+                    <div class="hero-meta-line"><span>Stories</span><strong>03 Sections</strong></div>
+                    <div class="hero-meta-line"><span>Tone</span><strong>Tech / Science / Utility</strong></div>
+                    <div class="hero-meta-line"><span>Focus</span><strong>Efficiency, Reality, Local</strong></div>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-rail" aria-label="专题导航">
+        <div class="section-rail-inner">
+            <a class="rail-link ai" href="#deepseek"><span class="rail-dot"></span><span>DeepSeek</span></a>
+            <a class="rail-link quantum" href="#quantum"><span class="rail-dot"></span><span>Quantum</span></a>
+            <a class="rail-link map" href="#newfoundland-map"><span class="rail-dot"></span><span>Map</span></a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="story-grid">
+            <article id="deepseek" class="story ai">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 01</div>
+                        <h2>AI</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Model Engineering / Cost Shift</div>
+                        <h3>掀翻算力霸权：DeepSeek V4 如何在“土路”上跑赢旗舰模型？</h3>
+                        <p class="story-summary">这篇文章关注的不只是模型性能，而是“性能与成本曲线”本身：当推理成本从美元级降到角分级，AI 的主战场会从“谁最强”转向“谁最能规模化落地”。</p>
+                        <ul class="signal-list">
+                            <li>异构硬件训练下的流量调度，是 DeepSeek V4 的关键护城河之一。</li>
+                            <li>MoE 和压缩注意力将“参数总量”与“实际激活成本”拆开，重构成本结构。</li>
+                            <li>少量指标差距在大规模商业场景中，可能被显著成本优势反向覆盖。</li>
+                            <li>超长上下文稳定性与工具链成熟度，仍是下一阶段竞争焦点。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">如果你关注 AI 工程与产业趋势，这篇建议优先阅读。</p>
+                            <a class="story-link" href="./deepseek-v4.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="quantum" class="story quantum">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 02</div>
+                        <h2>Science</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Physics Primer / Reality Check</div>
+                        <h3>量子力学：5个颠覆常识的宇宙真相</h3>
+                        <p class="story-summary">这篇科普把量子力学里最常被误读的概念重新梳理：能量量子化、波粒二象性、双缝实验、薛定谔的猫和多世界诠释，帮助读者建立更完整的认知框架。</p>
+                        <ul class="signal-list">
+                            <li>从“紫外灾难”到普朗克假设，量子理论源于经典物理的失效点。</li>
+                            <li>光电效应揭示“频率阈值”比“光强”更关键，打破直觉。</li>
+                            <li>双缝实验说明观测行为会改变系统结果，是量子诡异性的核心。</li>
+                            <li>猫与多世界讨论把微观规律延展到现实哲学层面。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">适合想用一篇文章快速建立量子力学全局理解的读者。</p>
+                            <a class="story-link" href="./quantum-mechanics.html">打开完整科普</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="newfoundland-map" class="story map">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 03</div>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Useful Link / Local Utility</div>
+                        <h3>纽芬兰地图入口（圣约翰斯租房）</h3>
+                        <p class="story-summary">保持 Digital Garden 的实用传统：给出一个长期可用的纽芬兰地图入口，方便快速查看圣约翰斯及周边区域房源分布与更新信息。</p>
+                        <ul class="signal-list">
+                            <li>持续更新租房信息，适合作为常用查询入口。</li>
+                            <li>地图化呈现让区域判断和通勤规划更直观。</li>
+                            <li>在宏观内容之外，保留一条可直接落地使用的路径。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这部分强调“可立即使用”的本地价值。</p>
+                            <a class="story-link" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noreferrer">打开纽芬兰地图</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <nav class="bottom-nav" aria-label="页面底部导航">
+            <a href="../../index.html">返回首页</a>
+            <a href="../issue-16/issue-16.html">打开第16期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" target="_blank" rel="noreferrer">意见反馈</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p>© 2026 Digital Garden</p>
+            <p>Issue 17 作为专题导览页，链接到各篇独立 HTML 正文。</p>
+        </div>
+    </footer>
+
+    <script>
+        const progressFill = document.getElementById("progressFill");
+        const railLinks = Array.from(document.querySelectorAll(".rail-link"));
+        const sections = railLinks
+            .map((link) => {
+                const section = document.querySelector(link.getAttribute("href"));
+                return section ? { link, section } : null;
+            })
+            .filter(Boolean);
+
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const scrollHeight =
+                document.documentElement.scrollHeight - window.innerHeight;
+            const ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressFill.style.width = `${Math.min(Math.max(ratio, 0), 100)}%`;
+        }
+
+        function updateActiveRail() {
+            const threshold = window.innerHeight * 0.3;
+            let active = sections[0];
+
+            sections.forEach((item) => {
+                const rect = item.section.getBoundingClientRect();
+                if (rect.top <= threshold) {
+                    active = item;
+                }
+            });
+
+            railLinks.forEach((link) => link.classList.remove("active"));
+            if (active) {
+                active.link.classList.add("active");
+            }
+        }
+
+        function onScroll() {
+            updateProgress();
+            updateActiveRail();
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", onScroll);
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+    </script>
+</body>
+</html>

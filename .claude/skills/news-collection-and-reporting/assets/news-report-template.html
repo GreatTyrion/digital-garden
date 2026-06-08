@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Playfair+Display:wght@700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 北极光配色 - 冷色调与温暖点缀 */
+            --aurora-deep: #0a1628;
+            --aurora-mid: #1a2d4a;
+            --aurora-light: #2d4a6f;
+            --aurora-glow: #4ecdc4;
+            --aurora-pink: #ff6b9d;
+            --snow-white: #f8fafc;
+            --ice-blue: #e0f2fe;
+            --frost: #94a3b8;
+            
+            /* 类别颜色 */
+            --cat-weather: #38bdf8;
+            --cat-health: #34d399;
+            --cat-city: #a78bfa;
+            --cat-energy: #fb923c;
+            --cat-education: #f472b6;
+            --cat-environment: #84cc16;
+            --cat-community: #60a5fa;
+            
+            /* 字体 */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Noto Serif SC', serif;
+            --font-ui: 'Source Sans 3', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: linear-gradient(135deg, var(--aurora-deep) 0%, var(--aurora-mid) 50%, var(--aurora-light) 100%);
+            min-height: 100vh;
+            color: var(--snow-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* 极光动画背景 */
+        .aurora-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .aurora-wave {
+            position: absolute;
+            width: 200%; height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(78, 205, 196, 0.1) 25%, 
+                rgba(255, 107, 157, 0.08) 50%, 
+                rgba(78, 205, 196, 0.1) 75%, 
+                transparent 100%);
+            animation: auroraMove 20s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .aurora-wave:nth-child(2) { animation-delay: -7s; animation-duration: 25s; top: 20%; }
+        .aurora-wave:nth-child(3) { animation-delay: -14s; animation-duration: 30s; top: 40%; }
+
+        @keyframes auroraMove {
+            0%, 100% { transform: translateX(-25%); }
+            50% { transform: translateX(0%); }
+        }
+
+        /* 雪花效果 */
+        .snowflakes {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 1rem;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-10px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
+        }
+
+        /* 主容器 */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* 头部 */
+        header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .issue-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--aurora-glow), var(--aurora-pink));
+            color: var(--aurora-deep);
+            font-family: var(--font-ui);
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.4rem 1rem;
+            border-radius: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--snow-white) 0%, var(--aurora-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            color: var(--frost);
+            margin-bottom: 1.5rem;
+        }
+
+        .intro {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--ice-blue);
+            text-align: left;
+            line-height: 1.8;
+        }
+
+        /* 目录导航 */
+        .toc {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            animation: fadeIn 0.8s ease-out 0.3s backwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 2rem;
+            font-family: var(--font-ui);
+            font-size: 0.85rem;
+            color: var(--snow-white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .toc-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .toc-item.weather { border-color: var(--cat-weather); }
+        .toc-item.health { border-color: var(--cat-health); }
+        .toc-item.city { border-color: var(--cat-city); }
+        .toc-item.energy { border-color: var(--cat-energy); }
+        .toc-item.education { border-color: var(--cat-education); }
+        .toc-item.environment { border-color: var(--cat-environment); }
+        .toc-item.community { border-color: var(--cat-community); }
+
+        /* 新闻分类区块 */
+        .section {
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .section-icon { font-size: 1.5rem; }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--snow-white);
+        }
+
+        /* 新闻卡片 */
+        .news-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--card-accent, var(--aurora-glow));
+        }
+
+        .news-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(4px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .news-card.weather::before { background: var(--cat-weather); }
+        .news-card.health::before { background: var(--cat-health); }
+        .news-card.city::before { background: var(--cat-city); }
+        .news-card.energy::before { background: var(--cat-energy); }
+        .news-card.education::before { background: var(--cat-education); }
+        .news-card.environment::before { background: var(--cat-environment); }
+        .news-card.community::before { background: var(--cat-community); }
+
+        .news-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.8rem; height: 1.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .news-title {
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--snow-white);
+            margin-bottom: 0.75rem;
+            line-height: 1.5;
+        }
+
+        .news-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--frost);
+        }
+
+        .news-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .news-summary {
+            font-size: 0.9rem;
+            color: var(--ice-blue);
+            margin-bottom: 0.75rem;
+            line-height: 1.7;
+        }
+
+        .news-details {
+            display: none;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 0.75rem;
+        }
+
+        .news-card.expanded .news-details {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 500px; }
+        }
+
+        .detail-row { margin-bottom: 0.5rem; }
+
+        .detail-label {
+            font-family: var(--font-ui);
+            font-size: 0.75rem;
+            color: var(--frost);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .detail-content {
+            font-size: 0.9rem;
+            color: var(--ice-blue);
+        }
+
+        .news-source {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(78, 205, 196, 0.2);
+            border-radius: 1rem;
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            color: var(--aurora-glow);
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .news-source:hover { background: rgba(78, 205, 196, 0.3); }
+
+        .expand-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            background: transparent;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: var(--frost);
+            font-family: var(--font-ui);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .expand-btn:hover {
+            border-color: var(--aurora-glow);
+            color: var(--aurora-glow);
+        }
+
+        .expand-btn .arrow { transition: transform 0.3s ease; }
+        .news-card.expanded .expand-btn .arrow { transform: rotate(180deg); }
+
+        /* 总结区块 */
+        .summary-section {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(255, 107, 157, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1.5rem;
+            padding: 2rem 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .summary-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--aurora-glow), var(--aurora-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .highlight-list { list-style: none; }
+
+        .highlight-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .highlight-item:last-child { border-bottom: none; }
+
+        .highlight-number {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem; height: 2rem;
+            background: linear-gradient(135deg, var(--aurora-glow), var(--aurora-pink));
+            border-radius: 50%;
+            font-family: var(--font-ui);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--aurora-deep);
+        }
+
+        .highlight-content { flex: 1; }
+
+        .highlight-title {
+            font-weight: 600;
+            color: var(--snow-white);
+            margin-bottom: 0.3rem;
+        }
+
+        .highlight-desc {
+            font-size: 0.9rem;
+            color: var(--frost);
+            line-height: 1.6;
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            font-family: var(--font-ui);
+            color: var(--frost);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--aurora-glow);
+            text-decoration: none;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        .footer-logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--snow-white);
+            margin-bottom: 0.5rem;
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem; right: 1.5rem;
+            width: 3rem; height: 3rem;
+            background: linear-gradient(135deg, var(--aurora-glow), var(--aurora-pink));
+            border: none;
+            border-radius: 50%;
+            color: var(--aurora-deep);
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(78, 205, 196, 0.4);
+        }
+
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-3px); }
+
+        /* 响应式优化 */
+        @media (min-width: 640px) {
+            .container { padding: 2rem; }
+            header { padding: 4rem 2rem 3rem; }
+            .news-card { padding: 1.5rem; }
+            .news-meta { gap: 1.5rem; }
+        }
+
+        @media (max-width: 480px) {
+            .toc { gap: 0.4rem; }
+            .toc-item { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+            .news-title { font-size: 1rem; }
+            .summary-section { padding: 1.5rem 1rem; }
+        }
+
+        /* 打印样式 */
+        @media print {
+            .aurora-bg, .snowflakes, .back-to-top { display: none; }
+            body { background: white; color: #1a1a1a; }
+            .news-card { background: #f5f5f5; border: 1px solid #ddd; page-break-inside: avoid; }
+            .news-details { display: block !important; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 极光背景 -->
+    <div class="aurora-bg">
+        <div class="aurora-wave"></div>
+        <div class="aurora-wave"></div>
+        <div class="aurora-wave"></div>
+    </div>
+
+    <!-- 雪花效果 -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <div class="container">
+        <!-- 头部: {{HEADER_CONTENT}} -->
+        <header>
+            <span class="issue-badge">{{ISSUE_BADGE}}</span>
+            <h1>{{MAIN_TITLE}}</h1>
+            <p class="subtitle">{{SUBTITLE}}</p>
+            <div class="intro">{{INTRO_TEXT}}</div>
+        </header>
+
+        <!-- 目录导航: {{TOC_CONTENT}} -->
+        <nav class="toc">
+            <!-- 根据实际类别动态生成 -->
+        </nav>
+
+        <!-- 新闻内容: {{NEWS_SECTIONS}} -->
+        <main>
+            <!-- 按类别分组的新闻卡片 -->
+        </main>
+
+        <!-- 总结: {{SUMMARY_CONTENT}} -->
+        <section class="summary-section">
+            <h2 class="summary-title">📊 本期要点总结</h2>
+            <ul class="highlight-list">
+                <!-- 要点列表 -->
+            </ul>
+        </section>
+
+        <!-- 页脚 -->
+        <footer>
+            <div class="footer-logo">Digital Garden</div>
+            <p>{{FOOTER_TEXT}}</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="{{MD_FILE_LINK}}">查看 Markdown 原文</a>
+            </p>
+            <p style="margin-top: 1rem; opacity: 0.6;">© {{YEAR}} Digital Garden</p>
+        </footer>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // 雪花效果
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            const snowflakeCount = 20;
+            const snowflakeChars = ['❄', '❅', '❆', '✻', '✼'];
+
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                snowflake.style.animationDelay = (Math.random() * 10) + 's';
+                snowflake.style.fontSize = (Math.random() * 0.5 + 0.5) + 'rem';
+                container.appendChild(snowflake);
+            }
+        }
+
+        // 卡片展开/折叠
+        function toggleCard(btn) {
+            const card = btn.closest('.news-card');
+            card.classList.toggle('expanded');
+            const btnText = btn.querySelector('span:first-child');
+            btnText.textContent = card.classList.contains('expanded') ? '收起详情' : '查看详情';
+        }
+
+        // 返回顶部
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 显示/隐藏返回顶部按钮
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('backToTop');
+            btn.classList.toggle('visible', window.scrollY > 500);
+        });
+
+        // 滚动动画
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', createSnowflakes);
+    </script>
+</body>
+</html>

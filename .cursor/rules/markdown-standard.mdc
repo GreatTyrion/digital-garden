@@ -1,0 +1,135 @@
+---
+globs: *.md
+alwaysApply: false
+---
+# Cursor Rule: Markdown Auto-Formatting
+
+## Description
+
+Automatically enforce consistent, readable, and maintainable Markdown formatting across the project.
+
+## Rules
+
+Use standard Markdown format, following markdownlint rules.
+
+### Document Structure
+
+- Use only one top-level `#` heading per document at the beginning
+- Ensure heading hierarchy doesn't skip levels (e.g., `##` should not be followed by `####`)
+- Add blank lines before and after all headings
+- Use title case for main headings (## and above)
+- Use sentence case for subheadings (### and below)
+
+### Headings
+
+- Ensure exactly one space after `#` markers
+- Remove trailing `#` markers from headings
+- Use ATX-style headings (`#`) instead of setext-style (`===` or `---`)
+- Maintain consistent heading ID format when needed: `{#heading-id}`
+
+### Lists
+
+- Convert all unordered list markers (`*` or `+`) to `-`
+- Use `1.` for ordered lists with auto-numbering
+- Indent nested lists with exactly 2 spaces per level
+- Add blank line before and after list blocks
+- Use consistent spacing in list items (one space after marker)
+- For task lists, use `- [ ]` for unchecked and `- [x]` for checked items
+
+### Code and Syntax
+
+- Wrap multi-line code in fenced code blocks with language identifiers
+- Use single backticks for inline code: `code`
+- Add correct language identifier: ` ```python`, ` ```bash`, ` ```json`, etc.
+- Always specify a language for fenced code blocks (use `text` for plain text)
+- Ensure blank lines before and after code blocks
+- Preserve original indentation within code blocks
+- Use triple backticks (```` ``` ````) instead of indented code blocks for multi-line code
+
+### Links and References
+
+- Use `[text](url)` format for all links
+- Convert reference-style links to inline format when appropriate
+- Prefer relative paths for internal project links
+- Ensure link text is descriptive and meaningful
+- Format email links as `[email@example.com](mailto:email@example.com)`
+- Use angle brackets for bare URLs: `<https://example.com>`
+
+### Images
+
+- Use `![alt text](path/to/image.png)` format
+- Provide meaningful alt text for all images
+- Use relative paths when referencing project images
+- Add title attributes when helpful: `![alt](image.png "Title")`
+- Place images in appropriate subdirectories (prefer `images/` or `assets/`)
+
+### Tables
+
+- Use pipe-separated format with proper alignment
+- Include header separator row with appropriate alignment: `|---|`, `|:---|`, `|---:|`, `|:---:|`
+- Align pipes vertically for readability
+- Add blank lines before and after tables
+- Keep table content concise and readable
+- Use header row for all tables
+
+### Text Formatting
+
+- Use `**bold**` instead of `__bold__`
+- Use `*italic*` instead of `_italic_`
+- Avoid mixing emphasis styles within the same document
+- Use `***bold italic***` for combined emphasis
+- Avoid unnecessary nested emphasis
+
+### Blockquotes
+
+- Use `>` with exactly one space after for blockquotes
+- Nest blockquotes with `>>` for multiple levels
+- Add blank lines before and after blockquote blocks
+- Use proper attribution when quoting: `> Quote text — Author`
+
+### Horizontal Rules
+
+- Use `---` (three hyphens) for horizontal rules
+- Add blank lines before and after horizontal rules
+- Avoid using `***` or `___` for horizontal rules
+
+### Whitespace and Line Breaks
+
+- Use Unix line endings (LF)
+- Remove trailing whitespace from all lines
+- End files with a single newline character
+- Use blank lines to separate content blocks
+- Limit line length to 80 characters (except for code, tables, and long URLs)
+- Use two trailing spaces for hard line breaks when necessary
+
+### Special Characters
+
+- Escape special markdown characters when used literally: `\*`, `\_`, `\#`, etc.
+- Use HTML entities for special characters when needed: `&nbsp;`, `&lt;`, `&gt;`
+- Use proper quotation marks: `"smart quotes"` instead of `"straight quotes"`
+
+### Footnotes
+
+- Use numbered footnotes: `[^1]`, `[^2]`, etc.
+- Place footnote definitions at the end of the document
+- Format footnote definitions: `[^1]: Footnote content here.`
+
+### File Organization
+
+- Use lowercase filenames with hyphens: `my-document.md`
+- Include meaningful front matter when applicable
+- Organize content with consistent heading structure
+- Use descriptive filenames that reflect content
+
+### Quality Standards
+
+- Remove empty sections and redundant content
+- Ensure all links are functional and up-to-date
+- Use consistent terminology throughout
+- Spell-check all content
+- Replace raw HTML with Markdown equivalents where possible
+- Maintain consistent voice and tone
+
+## Intent
+
+Cursor should automatically format Markdown documents to enforce consistency, readability, and maintainability without requiring manual intervention, while preserving semantic meaning and content structure.

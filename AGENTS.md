@@ -63,6 +63,12 @@ Usage notes:
 </skill>
 
 <skill>
+<name>issue-writing</name>
+<description>Creates and updates Digital Garden issues in this repository. Use when the user asks to write an issue, format article Markdown, generate mobile-friendly issue or article HTML, add Newfoundland map links, or update index.html and README.md for a new issue.</description>
+<location>project</location>
+</skill>
+
+<skill>
 <name>mcp-builder</name>
 <description>Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).</description>
 <location>project</location>

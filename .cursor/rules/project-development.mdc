@@ -1,0 +1,294 @@
+---
+description: Comprehensive project development task breakdown and documentation generation system for systematic app development based on PRD and MVP specifications
+globs: docs/**/*.md,*.md,src/**/*,*.json,*.config.*
+alwaysApply: true
+---
+
+# 📋 Project Development Task Breakdown & Documentation System
+
+## Use Cases
+
+- Breaking down large development projects into manageable, actionable tasks
+- Generating comprehensive documentation for each development phase
+- Tracking progress and maintaining development context
+- Creating structured workflows from PRD and MVP documents to implementation
+- Ensuring complete coverage of technical, design, and architectural requirements
+
+## Key Rules
+
+- **ALWAYS** reference existing PRD and MVP documents (`@docs/PRD_02.md` and `@docs/MVP_SPECIFICATION_02.md`) when decomposing tasks
+- **IMMEDIATELY** use `todo_write` tool to create task breakdown when starting new development phases
+- **GENERATE** corresponding documentation for each major task category
+- **TRACK** completion status and update todos throughout development
+- **MAINTAIN** clear task hierarchy: Epic → Feature → Task → Subtask
+- **CREATE** documentation files in organized folder structure under `docs/development/`
+- **LINK** all generated documents to their corresponding tasks and requirements
+- **ENSURE** each task has clear acceptance criteria and deliverables
+
+## Task Categories & Documentation Requirements
+
+### 📐 1. Product Design & Prototyping
+
+**Generated Documents:**
+
+- `docs/development/design/ui-ux-specification.md`
+- `docs/development/design/user-flow-diagrams.md`
+- `docs/development/design/component-library-spec.md`
+- `docs/development/design/accessibility-guidelines.md`
+
+**Tasks Include:**
+
+- User interface mockups and wireframes
+- User experience flow mapping
+- Component design system
+- Accessibility compliance planning
+
+### 🏗️ 2. System Architecture & Technical Design
+
+**Generated Documents:**
+
+- `docs/development/architecture/system-architecture.md`
+- `docs/development/architecture/technology-stack.md`
+- `docs/development/architecture/deployment-strategy.md`
+- `docs/development/architecture/security-architecture.md`
+
+**Tasks Include:**
+
+- Overall system architecture design
+- Technology stack selection and justification
+- Deployment and infrastructure planning
+- Security and compliance implementation
+
+### 🗃️ 3. Database & Data Modeling
+
+**Generated Documents:**
+
+- `docs/development/database/data-model-design.md`
+- `docs/development/database/database-schema.md`
+- `docs/development/database/migration-strategy.md`
+- `docs/development/database/data-flow-diagrams.md`
+
+**Tasks Include:**
+
+- Entity relationship modeling
+- Database schema design
+- Data migration planning
+- Performance optimization strategy
+
+### 🔌 4. API & Interface Design
+
+**Generated Documents:**
+
+- `docs/development/api/api-specification.md`
+- `docs/development/api/authentication-flow.md`
+- `docs/development/api/error-handling-strategy.md`
+- `docs/development/api/integration-testing-plan.md`
+
+**Tasks Include:**
+
+- RESTful API endpoint design
+- Authentication and authorization flows
+- Data validation and error handling
+- API testing and documentation
+
+### 📱 5. Frontend Development
+
+**Generated Documents:**
+
+- `docs/development/frontend/component-architecture.md`
+- `docs/development/frontend/state-management-strategy.md`
+- `docs/development/frontend/responsive-design-plan.md`
+- `docs/development/frontend/performance-optimization.md`
+
+**Tasks Include:**
+
+- Component development and organization
+- State management implementation
+- User interface implementation
+- Performance and optimization
+
+### ⚙️ 6. Backend Development
+
+**Generated Documents:**
+
+- `docs/development/backend/service-architecture.md`
+- `docs/development/backend/business-logic-design.md`
+- `docs/development/backend/data-processing-flows.md`
+- `docs/development/backend/monitoring-strategy.md`
+
+**Tasks Include:**
+
+- Business logic implementation
+- Service layer development
+- Data processing and validation
+- Monitoring and logging setup
+
+### 🧪 7. Testing & Quality Assurance
+
+**Generated Documents:**
+
+- `docs/development/testing/test-strategy.md`
+- `docs/development/testing/test-cases.md`
+- `docs/development/testing/automation-plan.md`
+- `docs/development/testing/performance-testing.md`
+
+**Tasks Include:**
+
+- Unit testing implementation
+- Integration testing setup
+- End-to-end testing strategy
+- Performance and load testing
+
+### 🚀 8. Deployment & DevOps
+
+**Generated Documents:**
+
+- `docs/development/deployment/deployment-guide.md`
+- `docs/development/deployment/ci-cd-pipeline.md`
+- `docs/development/deployment/environment-setup.md`
+- `docs/development/deployment/rollback-strategy.md`
+
+**Tasks Include:**
+
+- CI/CD pipeline setup
+- Environment configuration
+- Deployment automation
+- Monitoring and alerting
+
+## Task Breakdown Workflow
+
+### Phase 1: Analysis & Planning
+
+1. **Analyze Requirements**: Review PRD and MVP documents thoroughly
+2. **Create Epic-Level Tasks**: Break down into major development phases
+3. **Generate Planning Documents**: Create initial architecture and design documents
+4. **Define Success Criteria**: Establish clear acceptance criteria for each epic
+
+### Phase 2: Design & Architecture
+
+1. **System Design**: Create detailed system architecture
+2. **Database Design**: Model data structures and relationships
+3. **API Design**: Define interfaces and data contracts
+4. **UI/UX Design**: Create user interface specifications
+
+### Phase 3: Implementation
+
+1. **Setup Development Environment**: Configure tools and dependencies
+2. **Backend Development**: Implement server-side logic and APIs
+3. **Frontend Development**: Build user interfaces and client-side logic
+4. **Integration**: Connect frontend and backend components
+
+### Phase 4: Testing & Deployment
+
+1. **Testing Implementation**: Write and execute comprehensive tests
+2. **Performance Optimization**: Optimize for speed and efficiency
+3. **Deployment Setup**: Configure production environment
+4. **Launch Preparation**: Final testing and launch planning
+
+## Documentation Standards
+
+### Document Structure
+
+```markdown
+# [Document Title]
+
+## Overview
+- Purpose and scope
+- Related requirements from PRD/MVP
+
+## Technical Specifications
+- Detailed technical requirements
+- Implementation guidelines
+
+## Dependencies
+- Prerequisites and dependencies
+- Related tasks and documents
+
+## Acceptance Criteria
+- Clear success metrics
+- Testing requirements
+
+## Implementation Notes
+- Key considerations
+- Potential challenges and solutions
+
+## Progress Tracking
+- Current status
+- Completed items
+- Next steps
+```
+
+### File Naming Conventions
+
+- Use kebab-case for file names
+- Include version numbers for major updates
+- Organize by category in appropriate subdirectories
+- Link back to source requirements
+
+## Examples
+
+**Good Task Breakdown:**
+
+Epic: User Authentication System
+├── Feature: User Registration
+│   ├── Task: Email validation
+│   ├── Task: Password strength requirements
+│   └── Task: Parent consent for minors
+├── Feature: Login/Logout
+│   ├── Task: Session management
+│   └── Task: Remember me functionality
+└── Feature: Role-based access
+    ├── Task: Player permissions
+    ├── Task: Parent permissions
+    └── Task: Coach permissions
+
+**Generated Documents:**
+
+- `docs/development/authentication/auth-system-design.md`
+- `docs/development/authentication/user-roles-specification.md`
+- `docs/development/authentication/security-requirements.md`
+
+**Poor Task Breakdown:**
+
+- Build authentication ❌ (too vague)
+- Make login work ❌ (no clear scope)
+- Add users ❌ (missing requirements)
+
+**Missing Documentation:**
+
+- No technical specifications
+- No acceptance criteria
+- No progress tracking
+
+## Progress Tracking Requirements
+
+- **Use `todo_write` tool** for all task management
+- **Update status** immediately when tasks are completed
+- **Mark dependencies** clearly between tasks
+- **Document blockers** and resolution strategies
+- **Track time estimates** vs actual completion times
+- **Maintain context** between development sessions
+
+## Quality Gates
+
+### Before Task Creation
+
+- Requirements clearly understood from PRD/MVP
+- Dependencies identified and documented
+- Acceptance criteria defined
+- Estimation completed
+
+### Before Task Completion
+
+- Implementation meets acceptance criteria
+- Documentation updated
+- Tests written and passing
+- Code reviewed and approved
+- Integration verified
+
+### Before Phase Completion
+
+- All phase tasks completed
+- Documentation generated and reviewed
+- Integration testing completed
+- Stakeholder approval obtained

@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 | ----- | ---- | ----------- | -------- |
+| [#20](posts/issue-20/issue-20.md) | 2026-07-22 | 五个地缘真相、Kimi K3 开源巨兽与纽芬兰地图入口 | 🌍, 🤖, 🗺️ |
 | [#19](posts/issue-19/issue-19.md) | 2026-06-27 | 六月变局与系统性危机、AI时代的代码审查与纽芬兰地图 | 🌍, 📉, 💻, 🗺️ |
 | [#18](posts/issue-18/issue-18.md) | 2026-06-08 | 石油美元黄昏、AI重创印度IT对加拿大冲击与纽芬兰地图入口 | 🛢️, 🤖, 🇨🇦, 🗺️ |
 | [#17](posts/issue-17/issue-17.md) | 2026-04-26 | 聚焦 DeepSeek V4、量子力学认知重构与纽芬兰地图入口 | 🤖, ⚛️, 🗺️ |

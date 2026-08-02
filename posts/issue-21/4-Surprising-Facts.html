@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>掘金真相：全球博弈“杀猪盘”里的四个硬核反直觉真相</title>
+    <meta name="description" content="从国产 DUV 量产、高油价杀猪盘，到乌克兰讨薪式袭击与沙特核协议——四个刺穿直觉的全球博弈硬核真相。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --void: #101418;
+            --ink: #1a222c;
+            --ink-soft: #3a4654;
+            --surface: #eceff2;
+            --surface-deep: #dde3e9;
+            --signal: #c8922a;
+            --signal-dim: rgba(200, 146, 42, 0.14);
+            --steel: #2f5d6f;
+            --line: rgba(26, 34, 44, 0.12);
+            --line-strong: rgba(26, 34, 44, 0.24);
+            --muted: #6d7884;
+            --display: "Syne", "PingFang SC", "Noto Sans SC", sans-serif;
+            --body: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+            --mono: "JetBrains Mono", "SFMono-Regular", monospace;
+            --max-w: 720px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--body);
+            background:
+                radial-gradient(900px 420px at 0% -5%, rgba(200, 146, 42, 0.1), transparent 55%),
+                radial-gradient(800px 380px at 100% 8%, rgba(47, 93, 111, 0.1), transparent 50%),
+                linear-gradient(165deg, #f4f6f8 0%, var(--surface) 45%, var(--surface-deep) 100%);
+            color: var(--ink);
+            line-height: 1.85;
+            font-size: 1.06rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            background:
+                repeating-linear-gradient(
+                    -18deg,
+                    transparent,
+                    transparent 46px,
+                    rgba(26, 34, 44, 0.03) 46px,
+                    rgba(26, 34, 44, 0.03) 47px
+                );
+            mask-image: linear-gradient(180deg, #000 0%, transparent 88%);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: rgba(26, 34, 44, 0.06);
+            z-index: 200;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--steel), var(--signal));
+            transition: width 80ms linear;
+        }
+
+        .topnav {
+            position: sticky;
+            top: 3px;
+            z-index: 100;
+            background: rgba(236, 239, 242, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .topnav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topnav a {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 160ms ease, border-color 160ms ease;
+        }
+        .topnav a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--signal);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 52px 20px 26px;
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--steel);
+            margin-bottom: 18px;
+        }
+        .hero-kicker::before {
+            content: "";
+            width: 22px; height: 2px;
+            background: var(--signal);
+        }
+        .hero h1 {
+            font-family: var(--display);
+            font-size: clamp(1.85rem, 5.6vw, 2.85rem);
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            color: var(--void);
+            margin-bottom: 18px;
+            max-width: 14ch;
+        }
+        .hero-lead {
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            max-width: 52ch;
+            line-height: 1.75;
+        }
+        .hero-meta {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .hero-tape {
+            margin-top: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--signal), var(--steel), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-tape::after {
+            content: "";
+            position: absolute;
+            top: -2px; left: -25%;
+            width: 22%; height: 6px;
+            background: rgba(255, 255, 255, 0.65);
+            animation: sweep 3.4s ease-in-out infinite;
+        }
+
+        .section-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 28px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            opacity: 0;
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+        }
+        .section-nav::-webkit-scrollbar { display: none; }
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.4);
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .section-nav a:hover {
+            color: var(--ink);
+            border-color: var(--signal);
+            background: var(--signal-dim);
+        }
+
+        article {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px 56px;
+        }
+
+        .section-block {
+            scroll-margin-top: 76px;
+            padding-top: 40px;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .section-block:nth-of-type(1) { animation-delay: 180ms; }
+        .section-block:nth-of-type(2) { animation-delay: 220ms; }
+        .section-block:nth-of-type(3) { animation-delay: 260ms; }
+        .section-block:nth-of-type(4) { animation-delay: 300ms; }
+        .section-block:nth-of-type(5) { animation-delay: 340ms; }
+        .section-block + .section-block {
+            border-top: 1px solid var(--line);
+        }
+
+        .truth-mark {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .truth-num {
+            font-family: var(--display);
+            font-size: 2.2rem;
+            line-height: 1;
+            font-weight: 800;
+            color: var(--signal);
+            letter-spacing: -0.04em;
+        }
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--steel);
+        }
+
+        article h2 {
+            font-family: var(--display);
+            font-size: clamp(1.35rem, 3.6vw, 1.8rem);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            color: var(--void);
+            margin-bottom: 16px;
+            max-width: 24ch;
+        }
+        article p {
+            margin-bottom: 16px;
+            max-width: 62ch;
+            color: var(--ink-soft);
+        }
+        article p strong { color: var(--ink); font-weight: 600; }
+
+        blockquote {
+            margin: 24px 0;
+            padding: 18px 20px 18px 22px;
+            border-left: 3px solid var(--signal);
+            background: linear-gradient(90deg, var(--signal-dim), transparent 85%);
+            max-width: 60ch;
+        }
+        blockquote p {
+            margin: 0;
+            font-size: 1.12rem;
+            line-height: 1.65;
+            color: var(--ink);
+            font-style: italic;
+        }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 22px 0 8px;
+        }
+        .stat {
+            padding: 14px 12px;
+            border-top: 2px solid var(--void);
+            background: rgba(255, 255, 255, 0.5);
+        }
+        .stat .n {
+            font-family: var(--display);
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--void);
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+        }
+        .stat .l {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .ending {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 40px;
+        }
+        .ending-block {
+            scroll-margin-top: 76px;
+            padding: 34px 0 8px;
+            border-top: 2px solid var(--void);
+        }
+        .ending-block h2 {
+            font-family: var(--display);
+            font-size: clamp(1.4rem, 3.8vw, 1.9rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+            color: var(--void);
+        }
+        .ending-block p {
+            color: var(--ink-soft);
+            max-width: 58ch;
+            margin-bottom: 14px;
+            line-height: 1.85;
+        }
+        .ending-block blockquote {
+            margin: 20px 0;
+        }
+
+        .bottom-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px 48px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .bottom-nav a {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .bottom-nav a:hover {
+            color: var(--ink);
+            border-color: var(--signal);
+            background: var(--signal-dim);
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--line);
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 18px 20px 40px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        @keyframes rise-in {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes sweep {
+            0% { left: -25%; }
+            100% { left: 120%; }
+        }
+
+        @media (max-width: 940px) {
+            .hero h1 { max-width: 16ch; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1rem; }
+            .hero { padding: 40px 16px 22px; }
+            .hero h1 { font-size: 1.7rem; max-width: none; }
+            .hero-lead { font-size: 0.98rem; }
+            .section-nav { padding: 4px 16px 22px; }
+            article { padding: 0 16px 40px; }
+            .section-block { padding-top: 32px; }
+            .truth-num { font-size: 1.85rem; }
+            blockquote { padding: 14px 14px 14px 16px; }
+            blockquote p { font-size: 1.04rem; }
+            .stat-row { grid-template-columns: 1fr; }
+            .ending { padding: 0 16px 28px; }
+            .bottom-nav { padding: 8px 16px 36px; }
+            footer { padding: 16px 16px 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .hero,
+            .section-nav,
+            .section-block {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+            .hero-tape::after { animation: none; display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <a href="../../index.html">← Digital Garden</a>
+            <span>Issue 21 / Briefing</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-kicker">Four Hard Truths</div>
+        <h1>掘金真相：全球博弈“杀猪盘”</h1>
+        <p class="hero-lead">四个足以刺穿直觉的硬核真相——光刻、油价、里海与核协议背后，是一场底层逻辑重构下的全球收割。</p>
+        <div class="hero-meta">
+            <span>Digital Garden · 第 21 期</span>
+            <span>芯片 · 能源 · 地缘</span>
+        </div>
+        <div class="hero-tape" aria-hidden="true"></div>
+    </header>
+
+    <nav class="section-nav" aria-label="章节导航">
+        <a href="#intro">引言</a>
+        <a href="#truth-1">DUV 板砖</a>
+        <a href="#truth-2">油价杀猪盘</a>
+        <a href="#truth-3">讨薪式袭击</a>
+        <a href="#truth-4">潘多拉魔盒</a>
+        <a href="#conclusion">结语</a>
+    </nav>
+
+    <article>
+        <section id="intro" class="section-block" style="border-top: none; padding-top: 0;">
+            <p>最近的全球金融市场与地缘前线，上演了一出极其荒诞且血腥的“拼盘剧”。原本在盘中上扬的全球光刻机霸主阿斯麦（ASML），股价毫无征兆地开启了“腹泻式”暴跌，单日重挫 8.3%；随后，震中转移至亚洲，韩国股市重挫 8%，SK 海力士破发，日本铠侠大跌 10%。与此同时，乌克兰竟然在远离战场的里海，精准炸毁了伊朗的货船。</p>
+            <p>如果你只看到这些表面的动荡，那说明你还没看清那只正在全球范围内疯狂收割的“无形之手”。这并非简单的市场波动，而是一场底层逻辑重构下的全球博弈。在这一系列看似孤立的“惊悚片”背后，隐藏着四个足以刺穿你直觉的硬核真相。</p>
+            <div class="stat-row" aria-label="市场冲击速览">
+                <div class="stat">
+                    <div class="n">−8.3%</div>
+                    <div class="l">ASML 单日跌幅</div>
+                </div>
+                <div class="stat">
+                    <div class="n">−8%</div>
+                    <div class="l">韩国股市重挫</div>
+                </div>
+                <div class="stat">
+                    <div class="n">−10%</div>
+                    <div class="l">日本铠侠大跌</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="truth-1" class="section-block">
+            <div class="truth-mark">
+                <span class="truth-num">01</span>
+                <span class="section-label">Truth One</span>
+            </div>
+            <h2>国产 DUV 量产，不仅是“脖子粗了”，更是刺破泡沫的板砖</h2>
+            <p>很多人将阿斯麦、三星、海力士的股价崩盘归结为中国量产光刻机的消息，这其实只看对了一半。国产 DUV 量产的消息，更像是拍倒骆驼的“最后一块板砖”。</p>
+            <p>据权威渠道披露，上海某企业已开始小规模量产首款国产浸没式 DUV 光刻机，并计划到 2027 年将产量提升。这绝非实验室里的“原型机”，而是标志着供应链成本控制和工艺流程已经全线跑通的量产机。它覆盖 28nm、并能通过多重曝光上探至 7nm 的特性，直接覆盖了中国 90% 以上的芯片需求——从手机到汽车，从服务器到 AI 算力。</p>
+            <blockquote>
+                <p>这就是过去七年间中国芯片行业脖子上的那只手。2019 年这只手掐得最紧的时候，我们付了钱，等了两载多，却依旧拿不到货……人家不要钱，人家就是想要你芯片产业的命。</p>
+            </blockquote>
+            <p>然而，ASML 们的崩盘，更深层的逻辑在于美国正在进行的<strong>“红吸”效应</strong>。以日本为例，其资本市场表现得像一个“配合度极高”的红牌姑娘，任由美国财政部一边通过报告指责日元被低估，一边通过利差收割。韩国外资仅 5 月份就撤走了 480 亿美元，上半年累计撤走 1100 亿。美国正在有计划地吸干亚洲半导体节点上的流动性，而中国光刻机的突破，则让这些被吸干的“亚洲血包”彻底失去了未来预期的支撑。</p>
+            <div class="stat-row" aria-label="资金外流数据">
+                <div class="stat">
+                    <div class="n">480 亿</div>
+                    <div class="l">5 月韩国外资撤离（美元）</div>
+                </div>
+                <div class="stat">
+                    <div class="n">1100 亿</div>
+                    <div class="l">上半年累计撤离</div>
+                </div>
+                <div class="stat">
+                    <div class="n">90%+</div>
+                    <div class="l">国产 DUV 覆盖需求</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="truth-2" class="section-block">
+            <div class="truth-mark">
+                <span class="truth-num">02</span>
+                <span class="section-label">Truth Two</span>
+            </div>
+            <h2>高油价的背后，是一场精心策划的“杀猪盘”</h2>
+            <p>我们常听见美国喊着要降油价，但看特朗普及其背后的金融资本在做什么？他们正在经营一场针对全球资本的“杀猪盘”。</p>
+            <p>美国一边通过情报“指哪打哪”，让乌克兰精准拆掉俄罗斯的炼油厂；另一边利用中东乱局，让布伦特原油稳稳站在 80 美元甚至 100 美元的高位。这背后的逻辑极度阴冷：高油价让美国石油巨头大赚，同时支撑美元指数走强，逼迫全球资本回流美国“避险”。更精妙的是，他们将核心 CPI 控制在美联储不需要暴力加息、却能维持操作空间的边缘。</p>
+            <p>为了封死这个“杀猪盘”的出口，美国甚至玩了一手“死人比活人好用”的政治戏码。鹰派参议员林赛·格雷厄姆去世后，特朗普将那个曾被多方抵制、旨在对购买俄/伊石油的国家征收 100% 惩罚性关税的法案，更名为<strong>《林赛·格雷厄姆制裁法案》</strong>。在这种“悼念逝者”的政治正确压力下，参议院以压倒性优势通过了程序投票。这不仅是为了制裁，更是为了锁定全球能源成本，让全球资本在名为“通胀”的屠宰场里无法动弹。</p>
+        </section>
+
+        <section id="truth-3" class="section-block">
+            <div class="truth-mark">
+                <span class="truth-num">03</span>
+                <span class="section-label">Truth Three</span>
+            </div>
+            <h2>乌克兰的“讨薪式”袭击与被废掉的命脉</h2>
+            <p>乌克兰为何要在里海炸伊朗船？这绝非为了讨好美国，而是一次“农民工讨薪”式的反戈一击。</p>
+            <p>真相极其冷酷：乌克兰的外汇生命线已被彻底废掉。7 月 18 日，由于一艘外籍商船在奥德萨港被“不小心”命中，这个承担乌克兰 60% 小麦出口、承载北约援乌物资唯一的深水港已事实上陷入瘫痪。没有了港口，乌克兰就失去了外汇，成了依赖波兰陆路运输的“残废国家”。</p>
+            <p>乌克兰看透了美国的嘴脸：美国催着它去前线拼命、给它情报去炸俄罗斯，但在乌克兰遭遇报复性打击、港口停摆时，美国却忙着去中东调节油价。于是，在 7 月 24 日美国宣布暂停打击胡塞武装的 24 小时后，乌克兰于 25 日凌晨在里海捅了伊朗这个马蜂窝。这就像一个被大哥利用完的“小弟”，在双方打算停火休息时，突然从背后踹了对手一脚。乌克兰通过这种极端方式，强行把自己塞回了牌桌——“如果我的账单没人付，那就谁也别想下桌。”</p>
+        </section>
+
+        <section id="truth-4" class="section-block">
+            <div class="truth-mark">
+                <span class="truth-num">04</span>
+                <span class="section-label">Truth Four</span>
+            </div>
+            <h2>沙特核协议与被打开的“潘多拉魔盒”</h2>
+            <p>美国与沙特签署的为期 30 年的民用核能合作协议，是一个极具破坏性的先例。这协议不接受国际原子能机构（IAEA）监督，只接受美国监管。这种“流氓式”的单边操作，彻底粉碎了全球核不扩散体系。</p>
+            <p>最荒诞的细节在于，特朗普在签署协议后的 24 小时内，竟然通过社交媒体单方面翻脸，强行给协议加码，要求沙特必须签署《亚伯拉罕协议》与以色列建交，否则协议作废。这种赌徒式的外交不仅激怒了沙特，更引来了恐怖的“即时报应”：就在美沙签约当天，俄罗斯外长拉夫罗夫针锋相对地表示，俄罗斯将不再支持朝鲜半岛无核化立场。</p>
+            <blockquote>
+                <p>我们对越南根本没有军事战略，我们在阿富汗根本没有获胜的军事战略，我们在伊拉克没有获胜的军事战略，而我们现在在伊朗也没有获胜的军事战略……这是一种孤注一掷。</p>
+            </blockquote>
+            <p>米尔斯海默教授的评价一针见血。这种没有获胜战略、只会不断“加倍下注”的赌徒行为，正让全球安全局势像脱缰野马一样滑向深渊。</p>
+        </section>
+    </article>
+
+    <div class="ending">
+        <div class="ending-block" id="conclusion">
+            <h2>结语：在“人民战争的汪洋大海”中寻找新路</h2>
+            <p>当霸权国家忙着修筑技术、金融与军事壁垒，试图在废墟上继续收割时，一种反差性的逻辑正在全球南方国家中蔓延。</p>
+            <p>与美国封闭的“墙”不同，中国正在走一条海纳百川的路：从长鑫存储市值超越英特尔，到 K3 开源 2.8 万亿参数的全球最大模型，中国正在向世界提供低成本、高效率的替代方案。这不仅是硬件的追赶，更是软实力的重构。</p>
+            <blockquote>
+                <p>世上本没有路，走的人多了，便成了路。</p>
+            </blockquote>
+            <p>当霸权国家被迫在自己亲手点燃的烽火中支付日益昂贵的代价时，谁才是那个真正掌握了未来钥匙的人？当越来越多的国家选择在封锁之外寻找生机，旧的秩序终将在人民战争的汪洋大海中，交出那把早已锈迹斑斑的权杖。</p>
+        </div>
+    </div>
+
+    <nav class="bottom-nav" aria-label="页面底部导航">
+        <a href="./issue-21.html">← 返回第21期</a>
+        <a href="../../index.html">首页</a>
+        <a href="./July-of-Broken-Rules.html">下一篇：规则崩塌的七月</a>
+        <a href="./4-Surprising-Facts.md">查看 Markdown</a>
+    </nav>
+
+    <footer>
+        <span>© 2026 Digital Garden</span>
+        <span>Issue 21 · 四个反直觉真相</span>
+    </footer>
+
+    <script>
+        const fill = document.getElementById("progressFill");
+        function updateProgress() {
+            const top = window.scrollY;
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            fill.style.width = h > 0 ? Math.min(Math.max(top / h * 100, 0), 100) + "%" : "0%";
+        }
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("load", updateProgress);
+    </script>
+</body>
+</html>

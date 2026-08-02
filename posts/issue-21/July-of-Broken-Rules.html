@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>规则崩塌的七月：美国在“收税”，韩国在“梭哈”，而我们在寻找确定性</title>
+    <meta name="description" content="从 USMCA 每年一审、海上收费站，到 AI 淘金裂痕与韩国末世赌局——七月规则崩塌中的七个关键看点。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #122033;
+            --ink-soft: #3a4d63;
+            --void: #0a1624;
+            --paper: #e9eef5;
+            --paper-deep: #d8e1ec;
+            --foam: #f7fafc;
+            --flare: #d64045;
+            --flare-dim: rgba(214, 64, 69, 0.12);
+            --sea: #1f6f7a;
+            --line: rgba(18, 32, 51, 0.12);
+            --muted: #6a7b8c;
+            --display: "Bricolage Grotesque", "PingFang SC", "Noto Sans SC", sans-serif;
+            --body: "Literata", "Noto Serif SC", Georgia, serif;
+            --mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+            --max-w: 720px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--body);
+            background:
+                radial-gradient(1000px 480px at 85% -8%, rgba(214, 64, 69, 0.1), transparent 55%),
+                radial-gradient(900px 420px at -5% 12%, rgba(31, 111, 122, 0.12), transparent 50%),
+                linear-gradient(180deg, #f2f6fa 0%, var(--paper) 42%, var(--paper-deep) 100%);
+            color: var(--ink);
+            line-height: 1.85;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.45;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(31, 111, 122, 0.05) 0 1px, transparent 1.5px),
+                radial-gradient(circle at 80% 70%, rgba(214, 64, 69, 0.04) 0 1px, transparent 1.5px);
+            background-size: 28px 28px, 36px 36px;
+            mask-image: linear-gradient(180deg, #000 0%, transparent 86%);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: rgba(18, 32, 51, 0.06);
+            z-index: 200;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--sea), var(--flare));
+            transition: width 80ms linear;
+        }
+
+        .topnav {
+            position: sticky;
+            top: 3px;
+            z-index: 100;
+            background: rgba(233, 238, 245, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .topnav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topnav a {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 160ms ease, border-color 160ms ease;
+        }
+        .topnav a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--flare);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 52px 20px 26px;
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--sea);
+            margin-bottom: 18px;
+        }
+        .hero-kicker::before {
+            content: "";
+            width: 22px; height: 2px;
+            background: var(--flare);
+        }
+        .hero h1 {
+            font-family: var(--display);
+            font-size: clamp(1.8rem, 5.4vw, 2.75rem);
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            color: var(--void);
+            margin-bottom: 18px;
+            max-width: 13ch;
+        }
+        .hero-lead {
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            max-width: 52ch;
+            line-height: 1.75;
+        }
+        .hero-meta {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .hero-wave {
+            margin-top: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--flare), var(--sea), transparent);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-wave::after {
+            content: "";
+            position: absolute;
+            top: -2px; left: -25%;
+            width: 22%; height: 6px;
+            background: rgba(255, 255, 255, 0.7);
+            animation: sweep 3.4s ease-in-out infinite;
+        }
+
+        .section-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 28px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            opacity: 0;
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+        }
+        .section-nav::-webkit-scrollbar { display: none; }
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.45);
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .section-nav a:hover {
+            color: var(--ink);
+            border-color: var(--flare);
+            background: var(--flare-dim);
+        }
+
+        article {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px 56px;
+        }
+
+        .section-block {
+            scroll-margin-top: 76px;
+            padding-top: 40px;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .section-block:nth-of-type(1) { animation-delay: 160ms; }
+        .section-block:nth-of-type(2) { animation-delay: 200ms; }
+        .section-block:nth-of-type(3) { animation-delay: 240ms; }
+        .section-block:nth-of-type(4) { animation-delay: 280ms; }
+        .section-block:nth-of-type(5) { animation-delay: 320ms; }
+        .section-block:nth-of-type(6) { animation-delay: 360ms; }
+        .section-block:nth-of-type(7) { animation-delay: 400ms; }
+        .section-block:nth-of-type(8) { animation-delay: 440ms; }
+        .section-block + .section-block {
+            border-top: 1px solid var(--line);
+        }
+
+        .point-mark {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .point-num {
+            font-family: var(--display);
+            font-size: 2.1rem;
+            line-height: 1;
+            font-weight: 800;
+            color: var(--flare);
+            letter-spacing: -0.04em;
+        }
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--sea);
+        }
+
+        article h2 {
+            font-family: var(--display);
+            font-size: clamp(1.32rem, 3.5vw, 1.75rem);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            color: var(--void);
+            margin-bottom: 16px;
+            max-width: 26ch;
+        }
+        article p {
+            margin-bottom: 16px;
+            max-width: 62ch;
+            color: var(--ink-soft);
+        }
+        article p strong { color: var(--ink); font-weight: 600; }
+
+        article ul {
+            margin: 8px 0 18px;
+            padding-left: 0;
+            list-style: none;
+            max-width: 60ch;
+        }
+        article li {
+            position: relative;
+            padding: 8px 0 8px 18px;
+            color: var(--ink-soft);
+            border-bottom: 1px solid rgba(18, 32, 51, 0.06);
+        }
+        article li::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 1.05em;
+            width: 7px; height: 2px;
+            background: var(--flare);
+        }
+        article li strong { color: var(--ink); }
+
+        .core-callout {
+            margin: 20px 0;
+            padding: 16px 18px;
+            border-left: 3px solid var(--sea);
+            background: linear-gradient(90deg, rgba(31, 111, 122, 0.1), transparent 85%);
+            max-width: 60ch;
+            color: var(--ink);
+        }
+
+        blockquote {
+            margin: 24px 0;
+            padding: 18px 20px 18px 22px;
+            border-left: 3px solid var(--flare);
+            background: linear-gradient(90deg, var(--flare-dim), transparent 85%);
+            max-width: 60ch;
+        }
+        blockquote p {
+            margin: 0;
+            font-size: 1.1rem;
+            line-height: 1.65;
+            color: var(--ink);
+            font-style: italic;
+        }
+
+        .table-wrap {
+            margin: 20px 0 24px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--line);
+            background: var(--foam);
+        }
+        table {
+            width: 100%;
+            min-width: 520px;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+        }
+        th, td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--line);
+            color: var(--ink-soft);
+        }
+        th {
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: rgba(18, 32, 51, 0.03);
+        }
+        td:first-child {
+            font-family: var(--display);
+            font-weight: 700;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+        tr:last-child td { border-bottom: none; }
+
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 22px 0 8px;
+        }
+        .stat {
+            padding: 14px 12px;
+            border-top: 2px solid var(--void);
+            background: rgba(255, 255, 255, 0.55);
+        }
+        .stat .n {
+            font-family: var(--display);
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--void);
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+        }
+        .stat .l {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+
+        .ending {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 40px;
+        }
+        .ending-block {
+            scroll-margin-top: 76px;
+            padding: 34px 0 8px;
+            border-top: 2px solid var(--void);
+        }
+        .ending-block h2 {
+            font-family: var(--display);
+            font-size: clamp(1.35rem, 3.8vw, 1.85rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+            color: var(--void);
+        }
+        .ending-block p {
+            color: var(--ink-soft);
+            max-width: 58ch;
+            margin-bottom: 14px;
+            line-height: 1.85;
+        }
+        .prompt-box {
+            margin-top: 22px;
+            padding: 18px 18px 16px;
+            border: 1px dashed rgba(214, 64, 69, 0.45);
+            background: rgba(255, 255, 255, 0.4);
+            max-width: 58ch;
+        }
+        .prompt-box strong {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--flare);
+            margin-bottom: 8px;
+        }
+        .prompt-box p {
+            margin: 0;
+            color: var(--ink-soft);
+        }
+
+        .bottom-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px 48px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .bottom-nav a {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .bottom-nav a:hover {
+            color: var(--ink);
+            border-color: var(--flare);
+            background: var(--flare-dim);
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--line);
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 18px 20px 40px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        @keyframes rise-in {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes sweep {
+            0% { left: -25%; }
+            100% { left: 120%; }
+        }
+
+        @media (max-width: 940px) {
+            .hero h1 { max-width: 15ch; }
+            .stat-row { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1rem; }
+            .hero { padding: 40px 16px 22px; }
+            .hero h1 { font-size: 1.65rem; max-width: none; }
+            .hero-lead { font-size: 0.98rem; }
+            .section-nav { padding: 4px 16px 22px; }
+            article { padding: 0 16px 40px; }
+            .section-block { padding-top: 32px; }
+            .point-num { font-size: 1.8rem; }
+            blockquote { padding: 14px 14px 14px 16px; }
+            blockquote p { font-size: 1.04rem; }
+            .stat-row { grid-template-columns: 1fr; }
+            th, td { padding: 10px 12px; }
+            .ending { padding: 0 16px 28px; }
+            .bottom-nav { padding: 8px 16px 36px; }
+            footer { padding: 16px 16px 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .hero,
+            .section-nav,
+            .section-block {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+            .hero-wave::after { animation: none; display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <a href="../../index.html">← Digital Garden</a>
+            <span>Issue 21 / July</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-kicker">Seven Signals</div>
+        <h1>规则崩塌的七月</h1>
+        <p class="hero-lead">美国在“收税”，韩国在“梭哈”，而我们在寻找确定性——旧规则加速瓦解的七月，七个看点拼出这个时代的底色。</p>
+        <div class="hero-meta">
+            <span>Digital Garden · 第 21 期</span>
+            <span>贸易 · 航运 · AI</span>
+        </div>
+        <div class="hero-wave" aria-hidden="true"></div>
+    </header>
+
+    <nav class="section-nav" aria-label="章节导航">
+        <a href="#intro">引言</a>
+        <a href="#point-1">不确定性</a>
+        <a href="#point-2">海上收费站</a>
+        <a href="#point-3">AI 裂痕</a>
+        <a href="#point-4">韩国赌局</a>
+        <a href="#point-5">空调政治</a>
+        <a href="#point-6">具体的人</a>
+        <a href="#point-7">国际社会</a>
+        <a href="#conclusion">结语</a>
+    </nav>
+
+    <article>
+        <section id="intro" class="section-block" style="border-top: none; padding-top: 0;">
+            <p>当大多数人的目光还停留在世界杯赛场的喧嚣与进球时，全球政治与经济的底层结构正在发生一场无声而剧烈的震颤。在这个看似平常的七月，旧世界的运行规则正在加速崩塌，取而代之的是一种被刻意制造的“不正常”。</p>
+            <p>如果我们坐在安静的咖啡馆里回望这段时间，你会发现，那个曾经以“全球化”和“稳定贸易协议”为基石的世界正在远去。当不确定性成为一种常态，我们究竟身处一个怎样的时代？</p>
+        </section>
+
+        <section id="point-1" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">01</span>
+                <span class="section-label">Signal One</span>
+            </div>
+            <h2>不确定性成了美国最新的“出口商品”</h2>
+            <p>长期以来，全球化之所以能够运转，是因为资本相信规则的持续性：生产、运输、销售都可以按部就班地进行。然而，美国正在亲手拆毁这种“预期”。</p>
+            <p>在这一轮的贸易博弈中，美国对《美墨加协议》（USMCA）的调整极具破坏性。他们并未直接退出，而是将原本稳定的规则变成了一个<strong>“每年一审”</strong>的动态合同。</p>
+            <ul>
+                <li><strong>规则的瓦解</strong>：这种“每年一审”对资本是致命的。去墨西哥建厂的企业不再只需要考虑成本，还必须额外计算极高的政治风险——如果明年协议变了怎么办？</li>
+                <li><strong>长臂管辖的借口</strong>：依据修改后的“301 条款”，美国计划对 60 个贸易伙伴征收 10% 到 12.5% 的关税。而这次给出的理由荒诞且极具“长臂管辖”色彩：指责这些国家“没有有效禁止血汗工厂”，导致不公平竞争。</li>
+            </ul>
+            <p class="core-callout"><strong>核心观点</strong>：美国不再通过规则治理，而是通过制造“不确定性”来索取全球利益。它既想要全球化的收益，又要掌握最终解释权，甚至还要从中抽取额外的“管理费”。</p>
+        </section>
+
+        <section id="point-2" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">02</span>
+                <span class="section-label">Signal Two</span>
+            </div>
+            <h2>海上“收费站”与昂贵的绕路费</h2>
+            <p>地缘冲突正将全球航运变成一场昂贵的博弈。随着霍尔木兹海峡与曼德海峡的危机升级，航运公司被迫陷入了成本陷阱。</p>
+            <p>根据源材料中那个略显荒诞的“大绕路”案例（沙特装船—经苏伊士—地中海—好望角—台湾），我们可以看到规则崩塌带来的真实代价：</p>
+            <div class="table-wrap" role="region" aria-label="航运成本对比" tabindex="0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>费用项目</th>
+                            <th>正常航线（经曼德海峡）</th>
+                            <th>极端绕行航线（含苏伊士规费）</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>航行时间</td>
+                            <td>约 20–30 天</td>
+                            <td>48 天</td>
+                        </tr>
+                        <tr>
+                            <td>燃油成本</td>
+                            <td>126 万美元</td>
+                            <td>287 万美元</td>
+                        </tr>
+                        <tr>
+                            <td>额外规费</td>
+                            <td>基础通过费</td>
+                            <td>约 100 万美元苏伊士运河费</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>此时，市场交易的已经不再是石油本身，而是<strong>“战争预期”</strong>。最荒诞的逻辑在于：美国一边制造或纵容航运风险，一边又试图拉拢盟友组建“护航联盟”。这种“先制造困难再出售安全”的行为，本质上是在全球核心航道上设立“私人收费站”，试图雁过拔毛。</p>
+        </section>
+
+        <section id="point-3" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">03</span>
+                <span class="section-label">Signal Three</span>
+            </div>
+            <h2>AI 淘金热的裂痕：铲子变贵了，金子在哪？</h2>
+            <p>硅谷的 AI 狂欢正面临现实的拷问。尽管算力需求依然旺盛，但美国主导的商业模式已现裂痕。</p>
+            <p>一方面，美国巨头坚持“Token 收费模式”，但企业界开始发现付出与回报不成正比。甚至出现了 Meta 与 Anthropic 互相租借算力以填补折旧成本的尴尬现状。而科技巨头市值单日蒸发近 8000 亿美元，正是市场对“只卖铲子、不见金子”的恐慌。</p>
+            <div class="stat-row" aria-label="AI 裂痕速览">
+                <div class="stat">
+                    <div class="n">8000 亿</div>
+                    <div class="l">巨头市值单日蒸发</div>
+                </div>
+                <div class="stat">
+                    <div class="n">3 万亿</div>
+                    <div class="l">Kimi 3 开源参数</div>
+                </div>
+                <div class="stat">
+                    <div class="n">5000</div>
+                    <div class="l">南方国家研修名额</div>
+                </div>
+            </div>
+            <p>另一方面，中国科技力量正在冲击这套“算力霸权”：</p>
+            <ul>
+                <li><strong>开源的降维打击</strong>：Kimi 3 作为首个拥有 3 万亿参数的开源模型正式登场。</li>
+                <li><strong>基建逻辑 vs 霸权逻辑</strong>：美国试图通过垄断技术维持第一，而中国正将 AI 定位为解决社会问题的基础设施。在上海人工智能大会上，中方不仅提出了开放供应、风险可控等方向，更宣布为全球南方国家提供 5000 个 AI 专题研修名额。</li>
+            </ul>
+            <blockquote>
+                <p>人工智能涉及的利益实在太大了，不可能由任何一家公司长期独占。因此，开源不是单纯的理想主义，而是一种商业和历史判断。</p>
+            </blockquote>
+        </section>
+
+        <section id="point-4" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">04</span>
+                <span class="section-label">Signal Four</span>
+            </div>
+            <h2>韩国的“末世赌局”：在算力泡沫中梭哈人生</h2>
+            <p>七月的韩国半导体出口虽然暴涨了 180.6%，但在繁荣背后，掩盖着极度的脆弱。韩国目前处于一种“夹缝处境”：它拥有 SK 海力士等顶尖制造能力，却缺乏完整的技术主权。</p>
+            <p>美方甚至公开表示，美国理应分享三星和 SK 海力士的巨额利润。这种压力传导到社会层面，演变成了一种<strong>“资本主义晚期癫狂”</strong>：</p>
+            <ul>
+                <li><strong>孤注一掷</strong>：韩国年轻人面对上升通道收窄，选择将人生押注在芯片股和高杠杆投资上。</li>
+                <li><strong>荒诞的对照</strong>：有大学生借钱投资亏损 3 亿韩元仍坚持投入。这与阿根廷球迷刷爆信用卡去看世界杯本质相同——当未来变得不可预期，人们倾向于在末世般的赌局中寻找最后的一线生机。</li>
+            </ul>
+        </section>
+
+        <section id="point-5" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">05</span>
+                <span class="section-label">Signal Five</span>
+            </div>
+            <h2>欧洲的“空调政治学”：当求生变成意识形态</h2>
+            <p>在这个极端高温的七月，欧洲正在上演一场荒诞的辩论：安装空调竟然成了“左右翼”的标签之争。</p>
+            <p>在法国，仅仅一个月内就有超过 5000 人因高温直接死亡。然而，关于安装空调的讨论却被政治化了：右翼谈民生，左翼谈环境背叛。这种不解决实际生产、只会在存量问题上叠标签的行为，反映了那些只会说教而不干实事的<strong>“老灯”</strong>（Stubborn Elders）思维。当生存底线被意识形态绑架，社会便失去了理性发展的能力。</p>
+        </section>
+
+        <section id="point-6" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">06</span>
+                <span class="section-label">Signal Six</span>
+            </div>
+            <h2>从“天才崇拜”到“具体的人”</h2>
+            <p>回到国内，社会价值观也在发生微妙变化。曾经被长期背书的“学术明星”因造假跌落神坛，而像王和邓（菲尔兹数学奖得主）这样具有“松弛感”和非典型成长路径的成功者开始受到追捧。</p>
+            <p>这种转向是对“事业斩杀线”（35 岁焦虑、无尽加班、KPI 考核）的集体反思。DeepSeek 的内部机制提供了一种新可能：</p>
+            <ul>
+                <li><strong>不设 KPI</strong>：给予 50% 的自主研究时间、减少无意义加班。这不仅仅是为了效率，更是在回答一个核心命题：我们究竟是要建立一个让人服务于数字指标的社会，还是让制度服务于<strong>“具体的人”</strong>？</li>
+            </ul>
+        </section>
+
+        <section id="point-7" class="section-block">
+            <div class="point-mark">
+                <span class="point-num">07</span>
+                <span class="section-label">Signal Seven</span>
+            </div>
+            <h2>被重构的“国际社会”</h2>
+            <p>近期互联网流传着一张“狡猾”的图表：美国的朋友全是发达国家，中国的朋友全是“穷朋友”。这种典型的冷战思维试图将世界二元化。</p>
+            <p>但事实是：中国的“穷朋友”加起来代表了全球一半的人口。究竟是少数发达国家代表“国际社会”，还是“人”本身代表“国际社会”？技术发展的终极目的应该是提高全人类的能力，而不是让别人永远离不开你的“许可”。</p>
+        </section>
+    </article>
+
+    <div class="ending">
+        <div class="ending-block" id="conclusion">
+            <h2>结语：在变化中谱写自己的故事</h2>
+            <p>丁仲礼院士曾言：“人类不需要拯救地球，环保的目的是救人。”无论是应对气候变化，还是推动 AI 竞赛，其落脚点都应是保护每一个真实存在的个体。</p>
+            <p>在这个规则瓦解、全球进入风险应对模式的时代，“变化”或许是历史唯一不变的趣味。正如我这次重回母校爱荷华大学，距离 2016 年毕业离美已过去十年。校园没变，但世界和我已沧海桑田。</p>
+            <p>人生并非提前写好的剧本。在这个充满挑战的七月，我们每个人都在不确定性中寻找着属于自己的那份笃定。</p>
+            <div class="prompt-box">
+                <strong>互动话题</strong>
+                <p>在这个规则瓦解的时代，你所观察到的哪一个微小变化最让你感到确定或不安？欢迎在评论区分享你的观察。</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bottom-nav" aria-label="页面底部导航">
+        <a href="./issue-21.html">← 返回第21期</a>
+        <a href="../../index.html">首页</a>
+        <a href="./4-Surprising-Facts.html">上一篇：四个反直觉真相</a>
+        <a href="./July-of-Broken-Rules.md">查看 Markdown</a>
+    </nav>
+
+    <footer>
+        <span>© 2026 Digital Garden</span>
+        <span>Issue 21 · 规则崩塌的七月</span>
+    </footer>
+
+    <script>
+        const fill = document.getElementById("progressFill");
+        function updateProgress() {
+            const top = window.scrollY;
+            const h = document.documentElement.scrollHeight - window.innerHeight;
+            fill.style.width = h > 0 ? Math.min(Math.max(top / h * 100, 0), 100) + "%" : "0%";
+        }
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("load", updateProgress);
+    </script>
+</body>
+</html>

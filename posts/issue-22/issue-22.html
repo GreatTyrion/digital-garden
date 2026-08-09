@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第22期 - 数字花园</title>
+    <meta name="description" content="Digital Garden 第22期：非暴力沟通五个洞见、NVC 核心精神、休达危机真相，以及纽芬兰地图入口。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0d0a;
+            --ink-soft: #3a342b;
+            --parchment: #f7f3ec;
+            --cream: #fffcf5;
+            --line: rgba(15, 13, 10, 0.12);
+            --line-strong: rgba(15, 13, 10, 0.22);
+            --muted: #7a7062;
+            --shadow: 0 12px 36px rgba(15, 13, 10, 0.08);
+            --nvc: #b85a56;
+            --nvc-soft: rgba(184, 90, 86, 0.10);
+            --spirit: #3d6b5c;
+            --spirit-soft: rgba(61, 107, 92, 0.10);
+            --ceuta: #2f5f78;
+            --ceuta-soft: rgba(47, 95, 120, 0.10);
+            --map: #2b6f68;
+            --map-soft: rgba(43, 111, 104, 0.10);
+            --display: "Playfair Display", "Noto Serif SC", Georgia, serif;
+            --serif: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+            --mono: "JetBrains Mono", "SFMono-Regular", monospace;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--serif);
+            background:
+                radial-gradient(ellipse at 10% 0%, rgba(184, 90, 86, 0.07), transparent 40%),
+                radial-gradient(ellipse at 90% 0%, rgba(47, 95, 120, 0.06), transparent 40%),
+                var(--parchment);
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .progress {
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+            background: rgba(0, 0, 0, 0.04); z-index: 100;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--nvc), var(--spirit), var(--ceuta), var(--map));
+            transition: width 0.08s linear;
+        }
+
+        .masthead {
+            background: var(--ink);
+            color: var(--parchment);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .masthead-inner,
+        .section-rail-inner,
+        .page,
+        .footer-inner {
+            width: min(calc(100% - 38px), var(--max));
+            margin: 0 auto;
+        }
+
+        .masthead-inner { padding: 28px 0 48px; }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .back-link, .issue-stamp {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.65);
+            border: 1px solid rgba(247, 243, 236, 0.14);
+            padding: 8px 12px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.65fr);
+            gap: 32px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.42);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(2.4rem, 7vw, 5.2rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+        }
+        .hero-title .accent {
+            color: rgba(247, 243, 236, 0.42);
+            font-style: italic;
+        }
+
+        .hero-summary {
+            margin-top: 16px;
+            max-width: 58ch;
+            color: rgba(247, 243, 236, 0.75);
+            font-size: 1.05rem;
+        }
+
+        .tag-row {
+            display: flex; flex-wrap: wrap; gap: 9px;
+            margin-top: 18px;
+        }
+        .tag {
+            font-size: 0.82rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 6px 13px;
+            color: rgba(247, 243, 236, 0.8);
+        }
+
+        .hero-meta {
+            display: grid; gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-meta-line {
+            display: flex; justify-content: space-between; gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            color: rgba(247, 243, 236, 0.5);
+        }
+        .hero-meta-line strong {
+            color: rgba(247, 243, 236, 0.82);
+            font-weight: 500;
+        }
+
+        .section-rail {
+            position: sticky; top: 3px; z-index: 40;
+            background: rgba(247, 243, 236, 0.92);
+            border-bottom: 1px solid var(--line-strong);
+            backdrop-filter: blur(10px);
+        }
+        .section-rail-inner {
+            padding: 12px 0;
+            display: flex; gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .section-rail-inner::-webkit-scrollbar { display: none; }
+
+        .rail-link {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .rail-link:hover, .rail-link.active {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--line);
+        }
+        .rail-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .rail-link.nvc { --accent: var(--nvc); }
+        .rail-link.spirit { --accent: var(--spirit); }
+        .rail-link.ceuta { --accent: var(--ceuta); }
+        .rail-link.map { --accent: var(--map); }
+
+        .page { padding: 34px 0 80px; }
+        .story-grid { display: grid; gap: 26px; }
+
+        .story {
+            background: rgba(255, 255, 255, 0.54);
+            border: 1px solid rgba(15, 13, 10, 0.09);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 84px;
+        }
+
+        .story-head {
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-label {
+            padding: 22px 16px;
+            background: var(--soft);
+            border-right: 1px solid rgba(15, 13, 10, 0.07);
+        }
+        .story-index {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-label h2 {
+            font-family: var(--display);
+            font-size: 1.55rem;
+            line-height: 1.04;
+            color: var(--accent);
+        }
+
+        .story-body { padding: 28px 28px 30px; }
+        .story-kicker {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-body h3 {
+            font-family: var(--display);
+            font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+        .story-summary {
+            font-family: var(--serif);
+            font-size: 1.04rem;
+            color: var(--ink-soft);
+            max-width: 66ch;
+        }
+        .signal-list {
+            list-style: none;
+            display: grid; gap: 10px;
+            margin: 18px 0 24px;
+        }
+        .signal-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+        .signal-list li::before {
+            content: "";
+            position: absolute; left: 0; top: 0.8em;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .story-footer {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 12px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+        .story-note {
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 45ch;
+        }
+        .story-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 11px 16px;
+            background: var(--ink);
+            color: var(--parchment);
+            font-weight: 500;
+            transition: transform 140ms ease;
+        }
+        .story-link:hover { transform: translateY(-2px); }
+
+        .story.nvc { --accent: var(--nvc); --soft: var(--nvc-soft); }
+        .story.spirit { --accent: var(--spirit); --soft: var(--spirit-soft); }
+        .story.ceuta { --accent: var(--ceuta); --soft: var(--ceuta-soft); }
+        .story.map { --accent: var(--map); --soft: var(--map-soft); }
+
+        .bottom-nav {
+            margin-top: 38px;
+            display: flex; flex-wrap: wrap; gap: 10px;
+        }
+        .bottom-nav a {
+            display: inline-flex; align-items: center;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.56);
+            color: var(--ink-soft);
+        }
+
+        footer { border-top: 1px solid var(--line); margin-top: 48px; }
+        .footer-inner {
+            padding: 24px 0 44px;
+            color: var(--muted);
+            display: flex; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px;
+            font-size: 0.93rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid, .story-head { grid-template-columns: 1fr; }
+            .story-label {
+                border-right: 0;
+                border-bottom: 1px solid rgba(15, 13, 10, 0.07);
+            }
+        }
+
+        @media (max-width: 720px) {
+            .masthead-inner,
+            .section-rail-inner,
+            .page,
+            .footer-inner {
+                width: min(calc(100% - 26px), var(--max));
+            }
+            .topbar { flex-direction: column; align-items: flex-start; }
+            .hero-meta-line { display: grid; grid-template-columns: 1fr; }
+            .story-body { padding: 24px 18px 26px; }
+            .story-link { width: 100%; justify-content: center; }
+        }
+
+        @media (max-width: 520px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-meta, .story-label { padding: 16px; }
+            .story-body h3 { font-size: 1.45rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .story-link { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="topbar">
+                <a class="back-link" href="../../index.html">Back to Index</a>
+                <div class="issue-stamp">Issue 22 / 2026.08.09</div>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Digital Garden Curated Index</div>
+                    <h1 class="hero-title">Issue 22<span class="accent"> / Connection, Spirit, Border, Map</span></h1>
+                    <p class="hero-summary">
+                        第22期聚焦三件事：非暴力沟通里颠覆直觉的五个洞见、NVC 最核心的生命精神，以及休达危机背后的谣言、飞地与外包逻辑；同时保留一个持续可用的纽芬兰地图入口。
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">非暴力沟通</span>
+                        <span class="tag">生命精神</span>
+                        <span class="tag">休达危机</span>
+                        <span class="tag">地缘政治</span>
+                        <span class="tag">纽芬兰地图</span>
+                    </div>
+                </div>
+                <aside class="hero-meta">
+                    <div class="hero-meta-line"><span>Period</span><strong>2026-08-09</strong></div>
+                    <div class="hero-meta-line"><span>Stories</span><strong>04 Sections</strong></div>
+                    <div class="hero-meta-line"><span>Tone</span><strong>Connection / Geopolitics</strong></div>
+                    <div class="hero-meta-line"><span>Focus</span><strong>NVC, Ceuta, Map</strong></div>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-rail" aria-label="专题导航">
+        <div class="section-rail-inner">
+            <a class="rail-link nvc" href="#nvc-insights"><span class="rail-dot"></span><span>NVC Insights</span></a>
+            <a class="rail-link spirit" href="#nvc-spirit"><span class="rail-dot"></span><span>NVC Spirit</span></a>
+            <a class="rail-link ceuta" href="#ceuta-crisis"><span class="rail-dot"></span><span>Ceuta</span></a>
+            <a class="rail-link map" href="#newfoundland-map"><span class="rail-dot"></span><span>Map</span></a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="story-grid">
+            <article id="nvc-insights" class="story nvc">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 01</div>
+                        <h2>NVC</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Language / Connection</div>
+                        <h3>改变命运的语言：揭秘《非暴力沟通》中那些颠覆认知的智慧</h3>
+                        <p class="story-summary">从观察、感受、选择，到愤怒与自我宽恕——五个违反直觉的洞见，帮我们从语言暴力走向真正的连接。</p>
+                        <ul class="signal-list">
+                            <li>不带评论的观察：用具体行为代替贴标签。</li>
+                            <li>“我觉得”不是感受：脆弱反而能化解敌意。</li>
+                            <li>摆脱“不得不”：从情感奴隶走向选择与责任。</li>
+                            <li>愤怒是礼物：它提醒你未被满足的需求。</li>
+                            <li>哀悼与自我宽恕：停止对自己施行“应该”的暴力。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">在对错之外，有一片可以相遇的田野。</p>
+                            <a class="story-link" href="./Nonviolent-Communication.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="nvc-spirit" class="story spirit">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 02</div>
+                        <h2>Spirit</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Reverence / Life Dance</div>
+                        <h3>非暴力沟通（NVC）最核心的精神</h3>
+                        <p class="story-summary">NVC 不只是技巧清单，而是对生命的敬畏、对需求相通的理解，以及拒绝强迫他人与自己的底层逻辑。</p>
+                        <ul class="signal-list">
+                            <li>敬畏生命：消除心中暴力，拒绝把生命当成物品来评判。</li>
+                            <li>理解需求：指责与愤怒，往往是需求未满足的扭曲表达。</li>
+                            <li>拒绝强迫他人：让改变出于自愿与喜悦，而非内疚与惩罚。</li>
+                            <li>拒绝强迫自己：停止“应该”，把“不得不”转化为“我选择”。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">最简单的“请”与“谢谢”，剔除操控与审判。</p>
+                            <a class="story-link" href="./The-Spirit-of-Nonviolent-Communication.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="ceuta-crisis" class="story ceuta">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 03</div>
+                        <h2>Ceuta</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Border / Outsourcing</div>
+                        <h3>两条谣言、几万难民与大国的算计：休达危机背后的真相</h3>
+                        <p class="story-summary">8 万人口的地中海飞地几天涌入 7.2 万人——两条谣言点燃跨境冲锋，飞地地理、边境阀门与欧盟外包逻辑同时露馅。</p>
+                        <ul class="signal-list">
+                            <li>信息茧房：大赦幻觉与不遣返陷阱，把政策碎片变成致命诱惑。</li>
+                            <li>飞地地理学：休达作为帝国主义“活化石”，卡住直布罗陀海峡南口。</li>
+                            <li>边境阀门外交：西撒哈拉国籍争议后，摩洛哥精准施压西班牙。</li>
+                            <li>欧盟精分现场：既要劳动力又要选票，外包逻辑走到尽头。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">休达的浪花，可能只是更大风暴的序幕。</p>
+                            <a class="story-link" href="./The-Truth-Behind-the-Ceuta-Crisis.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="newfoundland-map" class="story map">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 04</div>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Useful Link / Local Utility</div>
+                        <h3>纽芬兰地图入口（圣约翰斯租房）</h3>
+                        <p class="story-summary">保持 Digital Garden 的实用传统：给出一个长期可用的纽芬兰地图入口，方便快速查看圣约翰斯及周边区域房源分布与更新信息。</p>
+                        <ul class="signal-list">
+                            <li>持续更新租房信息，适合作为常用查询入口。</li>
+                            <li>地图化呈现让区域判断和通勤规划更直观。</li>
+                            <li>在沟通与地缘内容之外，保留一条可直接落地使用的路径。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这部分强调“可立即使用”的本地价值。</p>
+                            <a class="story-link" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noreferrer">打开纽芬兰地图</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <nav class="bottom-nav" aria-label="页面底部导航">
+            <a href="../../index.html">返回首页</a>
+            <a href="../issue-21/issue-21.html">打开第21期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" target="_blank" rel="noreferrer">意见反馈</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p>© 2026 Digital Garden</p>
+            <p>Issue 22 作为专题导览页，链接到各篇独立 HTML 正文。</p>
+        </div>
+    </footer>
+
+    <script>
+        const progressFill = document.getElementById("progressFill");
+        const railLinks = Array.from(document.querySelectorAll(".rail-link"));
+        const sections = railLinks
+            .map(function (link) {
+                var section = document.querySelector(link.getAttribute("href"));
+                return section ? { link: link, section: section } : null;
+            })
+            .filter(Boolean);
+
+        function updateProgress() {
+            var scrollTop = window.scrollY;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressFill.style.width = Math.min(Math.max(ratio, 0), 100) + "%";
+        }
+
+        function updateActiveRail() {
+            var threshold = window.innerHeight * 0.3;
+            var active = sections[0];
+            sections.forEach(function (item) {
+                if (item.section.getBoundingClientRect().top <= threshold) {
+                    active = item;
+                }
+            });
+            railLinks.forEach(function (link) { link.classList.remove("active"); });
+            if (active) { active.link.classList.add("active"); }
+        }
+
+        function onScroll() {
+            updateProgress();
+            updateActiveRail();
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", onScroll);
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+    </script>
+</body>
+</html>

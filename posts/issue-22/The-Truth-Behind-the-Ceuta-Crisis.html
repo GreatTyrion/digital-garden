@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>两条谣言、几万难民与大国的算计：休达危机背后的真相</title>
+    <meta name="description" content="从信息茧房、飞地地理，到摩洛哥边境阀门与欧盟外包逻辑——休达危机背后的四重真相。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #101a24;
+            --ink-soft: #3a4a5a;
+            --void: #081018;
+            --salt: #e6ebf0;
+            --salt-deep: #d3dbe4;
+            --foam: #f3f6f9;
+            --flare: #d84a38;
+            --flare-dim: rgba(216, 74, 56, 0.12);
+            --strait: #2f5f78;
+            --strait-dim: rgba(47, 95, 120, 0.12);
+            --line: rgba(16, 26, 36, 0.12);
+            --muted: #6a7a8a;
+            --display: "Zilla Slab", "Noto Serif SC", "Songti SC", serif;
+            --body: "Literata", "Noto Serif SC", Georgia, serif;
+            --mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+            --max-w: 720px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--body);
+            background:
+                radial-gradient(980px 460px at 100% -8%, rgba(216, 74, 56, 0.1), transparent 55%),
+                radial-gradient(900px 420px at -12% 16%, rgba(47, 95, 120, 0.16), transparent 52%),
+                linear-gradient(180deg, #eef2f6 0%, var(--salt) 40%, var(--salt-deep) 100%);
+            color: var(--ink);
+            line-height: 1.85;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+            background:
+                repeating-linear-gradient(
+                    180deg,
+                    transparent,
+                    transparent 11px,
+                    rgba(47, 95, 120, 0.035) 11px,
+                    rgba(47, 95, 120, 0.035) 12px
+                );
+            mask-image: linear-gradient(180deg, #000 0%, transparent 82%);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: rgba(16, 26, 36, 0.06);
+            z-index: 200;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--strait), var(--flare));
+            transition: width 80ms linear;
+        }
+
+        .topnav {
+            position: sticky;
+            top: 3px;
+            z-index: 100;
+            background: rgba(230, 235, 240, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .topnav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topnav a {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 160ms ease, border-color 160ms ease;
+        }
+        .topnav a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--flare);
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 52px 20px 26px;
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--strait);
+            margin-bottom: 18px;
+        }
+        .hero-kicker::before {
+            content: "";
+            width: 22px; height: 2px;
+            background: var(--flare);
+        }
+        .hero h1 {
+            font-family: var(--display);
+            font-size: clamp(1.85rem, 5.4vw, 2.8rem);
+            line-height: 1.14;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            color: var(--void);
+            margin-bottom: 18px;
+            max-width: 14ch;
+        }
+        .hero-lead {
+            font-size: 1.05rem;
+            color: var(--ink-soft);
+            max-width: 50ch;
+            line-height: 1.75;
+        }
+        .hero-meta {
+            margin-top: 26px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 18px;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .stat-strip {
+            margin-top: 28px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 540px;
+        }
+        .stat {
+            padding: 12px 10px 10px;
+            border-top: 2px solid var(--void);
+            background: rgba(243, 246, 249, 0.65);
+        }
+        .stat .n {
+            font-family: var(--display);
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--void);
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+        .stat .l {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            line-height: 1.4;
+        }
+        .hero-wave {
+            margin-top: 28px;
+            height: 28px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-wave::before,
+        .hero-wave::after {
+            content: "";
+            position: absolute;
+            left: -10%;
+            width: 120%;
+            height: 40px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(47, 95, 120, 0.25);
+        }
+        .hero-wave::before {
+            top: 4px;
+            animation: swell 4.2s ease-in-out infinite;
+        }
+        .hero-wave::after {
+            top: 14px;
+            border-color: rgba(216, 74, 56, 0.28);
+            animation: swell 4.2s ease-in-out 0.6s infinite;
+        }
+
+        .section-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 28px;
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            opacity: 0;
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+        }
+        .section-nav::-webkit-scrollbar { display: none; }
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            text-decoration: none;
+            background: rgba(243, 246, 249, 0.55);
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .section-nav a:hover {
+            color: var(--ink);
+            border-color: var(--flare);
+            background: var(--flare-dim);
+        }
+
+        article {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px 56px;
+        }
+
+        .section-block {
+            scroll-margin-top: 76px;
+            padding-top: 40px;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .section-block:nth-of-type(1) { animation-delay: 160ms; }
+        .section-block:nth-of-type(2) { animation-delay: 200ms; }
+        .section-block:nth-of-type(3) { animation-delay: 240ms; }
+        .section-block:nth-of-type(4) { animation-delay: 280ms; }
+        .section-block:nth-of-type(5) { animation-delay: 320ms; }
+        .section-block + .section-block {
+            border-top: 1px solid var(--line);
+        }
+
+        .point-mark {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .point-num {
+            font-family: var(--display);
+            font-size: 2.1rem;
+            line-height: 1;
+            font-weight: 700;
+            color: var(--flare);
+            letter-spacing: -0.03em;
+        }
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--strait);
+        }
+
+        article h2 {
+            font-family: var(--display);
+            font-size: clamp(1.35rem, 3.6vw, 1.8rem);
+            line-height: 1.28;
+            letter-spacing: -0.015em;
+            font-weight: 700;
+            color: var(--void);
+            margin-bottom: 16px;
+            max-width: 22ch;
+        }
+        article p {
+            margin-bottom: 16px;
+            max-width: 62ch;
+            color: var(--ink-soft);
+        }
+        article p strong { color: var(--ink); font-weight: 600; }
+
+        article ol {
+            margin: 10px 0 18px;
+            padding-left: 1.25em;
+            max-width: 60ch;
+            color: var(--ink-soft);
+        }
+        article ol li {
+            padding: 6px 0;
+        }
+        article ol li strong { color: var(--ink); }
+
+        article ul {
+            margin: 8px 0 18px;
+            padding-left: 0;
+            list-style: none;
+            max-width: 60ch;
+        }
+        article li {
+            position: relative;
+            padding: 8px 0 8px 18px;
+            color: var(--ink-soft);
+            border-bottom: 1px solid rgba(16, 26, 36, 0.06);
+        }
+        article ul li::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 1.05em;
+            width: 7px; height: 2px;
+            background: var(--flare);
+        }
+        article li strong { color: var(--ink); }
+
+        blockquote {
+            margin: 22px 0;
+            padding: 18px 20px 18px 22px;
+            border-left: 3px solid var(--strait);
+            background: linear-gradient(90deg, var(--strait-dim), transparent 85%);
+            max-width: 58ch;
+        }
+        blockquote p {
+            margin: 0;
+            font-family: var(--display);
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .rumor-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 18px 0 22px;
+            max-width: 60ch;
+        }
+        .rumor {
+            padding: 14px 14px 12px;
+            border-top: 2px solid var(--flare);
+            background: rgba(243, 246, 249, 0.7);
+        }
+        .rumor h3 {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--flare);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .rumor p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            max-width: none;
+        }
+
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 18px 0 8px;
+            max-width: 60ch;
+        }
+        .compare {
+            padding: 14px 14px 12px;
+            border-top: 2px solid var(--void);
+            background: rgba(243, 246, 249, 0.65);
+        }
+        .compare h3 {
+            font-family: var(--display);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--void);
+            margin-bottom: 8px;
+        }
+        .compare p {
+            margin: 0;
+            font-size: 0.95rem;
+            max-width: none;
+        }
+
+        .ending {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 40px;
+        }
+        .ending-block {
+            scroll-margin-top: 76px;
+            padding: 34px 0 8px;
+            border-top: 2px solid var(--void);
+        }
+        .ending-block h2 {
+            font-family: var(--display);
+            font-size: clamp(1.4rem, 3.8vw, 1.9rem);
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin-bottom: 14px;
+            color: var(--void);
+            max-width: 16ch;
+        }
+        .ending-block p {
+            color: var(--ink-soft);
+            max-width: 58ch;
+            margin-bottom: 14px;
+            line-height: 1.85;
+        }
+        .outsource-list {
+            margin: 18px 0 8px;
+            display: grid;
+            gap: 8px;
+            max-width: 58ch;
+        }
+        .outsource-item {
+            display: grid;
+            grid-template-columns: 88px 1fr;
+            gap: 12px;
+            align-items: baseline;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(16, 26, 36, 0.08);
+            font-size: 0.95rem;
+        }
+        .outsource-item .k {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .outsource-item .v {
+            color: var(--ink-soft);
+        }
+
+        .bottom-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px 48px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .bottom-nav a {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            color: var(--muted);
+            text-decoration: none;
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .bottom-nav a:hover {
+            color: var(--ink);
+            border-color: var(--flare);
+            background: var(--flare-dim);
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--line);
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 18px 20px 40px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+            letter-spacing: 0.06em;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        @keyframes rise-in {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes swell {
+            0%, 100% { transform: translateX(0) scaleY(1); opacity: 0.7; }
+            50% { transform: translateX(3%) scaleY(1.15); opacity: 1; }
+        }
+
+        @media (max-width: 940px) {
+            .hero h1 { max-width: 16ch; }
+            .rumor-grid,
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1rem; }
+            .hero { padding: 40px 16px 22px; }
+            .hero h1 { font-size: 1.7rem; max-width: none; }
+            .hero-lead { font-size: 0.98rem; }
+            .stat-strip { grid-template-columns: 1fr; max-width: 240px; }
+            .section-nav { padding: 4px 16px 22px; }
+            article { padding: 0 16px 40px; }
+            .section-block { padding-top: 32px; }
+            .point-num { font-size: 1.85rem; }
+            blockquote { padding: 14px 14px 14px 16px; }
+            blockquote p { font-size: 1.08rem; }
+            .outsource-item { grid-template-columns: 72px 1fr; }
+            .ending { padding: 0 16px 28px; }
+            .bottom-nav { padding: 8px 16px 36px; }
+            footer { padding: 16px 16px 32px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .hero,
+            .section-nav,
+            .section-block {
+                animation: none;
+                opacity: 1;
+                transform: none;
+            }
+            .hero-wave::before,
+            .hero-wave::after { animation: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <a href="../../index.html">← Digital Garden</a>
+            <span>Issue 22 / Ceuta</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-kicker">Border Crisis</div>
+        <h1>休达危机背后的真相</h1>
+        <p class="hero-lead">两条谣言、几万难民与大国的算计——当边境变成跨海赌博，飞地、信息茧房与外包逻辑同时失效。</p>
+        <div class="hero-meta">
+            <span>Digital Garden · 第 22 期</span>
+            <span>地缘 · 移民 · 欧盟</span>
+        </div>
+        <div class="stat-strip" aria-label="关键数字">
+            <div class="stat">
+                <div class="n">8 万</div>
+                <div class="l">休达人口</div>
+            </div>
+            <div class="stat">
+                <div class="n">7.2 万</div>
+                <div class="l">短短几天涌入</div>
+            </div>
+            <div class="stat">
+                <div class="n">72</div>
+                <div class="l">海浪中的生命</div>
+            </div>
+        </div>
+        <div class="hero-wave" aria-hidden="true"></div>
+    </header>
+
+    <nav class="section-nav" aria-label="章节导航">
+        <a href="#intro">引言</a>
+        <a href="#point-1">谣言</a>
+        <a href="#point-2">飞地</a>
+        <a href="#point-3">阀门</a>
+        <a href="#point-4">欧盟</a>
+        <a href="#ending">外包</a>
+    </nav>
+
+    <article>
+        <section class="section-block" id="intro">
+            <div class="point-mark">
+                <span class="section-label">Prologue</span>
+            </div>
+            <h2>当“边境”成为一场疯狂的赌博</h2>
+            <p>想象一个人口仅有 8 万的地中海小城，在短短几天内突然涌入 7.2 万名不速之客，混乱的抢滩登岸中，甚至有 72 人年轻的生命永远留在了海浪里。这并非虚构的末日电影，而是西班牙北非飞地——休达（Ceuta）正在上演的现实。</p>
+            <p>最荒诞的悖论在于：这群主要来自摩洛哥的非洲青年，正“拼命游向非洲大陆上的城市”以求踏入欧洲的门槛。而此时的欧洲，正陷入一种深刻的“精神分裂”：布鲁塞尔的官僚们还在为“开空调到底算左派还是右派”吵得不可开交，而当火烧到自家后院时，欧盟却威胁要将西班牙踢出申根区。在这场地缘政治的博弈中，边境不再是主权的防线，而是一场赌注巨大的跨海博弈。</p>
+        </section>
+
+        <section class="section-block" id="point-1">
+            <div class="point-mark">
+                <span class="point-num">01</span>
+                <span class="section-label">Rumors</span>
+            </div>
+            <h2>杀伤力惊人的“信息茧房”与两条致命谣言</h2>
+            <p>这场危机的直接导火索并非突发的战乱，而是社交媒体时代经由精准算法放大的“信息差”。营销号将碎片化的政策包装成致命的诱惑，炮制了两条让摩洛哥青年集体疯狂的假新闻：</p>
+            <div class="rumor-grid">
+                <div class="rumor">
+                    <h3>谣言一 · 大赦幻觉</h3>
+                    <p>真实政策被歪曲成：“西班牙正面向所有入境者发放国籍。”</p>
+                </div>
+                <div class="rumor">
+                    <h3>谣言二 · 不遣返陷阱</h3>
+                    <p>法律程序被解读成：“只要游进休达，法律就不能遣返你。”</p>
+                </div>
+            </div>
+            <ol>
+                <li><strong>关于“大赦身份”的幻觉</strong>：西班牙政府此前启动了针对境内已有长期居住事实、无犯罪记录的非法移民合法化进程。但这在短视频平台被歪曲成：“西班牙正面向所有入境者发放国籍。”</li>
+                <li><strong>关于“不遣返”的法律陷阱</strong>：西班牙最高法院曾判决，由于海上没有实体边境墙，执法人员拦截海上入境者时必须遵循复杂的法律程序，不能直接实施“推回”。这被营销号解读为：“只要游进休达，法律就不能遣返你。”</li>
+            </ol>
+            <p>在摩洛哥那些既无工作也无学历的 2.9 万名无业青年眼中，这不再是偷渡，而是一次<strong>“博一搏，非求变欧皇”</strong>的阶级跃迁。这种“信息茧房”造成的认知错位，在瞬间转化为几万人的跨境冲锋，将和平时期的边境变成了惨烈的绞肉机。</p>
+        </section>
+
+        <section class="section-block" id="point-2">
+            <div class="point-mark">
+                <span class="point-num">02</span>
+                <span class="section-label">Enclave</span>
+            </div>
+            <h2>帝国主义的“活化石”——尴尬的飞地地理学</h2>
+            <p>要看清这场危机，必须先读懂那张充满尘埃的历史地图。休达与梅利利亚（Melilla）是西班牙在北非海岸的两块“飞地”。</p>
+            <blockquote>
+                <p>西班牙在北非的主权，本质上属于帝国主义的“活化石”。</p>
+            </blockquote>
+            <p>西班牙占领梅利利亚是在 1497 年，而拿到休达是通过 1580 年对葡萄牙的控制，这两个时间点均早于现今统治摩洛哥的阿拉维王朝建立（1668 年）。这种“我来得比你建国还早”的逻辑，是西班牙拒绝放手的底气，也成了摩洛哥心中的刺。</p>
+            <p>更关键的是战略命脉：休达扼守着直布罗陀海峡的南出海口。由于海峡北岸的直布罗陀目前仍由英国实际控制，西班牙如果失去休达，就等同于在自家门口的咽喉要道上被彻底“掐脖子”。这种地理上的死局，让休达注定成为西班牙最沉重的外交包袱，也是摩洛哥手中随时可以加压的筹码。</p>
+        </section>
+
+        <section class="section-block" id="point-3">
+            <div class="point-mark">
+                <span class="point-num">03</span>
+                <span class="section-label">Valve</span>
+            </div>
+            <h2>摩洛哥的“边境阀门”外交术</h2>
+            <p>这次危机爆发的时间点耐人寻味。真相往往藏在最隐秘的立法细节中。</p>
+            <p>7 月 20 日，西班牙首相桑切斯访问阿尔及利亚，试图推进能源关系正常化，并提出一项争议法案：准备向西撒哈拉殖民时期出生的当地人及其后裔发放西班牙国籍。在摩洛哥看来，这无异于在西撒哈拉主权问题上背后捅刀——一旦西撒人成了“欧盟公民”，摩洛哥的实际控制将面临巨大的法律挑战。</p>
+            <p>十天之后，休达危机爆发。这种时间上的高度重合绝非巧合，而是摩洛哥熟练运用的“流量阀门”外交术：</p>
+            <ul>
+                <li><strong>精准施压</strong>：摩洛哥并不需要开火，只需让边防警察“撤掉路障”或“晚行动几个小时”，几万难民就会瞬间成为西班牙无法承受的政治压力。</li>
+                <li><strong>外交陷阱</strong>：摩洛哥深知西班牙法院的判决让其投鼠忌器，于是在一旁“协助抓人”的同时，嘲讽西班牙是自食其果。这一套动作既利用了对方的法律漏洞，又在国际道义上占据了“协助管控”的高点。西班牙正被夹在阿尔及利亚的天然气与摩洛哥的边境控制之间，哑巴吃黄连。</li>
+            </ul>
+        </section>
+
+        <section class="section-block" id="point-4">
+            <div class="point-mark">
+                <span class="point-num">04</span>
+                <span class="section-label">EU Split</span>
+            </div>
+            <h2>欧盟的“精分”现场——既要劳动力，又要选票</h2>
+            <p>欧盟对西班牙的围攻，展现了一场精湛的政治表演。所谓“暂停西班牙申根资格”的威胁极具讽刺意味：因为根据条约，休达本身就不在申根自由流动区内，进入休达并不等同于进入欧洲大陆。这种施压，实际上是演给各国选民看的“政治秀”。</p>
+            <p>现实是残酷的：到 2025 年，欧盟人口的中位年龄将达到 40.9 岁。从建筑工、护工到餐厅服务员，欧洲正处于极度“用工荒”中。数据显示，2019 年至 2023 年，欧盟三分之二的新增岗位是靠非法定欧盟公民填补的。</p>
+            <p>然而，这种经济上的刚需在选票面前却成了毒药。我们可以对比两种虚伪的姿态：</p>
+            <div class="compare-grid">
+                <div class="compare">
+                    <h3>西班牙</h3>
+                    <p>桑切斯政府试图将已在境内的“黑工”合法化，以缓解劳动力短缺。</p>
+                </div>
+                <div class="compare">
+                    <h3>意大利</h3>
+                    <p>梅洛尼政府猛烈抨击“太宽容”，转身却批准未来三年引进 50 万外籍劳工。</p>
+                </div>
+            </div>
+            <p>意大利与西班牙的分歧不在于“要不要移民”，而在于“谁来主导”。右翼政党需要用“严厉打击非法入境”的姿态来收割底层选民，因为对于欧洲底层民众来说，移民是廉租房、公立医院和教育资源的直接竞争者。</p>
+        </section>
+    </article>
+
+    <div class="ending">
+        <section class="ending-block" id="ending">
+            <h2>当“外包”逻辑走到尽头</h2>
+            <p>休达危机不仅是一次难民冲击，更是欧盟长期以来“外包逻辑”全面瓦解的预演。</p>
+            <p>长期以来，欧盟习惯了这种舒适的国际分工：</p>
+            <div class="outsource-list">
+                <div class="outsource-item"><span class="k">军事</span><span class="v">外包给美国</span></div>
+                <div class="outsource-item"><span class="k">能源</span><span class="v">外包给俄罗斯</span></div>
+                <div class="outsource-item"><span class="k">生产</span><span class="v">外包给中国</span></div>
+                <div class="outsource-item"><span class="k">劳工</span><span class="v">外包给移民</span></div>
+                <div class="outsource-item"><span class="k">边境</span><span class="v">外包给摩洛哥与土耳其</span></div>
+            </div>
+            <p>在全球化的顺风局里，这叫效率；但在全球化瓦解的逆风局里，每一项“外包”都变成了对方手中可以随时勒紧的杠杆。</p>
+            <p>当这些曾经的“外包商”开始利用杠杆调动利益时，欧洲却还在为“空调怎么开”这种琐事内斗。一个发人深省的问题是：当全球分工变成了地缘博弈的武器，欧洲还能拿出一个像当年建立欧盟时那样野心勃勃、能够破局的方案吗？如果答案是否定的，那么休达的浪花，可能只是更大风暴的序幕。</p>
+        </section>
+    </div>
+
+    <nav class="bottom-nav">
+        <a href="../../index.html">← 返回首页</a>
+        <a href="./Nonviolent-Communication.html">同期刊 · NVC</a>
+        <a href="../issue-21/issue-21.html">上一期 · Issue 21</a>
+    </nav>
+
+    <footer>
+        <span>Digital Garden · Issue 22</span>
+        <span>Ceuta Crisis</span>
+    </footer>
+
+    <script>
+        const progressFill = document.getElementById("progressFill");
+        const updateProgress = () => {
+            const doc = document.documentElement;
+            const scrollTop = doc.scrollTop || document.body.scrollTop;
+            const height = doc.scrollHeight - doc.clientHeight;
+            const progress = height > 0 ? (scrollTop / height) * 100 : 0;
+            progressFill.style.width = progress + "%";
+        };
+        window.addEventListener("scroll", updateProgress, { passive: true });
+        window.addEventListener("resize", updateProgress);
+        updateProgress();
+    </script>
+</body>
+</html>

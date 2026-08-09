@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 | ----- | ---- | ----------- | -------- |
+| [#22](posts/issue-22/issue-22.md) | 2026-08-09 | 非暴力沟通洞见、NVC 精神、休达危机与纽芬兰地图入口 | 💬, 🌍, 🗺️ |
 | [#21](posts/issue-21/issue-21.md) | 2026-08-01 | 四个反直觉真相、规则崩塌的七月与纽芬兰地图入口 | 🌍, 📉, 🗺️ |
 | [#20](posts/issue-20/issue-20.md) | 2026-07-22 | 五个地缘真相、Kimi K3 开源巨兽与纽芬兰地图入口 | 🌍, 🤖, 🗺️ |
 | [#19](posts/issue-19/issue-19.md) | 2026-06-27 | 六月变局与系统性危机、AI时代的代码审查与纽芬兰地图 | 🌍, 📉, 💻, 🗺️ |

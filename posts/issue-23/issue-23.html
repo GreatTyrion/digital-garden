@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第23期 - 数字花园</title>
+    <meta name="description" content="Digital Garden 第23期：原子习惯五个实作洞察、DeepSeek Harness 改写 Agent 规则，以及纽芬兰地图入口。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0d0a;
+            --ink-soft: #3a342b;
+            --parchment: #f7f3ec;
+            --cream: #fffcf5;
+            --line: rgba(15, 13, 10, 0.12);
+            --line-strong: rgba(15, 13, 10, 0.22);
+            --muted: #7a7062;
+            --shadow: 0 12px 36px rgba(15, 13, 10, 0.08);
+            --habit: #7a5c2e;
+            --habit-soft: rgba(122, 92, 46, 0.10);
+            --harness: #2b6cb0;
+            --harness-soft: rgba(43, 108, 176, 0.10);
+            --map: #2b6f68;
+            --map-soft: rgba(43, 111, 104, 0.10);
+            --display: "Playfair Display", "Noto Serif SC", Georgia, serif;
+            --serif: "Crimson Pro", "Noto Serif SC", Georgia, serif;
+            --mono: "JetBrains Mono", "SFMono-Regular", monospace;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--serif);
+            background:
+                radial-gradient(ellipse at 10% 0%, rgba(122, 92, 46, 0.08), transparent 40%),
+                radial-gradient(ellipse at 90% 0%, rgba(43, 108, 176, 0.07), transparent 40%),
+                var(--parchment);
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .progress {
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+            background: rgba(0, 0, 0, 0.04); z-index: 100;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--habit), var(--harness), var(--map));
+            transition: width 0.08s linear;
+        }
+
+        .masthead {
+            background: var(--ink);
+            color: var(--parchment);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .masthead-inner,
+        .section-rail-inner,
+        .page,
+        .footer-inner {
+            width: min(calc(100% - 38px), var(--max));
+            margin: 0 auto;
+        }
+
+        .masthead-inner { padding: 28px 0 48px; }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .back-link, .issue-stamp {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.65);
+            border: 1px solid rgba(247, 243, 236, 0.14);
+            padding: 8px 12px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.65fr);
+            gap: 32px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.42);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(2.4rem, 7vw, 5.2rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+        }
+        .hero-title .accent {
+            color: rgba(247, 243, 236, 0.42);
+            font-style: italic;
+        }
+
+        .hero-summary {
+            margin-top: 16px;
+            max-width: 58ch;
+            color: rgba(247, 243, 236, 0.75);
+            font-size: 1.05rem;
+        }
+
+        .tag-row {
+            display: flex; flex-wrap: wrap; gap: 9px;
+            margin-top: 18px;
+        }
+        .tag {
+            font-size: 0.82rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 6px 13px;
+            color: rgba(247, 243, 236, 0.8);
+        }
+
+        .hero-meta {
+            display: grid; gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-meta-line {
+            display: flex; justify-content: space-between; gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            color: rgba(247, 243, 236, 0.5);
+        }
+        .hero-meta-line strong {
+            color: rgba(247, 243, 236, 0.82);
+            font-weight: 500;
+        }
+
+        .section-rail {
+            position: sticky; top: 3px; z-index: 40;
+            background: rgba(247, 243, 236, 0.92);
+            border-bottom: 1px solid var(--line-strong);
+            backdrop-filter: blur(10px);
+        }
+        .section-rail-inner {
+            padding: 12px 0;
+            display: flex; gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .section-rail-inner::-webkit-scrollbar { display: none; }
+
+        .rail-link {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .rail-link:hover, .rail-link.active {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--line);
+        }
+        .rail-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .rail-link.habit { --accent: var(--habit); }
+        .rail-link.harness { --accent: var(--harness); }
+        .rail-link.map { --accent: var(--map); }
+
+        .page { padding: 34px 0 80px; }
+        .story-grid { display: grid; gap: 26px; }
+
+        .story {
+            background: rgba(255, 255, 255, 0.54);
+            border: 1px solid rgba(15, 13, 10, 0.09);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 84px;
+        }
+
+        .story-head {
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-label {
+            padding: 22px 16px;
+            background: var(--soft);
+            border-right: 1px solid rgba(15, 13, 10, 0.07);
+        }
+        .story-index {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-label h2 {
+            font-family: var(--display);
+            font-size: 1.55rem;
+            line-height: 1.04;
+            color: var(--accent);
+        }
+
+        .story-body { padding: 28px 28px 30px; }
+        .story-kicker {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-body h3 {
+            font-family: var(--display);
+            font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 14px;
+        }
+        .story-summary {
+            font-family: var(--serif);
+            font-size: 1.04rem;
+            color: var(--ink-soft);
+            max-width: 66ch;
+        }
+        .signal-list {
+            list-style: none;
+            display: grid; gap: 10px;
+            margin: 18px 0 24px;
+        }
+        .signal-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+        .signal-list li::before {
+            content: "";
+            position: absolute; left: 0; top: 0.8em;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .story-footer {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 12px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+        .story-note {
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 45ch;
+        }
+        .story-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 11px 16px;
+            background: var(--ink);
+            color: var(--parchment);
+            font-weight: 500;
+            transition: transform 140ms ease;
+        }
+        .story-link:hover { transform: translateY(-2px); }
+
+        .story.habit { --accent: var(--habit); --soft: var(--habit-soft); }
+        .story.harness { --accent: var(--harness); --soft: var(--harness-soft); }
+        .story.map { --accent: var(--map); --soft: var(--map-soft); }
+
+        .bottom-nav {
+            margin-top: 38px;
+            display: flex; flex-wrap: wrap; gap: 10px;
+        }
+        .bottom-nav a {
+            display: inline-flex; align-items: center;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.56);
+            color: var(--ink-soft);
+        }
+
+        footer { border-top: 1px solid var(--line); margin-top: 48px; }
+        .footer-inner {
+            padding: 24px 0 44px;
+            color: var(--muted);
+            display: flex; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px;
+            font-size: 0.93rem;
+        }
+
+        @media (max-width: 940px) {
+            .hero-grid, .story-head { grid-template-columns: 1fr; }
+            .story-label {
+                border-right: 0;
+                border-bottom: 1px solid rgba(15, 13, 10, 0.07);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .masthead-inner,
+            .section-rail-inner,
+            .page,
+            .footer-inner {
+                width: min(calc(100% - 26px), var(--max));
+            }
+            .topbar { flex-direction: column; align-items: flex-start; }
+            .hero-meta-line { display: grid; grid-template-columns: 1fr; }
+            .story-body { padding: 24px 18px 26px; }
+            .story-link { width: 100%; justify-content: center; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-meta, .story-label { padding: 16px; }
+            .story-body h3 { font-size: 1.45rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .story-link { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="topbar">
+                <a class="back-link" href="../../index.html">Back to Index</a>
+                <div class="issue-stamp">Issue 23 / 2026.08.17</div>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Digital Garden Curated Index</div>
+                    <h1 class="hero-title">Issue 23<span class="accent"> / Habit, Harness, Map</span></h1>
+                    <p class="hero-summary">
+                        第23期聚焦两件事：原子习惯从“知道”到“做到”的五个实作洞察，以及 DeepSeek Harness 如何改写 Agent 的游戏规则；同时保留一个持续可用的纽芬兰地图入口。
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag">原子习惯</span>
+                        <span class="tag">DeepSeek Harness</span>
+                        <span class="tag">Agent</span>
+                        <span class="tag">纽芬兰地图</span>
+                    </div>
+                </div>
+                <aside class="hero-meta">
+                    <div class="hero-meta-line"><span>Period</span><strong>2026-08-17</strong></div>
+                    <div class="hero-meta-line"><span>Stories</span><strong>03 Sections</strong></div>
+                    <div class="hero-meta-line"><span>Tone</span><strong>Practice / Infrastructure</strong></div>
+                    <div class="hero-meta-line"><span>Focus</span><strong>Habits, Harness, Map</strong></div>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-rail" aria-label="专题导航">
+        <div class="section-rail-inner">
+            <a class="rail-link habit" href="#atomic-habits"><span class="rail-dot"></span><span>Habits</span></a>
+            <a class="rail-link harness" href="#deepseek-harness"><span class="rail-dot"></span><span>Harness</span></a>
+            <a class="rail-link map" href="#newfoundland-map"><span class="rail-dot"></span><span>Map</span></a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="story-grid">
+            <article id="atomic-habits" class="story habit">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 01</div>
+                        <h2>Habits</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">System / Identity</div>
+                        <h3>从“知道”到“做到”：原子习惯实作版的 5 个颠覆性洞察</h3>
+                        <p class="story-summary">新年计划往往在两周内夭折。真正缺的不是毅力，而是行动架构——从 1% 复利、身份投票、系统优化、两分钟法则到 Workbook 的 GPS。</p>
+                        <ul class="signal-list">
+                            <li>1% 复利：每天进步 1%，一年约 37 倍；航向偏 3.5 度，目的地就会差出数百英里。</li>
+                            <li>身份投票：目标是“戒烟”，身份是“我不抽烟”；每一次小行动都是一票。</li>
+                            <li>系统优于目标：赢家与输家往往目标相同，真正的变量是反馈回路。</li>
+                            <li>两分钟法则：把“读一卷书”缩成“读一页”，先克服静摩擦力。</li>
+                            <li>Workbook 即 GPS：痛点索引与 180 度平摊装订，把理论变成可写的工具。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">前 100 次敲击毫无裂缝，第 101 次石头才会裂开。</p>
+                            <a class="story-link" href="./atomic-habits-02.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="deepseek-harness" class="story harness">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 02</div>
+                        <h2>Harness</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Agent / Infrastructure</div>
+                        <h3>彻底改写 Agent 游戏规则：DeepSeek Harness 震撼发布的 5 个核心洞察</h3>
+                        <p class="story-summary">大模型是千里马，Harness 是让它下地拉车的全套马具。Agent = 模型 + 驾驭——插件化、创造者模式、PTC 与轨迹系统，正在改写 Agent 基础设施。</p>
+                        <ul class="signal-list">
+                            <li>一切皆插件：模型、技能、存储、UI 都可插拔，改配置而不动框架。</li>
+                            <li>创造者模式：AI 掌握自己的源代码与插件钥匙，参与自我进化。</li>
+                            <li>PTC 模式：一次性生成 TypeScript 串联工具调用，缓存命中率近 100%。</li>
+                            <li>轨迹系统：白 / 蓝 / 黄 / 绿四色块打开黑盒，回溯每一次呼吸。</li>
+                            <li>安卓野心：发布不到 24 小时斩获 111K Star，胜负手在驾驭而非参数。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">决定 Agent 强弱的，是你对“驾驭”的理解。</p>
+                            <a class="story-link" href="./deepseek-harness.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="newfoundland-map" class="story map">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 03</div>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Useful Link / Local Utility</div>
+                        <h3>纽芬兰地图入口（圣约翰斯租房）</h3>
+                        <p class="story-summary">保持 Digital Garden 的实用传统：给出一个长期可用的纽芬兰地图入口，方便快速查看圣约翰斯及周边区域房源分布与更新信息。</p>
+                        <ul class="signal-list">
+                            <li>持续更新租房信息，适合作为常用查询入口。</li>
+                            <li>地图化呈现让区域判断和通勤规划更直观。</li>
+                            <li>在习惯与 Agent 内容之外，保留一条可直接落地使用的路径。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这部分强调“可立即使用”的本地价值。</p>
+                            <a class="story-link" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noreferrer">打开纽芬兰地图</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <nav class="bottom-nav" aria-label="页面底部导航">
+            <a href="../../index.html">返回首页</a>
+            <a href="../issue-22/issue-22.html">打开第22期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" target="_blank" rel="noreferrer">意见反馈</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p>© 2026 Digital Garden</p>
+            <p>Issue 23 作为专题导览页，链接到各篇独立 HTML 正文。</p>
+        </div>
+    </footer>
+
+    <script>
+        const progressFill = document.getElementById("progressFill");
+        const railLinks = Array.from(document.querySelectorAll(".rail-link"));
+        const sections = railLinks
+            .map(function (link) {
+                var section = document.querySelector(link.getAttribute("href"));
+                return section ? { link: link, section: section } : null;
+            })
+            .filter(Boolean);
+
+        function updateProgress() {
+            var scrollTop = window.scrollY;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressFill.style.width = Math.min(Math.max(ratio, 0), 100) + "%";
+        }
+
+        function updateActiveRail() {
+            var threshold = window.innerHeight * 0.3;
+            var active = sections[0];
+            sections.forEach(function (item) {
+                if (item.section.getBoundingClientRect().top <= threshold) {
+                    active = item;
+                }
+            });
+            railLinks.forEach(function (link) { link.classList.remove("active"); });
+            if (active) { active.link.classList.add("active"); }
+        }
+
+        function onScroll() {
+            updateProgress();
+            updateActiveRail();
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", onScroll);
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+    </script>
+</body>
+</html>

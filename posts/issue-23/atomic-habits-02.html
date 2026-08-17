@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从“知道”到“做到”：原子习惯实作版的 5 个颠覆性洞察</title>
+    <meta name="description" content="问题不在于毅力，而在于行动架构。从 1% 复利、身份投票、系统优化、两分钟法则到 Workbook 的 GPS，五次敲击之后，石头才会裂开。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dust: #eef0f3;
+            --quarry: #c8ced6;
+            --iron: #1c2128;
+            --iron-soft: #3a4550;
+            --slate: #3e5568;
+            --pyrite: #b8860b;
+            --pyrite-dim: rgba(184, 134, 11, 0.14);
+            --chisel: #6a7b8a;
+            --fog: #f7f8fa;
+            --line: rgba(28, 33, 40, 0.1);
+            --display: "Fraunces", "Noto Serif SC", "Songti SC", serif;
+            --serif-cn: "Noto Serif SC", "Songti SC", serif;
+            --body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            --mono: "Spline Sans Mono", "SFMono-Regular", monospace;
+            --max-w: 740px;
+            --rail: 18px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--body);
+            background:
+                radial-gradient(900px 420px at 88% -10%, rgba(184, 134, 11, 0.08), transparent 55%),
+                radial-gradient(720px 380px at -8% 18%, rgba(62, 85, 104, 0.12), transparent 50%),
+                linear-gradient(180deg, var(--fog) 0%, var(--dust) 42%, var(--quarry) 100%);
+            color: var(--iron);
+            line-height: 1.85;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.45;
+            background-image:
+                radial-gradient(rgba(28, 33, 40, 0.045) 0.6px, transparent 0.7px);
+            background-size: 3px 3px;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(28, 33, 40, 0.08);
+            z-index: 200;
+        }
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--slate), var(--pyrite));
+            transition: width 80ms linear;
+        }
+
+        .strike-rail {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--rail);
+            height: 100vh;
+            z-index: 180;
+            pointer-events: none;
+            background: linear-gradient(90deg, rgba(28, 33, 40, 0.06), transparent);
+        }
+        .strike-rail .vein {
+            position: absolute;
+            top: 0;
+            left: 8px;
+            width: 2px;
+            height: 100%;
+            background: rgba(28, 33, 40, 0.12);
+        }
+        .strike-rail .crack {
+            position: absolute;
+            top: 0;
+            left: 7px;
+            width: 4px;
+            height: 0;
+            background:
+                linear-gradient(180deg, var(--pyrite) 0%, #d4a017 55%, var(--slate) 100%);
+            box-shadow: 0 0 10px rgba(184, 134, 11, 0.35);
+            transition: height 80ms linear;
+            clip-path: polygon(40% 0, 70% 0, 55% 18%, 80% 32%, 45% 48%, 75% 63%, 40% 78%, 65% 100%, 20% 100%, 35% 76%, 10% 62%, 38% 46%, 8% 30%, 30% 16%);
+        }
+
+        .topnav {
+            position: sticky;
+            top: 3px;
+            z-index: 100;
+            background: rgba(247, 248, 250, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .topnav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px 12px calc(20px + var(--rail));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--chisel);
+        }
+        .topnav a {
+            color: var(--chisel);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 160ms ease, border-color 160ms ease;
+        }
+        .topnav a:hover,
+        .topnav a:focus-visible {
+            color: var(--iron);
+            border-bottom-color: var(--pyrite);
+            outline: none;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 48px 20px 20px calc(20px + var(--rail));
+            opacity: 0;
+            transform: translateY(18px);
+            animation: rise-in 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 20px;
+        }
+        .hero-kicker::before {
+            content: "";
+            width: 22px;
+            height: 2px;
+            background: var(--pyrite);
+        }
+        .hero-thesis {
+            font-family: var(--serif-cn);
+            font-size: clamp(1.15rem, 3.2vw, 1.45rem);
+            font-weight: 600;
+            line-height: 1.55;
+            color: var(--slate);
+            margin-bottom: 18px;
+            max-width: 22ch;
+        }
+        .hero h1 {
+            font-family: var(--serif-cn);
+            font-size: clamp(1.85rem, 5.2vw, 2.75rem);
+            line-height: 1.22;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            color: var(--iron);
+            margin-bottom: 18px;
+            max-width: 16ch;
+        }
+        .hero-lead {
+            font-size: 1.02rem;
+            color: var(--iron-soft);
+            max-width: 52ch;
+            line-height: 1.8;
+        }
+
+        .plateau {
+            margin-top: 32px;
+            max-width: 520px;
+        }
+        .plateau svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .plateau-caption {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--chisel);
+        }
+        .curve-draw {
+            stroke-dasharray: 620;
+            stroke-dashoffset: 620;
+            animation: draw-curve 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
+        }
+
+        .section-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 10px 20px 28px calc(20px + var(--rail));
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            opacity: 0;
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+        }
+        .section-nav::-webkit-scrollbar { display: none; }
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.06em;
+            padding: 8px 12px;
+            border: 1px solid var(--line);
+            color: var(--chisel);
+            text-decoration: none;
+            background: rgba(247, 248, 250, 0.7);
+            transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+        }
+        .section-nav a:hover,
+        .section-nav a:focus-visible,
+        .section-nav a.is-active {
+            color: var(--iron);
+            border-color: var(--pyrite);
+            background: var(--pyrite-dim);
+            outline: none;
+        }
+
+        article {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px 64px calc(20px + var(--rail));
+        }
+
+        .section-block {
+            scroll-margin-top: 76px;
+            padding-top: 40px;
+            margin-bottom: 8px;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .section-block:nth-of-type(1) { animation-delay: 160ms; }
+        .section-block:nth-of-type(2) { animation-delay: 200ms; }
+        .section-block:nth-of-type(3) { animation-delay: 240ms; }
+        .section-block:nth-of-type(4) { animation-delay: 280ms; }
+        .section-block:nth-of-type(5) { animation-delay: 320ms; }
+        .section-block:nth-of-type(6) { animation-delay: 360ms; }
+        .section-block:nth-of-type(7) { animation-delay: 400ms; }
+        .section-block + .section-block {
+            border-top: 1px solid var(--line);
+        }
+
+        .strike-mark {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+        .strike-num {
+            font-family: var(--display);
+            font-size: 2rem;
+            line-height: 1;
+            font-weight: 700;
+            font-variation-settings: "opsz" 72;
+            color: var(--pyrite);
+            letter-spacing: -0.03em;
+        }
+        .section-label {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--slate);
+        }
+
+        article h2 {
+            font-family: var(--serif-cn);
+            font-size: clamp(1.32rem, 3.4vw, 1.75rem);
+            line-height: 1.32;
+            letter-spacing: -0.015em;
+            font-weight: 700;
+            color: var(--iron);
+            margin-bottom: 16px;
+            max-width: 20ch;
+        }
+        article p {
+            margin-bottom: 16px;
+            max-width: 62ch;
+            color: var(--iron-soft);
+        }
+        article p strong { color: var(--iron); font-weight: 600; }
+
+        article ul {
+            margin: 8px 0 18px;
+            padding-left: 0;
+            list-style: none;
+            max-width: 60ch;
+        }
+        article ul li {
+            position: relative;
+            padding: 10px 0 10px 18px;
+            color: var(--iron-soft);
+            border-bottom: 1px solid rgba(28, 33, 40, 0.06);
+        }
+        article ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1.15em;
+            width: 7px;
+            height: 2px;
+            background: var(--pyrite);
+        }
+        article li strong { color: var(--iron); }
+
+        article ol {
+            margin: 10px 0 18px;
+            padding-left: 1.3em;
+            max-width: 60ch;
+            color: var(--iron-soft);
+        }
+        article ol li { padding: 6px 0; }
+        article ol li strong { color: var(--iron); }
+        article ol ul {
+            margin: 6px 0 4px;
+        }
+
+        .note {
+            margin: 18px 0 8px;
+            padding: 14px 16px;
+            max-width: 60ch;
+            background: rgba(62, 85, 104, 0.06);
+            border-left: 3px solid var(--slate);
+        }
+        .note p {
+            margin: 0;
+            font-size: 0.98rem;
+        }
+
+        blockquote {
+            margin: 22px 0;
+            padding: 18px 20px 18px 22px;
+            border-left: 3px solid var(--pyrite);
+            background: linear-gradient(90deg, var(--pyrite-dim), transparent 88%);
+            max-width: 58ch;
+        }
+        blockquote p {
+            margin: 0;
+            font-family: var(--serif-cn);
+            font-size: 1.18rem;
+            line-height: 1.55;
+            color: var(--iron);
+            font-weight: 600;
+        }
+        blockquote cite {
+            display: block;
+            margin-top: 10px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-style: normal;
+            letter-spacing: 0.08em;
+            color: var(--chisel);
+        }
+
+        .ballot {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 18px 0 22px;
+            max-width: 60ch;
+        }
+        .ballot-card {
+            padding: 16px 16px 14px;
+            background: rgba(247, 248, 250, 0.78);
+            border: 1px solid var(--line);
+        }
+        .ballot-card.old {
+            border-top: 3px solid var(--chisel);
+        }
+        .ballot-card.new {
+            border-top: 3px solid var(--pyrite);
+            background: var(--pyrite-dim);
+        }
+        .ballot-card h3 {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--chisel);
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .ballot-card.new h3 { color: var(--pyrite); }
+        .ballot-card p {
+            margin: 0;
+            font-family: var(--serif-cn);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--iron);
+            line-height: 1.4;
+            max-width: none;
+        }
+        .ballot-card .sub {
+            margin-top: 8px;
+            font-family: var(--body);
+            font-size: 0.86rem;
+            font-weight: 400;
+            color: var(--iron-soft);
+            line-height: 1.55;
+        }
+
+        .shrink {
+            margin: 18px 0 22px;
+            max-width: 60ch;
+            display: grid;
+            gap: 10px;
+        }
+        .shrink-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            background: rgba(247, 248, 250, 0.75);
+            border: 1px solid var(--line);
+        }
+        .shrink-from,
+        .shrink-to {
+            font-family: var(--serif-cn);
+            font-weight: 600;
+            line-height: 1.35;
+        }
+        .shrink-from {
+            color: var(--chisel);
+            text-decoration: line-through;
+            text-decoration-color: rgba(106, 123, 138, 0.55);
+            font-size: 0.95rem;
+        }
+        .shrink-to {
+            color: var(--iron);
+            font-size: 1.05rem;
+        }
+        .shrink-arrow {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--pyrite);
+            letter-spacing: 0.08em;
+        }
+
+        .spread {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            margin: 20px 0 22px;
+            max-width: 60ch;
+            background: var(--fog);
+            box-shadow: 0 18px 40px rgba(28, 33, 40, 0.08);
+        }
+        .spread-page {
+            padding: 18px 16px 16px;
+            min-height: 150px;
+        }
+        .spread-page.map {
+            border-right: 1px dashed rgba(28, 33, 40, 0.16);
+            background:
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 11px,
+                    rgba(62, 85, 104, 0.05) 11px,
+                    rgba(62, 85, 104, 0.05) 12px
+                );
+        }
+        .spread-page.gps {
+            background: linear-gradient(180deg, rgba(184, 134, 11, 0.08), rgba(247, 248, 250, 0.9));
+        }
+        .spread-page h3 {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--slate);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        .spread-page p {
+            margin: 0;
+            font-size: 0.95rem;
+            max-width: none;
+        }
+        .page-refs {
+            margin: 10px 0 0;
+            padding: 0;
+            list-style: none;
+        }
+        .page-refs li {
+            padding: 6px 0 6px 0;
+            border-bottom: 1px solid rgba(28, 33, 40, 0.06);
+            font-size: 0.92rem;
+        }
+        .page-refs li::before { display: none; }
+        .page-refs em {
+            font-family: var(--mono);
+            font-style: normal;
+            font-size: 0.78rem;
+            color: var(--pyrite);
+            margin-left: 6px;
+        }
+
+        .vote {
+            margin-top: 8px;
+            padding: 22px 20px;
+            max-width: 60ch;
+            border: 1px solid var(--line);
+            background:
+                linear-gradient(180deg, rgba(184, 134, 11, 0.08), rgba(247, 248, 250, 0.4));
+        }
+        .vote p {
+            margin: 0;
+            font-family: var(--serif-cn);
+            font-size: 1.12rem;
+            font-weight: 600;
+            color: var(--iron);
+            line-height: 1.6;
+            max-width: none;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 48px calc(20px + var(--rail));
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+            color: var(--chisel);
+        }
+        footer a {
+            color: var(--slate);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(184, 134, 11, 0.4);
+        }
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--iron);
+            outline: none;
+        }
+
+        @keyframes rise-in {
+            to { opacity: 1; transform: none; }
+        }
+        @keyframes draw-curve {
+            to { stroke-dashoffset: 0; }
+        }
+
+        @media (max-width: 940px) {
+            :root { --rail: 14px; }
+            .hero h1 { max-width: 18ch; }
+            .ballot,
+            .spread { grid-template-columns: 1fr; }
+            .spread-page.map { border-right: 0; border-bottom: 1px dashed rgba(28, 33, 40, 0.16); }
+        }
+
+        @media (max-width: 640px) {
+            :root { --rail: 0px; }
+            body { font-size: 1rem; }
+            .strike-rail { display: none; }
+            .topnav-inner,
+            .hero,
+            .section-nav,
+            article,
+            footer {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+            .hero { padding-top: 36px; }
+            .hero-thesis { max-width: none; }
+            .hero h1 { max-width: none; font-size: 1.7rem; }
+            .section-nav { padding-bottom: 18px; }
+            .shrink-row {
+                grid-template-columns: 1fr;
+                gap: 4px;
+            }
+            .shrink-arrow { display: none; }
+            .ballot-card p { font-size: 1.05rem; }
+            blockquote p { font-size: 1.08rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .hero,
+            .section-nav,
+            .section-block {
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+            .curve-draw {
+                stroke-dashoffset: 0;
+                animation: none;
+            }
+            .progress-fill,
+            .strike-rail .crack {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="strike-rail" aria-hidden="true">
+        <div class="vein"></div>
+        <div class="crack" id="crackFill"></div>
+    </div>
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <a href="../../index.html">Digital Garden</a>
+            <span>Issue 23 · 原子习惯</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <p class="hero-kicker">第 101 击 · 实作版</p>
+        <p class="hero-thesis">问题不在于你，而在于你的习惯系统。</p>
+        <h1>从“知道”到“做到”：原子习惯实作版的 5 个颠覆性洞察</h1>
+        <p class="hero-lead">新年计划往往在两周内夭折。真正缺的不是毅力，而是行动架构。五次微小的敲击之后，石头才会裂开。</p>
+        <figure class="plateau" aria-label="潜能蓄积期曲线：前期几乎平坦，后期陡然抬升">
+            <svg viewBox="0 0 520 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 96 H512" stroke="rgba(28,33,40,0.12)" stroke-width="1"/>
+                <path class="curve-draw" d="M12 92 C 140 91, 250 88, 320 78 C 390 64, 450 38, 508 14" stroke="#b8860b" stroke-width="2.2" stroke-linecap="round"/>
+                <circle cx="12" cy="92" r="3.2" fill="#3e5568"/>
+                <circle cx="508" cy="14" r="3.6" fill="#b8860b"/>
+            </svg>
+            <figcaption class="plateau-caption">
+                <span>潜能蓄积期</span>
+                <span>第 101 击</span>
+            </figcaption>
+        </figure>
+    </header>
+
+    <nav class="section-nav" aria-label="文章章节">
+        <a href="#intro">引言</a>
+        <a href="#compound">1% 复利</a>
+        <a href="#identity">身份投票</a>
+        <a href="#system">系统</a>
+        <a href="#two-minutes">两分钟</a>
+        <a href="#workbook">GPS</a>
+        <a href="#close">建筑师</a>
+    </nav>
+
+    <article>
+        <section class="section-block" id="intro">
+            <div class="strike-mark">
+                <span class="strike-num">00</span>
+                <span class="section-label">引言</span>
+            </div>
+            <h2>为什么你的新年计划总是“无疾而终”？</h2>
+            <p>作为行为设计顾问，我常听到这样的困扰：在跨年夜雄心壮志地列下计划——运动、早起、深读——但不到两周，这些目标就随着多巴胺的退去而夭折。大多数人会陷入自我攻击，认为是自己“缺乏毅力”。</p>
+            <p>《原子习惯》作者詹姆斯·克利尔（James Clear）提出了一个极具穿透力的观点：问题不在于你，而在于你的习惯系统。好的习惯无法养成，往往是因为你的“行动架构”存在底层缺陷。</p>
+            <p>本文将结合《原子习惯》的核心理论与最新推出的《原子习惯 Workbook》，从行为干预的视角，分享 5 个能让你的系统实现“无痛升级”的实操心得。</p>
+        </section>
+
+        <section class="section-block" id="compound">
+            <div class="strike-mark">
+                <span class="strike-num">01</span>
+                <span class="section-label">核心洞察一</span>
+            </div>
+            <h2>轨迹的力量——每天进步 1% 的复利效应</h2>
+            <p>我们往往执着于“决定性瞬间”，却忽略了“微小增益”的累积效应。</p>
+            <ul>
+                <li><strong>1% 法则的数学奇迹</strong>：如果每天进步 1%，持续一年（1.01 的 365 次方），你的能力将提升约 37 倍。</li>
+                <li><strong>3.5 度的航向偏差</strong>：想象你从洛杉矶飞往纽约，如果起飞时航向仅偏南 3.5 度，最终你将降落在华盛顿特区而非纽约。起飞时的微调几乎难以察觉，但经过数千英里的放大，目的地会产生数百英里的巨大落差。</li>
+                <li><strong>英国自行车队的实证</strong>：教练戴夫·布莱尔斯福德（Dave Brailsford）通过优化洗手方式减少感冒、寻找最适合睡眠的枕头、甚至将后勤卡车内漆成纯白色以发现细微灰尘，这些“1% 改进”最终让英国队在 2007–2017 年间拿下了 178 个世界冠军和 66 枚奥运金牌。</li>
+            </ul>
+            <div class="note">
+                <p><strong>分析与反思</strong>：改变是曲线而非直线的。在初期，你可能处于<strong>“潜能蓄积期”（Plateau of Latent Potential）</strong>，此时需要石匠敲石般的耐心——前 100 次敲击可能毫无裂缝，但第 101 次敲击会让石头碎裂。那不是最后一下的功劳，而是先前的每一次叠加。</p>
+            </div>
+        </section>
+
+        <section class="section-block" id="identity">
+            <div class="strike-mark">
+                <span class="strike-num">02</span>
+                <span class="section-label">核心洞察二</span>
+            </div>
+            <h2>身份认同——重塑你的“行动投票权”</h2>
+            <p>真正的行为改变，本质上是<strong>身份认同（Identity）</strong>的转变，而非目标的达成。</p>
+            <div class="ballot">
+                <div class="ballot-card old">
+                    <h3>目标驱动</h3>
+                    <p>「我在戒烟」</p>
+                    <p class="sub">仍认为自己是一个试图改变的烟民。</p>
+                </div>
+                <div class="ballot-card new">
+                    <h3>身份驱动</h3>
+                    <p>「我不抽烟」</p>
+                    <p class="sub">身份已转换。这一票投给了另一种人。</p>
+                </div>
+            </div>
+            <ul>
+                <li><strong>战略转型</strong>：你的目标不是读一本书，而是成为“读书的人”；不是跑马拉松，而是成为“跑步的人”。</li>
+                <li><strong>投票机制</strong>：每一次微小的行动，都是在为你想要成为的那个人“投票”。每跑一次步，你就在为“运动员”这个身份投下一张支持票。</li>
+            </ul>
+            <div class="note">
+                <p><strong>分析与反思</strong>：身份认同提供了行为的内在动力。当你不再追求“完成任务”，而是开始“成为某人”，习惯将不再是负担，而是自我的延伸。</p>
+            </div>
+        </section>
+
+        <section class="section-block" id="system">
+            <div class="strike-mark">
+                <span class="strike-num">03</span>
+                <span class="section-label">核心洞察三</span>
+            </div>
+            <h2>系统优化——赢家与输家的真正区别</h2>
+            <p>这是一个反直觉的事实：赢家和输家往往拥有相同的目标。</p>
+            <p>在赛场上，每个选手都想拿金牌；在职场中，每个应聘者都想要职位。既然目标一致，目标本身就不能成为区分成功的关键，真正的变量在于你的<strong>“系统”</strong>。</p>
+            <ul>
+                <li><strong>目标与系统的冲突</strong>：目标会产生“要么达成、要么失败”的焦虑，而系统则是一个反馈回路（Feedback Loop）。</li>
+                <li><strong>持续获胜</strong>：只要系统在运行，你就在不断微调和进步。教练的系统是招募与训练方式，企业家的系统是测试产品与营销流程。</li>
+            </ul>
+            <div class="note">
+                <p><strong>分析与反思</strong>：盯着目标会让人在达成前感到挫败，而在达成后感到空虚。优化系统则能让你在过程中获得持续的反馈和乐趣，实现“持续赢球”的心理状态。</p>
+            </div>
+        </section>
+
+        <section class="section-block" id="two-minutes">
+            <div class="strike-mark">
+                <span class="strike-num">04</span>
+                <span class="section-label">核心洞察四</span>
+            </div>
+            <h2>两分钟法则——掌握“入门习惯”的静摩擦力</h2>
+            <p>习惯的养成在于频率而非时长。为了击碎拖延症，你需要将宏大目标极简为“两分钟版本”。</p>
+            <div class="shrink">
+                <div class="shrink-row">
+                    <span class="shrink-from">读一卷书</span>
+                    <span class="shrink-arrow">2 min →</span>
+                    <span class="shrink-to">读一页书</span>
+                </div>
+                <div class="shrink-row">
+                    <span class="shrink-from">跑 3 英里</span>
+                    <span class="shrink-arrow">2 min →</span>
+                    <span class="shrink-to">系好跑鞋的鞋带</span>
+                </div>
+            </div>
+            <ul>
+                <li><strong>极简转化</strong>：“读一卷书”简化为“读一页书”；“跑 3 英里”简化为“系好跑鞋的鞋带”。</li>
+                <li><strong>入门习惯（Gateway Habit）</strong>：这种策略的本质是克服静摩擦力。重点不在于这两分钟你做了什么，而在于你掌握了“起头”的技术。</li>
+            </ul>
+            <blockquote>
+                <p>重点不是做一件事，而是掌握起头的习惯……做得比希望的少，好过什么都没做。</p>
+            </blockquote>
+            <div class="note">
+                <p><strong>分析与反思</strong>：这种“策略性缩水”并非自我欺骗，而是在优化行动的起点。一旦你穿上了跑鞋，接下来的后续动作将变得顺理成章，因为你已经进入了行动的轨道。</p>
+            </div>
+        </section>
+
+        <section class="section-block" id="workbook">
+            <div class="strike-mark">
+                <span class="strike-num">05</span>
+                <span class="section-label">核心洞察五</span>
+            </div>
+            <h2>从地图到 GPS——实作版 Workbook 的降维打击</h2>
+            <p>如果说原著《原子习惯》是提供理论架构的“地图”，那么《原子习惯 Workbook》则是实时导航的“GPS”。</p>
+            <div class="spread">
+                <div class="spread-page map">
+                    <h3>地图 · 原著</h3>
+                    <p>理论架构：告诉你山在哪里、路有几条。适合建立心智模型，却把“下一步翻到哪一页”留给了你自己。</p>
+                </div>
+                <div class="spread-page gps">
+                    <h3>GPS · Workbook</h3>
+                    <p>穿线胶装可 180 度平摊。痛点索引把起步困难、环境干扰、自我苛责直接导航到对策页。</p>
+                </div>
+            </div>
+            <ol>
+                <li>
+                    <strong>痛点索引（Pain Point Index）</strong>：它列出了 20 多个实操痛点，直接导航到对应对策。
+                    <ul class="page-refs">
+                        <li>起步困难 <em>p.219</em></li>
+                        <li>环境干扰 <em>p.133</em></li>
+                        <li>偶发失误后的自我苛责 <em>p.64</em></li>
+                    </ul>
+                </li>
+                <li><strong>穿线胶装（Smyth Sewn）</strong>：为了实现“无痛书写”，这本书不惜增加 20%–50% 的成本采用穿线工艺，确保书本能 180 度完全平摊。</li>
+            </ol>
+            <div class="note">
+                <p><strong>分析与反思</strong>：作者通过书籍本身的物理设计，身体力行地实践了“降低摩擦力”和“1% 微小改进”的原则。这种设计让书不再是读物，而是一个无阻碍的行动工具。</p>
+            </div>
+        </section>
+
+        <section class="section-block" id="close">
+            <div class="strike-mark">
+                <span class="strike-num">101</span>
+                <span class="section-label">结语</span>
+            </div>
+            <h2>你是自己人生的建筑师</h2>
+            <p>习惯是自我的复利。改变人生的关键，不在于寻找千载难逢的转机，而在于意识到你是自己环境的“设计者”，而非“顾客”。</p>
+            <p>心理学家荣格（Carl Jung）曾言：</p>
+            <blockquote>
+                <p>如果你无法意识到你的无意识，它就会操控你的生活，然后你却称之为命运。</p>
+                <cite>Carl Jung</cite>
+            </blockquote>
+            <p>原子习惯的修养，本质上是通过有意识的系统重构，完成对无意识生活的“重新编程”。</p>
+            <div class="vote">
+                <p>如果现在的你就是你过去习惯的总和，那么为了成为理想中的自己，你今天愿意投下的那一票是什么？</p>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <p><a href="../../index.html">返回 Digital Garden</a> · 第 23 期 · 原子习惯实作</p>
+    </footer>
+
+    <script>
+        (function () {
+            var fill = document.getElementById("progressFill");
+            var crack = document.getElementById("crackFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+                fill.style.width = p + "%";
+                crack.style.height = p + "%";
+
+                var active = 0;
+                for (var i = 0; i < sections.length; i++) {
+                    if (sections[i].getBoundingClientRect().top <= 120) active = i;
+                }
+                links.forEach(function (a, i) {
+                    a.classList.toggle("is-active", i === active);
+                });
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+        })();
+    </script>
+</body>
+</html>

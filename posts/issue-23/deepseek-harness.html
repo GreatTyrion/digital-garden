@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彻底改写 Agent 游戏规则：DeepSeek Harness 震撼发布的 5 个核心洞察</title>
+    <meta name="description" content="Agent = 模型 + 驾驭。从一切皆插件、创造者模式、PTC 缓存到轨迹系统——DeepSeek Harness 如何改写 Agent 的游戏规则。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:wght@400;500&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --panel: #eef2f5;
+            --aluminum: #d7dee6;
+            --fog: #f7f9fb;
+            --ink: #15202b;
+            --ink-soft: #3d4f5f;
+            --muted: #6b7c8a;
+            --line: rgba(21, 32, 43, 0.1);
+            --sys: #ffffff;
+            --assist: #2b6cb0;
+            --assist-dim: rgba(43, 108, 176, 0.12);
+            --tool: #d69e2e;
+            --tool-dim: rgba(214, 158, 46, 0.14);
+            --user: #2f855a;
+            --user-dim: rgba(47, 133, 90, 0.12);
+            --display: "Bricolage Grotesque", "Noto Sans SC", "PingFang SC", sans-serif;
+            --body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            --mono: "Azeret Mono", "SFMono-Regular", monospace;
+            --max-w: 740px;
+            --rail: 22px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--body);
+            background:
+                radial-gradient(880px 380px at 100% -6%, var(--assist-dim), transparent 55%),
+                radial-gradient(640px 320px at -10% 24%, var(--user-dim), transparent 50%),
+                linear-gradient(180deg, var(--fog) 0%, var(--panel) 48%, var(--aluminum) 100%);
+            color: var(--ink);
+            line-height: 1.85;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 4px;
+            background: rgba(21, 32, 43, 0.08);
+            z-index: 200;
+            display: flex;
+        }
+        .progress-seg {
+            flex: 1;
+            height: 100%;
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+        .progress-seg:nth-child(1) { background: #cfd6dd; }
+        .progress-seg:nth-child(2) { background: var(--assist); }
+        .progress-seg:nth-child(3) { background: var(--tool); }
+        .progress-seg:nth-child(4) { background: var(--user); }
+
+        .trace {
+            position: fixed;
+            top: 0; left: 0;
+            width: var(--rail);
+            height: 100vh;
+            z-index: 180;
+            pointer-events: none;
+            padding: 12px 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .trace-block {
+            flex: 1;
+            border-radius: 1px;
+            opacity: 0.18;
+            transform: scaleY(0.35);
+            transform-origin: top;
+            transition: opacity 160ms ease, transform 160ms ease;
+        }
+        .trace-block.on {
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        .trace-block.sys { background: #fff; box-shadow: inset 0 0 0 1px rgba(21, 32, 43, 0.12); }
+        .trace-block.assist { background: var(--assist); }
+        .trace-block.tool { background: var(--tool); }
+        .trace-block.user { background: var(--user); }
+
+        .topnav {
+            position: sticky;
+            top: 4px;
+            z-index: 100;
+            background: rgba(247, 249, 251, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .topnav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px 12px calc(20px + var(--rail));
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topnav a {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .topnav a:hover,
+        .topnav a:focus-visible {
+            color: var(--ink);
+            border-bottom-color: var(--assist);
+            outline: none;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 44px 20px 18px calc(20px + var(--rail));
+            opacity: 0;
+            transform: translateY(16px);
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--assist);
+            margin-bottom: 22px;
+        }
+        .hero-kicker::before {
+            content: "";
+            width: 18px; height: 8px;
+            background: var(--tool);
+        }
+
+        .equation {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 10px 12px;
+            margin-bottom: 22px;
+            font-family: var(--display);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1;
+        }
+        .eq-term {
+            font-size: clamp(1.7rem, 6vw, 2.7rem);
+            color: var(--ink);
+        }
+        .eq-op {
+            font-family: var(--mono);
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--muted);
+        }
+        .eq-chip {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px 7px;
+            font-size: clamp(1.15rem, 3.4vw, 1.55rem);
+            border: 1px solid var(--line);
+            background: var(--fog);
+        }
+        .eq-chip.model { border-top: 3px solid var(--assist); }
+        .eq-chip.harness { border-top: 3px solid var(--tool); background: var(--tool-dim); }
+
+        .hero h1 {
+            font-family: var(--display);
+            font-size: clamp(1.35rem, 3.6vw, 1.75rem);
+            line-height: 1.35;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            max-width: 22ch;
+            margin-bottom: 16px;
+        }
+        .hero-lead {
+            max-width: 52ch;
+            color: var(--ink-soft);
+            font-size: 1.02rem;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 14px;
+            margin-top: 26px;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .swatch {
+            width: 10px; height: 10px;
+            display: inline-block;
+        }
+        .swatch.sys { background: #fff; box-shadow: inset 0 0 0 1px rgba(21,32,43,0.2); }
+        .swatch.assist { background: var(--assist); }
+        .swatch.tool { background: var(--tool); }
+        .swatch.user { background: var(--user); }
+
+        .section-nav {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 10px 20px 28px calc(20px + var(--rail));
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+            opacity: 0;
+            animation: rise-in 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms forwards;
+        }
+        .section-nav::-webkit-scrollbar { display: none; }
+        .section-nav a {
+            flex: 0 0 auto;
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            letter-spacing: 0.04em;
+            padding: 8px 12px;
+            text-decoration: none;
+            color: var(--muted);
+            background: rgba(247, 249, 251, 0.75);
+            border: 1px solid var(--line);
+            border-left: 3px solid var(--aluminum);
+        }
+        .section-nav a[href="#intro"] { border-left-color: #cfd6dd; }
+        .section-nav a[href="#plugins"] { border-left-color: var(--tool); }
+        .section-nav a[href="#creator"] { border-left-color: var(--assist); }
+        .section-nav a[href="#ptc"] { border-left-color: var(--tool); }
+        .section-nav a[href="#trajectory"] { border-left-color: var(--user); }
+        .section-nav a[href="#field"] { border-left-color: var(--assist); }
+        .section-nav a[href="#close"] { border-left-color: #cfd6dd; }
+        .section-nav a:hover,
+        .section-nav a:focus-visible,
+        .section-nav a.is-active {
+            color: var(--ink);
+            background: var(--fog);
+            outline: none;
+        }
+
+        article {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px 64px calc(20px + var(--rail));
+        }
+
+        .log {
+            scroll-margin-top: 76px;
+            padding: 22px 0 10px 16px;
+            margin-bottom: 8px;
+            border-left: 4px solid var(--aluminum);
+            opacity: 0;
+            transform: translateY(14px);
+            animation: rise-in 650ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .log:nth-of-type(1) { animation-delay: 140ms; border-left-color: #cfd6dd; }
+        .log:nth-of-type(2) { animation-delay: 180ms; border-left-color: var(--tool); }
+        .log:nth-of-type(3) { animation-delay: 220ms; border-left-color: var(--assist); }
+        .log:nth-of-type(4) { animation-delay: 260ms; border-left-color: var(--tool); }
+        .log:nth-of-type(5) { animation-delay: 300ms; border-left-color: var(--user); }
+        .log:nth-of-type(6) { animation-delay: 340ms; border-left-color: var(--assist); }
+        .log:nth-of-type(7) { animation-delay: 380ms; border-left-color: #cfd6dd; }
+
+        .log-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .log-kind {
+            padding: 2px 7px;
+            color: var(--ink);
+            background: var(--fog);
+            border: 1px solid var(--line);
+        }
+
+        article h2 {
+            font-family: var(--display);
+            font-size: clamp(1.28rem, 3.2vw, 1.65rem);
+            line-height: 1.32;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+            margin-bottom: 14px;
+            max-width: 22ch;
+        }
+        article p {
+            margin-bottom: 14px;
+            max-width: 62ch;
+            color: var(--ink-soft);
+        }
+        article p strong { color: var(--ink); font-weight: 600; }
+
+        article ul {
+            list-style: none;
+            margin: 6px 0 16px;
+            padding: 0;
+            max-width: 60ch;
+        }
+        article ul li {
+            position: relative;
+            padding: 9px 0 9px 16px;
+            color: var(--ink-soft);
+            border-bottom: 1px solid rgba(21, 32, 43, 0.06);
+        }
+        article ul li::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 1.15em;
+            width: 7px; height: 2px;
+            background: var(--assist);
+        }
+        article li strong { color: var(--ink); }
+
+        blockquote {
+            margin: 18px 0;
+            padding: 16px 18px;
+            max-width: 58ch;
+            background: var(--assist-dim);
+            border-left: 3px solid var(--assist);
+        }
+        blockquote p {
+            margin: 0;
+            font-family: var(--display);
+            font-size: 1.08rem;
+            line-height: 1.6;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .slots {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0 20px;
+            max-width: 60ch;
+        }
+        .slot {
+            padding: 14px 14px 12px;
+            background: var(--fog);
+            border: 1px dashed rgba(21, 32, 43, 0.18);
+        }
+        .slot h3 {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--assist);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .slot p {
+            margin: 0;
+            font-size: 0.94rem;
+            max-width: none;
+        }
+
+        .spec {
+            width: 100%;
+            max-width: 60ch;
+            border-collapse: collapse;
+            margin: 16px 0 20px;
+            font-size: 0.92rem;
+            background: var(--fog);
+        }
+        .spec th,
+        .spec td {
+            text-align: left;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top;
+            color: var(--ink-soft);
+        }
+        .spec th {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 500;
+            background: rgba(21, 32, 43, 0.04);
+        }
+        .spec td:first-child {
+            font-weight: 600;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+        .spec td:last-child { color: var(--ink); }
+
+        .breaths {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 16px 0 20px;
+            max-width: 60ch;
+        }
+        .breath {
+            padding: 14px 14px 12px;
+            background: var(--fog);
+            border-top: 4px solid var(--aluminum);
+        }
+        .breath.sys { border-top-color: #cfd6dd; }
+        .breath.assist { border-top-color: var(--assist); }
+        .breath.tool { border-top-color: var(--tool); }
+        .breath.user { border-top-color: var(--user); }
+        .breath h3 {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            font-weight: 500;
+            color: var(--muted);
+        }
+        .breath p {
+            margin: 0;
+            font-size: 0.94rem;
+            max-width: none;
+        }
+
+        .cost {
+            margin: 16px 0 8px;
+            padding: 14px 16px;
+            max-width: 60ch;
+            background: var(--tool-dim);
+            border-left: 3px solid var(--tool);
+        }
+        .cost p { margin: 0; }
+
+        .keyhole {
+            margin: 16px 0 18px;
+            padding: 16px 18px;
+            max-width: 60ch;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 14px;
+            align-items: start;
+            background: var(--assist-dim);
+            border: 1px solid rgba(43, 108, 176, 0.2);
+        }
+        .keyhole-mark {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--assist);
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            padding-top: 2px;
+        }
+        .keyhole p { margin: 0; max-width: none; }
+
+        .ask {
+            margin-top: 8px;
+            padding: 20px 18px;
+            max-width: 60ch;
+            background:
+                linear-gradient(180deg, var(--user-dim), rgba(247, 249, 251, 0.5));
+            border: 1px solid var(--line);
+        }
+        .ask p {
+            margin: 0;
+            font-family: var(--display);
+            font-size: 1.08rem;
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.6;
+            max-width: none;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 20px 48px calc(20px + var(--rail));
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+        }
+        footer a {
+            color: var(--assist);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(43, 108, 176, 0.35);
+        }
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--ink);
+            outline: none;
+        }
+
+        @keyframes rise-in {
+            to { opacity: 1; transform: none; }
+        }
+
+        @media (max-width: 940px) {
+            :root { --rail: 16px; }
+            .slots,
+            .breaths { grid-template-columns: 1fr; }
+            .spec td:first-child { white-space: normal; }
+        }
+
+        @media (max-width: 640px) {
+            :root { --rail: 0px; }
+            body { font-size: 1rem; }
+            .trace { display: none; }
+            .topnav-inner,
+            .hero,
+            .section-nav,
+            article,
+            footer {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+            .hero { padding-top: 32px; }
+            .hero h1 { max-width: none; }
+            .equation { gap: 8px; }
+            .eq-term { font-size: 1.55rem; }
+            .log { padding-left: 12px; }
+            .keyhole {
+                grid-template-columns: 1fr;
+            }
+            .keyhole-mark {
+                writing-mode: horizontal-tb;
+                transform: none;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .hero,
+            .section-nav,
+            .log {
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+            .trace-block,
+            .progress-seg {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-seg" id="seg0"></div>
+        <div class="progress-seg" id="seg1"></div>
+        <div class="progress-seg" id="seg2"></div>
+        <div class="progress-seg" id="seg3"></div>
+    </div>
+    <div class="trace" aria-hidden="true" id="trace"></div>
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <a href="../../index.html">Digital Garden</a>
+            <span>Issue 23 · Harness</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <p class="hero-kicker">Trajectory · DeepSeek</p>
+        <div class="equation" aria-label="Agent 等于模型加驾驭">
+            <span class="eq-term">Agent</span>
+            <span class="eq-op">=</span>
+            <span class="eq-chip model">模型</span>
+            <span class="eq-op">+</span>
+            <span class="eq-chip harness">驾驭</span>
+        </div>
+        <h1>彻底改写 Agent 游戏规则：DeepSeek Harness 震撼发布的 5 个核心洞察</h1>
+        <p class="hero-lead">大模型是千里马。Harness 是让它下地拉车的全套马具。模型负责思考，驾驭负责把思考接入文件、终端、网页和工具链。</p>
+        <div class="legend">
+            <span><i class="swatch sys"></i> 系统</span>
+            <span><i class="swatch assist"></i> 助手</span>
+            <span><i class="swatch tool"></i> 工具</span>
+            <span><i class="swatch user"></i> 用户</span>
+        </div>
+    </header>
+
+    <nav class="section-nav" aria-label="文章章节">
+        <a href="#intro">引言</a>
+        <a href="#plugins">一切皆插件</a>
+        <a href="#creator">创造者</a>
+        <a href="#ptc">PTC</a>
+        <a href="#trajectory">轨迹</a>
+        <a href="#field">实战</a>
+        <a href="#close">生态</a>
+    </nav>
+
+    <article>
+        <section class="log" id="intro">
+            <div class="log-meta"><span class="log-kind">SYS</span> 引言</div>
+            <h2>Agent = 模型 + 驾驭（Harness）</h2>
+            <p>在 AI 领域，我们正处于一场“诸神之战”的暴风眼。从 Claude Code 到 Codex，各大模型厂商都在疯狂卷工具、卷生态。然而，DeepSeek Harness 的横空出世，以一种近乎“降维打击”的方式重新定义了这场竞赛。</p>
+            <p>DeepSeek 提出了一个极具穿透力的哲学：如果说大模型是灵魂，或者是那匹跑得飞快的千里马，那么 Harness（意为“驾驭”或“马具”）就是让它能下地干活、能拉车、能真正解决现实问题的全套装备。在 DeepSeek 的语境里，Agent = 模型 + 驾驭（Harness）。模型负责抽象思考，而 Harness 负责将这种思考暴力接入文件系统、终端、网页和工具链。这不仅是工具的迭代，更是对 Agent 开发范式的彻底重构。</p>
+        </section>
+
+        <section class="log" id="plugins">
+            <div class="log-meta"><span class="log-kind">TOOL</span> 洞察 · 插件</div>
+            <h2>颠覆性哲学：“一切皆插件”的模块化极致</h2>
+            <p>DeepSeek Harness 最令开发者兴奋的，是其极致的模块化理念——“一切皆插件”。我们已经忍受了太久闭源 Agent 助手的“黑盒”操作，而 Harness 将 Agent 的每一根神经、每一个器官都“乐高化”了。</p>
+            <p>在 Harness 的架构中，甚至连“画板（Painting Box）”都不是内核，而是一个可选的插件。这种裸机（Bare-bones）的设计思想，赋予了开发者前所未有的自由度：</p>
+            <div class="slots">
+                <div class="slot">
+                    <h3>Slot · 模型与工具</h3>
+                    <p>自由接入 DeepSeek V4 Pro 或任何第三方 API。</p>
+                </div>
+                <div class="slot">
+                    <h3>Slot · 技能 Skills</h3>
+                    <p>沉淀专业领域逻辑。</p>
+                </div>
+                <div class="slot">
+                    <h3>Slot · 存储与循环</h3>
+                    <p>决定 Agent 如何记忆和调度任务。</p>
+                </div>
+                <div class="slot">
+                    <h3>Slot · UI 与沙盒</h3>
+                    <p>随心所欲定制交互界面和代码运行环境。</p>
+                </div>
+            </div>
+            <blockquote>
+                <p>用户无需动框架代码，仅需修改配置文件，即可将搜索引擎替换成公司内部服务，或调整 Agent 的审批策略。这种“不伤筋动骨”的定制化能力，让它成为了一个真正的开放式智能框架。</p>
+            </blockquote>
+        </section>
+
+        <section class="log" id="creator">
+            <div class="log-meta"><span class="log-kind">ASSIST</span> 洞察 · 创造者</div>
+            <h2>创造者模式：让 AI 实现“自我进化”</h2>
+            <p>如果说标准模式是“人在用 AI”，那么“创造者模式（Creator Mode）”则是“AI 在造自己”。这不仅是让 AI 写代码，而是赋予 AI 权限去检查自身的运行状态、实验新的插件组合，甚至创造新的模式预设。</p>
+            <div class="keyhole">
+                <span class="keyhole-mark">Key</span>
+                <p>这是开发者社区最震撼的亮点：AI 不再只是工具，它掌握了自己源代码和插件配置的“钥匙”。</p>
+            </div>
+            <blockquote>
+                <p>创造者模式可以让它自己给自己加插件、加功能，彻底改写 Agent 开发方式，让 AI 实现了某种意义上的自我进化。</p>
+            </blockquote>
+            <p>这种设计跳出了“人类喂饭”的旧框架。在创造者模式下，你可以命令 AI 为自己开发一个代码审计插件，或者自己改装出一个“只能读、不能写”的安全防御模式。这种 AI 参与自身工具构建的范式，正是 Agent 迈向自主化的第一步。</p>
+        </section>
+
+        <section class="log" id="ptc">
+            <div class="log-meta"><span class="log-kind">TOOL</span> 洞察 · PTC</div>
+            <h2>PTC 模式与 100% 缓存命中率：极致的成本与效率</h2>
+            <p>为了解决传统 Agent “动作慢、费用高”的顽疾，DeepSeek 推出了 PTC（Programmatic Tool Calling，程序化工具调用）模式。</p>
+            <p>为什么 PTC 能实现近乎 100% 的缓存命中率？答案在于它对逻辑编排的极致压缩：</p>
+            <table class="spec">
+                <thead>
+                    <tr>
+                        <th>维度</th>
+                        <th>标准模式</th>
+                        <th>PTC 模式</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>执行逻辑</td>
+                        <td>“一步一动”，每步都要等待结果再决策。</td>
+                        <td>一次性生成一段 TypeScript 代码串联所有逻辑。</td>
+                    </tr>
+                    <tr>
+                        <td>交互频率</td>
+                        <td>多次往返调用，上下文不断堆叠膨胀。</td>
+                        <td>一次性执行（One-shot），上下文消耗极少。</td>
+                    </tr>
+                    <tr>
+                        <td>性能表现</td>
+                        <td>响应较慢，Token 消耗具有随机性。</td>
+                        <td>100% 缓存命中率，响应极快且成本极低。</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="cost">
+                <p><strong>实测数据</strong>：正是因为 PTC 将复杂的工具调用转化为一段静态、可预测的代码块，使得 API 缓存命中率极高。开发一个带手势识别的 3D 应用或复杂的全栈应用，Token 费用竟然不到 5 元人民币。在 DeepSeek 面前，高效与低价终于达成了和解。</p>
+            </div>
+        </section>
+
+        <section class="log" id="trajectory">
+            <div class="log-meta"><span class="log-kind">USER</span> 洞察 · 轨迹</div>
+            <h2>轨迹系统：告别 Agent 的“黑盒”时代</h2>
+            <p>我们已经容忍了 AI 的“黑盒”状态太久，现在 DeepSeek 终于“把灯打开了”。</p>
+            <p>DeepSeek Harness 的“轨迹（Trajectory）”面板通过清晰的色块展示了 Agent 的每一个呼吸：</p>
+            <div class="breaths">
+                <div class="breath sys">
+                    <h3>白色 · 系统块</h3>
+                    <p>透明化展示系统提示词（System Prompt）。</p>
+                </div>
+                <div class="breath assist">
+                    <h3>蓝色 · 助手块</h3>
+                    <p>记录 AI 的思考逻辑与 Token 消耗。</p>
+                </div>
+                <div class="breath tool">
+                    <h3>黄色 · 工具块</h3>
+                    <p>审计工具调用的输入（Payload）与输出结果。</p>
+                </div>
+                <div class="breath user">
+                    <h3>绿色 · 用户块</h3>
+                    <p>标记原始指令。</p>
+                </div>
+            </div>
+            <p>轨迹系统就像是 Agent 的实时日志（Log）。它让开发者能回溯每一个决策瞬间，排查每一个微小的 Bug。这种透明度不仅是为了调试，更是为了建立人机之间的底层信任。</p>
+        </section>
+
+        <section class="log" id="field">
+            <div class="log-meta"><span class="log-kind">ASSIST</span> 实战</div>
+            <h2>从 3D 游戏到全栈应用的工程化力量</h2>
+            <p>DeepSeek Harness 在实战中展现了恐怖的工程化输出能力，特别是在复杂交互上：</p>
+            <ul>
+                <li><strong>3D 交互深度</strong>：开发者在半小时内做出了“3D 竹知了”，细节令人发指——甚至连旋转时的影子映射都处理得极佳。虽然在“3D 坦克大战”等复杂交互中，目前仍存在摇杆响应度不够精准等小 Bug，但其渲染逻辑和框架完整度已属顶尖。</li>
+                <li><strong>全栈应用构建</strong>：“AI PPT 生成器”不仅布局优雅，更展现了其处理后端调用与前端实时预览的协同能力。</li>
+                <li><strong>生态交互优势</strong>：区别于 Codex 等传统的桌面 APP 模式，Harness 采用 WebUI 架构。这意味着它具备天然的远程访问基因，你甚至可以在手机上通过 Web 界面操控远端服务器上的 Agent 任务，甚至让 Codex 这种其他 AI 助手来反向调用 Harness。</li>
+            </ul>
+        </section>
+
+        <section class="log" id="close">
+            <div class="log-meta"><span class="log-kind">SYS</span> 结语</div>
+            <h2>谁将控制未来的 Agent 生态？</h2>
+            <p>DeepSeek Harness 发布不到 24 小时，GitHub Star 数便狂飙至 111K，这不仅仅是流量的狂欢，更是开发者对“Agent 基础设施”的一次集体投票。</p>
+            <p>DeepSeek 的野心昭然若揭：它不只想做一个编程助手，它想成为 Agent 界的“安卓系统”。当底层的模型能力逐渐抹平，真正的胜负手在于谁能提供最开放、最灵活、成本最低的“驾驭（Harness）”环境。</p>
+            <div class="ask">
+                <p>当 Agent 的基础设施完全开源且插件化后，未来的 AI 应用是否会因为每个人的极致定制而变得完全不同？决定 Agent 强弱的，究竟是模型参数，还是你对“驾驭”的理解？</p>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <p><a href="../../index.html">返回 Digital Garden</a> · 第 23 期 · DeepSeek Harness</p>
+    </footer>
+
+    <script>
+        (function () {
+            var kinds = ["sys", "assist", "tool", "user"];
+            var trace = document.getElementById("trace");
+            var segs = [0, 1, 2, 3].map(function (i) {
+                return document.getElementById("seg" + i);
+            });
+            for (var i = 0; i < 16; i++) {
+                var b = document.createElement("div");
+                b.className = "trace-block " + kinds[i % 4];
+                trace.appendChild(b);
+            }
+            var blocks = trace.children;
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                var lit = Math.round(p * blocks.length);
+                for (var i = 0; i < blocks.length; i++) {
+                    blocks[i].classList.toggle("on", i < lit);
+                }
+                var each = 0.25;
+                for (var s = 0; s < 4; s++) {
+                    var local = Math.min(1, Math.max(0, (p - s * each) / each));
+                    segs[s].style.transform = "scaleX(" + local + ")";
+                }
+                var active = 0;
+                for (var j = 0; j < sections.length; j++) {
+                    if (sections[j].getBoundingClientRect().top <= 120) active = j;
+                }
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+        })();
+    </script>
+</body>
+</html>

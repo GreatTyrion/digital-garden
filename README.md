@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 | ----- | ---- | ----------- | -------- |
+| [#24](posts/issue-24/issue-24.md) | 2026-08-31 | 有味道的真相、八月备选方案与纽芬兰地图入口 | 💵, 🌍, 🗺️ |
 | [#23](posts/issue-23/issue-23.md) | 2026-08-17 | 原子习惯实作洞察、DeepSeek Harness 与纽芬兰地图入口 | 🔁, 🤖, 🗺️ |
 | [#22](posts/issue-22/issue-22.md) | 2026-08-09 | 非暴力沟通洞见、NVC 精神、休达危机与纽芬兰地图入口 | 💬, 🌍, 🗺️ |
 | [#21](posts/issue-21/issue-21.md) | 2026-08-01 | 四个反直觉真相、规则崩塌的七月与纽芬兰地图入口 | 🌍, 📉, 🗺️ |

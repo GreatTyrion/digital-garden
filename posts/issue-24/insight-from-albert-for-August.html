@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>狂飙时代落幕：当旧账单纷纷到期，全球正集体启动“备选方案”</title>
+    <meta name="description" content="8 月，全球化试用期结束。从 40 万亿美债利息黑洞、土地财政断奶，到盟友单独结算与中东小北约——旧账单到期后，世界如何寻找备选方案。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Noto+Sans+SC:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f4ead6;
+            --sheet: #fff8eb;
+            --copy: #d7e4ee;
+            --ink: #1c1914;
+            --ink-soft: #4a453c;
+            --muted: #7a7266;
+            --carbon: #215a86;
+            --stamp: #c42b1c;
+            --paid: #2b6b4a;
+            --line: rgba(28, 25, 20, 0.12);
+            --rule: rgba(33, 90, 134, 0.09);
+            --display: "Fraunces", "Noto Sans SC", "Songti SC", serif;
+            --body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            --mono: "Red Hat Mono", "SFMono-Regular", monospace;
+            --max-w: 760px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 108px;
+        }
+
+        body {
+            font-family: var(--body);
+            color: var(--ink);
+            background-color: var(--paper);
+            background-image:
+                repeating-linear-gradient(
+                    180deg,
+                    transparent 0,
+                    transparent 27px,
+                    var(--rule) 27px,
+                    var(--rule) 28px
+                ),
+                radial-gradient(900px 420px at 100% -8%, rgba(196, 43, 28, 0.08), transparent 55%),
+                radial-gradient(700px 380px at -8% 12%, rgba(33, 90, 134, 0.14), transparent 50%);
+            line-height: 1.85;
+            font-size: 1.04rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 3;
+            opacity: 0.07;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        .copies {
+            position: fixed;
+            inset: 18px 10px auto auto;
+            width: min(42vw, 280px);
+            height: 180px;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .copy-sheet {
+            position: absolute;
+            inset: 0;
+            background: var(--copy);
+            border: 1px solid rgba(33, 90, 134, 0.22);
+            transform: rotate(4deg);
+        }
+        .copy-sheet:nth-child(2) {
+            background: #eef4f8;
+            transform: rotate(7.5deg) translate(10px, 8px);
+        }
+        .copy-sheet:nth-child(3) {
+            background: var(--sheet);
+            transform: rotate(11deg) translate(18px, 16px);
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(28, 25, 20, 0.08);
+            z-index: 200;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            transform: scaleX(0);
+            transform-origin: left;
+            background: linear-gradient(90deg, var(--carbon), var(--stamp));
+        }
+
+        .topnav {
+            position: sticky;
+            top: 5px;
+            z-index: 100;
+            background: rgba(244, 234, 214, 0.9);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px dashed var(--line);
+        }
+        .topnav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        .topnav a {
+            color: var(--carbon);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+        .topnav a:hover,
+        .topnav a:focus-visible {
+            border-bottom-color: var(--stamp);
+            outline: none;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 36px 20px 8px;
+            opacity: 0;
+            transform: translateY(16px);
+            animation: rise-in 740ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        .invoice-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .invoice-meta {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--carbon);
+            line-height: 1.7;
+        }
+        .stamp {
+            flex: 0 0 auto;
+            width: 92px;
+            height: 92px;
+            border: 3px solid var(--stamp);
+            border-radius: 50%;
+            color: var(--stamp);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            transform: rotate(-14deg);
+            opacity: 0.88;
+            box-shadow: inset 0 0 0 2px rgba(196, 43, 28, 0.25);
+        }
+
+        .hero h1 {
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: clamp(2.05rem, 6vw, 3.35rem);
+            line-height: 1.16;
+            letter-spacing: -0.02em;
+            max-width: 16ch;
+            text-wrap: balance;
+        }
+        .hero-lead {
+            margin-top: 18px;
+            max-width: 42em;
+            color: var(--ink-soft);
+        }
+
+        .line-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+        .chip {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            background: var(--sheet);
+            border: 1px solid var(--line);
+            padding: 6px 10px;
+        }
+        .chip b {
+            color: var(--stamp);
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .section-nav {
+            position: sticky;
+            top: 45px;
+            z-index: 90;
+            background: rgba(244, 234, 214, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+        }
+        .section-nav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 10px;
+            display: flex;
+            gap: 2px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+        .section-nav a {
+            flex: 0 0 auto;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--muted);
+            padding: 12px 12px;
+            border-bottom: 2px solid transparent;
+            white-space: nowrap;
+        }
+        .section-nav a.is-active,
+        .section-nav a:hover,
+        .section-nav a:focus-visible {
+            color: var(--carbon);
+            border-bottom-color: var(--stamp);
+            outline: none;
+        }
+
+        article {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 10px 20px 80px;
+        }
+
+        .sheet-card {
+            background: var(--sheet);
+            border: 1px solid var(--line);
+            box-shadow:
+                8px 8px 0 var(--copy),
+                16px 16px 0 rgba(33, 90, 134, 0.12);
+            padding: 8px 0 4px;
+        }
+
+        section.item {
+            padding: 36px 24px 10px;
+            border-top: 1px dashed var(--line);
+            opacity: 0;
+            transform: translateY(12px);
+            animation: rise-in 680ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        section.item:first-of-type { border-top: 0; }
+        section.item:nth-of-type(1) { animation-delay: 60ms; }
+        section.item:nth-of-type(2) { animation-delay: 110ms; }
+        section.item:nth-of-type(3) { animation-delay: 160ms; }
+        section.item:nth-of-type(4) { animation-delay: 210ms; }
+        section.item:nth-of-type(5) { animation-delay: 260ms; }
+        section.item:nth-of-type(6) { animation-delay: 310ms; }
+        section.item:nth-of-type(7) { animation-delay: 360ms; }
+
+        .sku {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--carbon);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sku-no {
+            background: var(--carbon);
+            color: var(--sheet);
+            padding: 2px 7px;
+            letter-spacing: 0.1em;
+        }
+
+        section.item h2 {
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: clamp(1.45rem, 3.4vw, 2.05rem);
+            line-height: 1.28;
+            margin-bottom: 14px;
+            text-wrap: balance;
+        }
+
+        p { margin-bottom: 1em; color: var(--ink-soft); }
+        strong { color: var(--ink); font-weight: 600; }
+
+        ul {
+            list-style: none;
+            margin: 6px 0 18px;
+            display: grid;
+            gap: 10px;
+        }
+        ul li {
+            padding: 12px 14px;
+            background: rgba(215, 228, 238, 0.45);
+            border-left: 3px solid var(--carbon);
+            color: var(--ink-soft);
+        }
+
+        blockquote {
+            margin: 20px 0 22px;
+            padding: 16px 18px;
+            background: rgba(196, 43, 28, 0.06);
+            border-left: 3px solid var(--stamp);
+        }
+        blockquote p {
+            font-family: var(--display);
+            font-size: 1.22rem;
+            font-style: italic;
+            line-height: 1.5;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        .ledger {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 18px 0 20px;
+        }
+        .cell {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            padding: 14px 12px 12px;
+        }
+        .cell-k {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+        .cell-v {
+            font-family: var(--display);
+            font-size: clamp(1.35rem, 3.2vw, 1.85rem);
+            line-height: 1;
+            color: var(--ink);
+        }
+        .cell.due .cell-v { color: var(--stamp); }
+
+        .verdict {
+            margin: 18px 0 8px;
+            padding: 14px 16px;
+            border: 1px solid var(--line);
+            background: repeating-linear-gradient(
+                -45deg,
+                rgba(33, 90, 134, 0.05),
+                rgba(33, 90, 134, 0.05) 8px,
+                transparent 8px,
+                transparent 16px
+            );
+        }
+        .verdict-k {
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--stamp);
+            margin-bottom: 6px;
+        }
+        .verdict p { margin: 0; color: var(--ink); }
+
+        .close-q {
+            margin-top: 22px;
+            padding: 20px 18px;
+            background: var(--ink);
+            color: var(--sheet);
+        }
+        .close-q p {
+            font-family: var(--display);
+            font-size: 1.18rem;
+            line-height: 1.55;
+            color: var(--sheet);
+            margin: 0;
+        }
+
+        footer {
+            position: relative;
+            z-index: 2;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px 48px;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+        footer a { color: var(--carbon); text-decoration: none; }
+        footer a:hover,
+        footer a:focus-visible { border-bottom: 1px solid var(--stamp); outline: none; }
+
+        @keyframes rise-in {
+            to { opacity: 1; transform: none; }
+        }
+
+        @media (max-width: 940px) {
+            .copies { opacity: 0.35; }
+            .hero { padding-top: 28px; }
+            .sheet-card { box-shadow: 6px 6px 0 var(--copy); }
+        }
+
+        @media (max-width: 640px) {
+            html { scroll-padding-top: 102px; }
+            body { font-size: 1rem; }
+            .copies { display: none; }
+            .topnav-inner,
+            .hero,
+            article,
+            footer { padding-left: 16px; padding-right: 16px; }
+            .section-nav { top: 43px; }
+            .hero h1 { font-size: 1.78rem; max-width: none; }
+            .invoice-head { align-items: center; }
+            .stamp { width: 76px; height: 76px; font-size: 0.54rem; }
+            section.item { padding: 28px 16px 8px; }
+            .ledger { grid-template-columns: 1fr; }
+            .sheet-card { box-shadow: 4px 4px 0 var(--copy); }
+            blockquote p { font-size: 1.08rem; }
+            .close-q p { font-size: 1.06rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .hero,
+            section.item {
+                opacity: 1;
+                transform: none;
+                animation: none;
+            }
+            .progress-fill { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="copies" aria-hidden="true">
+        <div class="copy-sheet"></div>
+        <div class="copy-sheet"></div>
+        <div class="copy-sheet"></div>
+    </div>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <a href="../../index.html">Digital Garden</a>
+            <span>Issue 24 · Statement</span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="invoice-head">
+            <div class="invoice-meta">
+                Statement · AUG<br>
+                No. 24-ALBERT<br>
+                Status: backup in progress
+            </div>
+            <div class="stamp">试用期<br>结束</div>
+        </div>
+        <h1>狂飙时代落幕</h1>
+        <p class="hero-lead">当旧账单纷纷到期，全球正集体启动“备选方案”。8 月，全球化时代的“试用期”宣告结束，所有人都在忙着给安全和增长重新定价。</p>
+        <div class="line-chips">
+            <span class="chip"><b>01</b>利息黑洞</span>
+            <span class="chip"><b>02</b>土地财政</span>
+            <span class="chip"><b>03</b>单独结算</span>
+            <span class="chip"><b>04</b>小北约</span>
+            <span class="chip"><b>05</b>科技拉锯</span>
+        </div>
+    </header>
+
+    <nav class="section-nav" aria-label="文章目录">
+        <div class="section-nav-inner">
+            <a href="#intro">引言</a>
+            <a href="#debt">利息黑洞</a>
+            <a href="#china">土地财政</a>
+            <a href="#allies">单独结算</a>
+            <a href="#mininato">小北约</a>
+            <a href="#tech">科技拉锯</a>
+            <a href="#close">多重备份</a>
+        </div>
+    </nav>
+
+    <article>
+        <div class="sheet-card">
+            <section class="item" id="intro">
+                <div class="sku"><span class="sku-no">LINE 00</span> 引言 · 不再便宜</div>
+                <h2>一个“不再便宜”的世界</h2>
+                <p>8 月，全球化时代的“试用期”宣告结束，所有人都在忙着给安全和增长重新定价。</p>
+                <p>过去三十年，我们习惯了由廉价资金、低廉能源和“免费”安全支撑的繁荣。那是一个只要 All-in 单一体系就能换取效率的时代。然而，随着 8 月一系列地缘与经济数据的披露，一个残酷的真相浮出水面：过去狂飙突进时提前透支的红利，现在账单已经到期。无论是超级大国还是区域强权，都意识到旧系统的维持成本已近临界点，一场集体寻找“备选方案”的迁徙正悄然开始。</p>
+            </section>
+
+            <section class="item" id="debt">
+                <div class="sku"><span class="sku-no">LINE 01</span> 看点一 · 利息黑洞</div>
+                <h2>40 万亿美元的代价，美国政府的“利息黑洞”</h2>
+                <p>8 月，美国国债规模正式突破 40 万亿美元。这不仅是一个数字的跳动，更标志着美国财政进入了某种“物理极限”。随着 30 年期美债收益率一度冲高至 5.34%，创下 2007 年以来的最高纪录，美国政府正深陷“借钱太贵”的泥潭。</p>
+                <div class="ledger">
+                    <div class="cell due">
+                        <div class="cell-k">国债规模</div>
+                        <div class="cell-v">$40T</div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-k">30 年期收益率</div>
+                        <div class="cell-v">5.34%</div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-k">每 7 美元里</div>
+                        <div class="cell-v">$1 利息</div>
+                    </div>
+                </div>
+                <p>由于美国国债是滚动的，这意味着大量过去低利率时代的廉价债务正在到期，必须以现在 5% 以上的高息进行“借新还旧”。财政部为了缓解流动性，被迫将单次回购规模从 20 亿美元翻倍至 40 亿美元。这种通过回购来压低融资压力的行为，本质上是财政部在“购买自己的借条（自产自销）”，但在庞大的赤字面前无异于杯水车薪。</p>
+                <ul>
+                    <li><strong>财政逻辑困境</strong>：预测显示，到 2026 财年，美国联邦政府的净利息支出将达到约 1 万亿美元，占 GDP 的 3.3%。这意味着美国政府每花出 7 美元，就有 1 美元不是用于修路、研发或养老，而仅仅是支付过去债务的利息。</li>
+                </ul>
+                <div class="verdict">
+                    <div class="verdict-k">Due notice</div>
+                    <p>当利息支出开始挤占国防和基础建设，超级大国的全球“全包服务”必然缩水。</p>
+                </div>
+            </section>
+
+            <section class="item" id="china">
+                <div class="sku"><span class="sku-no">LINE 02</span> 看点二 · 土地财政</div>
+                <h2>中国“土地财政”断奶，基建狂飙的终曲</h2>
+                <p>就在 8 月，一位 97 岁的老人走完了他的人生旅程。他曾主导了 2001 年中国加入 WTO 的谈判，并亲手奠定了分税制与住房制度改革的基石。他的离去，在象征意义上为那个“出口暴涨、基建扩张”的黄金时代划上了句号。</p>
+                <p>许家印与恒大悬念的尘埃落定，标志着“土地出让金-基建投资-土地增值”的循环彻底告终。过去，这个循环是中国增长的引擎，但现在，旧方法撞上了残酷的“边际成本”。</p>
+                <div class="ledger">
+                    <div class="cell">
+                        <div class="cell-k">政策工具</div>
+                        <div class="cell-v">8000 亿</div>
+                    </div>
+                    <div class="cell">
+                        <div class="cell-k">预期撬动</div>
+                        <div class="cell-v">10 万亿</div>
+                    </div>
+                    <div class="cell due">
+                        <div class="cell-k">可能实际带动</div>
+                        <div class="cell-v">2 万亿</div>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>核心观察</strong>：今年中央将政策性金融工具规模从 5000 亿扩大至 8000 亿，原本预期能撬动 10 万亿元的社会总投资。然而现实极其冷峻：到 8 月各地才开始缓慢申报，最终实际带动的投资规模可能仅为 2 万亿元。</li>
+                </ul>
+                <blockquote>
+                    <p>“符合条件的项不够多”成了核心痛点。</p>
+                </blockquote>
+                <p>当人均基础设施已趋于饱和，传统的“搞项目”思维不再是灵丹妙药，中国经济正被迫从“规模扩张”转向“存量博弈”。</p>
+            </section>
+
+            <section class="item" id="allies">
+                <div class="sku"><span class="sku-no">LINE 03</span> 看点三 · 单独结算</div>
+                <h2>盟友也得“单独结算”，美国安全保险的溢价危机</h2>
+                <p>由于财政上的“利息黑洞”，美国对盟友的态度正从“老大哥全包”转变为“按项计费”。</p>
+                <ul>
+                    <li><strong>加拿大</strong>：8 月，美加贸易关系爆发了荒诞的转折。美国对约 200 亿美元的加拿大商品征收 50% 的关税。尽管加拿大此前多次退让，甚至撤销了针对美企的数字服务税。美国副总统候选人 J.D. 万斯（Vance）更是言辞犀利地表示：中国作为大国进行对等报复可以理解，但加拿大就像是“美国的一个州”，根本没资格搞对等报复。</li>
+                    <li><strong>韩国</strong>：安全承诺也在打折。8 月 16 日，因嫌开支太贵，美方强行将“自由护盾”联合军演从原定的 11 天缩短至 5 天，并削减了多项实兵训练。这种将安全承诺与财务指标挂钩的做法，让“安全溢价”变得清晰可见。</li>
+                    <li><strong>欧洲</strong>：美国国防部明确要求欧洲承担更多本土防务责任。对于习惯了“安全免费”几十年的盟友来说，这份保险单的续保费用已经涨到了令人生畏的程度。</li>
+                </ul>
+            </section>
+
+            <section class="item" id="mininato">
+                <div class="sku"><span class="sku-no">LINE 04</span> 看点四 · 备胎上位</div>
+                <h2>中东“小北约”与消失的信任，备胎方案正式上位</h2>
+                <p>当美国这张“保单”开始变得昂贵且不可靠时，各国纷纷启动了“第二方案”。</p>
+                <p>8 月 7 日，沙特、土耳其和巴基斯坦签署了共同防御协议，这被视为“中东小北约”的雏形。这三个国家并未公开与美决裂，但他们看清了一个现实：美国在处理中东乱局时，“搞破坏能力强，收场能力差”，甚至美国与以色列的行动本身已成为最大的安全威胁。</p>
+                <ul>
+                    <li><strong>沙特</strong>：不愿再做“代罪羔羊”，它看中了土耳其完整的军工产线和巴基斯坦的核威慑背景。</li>
+                    <li><strong>土耳其</strong>：借此将工业影响力直接扩张至霍尔木兹海峡。</li>
+                    <li><strong>巴基斯坦</strong>：通过提供“安全潜力”换取急需的资金。</li>
+                </ul>
+                <div class="verdict">
+                    <div class="verdict-k">Backup copy</div>
+                    <p>这种“交叉持股”式的防御协议，是区域强权在废墟上建立的自保机制。</p>
+                </div>
+            </section>
+
+            <section class="item" id="tech">
+                <div class="sku"><span class="sku-no">LINE 05</span> 看点五 · 科技拉锯</div>
+                <h2>科技丛林里的“各显神通”，AI 与稀土的拉锯战</h2>
+                <p>在科技博弈的铁幕之下，生意人的本能依然在缝隙中生长。</p>
+                <ul>
+                    <li><strong>云端绕道</strong>：一方面，美国政府严禁高端 GPU 入华，但美国云巨头们为了平摊昂贵的算力成本，正绕道而行。8 月 26 日，中国模型公司“月之暗面”（Moonshot AI）正与 Azure、AWS 及 Google Cloud 秘密洽谈云端部署，据悉 Kimi 可能为美方提供高达 30% 的收入分成。这揭示了一个现实：在资本利益面前，政治脱钩往往有其上限。</li>
+                    <li><strong>稀土调节</strong>：另一方面，稀土博弈进入“外交调节”阶段。7 月数据显示，中国向美国出口了 29 吨氧化钇和 647 吨稀土磁体，达到近两年高点。中国并非简单断供，而是将其作为精准调节的筹码。作为对冲，美国正加紧与日、澳合作投建替代产业链。双方都在一边打仗，一边寻找对方无法控制的“备选方案”。</li>
+                </ul>
+            </section>
+
+            <section class="item" id="close">
+                <div class="sku"><span class="sku-no">LINE 06</span> 结语 · 多重备份</div>
+                <h2>从“All-in”转向“多重备份”的未来</h2>
+                <p>全球化并未消失，但它正在瓦解并重构。</p>
+                <p>过去，全世界追求效率，讲究的是“最便宜”；现在，全世界追求韧性，讲究的是“有备份”。在这个旧账单纷纷到期、系统重新定价的转折点，未来的生存法则不再是押注单一强权，而是学会“多重保险”。</p>
+                <div class="close-q">
+                    <p>一个国家同时加入几个互斥的朋友圈、政府谈脱钩而企业谈分钱、昨日的敌人今天谈安保，将成为这个多极化世界的常态。在这个处处需要“单独结算”的新世界里，你和你的资产，准备好应对那种“不再便宜”的未来了吗？</p>
+                </div>
+            </section>
+        </div>
+    </article>
+
+    <footer>
+        <p><a href="../../index.html">返回 Digital Garden</a> · 第 24 期 · 狂飙时代落幕</p>
+    </footer>
+
+    <script>
+        (function () {
+            var fill = document.getElementById("progressFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                fill.style.transform = "scaleX(" + p + ")";
+
+                var cutoff = Math.max(140, window.innerHeight * 0.42);
+                var active = 0;
+                for (var j = 0; j < sections.length; j++) {
+                    if (sections[j].getBoundingClientRect().top <= cutoff) active = j;
+                }
+                if (p > 0.86) active = sections.length - 1;
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+        })();
+    </script>
+</body>
+</html>

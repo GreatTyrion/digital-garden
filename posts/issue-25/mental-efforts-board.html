@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1536px; height: 2752px; overflow: hidden;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", sans-serif;
+    background: #f7f3ea;
+    color: #3f3a33;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { width: 1536px; height: 2752px; padding: 84px 76px 64px; display: flex; flex-direction: column; }
+
+  /* ---------- header ---------- */
+  .header { display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; }
+  .kicker { font-size: 26px; letter-spacing: 2px; color: #a89a86; font-weight: 600; margin-bottom: 18px; }
+  h1 { font-size: 96px; line-height: 1.18; font-weight: 800; letter-spacing: -1px; }
+  h1 .accent { color: #b4623f; }
+  .sub { margin-top: 26px; font-size: 34px; line-height: 1.58; color: #6f6656; font-weight: 500; }
+  .sub b { color: #3f3a33; }
+  .art { flex: 0 0 300px; }
+  .art svg { width: 320px; height: 278px; stroke-width: 5 !important; }
+
+  /* ---------- highlight strip ---------- */
+  .quote-band {
+    margin-top: 44px; background: #dfe4e6; border-radius: 26px; padding: 40px 48px;
+    text-align: center; color: #33404a;
+  }
+  .quote-band .line1 { font-size: 44px; font-weight: 800; line-height: 1.4; }
+  .quote-band .line2 { margin-top: 14px; font-size: 30px; color: #4a5a66; }
+  .quote-band .src { margin-top: 22px; font-size: 24px; color: #6b7a85; }
+  .quote-band .src span {
+    display: inline-block; background: #cfd8db; border-radius: 999px; padding: 8px 26px; font-weight: 600;
+  }
+
+  /* ---------- what is 心力 ---------- */
+  .def { margin-top: 46px; padding: 0 8px; }
+  .def h2 { font-size: 38px; font-weight: 800; margin-bottom: 16px; }
+  .def p { font-size: 30px; line-height: 1.72; color: #544c40; }
+  .def .hl { color: #b4623f; font-weight: 800; }
+
+  /* ---------- 4 cards ---------- */
+  .cards { margin-top: 26px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; flex: 0 0 auto; }
+  .card {
+    background: #fdfbf6; border: 1px solid #ece4d6; border-radius: 22px; padding: 30px 24px 26px;
+    display: flex; flex-direction: column;
+  }
+  .card .icon { width: 96px; height: 96px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
+  .c1 .icon { background: #e8cfc2; } .c2 .icon { background: #cfd9c8; }
+  .c3 .icon { background: #c9d5de; } .c4 .icon { background: #e6d6b8; }
+  .card .num { font-size: 30px; font-weight: 800; color: #b8ab97; margin-bottom: 8px; }
+  .card h3 { font-size: 32px; line-height: 1.34; font-weight: 800; margin-bottom: 16px; }
+  .card p { font-size: 23px; line-height: 1.62; color: #5d5548; }
+  .card .rule { height: 3px; background: #eee6d8; border-radius: 2px; margin: 22px 0 20px; }
+  .card .punch { font-size: 23px; line-height: 1.6; color: #8a7c66; font-style: normal; }
+  .card .punch::before { content: "「"; color: #b4623f; font-weight: 800; }
+  .card .punch::after  { content: "」"; color: #b4623f; font-weight: 800; }
+  .card .foot { margin-top: 18px; font-size: 21px; color: #a89a86; }
+
+  .cards-label { margin-top: 40px; font-size: 38px; font-weight: 800; }
+  .cards-label span { font-size: 26px; font-weight: 600; color: #a89a86; margin-left: 16px; }
+
+  /* ---------- how to train ---------- */
+  .train { margin-top: 52px; }
+  .train .head { font-size: 38px; font-weight: 800; }
+  .train .head span { font-size: 26px; font-weight: 600; color: #a89a86; margin-left: 16px; }
+  .train .row { margin-top: 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .train .item {
+    background: #f2ede1; border-radius: 20px; padding: 26px 28px; display: flex; gap: 18px; align-items: flex-start;
+  }
+  .train .dot { flex: 0 0 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #fdfbf6; }
+  .t1 .dot { background: #c98a63; } .t2 .dot { background: #8ba178; } .t3 .dot { background: #7c94a8; }
+  .train h4 { font-size: 29px; font-weight: 800; margin-bottom: 8px; }
+  .train p { font-size: 22px; line-height: 1.6; color: #5d5548; }
+
+  /* ---------- closing ---------- */
+  .closing { margin-top: 46px; text-align: center; }
+  .closing .big { font-size: 40px; line-height: 1.5; font-weight: 700; color: #544c40; }
+  .closing .ask { margin-top: 26px; font-size: 52px; font-weight: 800; }
+  .footer {
+    margin-top: auto; padding-top: 34px; border-top: 2px solid #ece4d6;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 23px; color: #a89a86;
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div>
+      <div class="kicker">哈佛成人发展研究 · 80 年追踪 724 人</div>
+      <h1>为什么能力出众<br><span class="accent">却走不远</span>？</h1>
+      <div class="sub">真正拉开差距的，不是智力与学历，<br>而是那股<b>「拿得住、扛得起、撑得下去」</b>的力量。</div>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 300 260" width="300" height="260" fill="none" stroke="#8d9aa0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- ridge -->
+        <path d="M18 232 L92 148 L140 196 L196 108 L284 232" />
+        <!-- winding path -->
+        <path d="M196 108 C 168 140, 210 158, 176 180 C 150 197, 176 214, 156 232" stroke-dasharray="0"/>
+        <!-- flag at the summit -->
+        <path d="M196 108 L196 74" /><path d="M196 74 L228 84 L196 96" />
+        <!-- tiny walker -->
+        <circle cx="168" cy="190" r="9" />
+        <path d="M168 199 L168 216" /><path d="M160 206 L176 206" /><path d="M168 216 L160 232" /><path d="M168 216 L177 232" />
+        <!-- clouds below the ridge -->
+        <path d="M40 250 q 22 -20 46 -6 q 20 -14 40 6" stroke="#c2ccd1" />
+        <path d="M226 128 q 20 -18 42 -6 q 18 -12 34 6" stroke="#c2ccd1" />
+      </svg>
+    </div>
+  </div>
+
+  <div class="quote-band">
+    <div class="line1">能力决定你能够跑多快，心力决定你能够跑多远</div>
+    <div class="line2">能力是有天花板的，而心力几乎可以无限生长</div>
+    <div class="src"><span>Robert Waldinger · 哈佛成人发展研究主持者</span></div>
+  </div>
+
+  <div class="def">
+    <h2>什么是「心力」？</h2>
+    <p>就是一个人在面对压力、挫折和不确定性时，内心那股<span class="hl">「拿得住、扛得起、撑得下去」</span>的力量。能力只是一张入场券——真正决定你能在牌桌上坐多久、走多远的，是心力。</p>
+  </div>
+
+  <div class="cards-label">心力强的 4 个表现 <span>— 都不是天赋，是可以练的</span></div>
+  <div class="cards">
+    <div class="card c1">
+      <div class="icon">
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#a8643f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 38 L18 20 L26 30 L34 14 L42 38" />
+          <path d="M34 14 L34 5" /><path d="M34 5 L43 9 L34 12" />
+        </svg>
+      </div>
+      <div class="num">01</div>
+      <h3>上限，<br>不在能力</h3>
+      <p>像爬山：体力好的人起步快，但到了空气稀薄、气候多变的高海拔，决定你能否登顶的是耐力。</p>
+      <div class="rule"></div>
+      <div class="punch">越往高处走，拼的越不是谁更聪明，而是在长期压力与孤独中，谁还能保持稳定的判断</div>
+      <div class="foot">→ 视角从「我表现得不够强」换成「我能否扛得住」</div>
+    </div>
+
+    <div class="card c2">
+      <div class="icon">
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#5f7a53" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 40 V22 a10 10 0 0 1 20 0 v18" />
+          <path d="M14 34 h20" /><path d="M14 28 h20" />
+          <path d="M24 4 L24 10" /><path d="M10 8 L13 13" /><path d="M38 8 L35 13" />
+        </svg>
+      </div>
+      <div class="num">02</div>
+      <h3>不是不崩，<br>是恢复得快</h3>
+      <p>心力强的人也会难过、会怀疑，甚至深夜崩溃。区别在于「心理弹性」：允许自己短暂垮掉，然后最快站起来。</p>
+      <div class="rule"></div>
+      <div class="punch">真正的强者不是从不跌倒的人，而是跌倒之后爬起来比谁都快的人</div>
+      <div class="foot">→ 给自己设一个「恢复期限」：可以低落一两天，期限一到就往前走</div>
+    </div>
+
+    <div class="card c3">
+      <div class="icon">
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#4f6b80" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 6 v10" />
+          <path d="M16 16 h16 l3 12 H13 z" />
+          <path d="M18 28 v10 a6 6 0 0 0 12 0 V28" />
+          <path d="M24 40 v4" />
+          <path d="M12 42 h24" />
+        </svg>
+      </div>
+      <div class="num">03</div>
+      <h3>看不见结果，<br>也继续掘进</h3>
+      <p>放弃往往不是能力不够，而是「看不见结果」。像深山挖井人：几个月不见一滴水，仍深信水就在深处。</p>
+      <div class="rule"></div>
+      <div class="punch">今天只读 10 页书，今天只跑 3 公里——每完成一个动作，就存下一分「我能行」的底气</div>
+      <div class="foot">→ 用「微小的完成感」对冲没有反馈的焦虑</div>
+    </div>
+
+    <div class="card c4">
+      <div class="icon">
+        <svg viewBox="0 0 48 48" width="46" height="46" fill="none" stroke="#a5853f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="8" width="28" height="32" rx="4" />
+          <path d="M17 17 h14" /><path d="M17 24 h9" />
+          <path d="M28 32 l4 4 l7 -9" />
+        </svg>
+      </div>
+      <div class="num">04</div>
+      <h3>挫折是反馈，<br>不是审判</h3>
+      <p>同样的失败：审判思维说「我完蛋了」；反馈思维说「这单让我看清了成本核算的漏洞」。</p>
+      <div class="rule"></div>
+      <div class="punch">与其在审判席上指责自己，不如坐到学习桌前问：这件事想教会我什么？</div>
+      <div class="foot">→ 决定你被挫折击垮还是被喂养的，是你的解读方式</div>
+    </div>
+  </div>
+
+  <div class="train">
+    <div class="head">怎么练？它不是天赋，是一块可以练大的「肌肉」<span></span></div>
+    <div class="row">
+      <div class="item t1">
+        <div class="dot">1</div>
+        <div>
+          <h4>像电池一样续航</h4>
+          <p>把休息也当成任务的一部分——睡眠、运动、独处，而不是精疲力竭后的被迫停产。</p>
+        </div>
+      </div>
+      <div class="item t2">
+        <div class="dot">2</div>
+        <div>
+          <h4>教练式自我对话</h4>
+          <p>把内心的「审判者」换成「教练」：没关系，你已经很努力了，我们看看下次怎么调整。</p>
+        </div>
+      </div>
+      <div class="item t3">
+        <div class="dot">3</div>
+        <div>
+          <h4>给自己一个恢复期限</h4>
+          <p>允许自己低落一两天，谁也不理；期限一到，就告诉自己：可以了，该往前走了。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="closing">
+    <div class="big">能力是别人看得见的指标，<br>心力是只有你自己知道的底蕴。</div>
+    <div class="ask">这一周，你想为自己练哪一分「心力」？</div>
+  </div>
+
+  <div class="footer">
+    <div>来源：《为什么能力出众却走不远？》· 哈佛「成人发展研究」(1938– )</div>
+    <div>数字花园 · issue-25</div>
+  </div>
+
+</div>
+</body>
+</html>

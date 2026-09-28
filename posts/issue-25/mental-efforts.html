@@ -310,6 +310,72 @@
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
         }
+        /* 文章配图（含展板长图）：满栏宽度，点击可放大 */
+        .step img {
+            display: block;
+            max-width: 100%;
+            width: auto;
+            height: auto;
+            margin: 24px auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: zoom-in;
+        }
+
+        /* 图片放大模态框 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            inset: 0;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #bbb;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+            background: rgba(0,0,0,0.7);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 16px;
+            max-width: 80%;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -354,6 +420,7 @@
             <p>这种人生走向的巨大反差，究竟是由什么决定的？</p>
             <p>为了解开这个困惑，哈佛大学开展了一项史上跨度最长的研究——“成人发展研究（Study of Adult Development）”。从 1938 年开始，研究者们追踪了 724 个人整整 80 多年。主持该研究的哈佛大学教授尔丁格（Robert Waldinger）发现：决定一个人一生高度的，从来不是智力、学历这些显性的能力指标，而是一个更隐蔽的核心变量——“心力”。</p>
             <p>所谓心力，就是一个人在面对压力、挫折和不确定性时，内心那股<strong>“拿得住、扛得起、撑得下去”</strong>的力量。</p>
+            <img src="./mental-efforts-board.png" alt="心力展板：能力让你跑得快，心力让你跑得远" onclick="openModal(this)">
         </section>
 
         <section class="step" id="ceiling">
@@ -435,6 +502,13 @@
         </section>
     </article>
 
+    <!-- 图片放大模态框 -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" alt="">
+        <div id="modalCaption" class="modal-caption"></div>
+    </div>
+
     <footer>
         <p><a href="../../index.html">返回 Digital Garden</a>　第 25 期　心力</p>
     </footer>
@@ -467,6 +541,25 @@
             window.addEventListener("scroll", onScroll, { passive: true });
             onScroll();
         })();
+    </script>
+
+    <script>
+        // 图片放大（展板长图等）
+        function openModal(img) {
+            document.getElementById('modalImage').src = img.src;
+            document.getElementById('modalCaption').textContent = img.alt || '';
+            document.getElementById('imageModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeModal();
+        });
     </script>
 </body>
 </html>

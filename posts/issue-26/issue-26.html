@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第26期 - 数字花园</title>
+    <meta name="description" content="Digital Garden 第26期：拆解世界局势的 4 个反直觉真相、AI 泡沫破裂前夕的卖铲人寓言、四大技术革命的基建瓶颈研究报告，以及纽芬兰地图入口。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0d0a;
+            --ink-soft: #3a342b;
+            --parchment: #f7f3ec;
+            --cream: #fffcf5;
+            --line: rgba(15, 13, 10, 0.12);
+            --line-strong: rgba(15, 13, 10, 0.22);
+            --muted: #7a7062;
+            --shadow: 0 12px 36px rgba(15, 13, 10, 0.08);
+            --world: #c0321d;
+            --world-soft: rgba(192, 50, 29, 0.10);
+            --shovel: #a8740c;
+            --shovel-soft: rgba(168, 116, 12, 0.12);
+            --blueprint: #13233a;
+            --blueprint-soft: rgba(19, 35, 58, 0.08);
+            --map: #2b6f68;
+            --map-soft: rgba(43, 111, 104, 0.10);
+            --display: "Playfair Display", "Noto Serif SC", Georgia, serif;
+            --serif: "Noto Serif SC", "Crimson Pro", Georgia, serif;
+            --mono: "JetBrains Mono", "SFMono-Regular", monospace;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--serif);
+            background:
+                radial-gradient(ellipse at 8% 0%, rgba(192, 50, 29, 0.07), transparent 38%),
+                radial-gradient(ellipse at 92% 0%, rgba(168, 116, 12, 0.09), transparent 36%),
+                var(--parchment);
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .progress {
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+            background: rgba(0, 0, 0, 0.04); z-index: 100;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--world), var(--shovel), var(--blueprint), var(--map));
+            transition: width 0.08s linear;
+        }
+
+        .masthead {
+            background: var(--ink);
+            color: var(--parchment);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .masthead-inner,
+        .section-rail-inner,
+        .page,
+        .footer-inner {
+            width: min(calc(100% - 38px), var(--max));
+            margin: 0 auto;
+        }
+
+        .masthead-inner { padding: 28px 0 48px; }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .back-link, .issue-stamp {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.65);
+            border: 1px solid rgba(247, 243, 236, 0.14);
+            padding: 8px 12px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.65fr);
+            gap: 32px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.42);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(2.4rem, 7vw, 5.2rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+        }
+        .hero-title .accent {
+            color: rgba(247, 243, 236, 0.42);
+            font-style: italic;
+        }
+
+        .hero-summary {
+            margin-top: 16px;
+            max-width: 58ch;
+            color: rgba(247, 243, 236, 0.75);
+            font-size: 1.05rem;
+        }
+
+        .tag-row {
+            display: flex; flex-wrap: wrap; gap: 9px;
+            margin-top: 18px;
+        }
+        .tag {
+            font-size: 0.82rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 6px 13px;
+            color: rgba(247, 243, 236, 0.8);
+        }
+
+        .hero-meta {
+            display: grid; gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-meta-line {
+            display: flex; justify-content: space-between; gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            color: rgba(247, 243, 236, 0.5);
+        }
+        .hero-meta-line strong {
+            color: rgba(247, 243, 236, 0.82);
+            font-weight: 500;
+        }
+
+        .section-rail {
+            position: sticky; top: 3px; z-index: 40;
+            background: rgba(247, 243, 236, 0.92);
+            border-bottom: 1px solid var(--line-strong);
+            backdrop-filter: blur(10px);
+        }
+        .section-rail-inner {
+            padding: 12px 0;
+            display: flex; gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .section-rail-inner::-webkit-scrollbar { display: none; }
+
+        .rail-link {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .rail-link:hover, .rail-link:focus-visible, .rail-link.active {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--line);
+            outline: none;
+        }
+        .rail-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .rail-link.world { --accent: var(--world); }
+        .rail-link.shovel { --accent: var(--shovel); }
+        .rail-link.blueprint { --accent: var(--blueprint); }
+        .rail-link.map { --accent: var(--map); }
+
+        .page { padding: 34px 0 80px; }
+        .story-grid { display: grid; gap: 26px; }
+
+        .story {
+            background: rgba(255, 255, 255, 0.54);
+            border: 1px solid rgba(15, 13, 10, 0.09);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 84px;
+        }
+
+        .story-head {
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-label {
+            padding: 22px 16px;
+            background: var(--soft);
+            border-right: 1px solid rgba(15, 13, 10, 0.07);
+        }
+        .story-index {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-label h2 {
+            font-family: var(--display);
+            font-size: 1.55rem;
+            line-height: 1.04;
+            color: var(--accent);
+        }
+
+        .story-body { padding: 28px 28px 30px; }
+        .story-kicker {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-body h3 {
+            font-family: var(--display);
+            font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+        .story-summary {
+            font-size: 1.04rem;
+            color: var(--ink-soft);
+            max-width: 66ch;
+        }
+        .signal-list {
+            list-style: none;
+            display: grid; gap: 10px;
+            margin: 18px 0 24px;
+        }
+        .signal-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+        .signal-list li::before {
+            content: "";
+            position: absolute; left: 0; top: 0.8em;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .story-footer {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 12px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+        .story-note {
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 45ch;
+        }
+        .story-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 11px 16px;
+            background: var(--ink);
+            color: var(--parchment);
+            font-weight: 500;
+            transition: transform 140ms ease;
+        }
+        .story-link:hover, .story-link:focus-visible {
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .story.world { --accent: var(--world); --soft: var(--world-soft); }
+        .story.shovel { --accent: var(--shovel); --soft: var(--shovel-soft); }
+        .story.blueprint { --accent: var(--blueprint); --soft: var(--blueprint-soft); }
+        .story.map { --accent: var(--map); --soft: var(--map-soft); }
+
+        .bottom-nav {
+            margin-top: 38px;
+            display: flex; flex-wrap: wrap; gap: 10px;
+        }
+        .bottom-nav a {
+            display: inline-flex; align-items: center;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.56);
+            color: var(--ink-soft);
+        }
+        .bottom-nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+        footer { border-top: 1px solid var(--line); margin-top: 48px; }
+        .footer-inner {
+            padding: 24px 0 44px;
+            color: var(--muted);
+            display: flex; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px;
+            font-size: 0.93rem;
+        }
+
+        @media (max-width: 940px) {
+            .hero-grid, .story-head { grid-template-columns: 1fr; }
+            .story-label {
+                border-right: 0;
+                border-bottom: 1px solid rgba(15, 13, 10, 0.07);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .masthead-inner,
+            .section-rail-inner,
+            .page,
+            .footer-inner {
+                width: min(calc(100% - 26px), var(--max));
+            }
+            .topbar { flex-direction: column; align-items: flex-start; }
+            .hero-meta-line { display: grid; grid-template-columns: 1fr; }
+            .story-body { padding: 24px 18px 26px; }
+            .story-link { width: 100%; justify-content: center; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-title .accent {
+                display: block;
+                margin-top: 8px;
+                font-size: 0.62em;
+            }
+            .hero-summary { max-width: 100%; }
+            .hero-meta, .story-label { padding: 16px; }
+            .story-body h3 { font-size: 1.35rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .story-link { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="topbar">
+                <a class="back-link" href="../../index.html">Back to Index</a>
+                <div class="issue-stamp">Issue 26 / 2026.10.22</div>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Digital Garden Curated Index</div>
+                    <h1 class="hero-title">Issue 26<span class="accent"> / World, Shovel, Blueprint</span></h1>
+                    <p class="hero-summary">第26期聚焦三件事：中东柴油、“摇尾狗”式开战、法国破产与康波真空期背后的 4 个反直觉真相，以及 AI 算力基建泡沫的两种读法——一篇讲给所有人的“卖铲人”寓言，一篇写给决策者的产业演进报告；同时保留一个持续可用的纽芬兰地图入口。</p>
+                    <div class="tag-row">
+                        <span class="tag">世界局势</span>
+                        <span class="tag">AI 泡沫</span>
+                        <span class="tag">产业演进</span>
+                        <span class="tag">纽芬兰地图</span>
+                    </div>
+                </div>
+                <aside class="hero-meta">
+                    <div class="hero-meta-line"><span>Period</span><strong>2026-10-22</strong></div>
+                    <div class="hero-meta-line"><span>Stories</span><strong>04 Sections</strong></div>
+                    <div class="hero-meta-line"><span>Tone</span><strong>Geopolitics / Capex</strong></div>
+                    <div class="hero-meta-line"><span>Focus</span><strong>Diesel, Shovels, Bottlenecks</strong></div>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-rail" aria-label="专题导航">
+        <div class="section-rail-inner">
+            <a class="rail-link world" href="#yan-world"><span class="rail-dot"></span><span>World</span></a>
+            <a class="rail-link shovel" href="#wang-shovel"><span class="rail-dot"></span><span>Shovel</span></a>
+            <a class="rail-link blueprint" href="#wang-blueprint"><span class="rail-dot"></span><span>Blueprint</span></a>
+            <a class="rail-link map" href="#newfoundland-map"><span class="rail-dot"></span><span>Map</span></a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="story-grid">
+            <article id="yan-world" class="story world">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 01</div>
+                        <h2>World</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Diesel / Debt / Kondratiev</div>
+                        <h3>拆解世界局势的 4 个反直觉真相：地缘冲突、债务炸弹与康波周期的残酷现实</h3>
+                        <p class="story-summary">油价居高不下，不是因为海峡还锁着，而是炼油厂被炸了；法国学生喊出“2026 是新的 1789”，背后是一笔欠了半个世纪的账。四则对新闻头条的勘误，最后汇到同一个康波周期。</p>
+                        <ul class="signal-list">
+                            <li>缺的是柴油：中东原油出口已恢复到战前 80%—98%，成品油占比却从 20% 以上跌到 11%。</li>
+                            <li>摇尾狗：油价破百、伤害已成，此时再开战的边际成本几乎为零。</li>
+                            <li>法国破产：公共债务 3.596 万亿欧元、占 GDP 119%，革命的底色是还不起钱。</li>
+                            <li>康波真空期：1789、1945、2026 都踩在冬春之交，春天并非人人有份。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">油回来了，但不是世界需要的那种油。</p>
+                            <a class="story-link" href="./insight-from-yan-20261011.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="wang-shovel" class="story shovel">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 02</div>
+                        <h2>Shovel</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Gold rush / Bottleneck / Debt wall</div>
+                        <h3>AI 泡沫破裂前夕：历史给所有“卖铲人”上的最残酷一课</h3>
+                        <p class="story-summary">英伟达被叫作“卖铲人”，可淘金热的后半截故事是：卖铲人破产，替淘金客押运黄金的人建起了美国运通和富国银行。前三次基建狂热分别撑了 4 年、6 年、5 年，AI 这一轮已经走到第三年。</p>
+                        <ul class="signal-list">
+                            <li>三高宿命：所有底层基建终将沦为重资产、高风险、高杠杆的公用事业。</li>
+                            <li>炒瓶颈：从先进封装一路炒到变压器和散热板，击鼓传花已摸到供应链末端。</li>
+                            <li>历史韵脚：95% 熟铁厂破产，绝缘股翻 20 至 30 倍后沦为红利股，思科暴跌近 90%。</li>
+                            <li>资金撞墙：次级债收益率要价超 10%，巨头自由现金流首次转负。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">卖铲人破产，生态重构者永生。</p>
+                            <a class="story-link" href="./insight-from-wang-20261022-02.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="wang-blueprint" class="story blueprint">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 03</div>
+                        <h2>Blueprint</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Matrix / Mismatch / Playbook</div>
+                        <h3>产业演进分析：四大技术革命中的基建瓶颈突破、上游重塑与商业格局演进</h3>
+                        <p class="story-summary">同一主题的研究报告版。把铁路、电气、互联网与 AI 四轮瓶颈的突破方式和上游终局放进一张矩阵，拆解算力债务的期限错配，并给 CEO、CTO、CFO 一份可执行的预警清单。</p>
+                        <ul class="signal-list">
+                            <li>空气与水悖论：不可或缺又无法垄断的基础设施，终将廉价且无利可图。</li>
+                            <li>对比矩阵：贝塞麦转炉、三相交流电、DWDM 之后，下一个砸碎算力瓶颈的是什么。</li>
+                            <li>期限错配：寿命 1—2 年的 GPU，用 5—7 年期、利率超 10% 的债务去融资。</li>
+                            <li>预警清单：债务溢价、架构突破、下游现金流三个维度的量化阈值与决策动作。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">修路的人破产，卖车的人发财。</p>
+                            <a class="story-link" href="./insight-from-wang-20261022-01.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="newfoundland-map" class="story map">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 04</div>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Useful Link / Local Utility</div>
+                        <h3>纽芬兰地图入口（圣约翰斯租房）</h3>
+                        <p class="story-summary">保持 Digital Garden 的实用传统：给出一个长期可用的纽芬兰地图入口，方便快速查看圣约翰斯及周边区域房源分布与更新信息。</p>
+                        <ul class="signal-list">
+                            <li>持续更新租房信息，适合作为常用查询入口。</li>
+                            <li>地图化呈现让区域判断和通勤规划更直观。</li>
+                            <li>在世界局势与 AI 泡沫之外，保留一条可直接落地使用的路径。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这部分强调“可立即使用”的本地价值。</p>
+                            <a class="story-link" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noreferrer">打开纽芬兰地图</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <nav class="bottom-nav" aria-label="页面底部导航">
+            <a href="../../index.html">返回首页</a>
+            <a href="../issue-25/issue-25.html">打开第25期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" target="_blank" rel="noreferrer">意见反馈</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p>© 2026 Digital Garden</p>
+            <p>Issue 26 作为专题导览页，链接到各篇独立 HTML 正文。</p>
+        </div>
+    </footer>
+
+    <script>
+        var progressFill = document.getElementById("progressFill");
+        var railLinks = Array.prototype.slice.call(document.querySelectorAll(".rail-link"));
+        var sections = railLinks.map(function (link) {
+            var section = document.querySelector(link.getAttribute("href"));
+            return section ? { link: link, section: section } : null;
+        }).filter(Boolean);
+
+        function updateProgress() {
+            var scrollTop = window.scrollY;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressFill.style.width = Math.min(Math.max(ratio, 0), 100) + "%";
+        }
+
+        function updateActiveRail() {
+            var threshold = window.innerHeight * 0.3;
+            var active = sections[0];
+            sections.forEach(function (item) {
+                if (item.section.getBoundingClientRect().top <= threshold) {
+                    active = item;
+                }
+            });
+            railLinks.forEach(function (link) { link.classList.remove("active"); });
+            if (active) { active.link.classList.add("active"); }
+        }
+
+        function onScroll() {
+            updateProgress();
+            updateActiveRail();
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", onScroll);
+    </script>
+</body>
+</html>

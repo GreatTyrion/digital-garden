@@ -22,6 +22,7 @@ Browse the issues below to see what's currently growing.
 
 | Issue | Date | Description | Contains |
 | ----- | ---- | ----------- | -------- |
+| [#26](posts/issue-26/issue-26.md) | 2026-10-22 | 世界局势四则勘误、AI 泡沫的卖铲人寓言、基建瓶颈研究报告与纽芬兰地图入口 | 🌍, 🤖, 🗺️ |
 | [#25](posts/issue-25/issue-25.md) | 2026-09-27 | 房贷锚点、金融大戏、心力与纽芬兰地图入口 | 💵, 🧠, 🗺️ |
 | [#24](posts/issue-24/issue-24.md) | 2026-08-31 | 有味道的真相、八月备选方案与纽芬兰地图入口 | 💵, 🌍, 🗺️ |
 | [#23](posts/issue-23/issue-23.md) | 2026-08-17 | 原子习惯实作洞察、DeepSeek Harness 与纽芬兰地图入口 | 🔁, 🤖, 🗺️ |

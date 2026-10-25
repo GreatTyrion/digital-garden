@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拆解世界局势的 4 个反直觉真相</title>
+    <meta name="description" content="缺的不是原油而是柴油、油价破百后开战反成低成本赌注、法国革命的底色是破产、康波周期的春天并非人人有份——四则针对新闻头条的勘误。">
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;0,6..72,800;1,6..72,400&family=Noto+Serif+SC:wght@400;600;900&family=IBM+Plex+Mono:wght@400;500&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #efe8db;
+            --paper-deep: #e4dac7;
+            --ink: #1c1a16;
+            --ink-soft: #37332c;
+            --muted: #6e665a;
+            --hair: rgba(28, 26, 22, 0.16);
+            --red: #c0321d;
+            --red-wash: rgba(192, 50, 29, 0.09);
+            --head: "Newsreader", "Noto Serif SC", "Songti SC", serif;
+            --text: "Noto Serif SC", "Songti SC", "Hiragino Mincho ProN", serif;
+            --num: "Newsreader", "Noto Serif SC", serif;
+            --mono: "IBM Plex Mono", "Menlo", monospace;
+            --pen: "Ma Shan Zheng", "Kaiti SC", "STKaiti", cursive;
+            --max-w: 700px;
+            --wide-w: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 104px;
+        }
+
+        body {
+            font-family: var(--text);
+            color: var(--ink-soft);
+            background-color: var(--paper);
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.11 0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0.09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+                radial-gradient(ellipse at 20% 0%, rgba(255, 252, 244, 0.7), transparent 60%);
+            line-height: 1.95;
+            font-size: 1.05rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; }
+
+        /* ---------- progress ---------- */
+        .progress-bar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: 3px;
+            z-index: 200;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--red);
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* ---------- masthead ---------- */
+        .masthead {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 18px 24px 0;
+        }
+
+        .masthead-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+            padding-bottom: 10px;
+            border-bottom: 3px double var(--ink);
+        }
+
+        .masthead-row a {
+            text-decoration: none;
+            color: var(--ink);
+            border-bottom: 1px solid transparent;
+        }
+
+        .masthead-row a:hover,
+        .masthead-row a:focus-visible {
+            color: var(--red);
+            border-bottom-color: var(--red);
+            outline: none;
+        }
+
+        .masthead-mid {
+            font-family: var(--head);
+            font-style: italic;
+            font-size: 0.98rem;
+            letter-spacing: 0.02em;
+            color: var(--ink);
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 40px 24px 48px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+            gap: 48px;
+            align-items: start;
+        }
+
+        .kicker {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: clamp(2.3rem, 6.4vw, 4.4rem);
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            text-wrap: balance;
+        }
+
+        .hero h1 .big4 {
+            font-weight: 800;
+            color: var(--red);
+            font-size: 1.18em;
+            line-height: 0;
+        }
+
+        .dek {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--ink);
+            font-family: var(--text);
+            font-weight: 600;
+            font-size: 1.12rem;
+            color: var(--ink);
+        }
+
+        .hero-lead {
+            margin-top: 12px;
+            color: var(--muted);
+            max-width: 30em;
+        }
+
+        /* errata board */
+        .errata {
+            border: 1px solid var(--ink);
+            background: rgba(255, 252, 245, 0.5);
+            box-shadow: 6px 6px 0 var(--ink);
+        }
+
+        .errata-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--ink);
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            color: var(--ink);
+        }
+
+        .errata-head b {
+            font-family: var(--pen);
+            font-weight: 400;
+            font-size: 1.5rem;
+            letter-spacing: 0;
+            color: var(--red);
+            line-height: 1;
+        }
+
+        .errata ol { list-style: none; }
+
+        .errata li + li { border-top: 1px dashed var(--hair); }
+
+        .errata a {
+            display: grid;
+            grid-template-columns: 2.4rem minmax(0, 1fr);
+            gap: 4px 12px;
+            padding: 14px 16px 16px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .errata a:hover,
+        .errata a:focus-visible {
+            background: var(--red-wash);
+            outline: none;
+        }
+
+        .errata-no {
+            grid-row: span 2;
+            font-family: var(--num);
+            font-weight: 800;
+            font-size: 1.7rem;
+            line-height: 1.1;
+            color: var(--ink);
+        }
+
+        .wrong {
+            font-size: 0.98rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .wrong span {
+            background: linear-gradient(var(--red), var(--red)) no-repeat 0 56% / 100% 2px;
+        }
+
+        .js .wrong span {
+            animation: strike 0.7s cubic-bezier(0.6, 0, 0.3, 1) both;
+        }
+
+        .errata li:nth-child(1) .wrong span { animation-delay: 0.5s; }
+        .errata li:nth-child(2) .wrong span { animation-delay: 0.95s; }
+        .errata li:nth-child(3) .wrong span { animation-delay: 1.4s; }
+        .errata li:nth-child(4) .wrong span { animation-delay: 1.85s; }
+
+        @keyframes strike {
+            from { background-size: 0% 2px; }
+            to { background-size: 100% 2px; }
+        }
+
+        .fix {
+            font-family: var(--pen);
+            font-size: 1.32rem;
+            line-height: 1.35;
+            color: var(--red);
+            transform: rotate(-1.2deg);
+            transform-origin: left center;
+        }
+
+        .fix::before { content: "↳ "; font-family: var(--num); font-size: 0.9em; }
+
+        .js .fix {
+            animation: ink-in 0.5s ease both;
+        }
+
+        .errata li:nth-child(1) .fix { animation-delay: 1.05s; }
+        .errata li:nth-child(2) .fix { animation-delay: 1.5s; }
+        .errata li:nth-child(3) .fix { animation-delay: 1.95s; }
+        .errata li:nth-child(4) .fix { animation-delay: 2.4s; }
+
+        @keyframes ink-in {
+            from { opacity: 0; transform: rotate(-1.2deg) translateX(-6px); }
+            to { opacity: 1; transform: rotate(-1.2deg); }
+        }
+
+        /* ---------- section nav ---------- */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: rgba(239, 232, 219, 0.94);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .section-nav-inner {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 14px;
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+
+        .section-nav a {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            padding: 13px 14px 11px;
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 0.95rem;
+            color: var(--muted);
+            border-bottom: 3px solid transparent;
+        }
+
+        .section-nav a small {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .section-nav a.is-active,
+        .section-nav a:hover,
+        .section-nav a:focus-visible {
+            color: var(--ink);
+            border-bottom-color: var(--red);
+            outline: none;
+        }
+
+        .section-nav a.is-active small { color: var(--red); }
+
+        /* ---------- article ---------- */
+        article {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 12px 24px 72px;
+        }
+
+        .chapter { padding: 52px 0 12px; }
+
+        .chapter + .chapter { border-top: 1px solid var(--hair); }
+
+        .chapter-tag {
+            display: inline-flex;
+            align-items: baseline;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.14em;
+            color: var(--red);
+            margin-bottom: 12px;
+        }
+
+        .chapter-tag b {
+            font-family: var(--num);
+            font-weight: 800;
+            font-size: 2.4rem;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .chapter h2 {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: clamp(1.5rem, 3.6vw, 2.05rem);
+            line-height: 1.32;
+            color: var(--ink);
+            margin-bottom: 20px;
+            text-wrap: balance;
+        }
+
+        .chapter h3 {
+            font-family: var(--text);
+            font-weight: 900;
+            font-size: 1.12rem;
+            color: var(--ink);
+            margin: 30px 0 10px;
+            padding-left: 12px;
+            border-left: 3px solid var(--red);
+            line-height: 1.5;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        strong { color: var(--ink); font-weight: 600; }
+
+        .chapter > p:first-of-type::first-letter {
+            float: left;
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 3.1em;
+            line-height: 1;
+            margin: 0.08em 0.1em 0 0;
+            color: var(--ink);
+        }
+
+        ul.points, ol.points {
+            list-style: none;
+            margin: 12px 0 24px;
+        }
+
+        .points li {
+            position: relative;
+            padding: 12px 0 12px 22px;
+            border-top: 1px dashed var(--hair);
+        }
+
+        .points li:last-child { border-bottom: 1px dashed var(--hair); }
+
+        ul.points li::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 1.45em;
+            width: 8px;
+            height: 8px;
+            background: var(--red);
+            transform: rotate(45deg);
+        }
+
+        ol.points { counter-reset: pt; }
+
+        ol.points li { counter-increment: pt; padding-left: 34px; }
+
+        ol.points li::before {
+            content: counter(pt, decimal-leading-zero);
+            position: absolute;
+            left: 0;
+            top: 12px;
+            font-family: var(--num);
+            font-weight: 800;
+            color: var(--red);
+        }
+
+        blockquote {
+            position: relative;
+            margin: 30px 0 32px;
+            padding: 20px 22px 20px 54px;
+            background: var(--red-wash);
+            border-top: 2px solid var(--ink);
+        }
+
+        blockquote::before {
+            content: "「";
+            position: absolute;
+            left: 12px;
+            top: 6px;
+            font-family: var(--text);
+            font-weight: 900;
+            font-size: 2.6rem;
+            line-height: 1;
+            color: var(--red);
+        }
+
+        blockquote p {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.14rem;
+            line-height: 1.8;
+            color: var(--ink);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 8px;
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+        }
+
+        /* ---------- figures ---------- */
+        .fig {
+            margin: 30px 0 34px;
+            padding: 18px 18px 16px;
+            border: 1px solid var(--ink);
+            background: rgba(255, 252, 245, 0.55);
+        }
+
+        .fig-head {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            padding-bottom: 10px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid var(--hair);
+            font-weight: 600;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .fig-head .label {
+            flex: 0 0 auto;
+            font-family: var(--mono);
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            color: #fff;
+            background: var(--ink);
+            padding: 1px 7px;
+        }
+
+        .fig-note {
+            margin: 12px 0 0;
+            font-size: 0.86rem;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        .meter + .meter { margin-top: 18px; }
+
+        .meter-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+            margin-bottom: 6px;
+        }
+
+        .meter-label b {
+            font-family: var(--num);
+            font-weight: 800;
+            font-size: 1.35rem;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        .meter-label b.alert { color: var(--red); }
+
+        .track {
+            position: relative;
+            height: 14px;
+            background: repeating-linear-gradient(90deg, var(--paper-deep) 0 calc(10% - 1px), rgba(28, 26, 22, 0.18) calc(10% - 1px) 10%);
+        }
+
+        .band, .bar {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.3, 0.7, 0.2, 1) 0.2s;
+        }
+
+        .band {
+            left: 80%;
+            width: 18%;
+            background: var(--ink);
+        }
+
+        .bar { left: 0; background: var(--ink); }
+
+        .bar.before {
+            width: 80%;
+            background: linear-gradient(90deg, var(--ink) 85%, rgba(28, 26, 22, 0.25));
+        }
+
+        .bar.now { width: 44%; background: var(--red); }
+
+        .js .reveal .band,
+        .js .reveal .bar { transform: scaleX(0); }
+
+        .js .reveal.is-in .band,
+        .js .reveal.is-in .bar { transform: scaleX(1); }
+
+        .bar-row {
+            display: grid;
+            grid-template-columns: 3.2em minmax(0, 1fr) 4.6em;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.86rem;
+        }
+
+        .bar-row + .bar-row { margin-top: 8px; }
+
+        .bar-row .v {
+            font-family: var(--num);
+            font-weight: 700;
+            text-align: right;
+            color: var(--ink);
+        }
+
+        .bar-row .v.alert { color: var(--red); }
+
+        .axis {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+            margin-top: 4px;
+        }
+
+        /* stat strip */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border-top: 2px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            margin: 28px 0 30px;
+        }
+
+        .stat {
+            padding: 14px 14px 12px;
+        }
+
+        .stat + .stat { border-left: 1px solid var(--hair); }
+
+        .stat-num {
+            font-family: var(--num);
+            font-weight: 800;
+            font-size: clamp(1.7rem, 5vw, 2.3rem);
+            line-height: 1.05;
+            color: var(--ink);
+            letter-spacing: -0.01em;
+        }
+
+        .stat-num small {
+            font-family: var(--text);
+            font-weight: 600;
+            font-size: 0.42em;
+            margin-left: 2px;
+        }
+
+        .stat-num.alert { color: var(--red); }
+
+        .stat-cap {
+            margin-top: 6px;
+            font-size: 0.84rem;
+            line-height: 1.55;
+            color: var(--muted);
+        }
+
+        /* ledger */
+        .ledger-wrap { position: relative; }
+
+        .ledger { margin: 0; }
+
+        .ledger div {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            padding: 7px 0;
+        }
+
+        .ledger dt {
+            flex: 0 1 auto;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+        }
+
+        .ledger div::after {
+            content: "";
+            order: 2;
+            flex: 1 1 24px;
+            min-width: 24px;
+            border-bottom: 1px dotted rgba(28, 26, 22, 0.45);
+            transform: translateY(-4px);
+        }
+
+        .ledger dd {
+            order: 3;
+            flex: 0 0 auto;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: 1.08rem;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        .ledger .total {
+            margin-top: 6px;
+            border-top: 2px solid var(--ink);
+            padding-top: 10px;
+        }
+
+        .ledger .total dd { color: var(--red); }
+
+        .stamp {
+            position: absolute;
+            left: 44%;
+            top: 24%;
+            padding: 4px 14px;
+            border: 3px solid var(--red);
+            border-radius: 6px;
+            font-family: var(--pen);
+            font-size: 2.1rem;
+            line-height: 1.1;
+            color: var(--red);
+            opacity: 0.82;
+            transform: rotate(-12deg);
+            mix-blend-mode: multiply;
+            pointer-events: none;
+            transition: transform 0.35s cubic-bezier(0.2, 1.6, 0.4, 1), opacity 0.35s ease;
+        }
+
+        .js .reveal .stamp { opacity: 0; transform: rotate(-12deg) scale(1.6); }
+
+        .js .reveal.is-in .stamp {
+            opacity: 0.82;
+            transform: rotate(-12deg) scale(1);
+            transition-delay: 0.7s;
+        }
+
+        /* seasons */
+        .wave-svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            overflow: visible;
+        }
+
+        .wave-path {
+            fill: none;
+            stroke: var(--ink);
+            stroke-width: 2.5;
+            stroke-dasharray: 900;
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+        }
+
+        .js .reveal .wave-path { stroke-dashoffset: 900; }
+
+        .js .reveal.is-in .wave-path { stroke-dashoffset: 0; }
+
+        .seasons {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            margin-top: 6px;
+            border-top: 1px solid var(--ink);
+        }
+
+        .season {
+            padding: 8px 4px 2px;
+            text-align: center;
+            font-weight: 900;
+            font-size: 1.15rem;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+
+        .season + .season { border-left: 1px solid var(--hair); }
+
+        .season small {
+            display: block;
+            font-weight: 400;
+            font-size: 0.74rem;
+            color: var(--muted);
+        }
+
+        .season.winter { background: rgba(28, 26, 22, 0.06); }
+
+        .season.next { color: var(--red); }
+
+        .years {
+            display: flex;
+            justify-content: center;
+            gap: 10px 18px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            font-family: var(--num);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--ink);
+        }
+
+        .years span:last-child { color: var(--red); }
+
+        /* summary */
+        .summary {
+            margin: 22px 0 30px;
+            border: 1px solid var(--ink);
+            box-shadow: 6px 6px 0 var(--ink);
+            background: rgba(255, 252, 245, 0.55);
+        }
+
+        .summary-head {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--ink);
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            color: var(--ink);
+        }
+
+        .summary ol { list-style: none; counter-reset: s; }
+
+        .summary li {
+            counter-increment: s;
+            position: relative;
+            padding: 14px 16px 14px 56px;
+        }
+
+        .summary li + li { border-top: 1px dashed var(--hair); }
+
+        .summary li::before {
+            content: counter(s, decimal-leading-zero);
+            position: absolute;
+            left: 16px;
+            top: 12px;
+            font-family: var(--num);
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--red);
+        }
+
+        /* reveal */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .js .reveal.is-in {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ---------- footer ---------- */
+        footer {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 24px 44px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding-top: 14px;
+            border-top: 3px double var(--ink);
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 0.04em;
+            color: var(--muted);
+        }
+
+        footer a {
+            color: var(--ink);
+            text-decoration: none;
+            border-bottom: 1px solid var(--hair);
+        }
+
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--red);
+            border-bottom-color: var(--red);
+            outline: none;
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 940px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                padding-top: 30px;
+            }
+
+            .hero-lead { max-width: none; }
+
+            .masthead-mid { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1.01rem; line-height: 1.9; }
+
+            .masthead, .hero, article, footer { padding-left: 16px; padding-right: 16px; }
+
+            .hero { padding-bottom: 36px; }
+
+            .errata { box-shadow: 4px 4px 0 var(--ink); }
+
+            .errata a { grid-template-columns: 2rem minmax(0, 1fr); padding: 12px 14px 14px; }
+
+            .errata-no { font-size: 1.45rem; }
+
+            .fix { font-size: 1.2rem; }
+
+            .section-nav a { padding: 12px 11px 10px; }
+
+            .chapter { padding-top: 40px; }
+
+            .chapter-tag b { font-size: 2rem; }
+
+            blockquote { padding: 16px 16px 16px 46px; }
+
+            blockquote::before { left: 8px; font-size: 2.2rem; }
+
+            blockquote p { font-size: 1.04rem; }
+
+            .fig { padding: 14px 14px 12px; }
+
+            .stats { grid-template-columns: 1fr; }
+
+            .stat + .stat { border-left: 0; border-top: 1px solid var(--hair); }
+
+            .stat { display: grid; grid-template-columns: 6.6em minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 12px 4px; }
+
+            .stat-cap { margin-top: 0; }
+
+            .stamp { font-size: 1.5rem; left: 40%; top: 26%; }
+
+            .season { font-size: 1rem; }
+
+            .season small { font-size: 0.66rem; }
+
+            .summary li { padding-left: 50px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            .js .reveal,
+            .js .reveal .band,
+            .js .reveal .bar,
+            .js .reveal .stamp,
+            .js .reveal .wave-path,
+            .js .fix {
+                opacity: 1;
+                transform: none;
+                transition: none;
+                animation: none;
+                stroke-dashoffset: 0;
+            }
+
+            .js .reveal .stamp { opacity: 0.82; transform: rotate(-12deg); }
+
+            .js .fix { transform: rotate(-1.2deg); }
+
+            .js .wrong span { animation: none; background-size: 100% 2px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-row">
+            <a href="../../index.html">← Digital Garden</a>
+            <span class="masthead-mid">World Affairs · Errata Edition</span>
+            <span>第 26 期 · 2026.10.11</span>
+        </div>
+    </header>
+
+    <section class="hero" aria-labelledby="title">
+        <div>
+            <p class="kicker">Four Corrections to the Headlines</p>
+            <h1 id="title">拆解世界局势的 <span class="big4">4</span> 个反直觉真相</h1>
+            <p class="dek">地缘冲突、债务炸弹与康波周期的残酷现实</p>
+            <p class="hero-lead">新闻头条告诉我们“战争导致了高油价”“民众觉醒引发了街头革命”。剥开快餐式的舆论，从宏观经济与地缘政治的底层结构重读，现实往往与直觉背道而驰。下面是四则勘误。</p>
+        </div>
+
+        <aside class="errata" aria-label="四则勘误">
+            <div class="errata-head">
+                <span>ERRATA / 勘误表</span>
+                <b>更正</b>
+            </div>
+            <ol>
+                <li>
+                    <a href="#diesel">
+                        <span class="errata-no">01</span>
+                        <span class="wrong"><span>中东打仗，原油运不出来，所以油价暴涨</span></span>
+                        <span class="fix">原油早已恢复，缺的是柴油</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#wag">
+                        <span class="errata-no">02</span>
+                        <span class="wrong"><span>油价这么高，白宫一定会极力平息战火</span></span>
+                        <span class="fix">伤害已成，再开战的边际成本近乎为零</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#france">
+                        <span class="errata-no">03</span>
+                        <span class="wrong"><span>法国民众再次觉醒，走上街头</span></span>
+                        <span class="fix">不是觉醒，是欠债还不起</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#wave">
+                        <span class="errata-no">04</span>
+                        <span class="wrong"><span>熬过寒冬，春天自然会来</span></span>
+                        <span class="fix">春天只先到中美，并非人人有份</span>
+                    </a>
+                </li>
+            </ol>
+        </aside>
+    </section>
+
+    <nav class="section-nav" aria-label="文章目录">
+        <div class="section-nav-inner">
+            <a href="#intro"><small>00</small>导言</a>
+            <a href="#diesel"><small>01</small>缺的是柴油</a>
+            <a href="#wag"><small>02</small>摇尾狗</a>
+            <a href="#france"><small>03</small>法国破产</a>
+            <a href="#wave"><small>04</small>康波真空期</a>
+            <a href="#close"><small>∎</small>结语</a>
+        </div>
+    </nav>
+
+    <article>
+        <section class="chapter" id="intro">
+            <div class="chapter-tag"><b>00</b>导言</div>
+            <h2>当新闻头条失真，我们该如何看清真相？</h2>
+            <p>为什么在中东原油出口已大幅恢复的情况下，全球油价与柴油价格依然居高不下？为什么看似提倡现代文明与浪漫的法国，街头却再次上演数十年来最严重的暴力冲突，甚至有学生打出“2026 是新的 1789”这种直指法国大革命的标语？</p>
+            <p>当我们打开每天的新闻头条，往往会被表面的喧嚣所吸引：人们习惯性地以为是“战争导致了高油价”，是“民众觉醒引发了街头革命”。然而，如果剥离掉快餐式的舆论宣传，从宏观经济与地缘政治的底层结构进行剖析，你会发现现实往往与直觉背道而驰。</p>
+            <p>地缘冲突的本质并非简单的物理封锁，政治家的战争算计有着极其精密的边际成本控制，而社会动荡的根源往往是冰冷的财政破产。更深层次看，这四者相互交织：中东战事推高能源风险溢价，通胀压力倒逼全球央行维持高利率，进而直接诱爆了高债务国家的财政炸弹，并最终将整个世界推向康波周期交替时的动荡真空期。</p>
+            <p>本文将剥离表象，揭示 4 个令人震撼且反直觉的底层真相，帮助我们在动荡的世界局势中，找准理解未来的坐标。</p>
+        </section>
+
+        <section class="chapter" id="diesel">
+            <div class="chapter-tag"><b>01</b>核心看点一</div>
+            <h2>油价高企的真相——不是缺“原油”，而是缺“柴油”</h2>
+            <p>大众的直觉逻辑通常是：中东打仗，海峡被锁，原油运不出来，所以油价暴涨；只要原油恢复出口，油价自然就会跌下来。</p>
+            <p>然而，真实的数据呈现出了截然相反的图景。根据摩根大通等多家机构的数据，中东整体原油出口水平早已恢复至战前的 80%—98%，部分时段甚至超越了战前基准，9 月份海湾主要产油国的出口量更创下了开战以来的新高。但奇怪的是，全球油价并未如预期般回落。</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><span class="label">图 1</span>油回来了，但不是世界需要的那种油</figcaption>
+                <div class="meter">
+                    <div class="meter-label"><span>中东原油出口恢复程度（相对战前）</span><b>80%—98%</b></div>
+                    <div class="track" role="img" aria-label="原油出口恢复至战前的 80% 至 98%"><span class="band"></span></div>
+                    <div class="axis"><span>0</span><span>50%</span><span>战前 100%</span></div>
+                </div>
+                <div class="meter">
+                    <div class="meter-label"><span>成品油（以柴油为主）占海峡石油货流比例</span><b class="alert">↓ 11%</b></div>
+                    <div class="bar-row">
+                        <span>战前</span>
+                        <div class="track" role="img" aria-label="战前占比 20% 以上"><span class="bar before"></span></div>
+                        <span class="v">20% 以上</span>
+                    </div>
+                    <div class="bar-row">
+                        <span>现在</span>
+                        <div class="track" role="img" aria-label="现在占比仅 11%"><span class="bar now"></span></div>
+                        <span class="v alert">11%</span>
+                    </div>
+                    <div class="axis"><span></span><span>刻度：0—25%</span></div>
+                </div>
+                <p class="fig-note">未经处理的原油占海湾出口总量的 76%，已基本恢复至战前水平；真正短缺的是卡车、货轮、工厂与农田离不开的柴油。</p>
+            </figure>
+
+            <p>《华尔街日报》曾在一篇专栏文章中精准地揭示了这一反直觉现象：</p>
+            <blockquote>
+                <p>油留回来了，但不是世界需要的那种油。真正的瓶颈根本不是海峡开不开，而是已经转移到了下游的炼油环节。</p>
+                <cite>《华尔街日报》专栏</cite>
+            </blockquote>
+            <p>这其中的核心逻辑在于“原油”与“成品油（柴油）”的结构性错位：</p>
+            <ul class="points">
+                <li><strong>供给结构的极度失衡</strong>：海湾地区出口的原油中，未经处理的原油占到了出口总量的 76%（已基本恢复至战前水平），而作为现代经济命脉的成品油——尤其是柴油——出口占比却从战前海峡石油货流量的 20% 以上骤降至仅 11%。卡车、货轮、工厂、农田的运转全部依赖柴油，世界经济最需要的正是柴油，但柴油缺口无法填补。</li>
+                <li><strong>炼油厂遭毁灭性打击</strong>：导致柴油供给瘫痪的致命原因在于下游炼油设施被毁。沙特、科威特、阿联酋、伊拉克等多家大型炼油厂在导弹和无人机袭击中大幅减产甚至停产。在过去几十年的中东冲突中，各方普遍存在不打击能源设施的默契，因为这是大家的经济软肋；但这次伊朗被逼至墙角，打破了这一隐形红线。</li>
+                <li><strong>固定目标的脆弱性与极高的风险溢价</strong>：相比于油轮，炼油厂的脆弱性要高出几个数量级。油轮是移动目标，可以关闭自动识别系统（AIS）并在美军护航下“偷偷摸摸通行”；而大型炼油厂是庞大、固定且价值数十亿美元的目标，一旦被毁，修复动辄需要数月乃至数年。在极高的不确定性下，市场只能被迫支付极高的风险溢价，直接推高了全球柴油价格。</li>
+            </ul>
+        </section>
+
+        <section class="chapter" id="wag">
+            <div class="chapter-tag"><b>02</b>核心看点二</div>
+            <h2>“摇尾狗”式的政治算计——为何油价破百后，开战反而成了低成本赌注？</h2>
+            <p>高油价极大地打击了美国国内经济，按理说也会拖累执政者在中期选举中的选情。直觉告诉我们，此时美国政府应当极力平息战火。但令人困惑的是，五角大楼已指令美军中央司令部着手完成对伊朗重启大规模作战行动的准备，美军甚至向中东增派第 3 个航母战斗群及搭载海军陆战队的舰艇，预计增援 9000 至 10000 名官兵。此前提出的 45 天最后通牒已于 10 月 1 日到期。</p>
+            <p>对执政者而言，这场中期选举是捍卫政治生存的死战：失去众议院将沦为“跛脚鸭”，而若参众两院尽失，就彻底变成了“烤鸭”。为什么在油价已经站上 100 美元大关时，发动一场军事打击反而成了低成本的政治赌注？</p>
+            <p>这背后的逻辑是政治学中经典的<strong>“战争红利”（Rally 'round the flag effect）</strong>与<strong>“摇尾狗”（Wag the Dog）效应</strong>。</p>
+
+            <h3>实证数据与大场面的政治杠杆</h3>
+            <p>政治学界曾有一项针对 1950 年至 1984 年间美国发动的 102 次对外军事行动的实证研究，结果显示，常规军事行动对总统支持率的平均提升作用接近于零。要真正激活“战争红利”，必须满足极其苛刻的条件：战争规模必须足够大，或者必须是一场极具戏剧性的重大危机。这解释了为何美军此时必须摆出大兵压境的姿态——只有足够大的场面，才能强行扭转选民的注意力。</p>
+
+            <div class="stats reveal">
+                <div class="stat">
+                    <div class="stat-num">102<small>次</small></div>
+                    <p class="stat-cap">1950—1984 年美国对外军事行动样本</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">≈ 0</div>
+                    <p class="stat-cap">常规行动对总统支持率的平均提升</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-num alert">61→90<small>%</small></div>
+                    <p class="stat-cap">老布什在海湾战争期间的支持率</p>
+                </div>
+            </div>
+
+            <h3>边际成本降为零，政治收益无上限</h3>
+            <p>只要美伊紧张关系存在，风险溢价就压不下来，油价已经干到了 100 美元以上。对政治家而言，经济伤害已经造成，短期内再差也差不到哪里去。此时发动一场规模可控、观赏性强且由好莱坞式新闻呈现的军事行动，额外付出的边际经济代价几乎为零，却能瞬间换取巨大的政治回报：反对党闭嘴、媒体转向、公众出于爱国本能团结在总统周围。</p>
+
+            <h3>历史例证与电影《摇尾狗》</h3>
+            <p>这种通过外部军事行动转移国内危机的政治算计在美政坛屡见不鲜：</p>
+            <ul class="points">
+                <li><strong>老布什</strong>：在海湾战争期间，支持率从 61% 飙升至 90%；</li>
+                <li><strong>小布什</strong>：在“9·11”事件及伊拉克战争初期，支持率同样冲高至接近 90%；</li>
+                <li><strong>克林顿</strong>：因莱温斯基丑闻面临弹劾表决的前几天，美英突然对伊拉克发动为期四天的“沙漠之虎”空袭，成功吸走公众注意力，并将克林顿的支持率推至执政最高点。</li>
+            </ul>
+            <p>正如好莱坞电影《摇尾狗》（Wag the Dog）所预言的：政治家可以通过制造一场远方的战争，用强烈的戏剧性新闻将国内的撕裂与糟糕的经济表现从大众脑海中暂时洗刷干净。</p>
+            <blockquote>
+                <p>战争红利这个东西，是三周的热度，一屁股的烂摊子。既然油价已经下不来了，伤害已经造成，那么这个时候再打伊朗，额外要付出的代价几乎等于零。</p>
+            </blockquote>
+
+            <h3>致命的盲点与假戏真做的风险</h3>
+            <p>然而，这种政治算计存在致命盲点。伊朗并非好莱坞的群演，绝不会配合美方的剧本。一旦假戏真做导致局势失控——若伊朗全面反击炸毁剩余炼油厂并彻底封锁霍尔木兹海峡，全球油价将瞬间跳涨至 200 甚至 300 美元。此外，战争红利的保鲜期极短，长期来看往往弊大于利。当年老布什虽然赢下了海湾战争，支持率达到 90%，但两年后依然在“笨蛋，问题在经济”的口号中败给了克林顿。</p>
+        </section>
+
+        <section class="chapter" id="france">
+            <div class="chapter-tag"><b>03</b>核心看点三</div>
+            <h2>法国革命的底色不是“觉醒”，而是“破产”</h2>
+            <p>当美伊冲突推高全球能源风险溢价、进而维持了全球高通胀与高利率环境时，远在欧洲的法国便成了首当其冲的受害者。高利率环境犹如悬在高债务国家头上的达摩克利斯之剑，直接引爆了法国积攒半个世纪的财政危局。</p>
+            <p>法国当前正经历数十年来最严重的社会动荡：全法 25 万至 45 万学生与民众走上街头，3700 多所高中近半数停课。学校内部条件恶化至极——教室拥挤、夏日 35 度无空调、校舍漏水老鼠泛滥，甚至连卫生纸都不提供。抗议者打出了“2026 是新的 1789”的标语，直接对标 1789 年法国大革命。</p>
+
+            <div class="stats reveal">
+                <div class="stat">
+                    <div class="stat-num">25—45<small>万</small></div>
+                    <p class="stat-cap">走上街头的学生与民众</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-num">3700+</div>
+                    <p class="stat-cap">所高中，近半数停课</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-num alert">87<small>%</small></div>
+                    <p class="stat-cap">约 6000 名被捕者中的未成年人比例</p>
+                </div>
+            </div>
+
+            <p>面对动荡，法国警方展现了极高的执法强度：催泪弹、水炮车与警棍全面上阵，造成 200 多名青少年及 715 名警察受伤，一名 15 岁少年甚至在冲突中被防暴弹炸断左手。全法已逮捕约 6000 人，其中 87% 为未成年人。引人深思的是，过去对其他地区骚乱高调发声、要求“保持克制”的欧盟，此次却陷入了死寂。欧盟的沉默并非漠视，而是恐惧——他们深知债务危机与街头暴动具备极强的传染性，一旦声讨法国警方，将彻底失去维持自身秩序的合法性。</p>
+            <p>大众普遍认为，法国人频繁游行抗议是因为其对自由与权力的“觉醒”。但著名经济学家托马斯·皮凯蒂（Thomas Piketty）在专栏文章《1789, 1945, 2026：法国三次债务危机》中重塑了这一历史认知：</p>
+            <blockquote>
+                <p>革命老区法国每次闹革命，其实都是欠钱闹的。法国人不是爱革命，而是每次欠债还不起的时候，就只能闹一下。</p>
+                <cite>托马斯·皮凯蒂《1789, 1945, 2026：法国三次债务危机》</cite>
+            </blockquote>
+            <p>历史与现实的残酷真相高度重合：</p>
+            <ul class="points">
+                <li><strong>1789 年的财政本质</strong>：法国大革命的直接导火索并不是单纯的思想觉醒，而是债务违约。路易十六为了打赢支持美国独立的战争干塌了国库，王室欠下巨额债务无法偿还，迫于财政崩溃倒逼召集三级会议筹款。各方在会议上利益分赃不均，才导致局势失控并演变为撕裂社会的大革命。</li>
+                <li><strong>当下不可持续的债务破局</strong>：今天的法国面临着一模一样的剧本。法国公共债务总额已达 3.596 万亿欧元，占 GDP 的 119%，且已超过半个世纪未能实现财政盈余。在当前高利率环境下，法国 10 年期国债收益率已逼近 5%，借钱成本甚至高于当年破产危机时的希腊与意大利。</li>
+                <li><strong>买家撤退与融资受限</strong>：更危险的是，以往兜底的国债大买家——法国央行与日本央行已停止增持法国国债。仅在明年，法国就面临高达约 3800 亿美元的债务再融资需求。疫情期间通过大规模财政补贴维持的“体面生活”，本质上就像一个靠刷信用卡维持了 50 年体面的家庭，如今信用卡已被彻底刷爆。</li>
+            </ul>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><span class="label">图 2</span>一张刷了 50 年的信用卡账单</figcaption>
+                <div class="ledger-wrap">
+                    <dl class="ledger">
+                        <div><dt>公共债务总额</dt><dd>3.596 万亿欧元</dd></div>
+                        <div><dt>债务占 GDP</dt><dd>119%</dd></div>
+                        <div><dt>未实现财政盈余</dt><dd>超过 50 年</dd></div>
+                        <div><dt>10 年期国债收益率</dt><dd>逼近 5%</dd></div>
+                        <div><dt>2024 年 4 月被搁置的削减预算</dt><dd>400 亿欧元</dd></div>
+                        <div class="total"><dt>明年债务再融资需求</dt><dd>约 3800 亿美元</dd></div>
+                    </dl>
+                    <span class="stamp" aria-hidden="true">已刷爆</span>
+                </div>
+                <p class="fig-note">以往兜底的大买家——法国央行与日本央行——已停止增持法国国债。</p>
+            </figure>
+
+            <p>2024 年 4 月，财政部曾提议削减 400 亿欧元预算自救，这本是避免社会动荡的最后窗口，但该修正案被政客搁置；随后国会解散形成三方割据，任何实质性财政改革均告瘫痪。如今民调胜率超 60% 的勒庞主张将退休年龄降至 60 岁（每年新增支出约 90 亿欧元），极左翼领导人梅朗雄甚至要求欧洲央行直接注销法国 4880 亿欧元的债务。极右与极左的民粹方案，正将法国推向彻底破产的边缘。</p>
+        </section>
+
+        <section class="chapter" id="wave">
+            <div class="chapter-tag"><b>04</b>核心看点四</div>
+            <h2>康波周期的残酷宿命——清算旧账的“真空期”，并非人人都能迎来春天</h2>
+            <p>如果将中东的柴油瓶颈、美国的政治豪赌以及法国的债务危机放在更大的时间维度下审视，就会发现它们并非孤立的偶然事件，而是受到了宏观经济“康波周期”（Kondratiev Wave，约 60 年一轮的经济大周期）的深刻制约。</p>
+            <p>皮凯蒂列出的三个关键年份——1789 年、1945 年、2026 年，无一例外全都精准地踩在上轮康波周期萧条期（冬）末尾与下轮回升期（春）交界的节点。</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><span class="label">图 3</span>冬春之交：旧账清算、新秩序未立</figcaption>
+                <svg class="wave-svg" viewBox="0 0 600 140" role="img" aria-label="康波周期示意：春、夏、秋、冬之后进入下一轮春，冬春交界处为真空期">
+                    <line x1="480" y1="6" x2="480" y2="136" stroke="#c0321d" stroke-width="1.5" stroke-dasharray="4 4"/>
+                    <rect x="456" y="4" width="48" height="20" fill="#c0321d"/>
+                    <text x="480" y="18.5" text-anchor="middle" font-size="12" fill="#fff" font-family="Noto Serif SC, serif" font-weight="600">真空期</text>
+                    <path class="wave-path" d="M0,110 C60,110 85,40 150,36 C205,33 235,42 265,56 C305,76 335,100 385,114 C425,124 460,128 480,128 C520,128 560,104 600,72"/>
+                    <circle cx="480" cy="128" r="5" fill="#c0321d"/>
+                </svg>
+                <div class="seasons">
+                    <div class="season">春<small>回升</small></div>
+                    <div class="season">夏<small>繁荣</small></div>
+                    <div class="season">秋<small>衰退</small></div>
+                    <div class="season winter">冬<small>萧条</small></div>
+                    <div class="season next">春<small>下一轮</small></div>
+                </div>
+                <div class="years" aria-label="皮凯蒂列出的三个年份">
+                    <span>1789</span><span>1945</span><span>2026</span>
+                </div>
+                <p class="fig-note">示意图，非时间比例。皮凯蒂列出的三个年份都落在“冬”的末尾与下一轮“春”的交界处。</p>
+            </figure>
+
+            <h3>为何债务危机与社会动荡偏爱爆发于“冬春之交”？</h3>
+            <p>因为旧时代的账单必须在新时代来临前被彻底清算。旧的技术与经济秩序已经崩塌，新的增长引擎与政治秩序尚未建立，这段“秩序真空期”正是最动荡、最混乱的时刻。旧债务无法通过常规经济增长消化，就只能通过违约、高通胀或社会革命等残酷方式硬性出清。</p>
+            <blockquote>
+                <p>冬天确实是快到头了，但春天未必能到法国。旧账要在新时代来临之前被彻底清算，中间那段真空期，就是最动荡的时刻。</p>
+            </blockquote>
+
+            <h3>周期的残酷真相：春天并非人人有份</h3>
+            <p>宏观经济周期的春天从来不会同时降临给所有国家：</p>
+            <ol class="points">
+                <li><strong>中美双核格局</strong>：从当前全球产业布局、科技革命（人工智能、新能源等）及资本流向来看，本轮康波周期的春天极大概率仅从中美两国开始。</li>
+                <li><strong>周期的阶梯式剥落</strong>：绝大多数国家不仅无法同步进入春天，甚至会错失一轮完整周期中的大部分美好时光。对许多结构单一、债务高企的国家而言，它们的命运可能只有秋、冬两季，甚至只能漫长地滞留在冬季。</li>
+                <li><strong>出清姿势决定最终宿命</strong>：法国等欧洲国家未来究竟是走向“断头台式的社会崩溃”，还是迈向重组后的“黄金时代”，并不取决于换哪个政客上台，而完全取决于其以何种姿势清算旧时代的债务烂账。</li>
+            </ol>
+        </section>
+
+        <section class="chapter" id="close">
+            <div class="chapter-tag"><b>∎</b>结语</div>
+            <h2>在历史的转折点，留给我们的思考</h2>
+            <p>剥开新闻繁复的表象，世界运行的底层逻辑清晰可见：</p>
+            <div class="summary reveal">
+                <div class="summary-head">勘误汇总 / SUMMARY OF CORRECTIONS</div>
+                <ol>
+                    <li><strong>地缘与能源</strong>：高油价的痛点早已从上游的海峡封锁，转移到了下游被摧毁的柴油炼油能力与固有的风险溢价；</li>
+                    <li><strong>政治与地缘</strong>：当经济伤害不可逆时，政治家倾向于利用高场面的战争红利进行低边际成本的政治豪赌；</li>
+                    <li><strong>财政与社会</strong>：法国式动荡的本质并非单纯的社会觉醒，而是长达半个世纪债务扩张无法维系后的强制清算；</li>
+                    <li><strong>周期与宿命</strong>：全球正处于旧账清算、新秩序未立的康波真空期，而新一轮周期的春天入场券极其稀缺。</li>
+                </ol>
+            </div>
+            <p>历史不会简单地重复，但总是押着相同的韵脚。当旧时代的账单纷纷到期，当全球经济大周期的冬春之交加速到来，无论国家还是个人，都必须回答那个最现实的问题：</p>
+            <blockquote>
+                <p>我们该以何种姿势清算旧账，才能在这个动荡的“真空期”里存活下来，去迎接极少数国家才能拥有的春天？</p>
+            </blockquote>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="../../index.html">← 返回 Digital Garden</a>
+            <span>第 26 期 · 拆解世界局势的 4 个反直觉真相</span>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var fill = document.getElementById("progressFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+            var activeIdx = -1;
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                fill.style.transform = "scaleX(" + p + ")";
+
+                var cutoff = Math.max(140, window.innerHeight * 0.4);
+                var active = -1;
+                for (var j = 0; j < sections.length; j++) {
+                    if (sections[j].getBoundingClientRect().top <= cutoff) active = j;
+                }
+                if (p > 0.97) active = sections.length - 1;
+                if (active === activeIdx) return;
+                activeIdx = active;
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+                if (active >= 0) {
+                    var nav = links[active].parentNode;
+                    var link = links[active];
+                    nav.scrollTo({ left: link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2, behavior: "smooth" });
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+
+            var reveals = document.querySelectorAll(".reveal");
+            if (!("IntersectionObserver" in window)) {
+                reveals.forEach(function (el) { el.classList.add("is-in"); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -12% 0px", threshold: 0.15 });
+            reveals.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+</html>

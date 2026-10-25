@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 泡沫破裂前夕：历史给所有“卖铲人”上的最残酷一课</title>
+    <meta name="description" content="熟铁危机、铜与橡胶狂热、光纤与交换机神话：每一轮基建狂热都在炒瓶颈，最后卖铲人破产、生态重构者永生。AI 算力的资金墙正在逼近。">
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Azeret+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0c0f0d;
+            --panel: #131814;
+            --panel-2: #1a201b;
+            --line: rgba(220, 214, 196, 0.12);
+            --line-strong: rgba(220, 214, 196, 0.26);
+            --text: #d8d3c4;
+            --bright: #f3eee0;
+            --muted: #8c897d;
+            --amber: #f2b42e;
+            --up: #ff5a47;
+            --down: #2ec27e;
+            --num: "Big Shoulders Display", "Noto Sans SC", sans-serif;
+            --sans: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            --mono: "Azeret Mono", "Menlo", monospace;
+            --max-w: 720px;
+            --wide-w: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 60px;
+        }
+
+        body {
+            font-family: var(--sans);
+            color: var(--text);
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(242, 180, 46, 0.08), transparent 70%),
+                repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 3px),
+                var(--bg);
+            line-height: 1.9;
+            font-size: 1.02rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: inherit; }
+
+        .up { color: var(--up); }
+        .down { color: var(--down); }
+        .amber { color: var(--amber); }
+
+        .progress-bar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: 2px;
+            z-index: 200;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--amber);
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* ---------- ticker ---------- */
+        .ticker {
+            overflow: hidden;
+            border-bottom: 1px solid var(--line-strong);
+            background: #080a09;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            animation: tape 60s linear infinite;
+        }
+
+        .ticker-track span {
+            padding: 8px 18px;
+            border-right: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .ticker-track b { font-weight: 600; margin-left: 6px; }
+
+        @keyframes tape {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* ---------- masthead ---------- */
+        .mast {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 16px 24px 0;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .mast a {
+            color: var(--bright);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .mast a:hover,
+        .mast a:focus-visible {
+            color: var(--amber);
+            border-bottom-color: var(--amber);
+            outline: none;
+        }
+
+        .live::before {
+            content: "";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--up);
+            margin-right: 8px;
+            vertical-align: 1px;
+            animation: blink 1.4s steps(2, start) infinite;
+        }
+
+        @keyframes blink {
+            to { visibility: hidden; }
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 44px 24px 56px;
+        }
+
+        .kicker {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            color: var(--amber);
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: var(--num);
+            font-weight: 900;
+            font-size: clamp(2.8rem, 9vw, 6.4rem);
+            line-height: 0.98;
+            letter-spacing: 0.005em;
+            color: var(--bright);
+        }
+
+        .hero h1 .ai { color: var(--amber); }
+
+        .hero-sub {
+            margin-top: 14px;
+            font-weight: 700;
+            font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+            color: var(--bright);
+        }
+
+        .hero-lead {
+            margin-top: 12px;
+            max-width: 38em;
+            color: var(--muted);
+        }
+
+        /* split-flap board */
+        .board {
+            margin-top: 36px;
+            border: 1px solid var(--line-strong);
+            background: linear-gradient(180deg, #111612, #0d110e);
+            box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .board-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--line-strong);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        .board-head b { color: var(--bright); font-weight: 600; }
+
+        .legend-ud .up::before { content: "▲ "; }
+        .legend-ud .down::before { content: "▼ "; }
+
+        .board-row {
+            display: grid;
+            grid-template-columns: 1.5fr 0.8fr 1.1fr 1.2fr;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 16px;
+        }
+
+        .board-row + .board-row { border-top: 1px solid var(--line); }
+
+        .board-row.cols {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+        }
+
+        .flap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3px;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: clamp(1.05rem, 2.4vw, 1.55rem);
+            line-height: 1;
+            color: var(--amber);
+        }
+
+        .flap .c {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0.78em;
+            padding: 0.2em 0.12em;
+            border-radius: 2px;
+            background: linear-gradient(180deg, #232a24 0 49%, #070908 49% 52%, #1c221d 52% 100%);
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+        }
+
+        .flap .c.cjk { font-family: var(--sans); font-weight: 700; font-size: 0.9em; min-width: 1.05em; padding: 0.24em 0.1em; }
+
+        .flap .sp { width: 0.3em; }
+
+        .flap.up { color: var(--up); }
+        .flap.down { color: var(--down); }
+        .flap.name { color: var(--bright); }
+
+        .flap.q .c { animation: pulse 1.2s ease-in-out infinite; }
+
+        @keyframes pulse {
+            50% { color: rgba(242, 180, 46, 0.35); }
+        }
+
+        .board-foot {
+            padding: 8px 16px 10px;
+            border-top: 1px solid var(--line-strong);
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        /* ---------- nav ---------- */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 90;
+            background: rgba(12, 15, 13, 0.92);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid var(--line-strong);
+            border-bottom: 1px solid var(--line-strong);
+        }
+
+        .section-nav-inner {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 12px;
+            display: flex;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+
+        .section-nav a {
+            flex: 0 0 auto;
+            display: flex;
+            gap: 6px;
+            align-items: baseline;
+            padding: 12px 13px 10px;
+            text-decoration: none;
+            white-space: nowrap;
+            font-size: 0.92rem;
+            color: var(--muted);
+            border-bottom: 2px solid transparent;
+        }
+
+        .section-nav a small { font-family: var(--mono); font-size: 0.62rem; }
+
+        .section-nav a.is-active,
+        .section-nav a:hover,
+        .section-nav a:focus-visible {
+            color: var(--bright);
+            border-bottom-color: var(--amber);
+            outline: none;
+        }
+
+        .section-nav a.is-active small { color: var(--amber); }
+
+        /* ---------- article ---------- */
+        article {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 24px 72px;
+        }
+
+        .part { padding-top: 68px; }
+
+        .part-label {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--amber);
+            margin-bottom: 10px;
+        }
+
+        .part-label b {
+            font-family: var(--num);
+            font-weight: 900;
+            font-size: 3rem;
+            line-height: 0.9;
+            color: var(--bright);
+        }
+
+        .part h2 {
+            font-weight: 900;
+            font-size: clamp(1.45rem, 3.4vw, 2rem);
+            line-height: 1.38;
+            color: var(--bright);
+            margin-bottom: 22px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--line-strong);
+            text-wrap: balance;
+        }
+
+        .part h3 {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 1.22rem;
+            color: var(--bright);
+            margin: 0 0 14px;
+            line-height: 1.5;
+        }
+
+        .part h3 .when {
+            flex: 0 0 auto;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--bg);
+            background: var(--amber);
+            padding: 0 8px;
+            line-height: 1.5;
+        }
+
+        p { margin-bottom: 1.05em; }
+
+        strong { color: var(--bright); font-weight: 700; }
+
+        .punch {
+            font-weight: 900;
+            font-size: 1.28rem;
+            line-height: 1.6;
+            color: var(--amber);
+            margin: 22px 0;
+        }
+
+        blockquote {
+            margin: 26px 0 28px;
+            padding: 18px 20px 18px 22px;
+            border: 1px solid var(--line-strong);
+            border-left: 3px solid var(--amber);
+            background: var(--panel);
+        }
+
+        blockquote p {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.12rem;
+            line-height: 1.8;
+            color: var(--bright);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+        }
+
+        ul.feed {
+            list-style: none;
+            margin: 12px 0 24px;
+            border-top: 1px solid var(--line);
+        }
+
+        .feed li {
+            position: relative;
+            padding: 12px 0 12px 22px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .feed li::before {
+            content: "▸";
+            position: absolute;
+            left: 2px;
+            top: 12px;
+            color: var(--amber);
+        }
+
+        /* panels */
+        .panel {
+            margin: 26px 0 30px;
+            border: 1px solid var(--line-strong);
+            background: var(--panel);
+        }
+
+        .panel-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: baseline;
+            padding: 8px 14px;
+            border-bottom: 1px solid var(--line-strong);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--bright);
+            line-height: 1.5;
+        }
+
+        .panel-head small {
+            flex: 0 0 auto;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 0.62rem;
+            color: var(--muted);
+        }
+
+        .panel-body { padding: 14px; }
+
+        .panel-note {
+            padding: 8px 14px 10px;
+            border-top: 1px solid var(--line);
+            font-size: 0.78rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        /* cheap prices */
+        .quotes {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .quote-cell { padding: 14px; }
+
+        .quote-cell + .quote-cell { border-left: 1px solid var(--line); }
+
+        .quote-what {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .quote-price {
+            margin-top: 6px;
+            font-weight: 900;
+            font-size: 1.18rem;
+            color: var(--down);
+            line-height: 1.4;
+        }
+
+        .lineage {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin: 6px 0 24px;
+            font-size: 0.88rem;
+        }
+
+        .lineage span {
+            padding: 3px 10px;
+            border: 1px solid var(--line-strong);
+            background: var(--panel);
+        }
+
+        .lineage span small {
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            color: var(--muted);
+            margin-right: 6px;
+        }
+
+        .lineage .eq {
+            border: 0;
+            background: none;
+            padding: 0;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--amber);
+        }
+
+        .lineage .ai-tag { border-color: var(--amber); color: var(--amber); font-weight: 700; }
+
+        /* three highs */
+        .highs {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin: 22px 0 26px;
+        }
+
+        .high {
+            border: 1px solid var(--line-strong);
+            border-top: 3px solid var(--up);
+            background: var(--panel);
+            padding: 14px;
+        }
+
+        .high b {
+            display: block;
+            font-weight: 900;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--bright);
+        }
+
+        .high span {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* bottleneck log */
+        .log {
+            list-style: none;
+            counter-reset: log;
+            font-size: 0.92rem;
+        }
+
+        .log li {
+            counter-increment: log;
+            display: grid;
+            grid-template-columns: 2.4em minmax(0, 1fr) auto;
+            gap: 12px;
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .log li::before {
+            content: counter(log, decimal-leading-zero);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .log li b { color: var(--bright); font-weight: 700; }
+
+        .log li i {
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            color: var(--up);
+            white-space: nowrap;
+        }
+
+        .log li:last-child { border-bottom: 0; }
+
+        .log li:last-child b { color: var(--amber); }
+
+        .cursor-line {
+            margin-top: 10px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--amber);
+        }
+
+        .cursor-line::after {
+            content: "█";
+            margin-left: 4px;
+            animation: blink 1s steps(2, start) infinite;
+        }
+
+        /* case files */
+        .case {
+            margin: 30px 0 38px;
+            padding: 22px 20px 6px;
+            border: 1px solid var(--line-strong);
+            background: linear-gradient(180deg, var(--panel), rgba(19, 24, 20, 0.4));
+        }
+
+        .tape {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin: 18px -20px 20px;
+            border-top: 1px solid var(--line-strong);
+            border-bottom: 1px solid var(--line-strong);
+            background: #0a0d0b;
+        }
+
+        .tape.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+        .tape div { padding: 10px 14px; }
+
+        .tape div + div { border-left: 1px solid var(--line); }
+
+        .tape small {
+            display: block;
+            font-size: 0.74rem;
+            line-height: 1.45;
+            color: var(--muted);
+        }
+
+        .tape b {
+            display: block;
+            margin-top: 2px;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: 1.55rem;
+            line-height: 1.1;
+        }
+
+        .tape b em {
+            font-style: normal;
+            font-family: var(--sans);
+            font-size: 0.5em;
+            font-weight: 700;
+            margin-left: 2px;
+        }
+
+        /* gold rush */
+        .versus {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            margin: 24px 0 28px;
+            border: 1px solid var(--line-strong);
+        }
+
+        .vs { padding: 16px; background: var(--panel); }
+
+        .vs + .vs { border-left: 1px solid var(--line-strong); }
+
+        .vs-tag {
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            color: var(--muted);
+        }
+
+        .vs-title {
+            font-weight: 900;
+            color: var(--bright);
+            margin: 2px 0 10px;
+        }
+
+        .vs-num {
+            font-family: var(--num);
+            font-weight: 900;
+            font-size: 2.6rem;
+            line-height: 1;
+        }
+
+        .vs-num em {
+            font-style: normal;
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 0.4em;
+            margin-left: 3px;
+        }
+
+        .vs p {
+            margin: 8px 0 0;
+            font-size: 0.84rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .fire {
+            position: relative;
+            margin: 30px 0;
+            padding: 22px 22px 22px 22px;
+            background:
+                linear-gradient(0deg, rgba(255, 90, 71, 0.16), transparent 70%),
+                var(--panel);
+            border: 1px solid rgba(255, 90, 71, 0.4);
+        }
+
+        .fire p {
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--bright);
+        }
+
+        .fire::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--up), var(--amber), var(--down));
+        }
+
+        .heirs {
+            display: grid;
+            gap: 10px;
+            margin: 14px 0 26px;
+        }
+
+        .heir {
+            display: grid;
+            grid-template-columns: 7.5em minmax(0, 1fr);
+            gap: 14px;
+            padding: 14px;
+            border: 1px solid var(--line-strong);
+            background: var(--panel);
+            font-size: 0.9rem;
+            line-height: 1.75;
+        }
+
+        .heir-from {
+            font-weight: 900;
+            color: var(--down);
+        }
+
+        .heir-from small {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 0.62rem;
+            color: var(--muted);
+        }
+
+        /* debt */
+        .stack {
+            display: flex;
+            height: 42px;
+            border: 1px solid var(--line-strong);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.3, 0.7, 0.2, 1) 0.15s;
+        }
+
+        .stack div {
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 0.72rem;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .seg-a { flex: 42; background: #2a332c; color: var(--bright); }
+
+        .seg-b { flex: 9; background: repeating-linear-gradient(135deg, rgba(255, 90, 71, 0.22) 0 6px, transparent 6px 12px); color: var(--text); border-left: 1px solid var(--line-strong); }
+
+        .seg-c { flex: 9; background: var(--up); color: #fff; font-weight: 700; }
+
+        .stack-scale {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-family: var(--mono);
+            font-size: 0.62rem;
+            color: var(--muted);
+        }
+
+        .rates { margin-top: 20px; }
+
+        .rate {
+            display: grid;
+            grid-template-columns: 8em minmax(0, 1fr) 3.6em;
+            gap: 10px;
+            align-items: center;
+            font-size: 0.82rem;
+        }
+
+        .rate + .rate { margin-top: 8px; }
+
+        .rate-track {
+            position: relative;
+            height: 12px;
+            background: repeating-linear-gradient(90deg, transparent 0 calc(8.333% - 1px), var(--line) calc(8.333% - 1px) 8.333%);
+        }
+
+        .rate-fill {
+            position: absolute;
+            inset: 0 auto 0 0;
+            background: var(--muted);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.3, 0.7, 0.2, 1) 0.3s;
+        }
+
+        .rate-fill.hot { background: var(--up); }
+
+        .rate .v {
+            text-align: right;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--bright);
+        }
+
+        .rate .v.hot { color: var(--up); }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin: 22px 0 26px;
+            border: 1px solid var(--line-strong);
+            background: var(--panel);
+        }
+
+        .stat { padding: 12px 14px; }
+
+        .stat + .stat { border-left: 1px solid var(--line); }
+
+        .stat b {
+            display: block;
+            font-family: var(--num);
+            font-weight: 900;
+            font-size: clamp(1.7rem, 4.6vw, 2.3rem);
+            line-height: 1.05;
+            color: var(--bright);
+        }
+
+        .stat b em {
+            font-style: normal;
+            font-family: var(--sans);
+            font-weight: 700;
+            font-size: 0.42em;
+            margin-left: 2px;
+        }
+
+        .stat small {
+            display: block;
+            margin-top: 4px;
+            font-size: 0.78rem;
+            line-height: 1.5;
+            color: var(--muted);
+        }
+
+        .squeeze {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            align-items: stretch;
+            margin: 22px 0 10px;
+        }
+
+        .wall {
+            padding: 14px;
+            border: 1px solid var(--line-strong);
+            background: var(--panel);
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+
+        .wall b {
+            display: block;
+            font-weight: 900;
+            color: var(--up);
+            margin-bottom: 4px;
+        }
+
+        .wall.right { text-align: right; }
+
+        .core {
+            display: flex;
+            align-items: center;
+            padding: 0 14px;
+            font-family: var(--num);
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: var(--amber);
+            white-space: nowrap;
+            border-top: 1px dashed var(--amber);
+            border-bottom: 1px dashed var(--amber);
+        }
+
+        /* duration */
+        .dur {
+            display: grid;
+            grid-template-columns: 7.4em minmax(0, 1fr) 3.4em;
+            gap: 12px;
+            align-items: center;
+            font-size: 0.86rem;
+        }
+
+        .dur + .dur { margin-top: 10px; }
+
+        .dur-track {
+            position: relative;
+            height: 18px;
+            background: repeating-linear-gradient(90deg, transparent 0 calc(12.5% - 1px), var(--line) calc(12.5% - 1px) 12.5%);
+        }
+
+        .dur-fill {
+            position: absolute;
+            inset: 0 auto 0 0;
+            background: var(--line-strong);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.3, 0.7, 0.2, 1) 0.2s;
+        }
+
+        .dur.ai .dur-fill { background: var(--amber); }
+
+        .dur.ai .dur-track::after {
+            content: "";
+            position: absolute;
+            left: 37.5%;
+            right: 0;
+            top: 50%;
+            border-top: 2px dashed rgba(242, 180, 46, 0.5);
+        }
+
+        .dur .v {
+            text-align: right;
+            font-family: var(--num);
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--bright);
+        }
+
+        .dur.ai .v { color: var(--amber); }
+
+        .dur-axis {
+            display: grid;
+            grid-template-columns: 7.4em minmax(0, 1fr) 3.4em;
+            gap: 12px;
+            margin-top: 6px;
+            font-size: 0.86rem;
+        }
+
+        .dur-axis div {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--line-strong);
+            padding-top: 4px;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--muted);
+        }
+
+        .final-q {
+            margin-top: 34px;
+            padding: 26px 22px;
+            border: 1px solid var(--amber);
+            background: radial-gradient(ellipse at 0% 0%, rgba(242, 180, 46, 0.12), transparent 60%), var(--panel);
+        }
+
+        .final-q small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            color: var(--amber);
+            margin-bottom: 10px;
+        }
+
+        .final-q p {
+            margin: 0;
+            font-weight: 900;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            line-height: 1.65;
+            color: var(--bright);
+        }
+
+        /* reveal */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .js .reveal.is-in { opacity: 1; transform: none; }
+
+        .js .reveal .stack,
+        .js .reveal .rate-fill,
+        .js .reveal .dur-fill { transform: scaleX(0); }
+
+        .js .reveal.is-in .stack,
+        .js .reveal.is-in .rate-fill,
+        .js .reveal.is-in .dur-fill { transform: scaleX(1); }
+
+        /* footer */
+        footer {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 12px;
+            border-top: 1px solid var(--line-strong);
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--muted);
+        }
+
+        footer a {
+            color: var(--bright);
+            text-decoration: none;
+            border-bottom: 1px solid var(--line-strong);
+        }
+
+        footer a:hover,
+        footer a:focus-visible {
+            color: var(--amber);
+            border-bottom-color: var(--amber);
+            outline: none;
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 940px) {
+            .tape { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+            .tape div:nth-child(3) { border-left: 0; }
+
+            .tape div:nth-child(n+3) { border-top: 1px solid var(--line); }
+
+            .tape.three { grid-template-columns: 1fr; }
+
+            .tape.three div + div { border-left: 0; border-top: 1px solid var(--line); }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1rem; line-height: 1.85; }
+
+            .mast, .hero, article, footer { padding-left: 14px; padding-right: 14px; }
+
+            .mast .mid { display: none; }
+
+            .hero { padding-top: 32px; padding-bottom: 40px; }
+
+            .board-row {
+                grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.45fr) minmax(0, 1fr);
+                gap: 8px 10px;
+                padding: 12px;
+            }
+
+            .board-row.cols { display: none; }
+
+            .board-row > :first-child { grid-column: 1 / -1; }
+
+            .board-row > [data-col]::before {
+                content: attr(data-col);
+                display: block;
+                width: 100%;
+                margin-bottom: 4px;
+                font-family: var(--mono);
+                font-size: 0.58rem;
+                color: var(--muted);
+            }
+
+            .flap { font-size: 0.98rem; gap: 2px; }
+
+            .board-head { flex-direction: column; gap: 2px; padding: 10px 12px; }
+
+            .part { padding-top: 52px; }
+
+            .part-label b { font-size: 2.5rem; }
+
+            .quotes { grid-template-columns: 1fr; }
+
+            .quote-cell + .quote-cell { border-left: 0; border-top: 1px solid var(--line); }
+
+            .highs { grid-template-columns: 1fr; }
+
+            .high { display: grid; grid-template-columns: 5.2em minmax(0, 1fr); gap: 12px; align-items: baseline; }
+
+            .high span { margin-top: 0; }
+
+            .log li { grid-template-columns: 2em minmax(0, 1fr); }
+
+            .log li i { grid-column: 2; }
+
+            .case { padding: 18px 14px 4px; }
+
+            .tape { margin-left: -14px; margin-right: -14px; }
+
+            .versus { grid-template-columns: 1fr; }
+
+            .vs + .vs { border-left: 0; border-top: 1px solid var(--line-strong); }
+
+            .heir { grid-template-columns: 1fr; gap: 4px; }
+
+            .rate { grid-template-columns: 6.4em minmax(0, 1fr) 3.4em; font-size: 0.76rem; }
+
+            .stats { grid-template-columns: 1fr; }
+
+            .stat + .stat { border-left: 0; border-top: 1px solid var(--line); }
+
+            .stat { display: grid; grid-template-columns: 7.6em minmax(0, 1fr); gap: 10px; align-items: baseline; }
+
+            .stat small { margin-top: 0; }
+
+            .squeeze { grid-template-columns: 1fr; }
+
+            .wall.right { text-align: left; }
+
+            .core { justify-content: center; padding: 8px 0; border: 0; border-left: 1px dashed var(--amber); border-right: 1px dashed var(--amber); margin: 0 auto; width: 60%; }
+
+            .dur, .dur-axis { grid-template-columns: 5.8em minmax(0, 1fr) 3.8em; font-size: 0.78rem; }
+
+            .dur .v { white-space: nowrap; }
+
+            blockquote { padding: 16px; }
+
+            blockquote p { font-size: 1.04rem; }
+
+            .final-q { padding: 20px 16px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+
+            .ticker-track,
+            .live::before,
+            .cursor-line::after,
+            .flap.q .c { animation: none; }
+
+            .js .reveal,
+            .js .reveal .stack,
+            .js .reveal .rate-fill,
+            .js .reveal .dur-fill {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker-track">
+            <span>铁料价格<b class="up">▲ 近 3 倍</b></span>
+            <span>铁厂股<b class="up">▲ ≈10×</b></span>
+            <span>龙头铁厂<b class="up">▲ ≈20×</b></span>
+            <span>熟铁厂<b class="down">▼ 95% 破产</b></span>
+            <span>绝缘橡胶<b class="up">▲ 500%</b></span>
+            <span>绝缘材料股<b class="up">▲ 20—30×</b></span>
+            <span>思科<b class="up">$80</b><b class="down">▼ ≈90%</b></span>
+            <span>带宽价格<b class="down">▼ 90%</b></span>
+            <span>电信业市值<b class="down">▼ 2 万亿美元</b></span>
+            <span>谷歌自由现金流<b class="down">−58.55 亿美元</b></span>
+            <span>黑石次级债收益率<b class="up">&gt;10%</b></span>
+            <span>铁料价格<b class="up">▲ 近 3 倍</b></span>
+            <span>铁厂股<b class="up">▲ ≈10×</b></span>
+            <span>龙头铁厂<b class="up">▲ ≈20×</b></span>
+            <span>熟铁厂<b class="down">▼ 95% 破产</b></span>
+            <span>绝缘橡胶<b class="up">▲ 500%</b></span>
+            <span>绝缘材料股<b class="up">▲ 20—30×</b></span>
+            <span>思科<b class="up">$80</b><b class="down">▼ ≈90%</b></span>
+            <span>带宽价格<b class="down">▼ 90%</b></span>
+            <span>电信业市值<b class="down">▼ 2 万亿美元</b></span>
+            <span>谷歌自由现金流<b class="down">−58.55 亿美元</b></span>
+            <span>黑石次级债收益率<b class="up">&gt;10%</b></span>
+        </div>
+    </div>
+
+    <div class="mast">
+        <a href="../../index.html">← Digital Garden</a>
+        <span class="mid live">AFTER-HOURS BULLETIN</span>
+        <span>第 26 期 · 2026.10.22</span>
+    </div>
+
+    <header class="hero">
+        <p class="kicker">核心洞察 × 5 / 卖铲人的结局</p>
+        <h1><span class="ai">AI</span> 泡沫破裂前夕</h1>
+        <p class="hero-sub">历史给所有“卖铲人”上的最残酷一课</p>
+        <p class="hero-lead">熟铁、铜与橡胶、光纤与交换机——每一轮技术革命，资本都顺着供应链去炒瓶颈；每一次，瓶颈都被暴利催生的新技术砸碎。下面这块行情板，是过去三次的收盘价。</p>
+
+        <section class="board" aria-label="历次基建狂热行情板">
+            <div class="board-head">
+                <span><b>历次基建狂热 · 收盘行情</b></span>
+                <span class="legend-ud"><span class="up">红涨</span>　<span class="down">绿跌</span>　数据取自正文</span>
+            </div>
+            <div class="board-row cols" aria-hidden="true">
+                <span>标的</span><span>狂热持续</span><span>峰值</span><span>结局</span>
+            </div>
+            <div class="board-row">
+                <div class="flap name">熟铁厂股</div>
+                <div class="flap" data-col="狂热持续">4 年</div>
+                <div class="flap up" data-col="峰值">▲≈10×</div>
+                <div class="flap down" data-col="结局">95%破产</div>
+            </div>
+            <div class="board-row">
+                <div class="flap name">电力/绝缘股</div>
+                <div class="flap" data-col="狂热持续">6 年</div>
+                <div class="flap up" data-col="峰值">▲20—30×</div>
+                <div class="flap down" data-col="结局">红利股</div>
+            </div>
+            <div class="board-row">
+                <div class="flap name">光纤/思科</div>
+                <div class="flap" data-col="狂热持续">5 年</div>
+                <div class="flap up" data-col="峰值">$80</div>
+                <div class="flap down" data-col="结局">▼90%</div>
+            </div>
+            <div class="board-row">
+                <div class="flap name">AI 算力</div>
+                <div class="flap" data-col="狂热持续">3 年+</div>
+                <div class="flap q" data-col="峰值">?</div>
+                <div class="flap q" data-col="结局">?</div>
+            </div>
+            <p class="board-foot">峰值一栏：熟铁为铁厂股平均涨幅（龙头近 20×），电气为核心绝缘公司涨幅，光纤为思科 2000 年 3 月股价。</p>
+        </section>
+    </header>
+
+    <nav class="section-nav" aria-label="文章目录">
+        <div class="section-nav-inner">
+            <a href="#intro"><small>01</small>引言</a>
+            <a href="#three-high"><small>02</small>三高宿命</a>
+            <a href="#bottleneck"><small>03</small>炒瓶颈</a>
+            <a href="#history"><small>04</small>历史韵脚</a>
+            <a href="#goldrush"><small>05</small>淘金后半程</a>
+            <a href="#alarm"><small>06</small>资金撞墙</a>
+            <a href="#close"><small>07</small>结语</a>
+        </div>
+    </nav>
+
+    <article>
+        <!-- 01 -->
+        <section class="part" id="intro">
+            <div class="part-label"><b>01</b>引言</div>
+            <h2>疯狂背后的反直觉真相</h2>
+            <p>当下，全球资本市场正在对 AI 硬件与算力展开近乎疯狂的追逐。从算力芯片、服务器到电网与核电，海量的资金如潮水般涌入基础设施领域。在这场前所未有的军备竞赛中，每个人都怀揣着对错过时代红利的深切恐惧（FOMO），试图在科技变革的第一时间抢占先机。</p>
+            <p>然而，纵观数百年商业演化史，存在一个极其反直觉的底层真相：</p>
+            <blockquote>
+                <p>当某种技术变得像空气和水一样不可或缺时，只要没有垄断，它的商业价值恰恰也会像空气和水一样廉价，且无利可图。</p>
+            </blockquote>
+            <div class="panel reveal">
+                <div class="panel-head">基础设施的“白菜价”<small>QUOTE</small></div>
+                <div class="quotes">
+                    <div class="quote-cell"><div class="quote-what">跨越上千公里的火车票</div><div class="quote-price">百来块钱</div></div>
+                    <div class="quote-cell"><div class="quote-what">冶炼几十公斤钢铁的电费</div><div class="quote-price">不到三瓶饮料</div></div>
+                    <div class="quote-cell"><div class="quote-what">看地球另一端的高清视频</div><div class="quote-price">几毛钱流量费</div></div>
+                </div>
+            </div>
+            <p>跨越上千公里的火车票往往只需要百来块钱；能够冶炼几十公斤钢铁所消耗的电费，还买不到三瓶饮料；观看来自地球另一端的高清视频，只需要几毛钱的流量费。在互联网时代，流量就像自来水般寻常，这也解释了为何全球范围内制造流量的电信公司，盈利能力永远干不过使用流量的互联网公司。</p>
+            <p>有人试图辩驳：AI 不同，它是全新的前沿科技。</p>
+            <p>但人们容易遗忘的是，30 年前的上网同样是妥妥的前沿技术，100 年前的电力被誉为“上帝魔法般的黑科技”，200 年前的火车也是当时的高科技顶峰。AI 在本质上与蒸汽机、铁路、电力和互联网没有任何区别，都依赖于一场声势浩大的基础设施建设。</p>
+            <div class="lineage" aria-label="200 年前的火车、100 年前的电力、30 年前的上网与 AI 本质相同">
+                <span><small>200 年前</small>火车</span>
+                <span><small>100 年前</small>电力</span>
+                <span><small>30 年前</small>上网</span>
+                <span class="eq">=</span>
+                <span class="ai-tag">AI</span>
+            </div>
+            <p>透过历史的镜子，我们可以清楚地看清 AI 基础设施热潮的真实终局，以及究竟谁才能成为这场科技革命中真正的商业获胜者。</p>
+        </section>
+
+        <!-- 02 -->
+        <section class="part" id="three-high">
+            <div class="part-label"><b>02</b>核心洞察一</div>
+            <h2>底层基建的宿命——从高估值走向重资产“三高”行业</h2>
+            <p>从蒸汽机时代到人工智能时代，所有底层基础设施建设都遵循着完全相同的经济规律。在技术革命爆发初期，基建层企业往往能凭借情绪催动，获得估值暴涨和业绩的爆发式增长。</p>
+            <p>然而，这种辉煌往往难以持久。</p>
+            <p>历史规律表明，所有属于基础设施层面的企业和行业，最终注定都会沦为<strong>重资产、高风险、高杠杆</strong>的“三高”行业。</p>
+            <div class="highs reveal">
+                <div class="high"><b>重资产</b><span>背负极其庞大的资本开支</span></div>
+                <div class="high"><b>高风险</b><span>承受极低的资产回报率</span></div>
+                <div class="high"><b>高杠杆</b><span>面临漫长到令人绝望的回报周期</span></div>
+            </div>
+            <p>它们的特征无一例外：背负着极其庞大的资本开支，承受着极低的资产回报率，并面临着漫长到令人绝望的回报周期。一旦度过了最初的疯狂炒作阶段，庞大的资产折旧、产能内卷以及不可避免的周期律，会将这些曾经的“科技宠儿”重新按回地上，使其退化为盈利平庸、仅能获取社会平均利润率的公用事业。</p>
+            <p>即便这一规律在历史上被反复验证，资本却依然趋之若鹜。正如投资大师巴菲特所感慨的那样：</p>
+            <blockquote>
+                <p>绝大多数人等不及慢慢变富……太多人渴望在赛跑的第一秒就一击必胜直接翻身暴富，因此都会选择确定性出现最早的新科技基建产业链去赌上自己大部分的生涯。</p>
+                <cite>巴菲特</cite>
+            </blockquote>
+            <p>每当颠覆性技术出现时，市场出于对错过上涨机会的极端恐惧，总是会不可避免地陷入狂热，并将全部精力投入到对基础设施供应链瓶颈的极端炒作之中。</p>
+        </section>
+
+        <!-- 03 -->
+        <section class="part" id="bottleneck">
+            <div class="part-label"><b>03</b>核心洞察二</div>
+            <h2>华尔街的资本游戏——顺着供应链“炒瓶颈”</h2>
+            <p>如果你觉得当前的 AI 炒作听起来很疯狂，不妨回头看看过去三年你的股票持仓——资本市场的每一步演进，是不是都在严丝合缝地扣着这个剧本？</p>
+            <p>复盘过去三年全球资本市场围绕 AI 展开的宏大叙事，就会发现一个清晰的底层逻辑：华尔街炒的根本不是人工智能本身，而是拿着放大镜，顺着基建流水线一路寻找物理极限与物理瓶颈。</p>
+            <div class="panel reveal">
+                <div class="panel-head">资金流向日志：瓶颈转移<small>2023 → NOW</small></div>
+                <div class="panel-body">
+                    <ol class="log">
+                        <li><b>晶圆与先进封装</b><i>TSMC · NVIDIA</i></li>
+                        <li><b>服务器与数据中心</b><i>机架 · 交换机</i></li>
+                        <li><b>电力与散热</b><i>电力 · 核电 · 制冷</i></li>
+                        <li><b>存储、互联与 CPU</b><i>HBM · 定制芯片</i></li>
+                        <li><b>800G / 1.6T 光模块与 CPO</b><i>光模块 · CPO</i></li>
+                        <li><b>液冷设备与变压器</b><i>回头抢购</i></li>
+                    </ol>
+                    <p class="cursor-line">已摸到供应链末端</p>
+                </div>
+            </div>
+            <p>谁卡住了算力扩张的脖子，资金就会把谁推上风口。根据“瓶颈转移”的规律，算力产业链每解决一个旧卡点，下一个物理极限就会立刻暴露出来：</p>
+            <ul class="feed">
+                <li><strong>晶圆与先进封装（2023 年）</strong>：大模型爆发初期，芯片封装产能跟不上，显卡无法按时交货，资本疯狂炒作台积电（TSMC）与英伟达（NVIDIA）。</li>
+                <li><strong>服务器与数据中心</strong>：随着封装产能翻倍，买回来的芯片需要载体，资金迅速涌入服务器机架、交换机与数据中心建设。</li>
+                <li><strong>电力与散热</strong>：当数据中心大量堆叠，电力短缺与散热难题凸显，市场转而暴炒电力、核电与制冷设备，“AI 的尽头是电力”成为市场共识。</li>
+                <li><strong>存储、互联与 CPU</strong>：随着推理和 Agent 的消耗激增，算力既要算得快，更要存得下、传得动，高带宽存储（HBM）、高速互联、定制芯片乃至一度被冷落的 CPU 重新成为资金追逐的对象。</li>
+                <li><strong>800G / 1.6T 光模块与 CPO</strong>：芯片与内存凑齐后，数据传输撞上铜导线的物理极限，资金转而暴炒 800G / 1.6T 光模块以及共封装光学（CPO）技术。</li>
+                <li><strong>液冷设备与变压器</strong>：光模块部署到位后，系统再次卡在电力与散热瓶颈上，资本再次回头抢购液冷设备、变压器和核电站。</li>
+            </ul>
+            <p>在人类历史上，每一次新技术诞生后，这种物理瓶颈和产能瓶颈都会迅速成为投机客眼中最性感的财富密码。</p>
+            <p>当资本市场连变压器和散热板都当作核心科技信仰去暴炒时，充分说明这场顺着供应链“炒瓶颈”的击鼓传花游戏，已经摸到了供应链的末端。</p>
+        </section>
+
+        <!-- 04 -->
+        <section class="part" id="history">
+            <div class="part-label"><b>04</b>核心洞察三</div>
+            <h2>历史的韵脚——从熟铁危机到千禧年光纤泡沫</h2>
+            <p>资本市场今天按着供应链名单抢购 HBM 存储、光模块和变压器的底层逻辑，不过是对历史剧本的又一次完美复刻。</p>
+
+            <div class="case">
+                <h3><span class="when">200 年前</span>“熟铁危机”</h3>
+                <p>随着蒸汽机与铁路的爆炸式发展，整个西方资本都在追逐轨道制造、车厢制造以及铁路铺设等基础设施领域。但随着火车变得越来越重、速度越来越快，当时由熟铁制成的铁轨因质地太软，在繁忙路段每隔几个月就会变形开裂，必须报废更换。</p>
+                <p>这是熟铁材料的物理瓶颈，无法通过普通工艺修补改变。</p>
+                <p>资本迅速确立了一套叙事逻辑：全社会的炼铁产能将用于反复制造和修补铁轨，铁料必定长期供不应求。</p>
+                <p>铁厂的订单排到了几年之后，铁料价格在 5 年内翻了近 3 倍，伦敦证券交易所里的铁厂股价平均上涨近 10 倍，龙头企业涨幅甚至接近 20 倍。投机者甚至不看财报，只要听到公司名字带“铁”或“铸造”便疯狂抢购。</p>
+                <div class="tape reveal">
+                    <div><small>铁料价格 · 5 年</small><b class="up">▲≈3<em>倍</em></b></div>
+                    <div><small>铁厂股平均</small><b class="up">▲≈10<em>倍</em></b></div>
+                    <div><small>龙头铁厂</small><b class="up">▲≈20<em>倍</em></b></div>
+                    <div><small>传统熟铁厂</small><b class="down">95%<em>破产</em></b></div>
+                </div>
+                <p class="punch">暴利，成为了技术突破的最佳催化剂。</p>
+                <p>资本再也无法忍受年复一年把利润拱手送给炼铁厂，海量资金涌向技术研发。1856 年，英国发明家贝塞麦发明了“酸性转炉炼钢法”，彻底解决了液态钢无法低成本量产的难题。</p>
+                <p>钢轨的韧性与使用寿命是熟铁轨的 10 倍以上，人类迅速用钢轨取代了铁轨。</p>
+                <p>曾经估值天际的铁厂股价遭遇断崖式下跌，一路被砍到脚脖子，跌回狂热前夕的原点。</p>
+                <p><strong>95% 的欧美传统熟铁厂宣告破产。</strong></p>
+            </div>
+
+            <div class="case">
+                <h3><span class="when">100 年前</span>“铜与天然橡胶狂热”</h3>
+                <p>电气革命初期，资本将所有与电力基建相关的概念炒上了天。在爱迪生主导的直流电环境下，远距离输电必须依靠比手臂还粗的铜缆来降低电阻，否则一座发电设备只能覆盖 1 至 2 公里。</p>
+                <p>当时媒体宣称“全世界的铜矿加起来都不够给美国铺设电网”，谁掌握了铜，谁就掌握了电力供应。铜矿股与电力股股价一夜之间一飞冲天。</p>
+                <p>尝到甜头的资本顺着供应链寻找下一个瓶颈：高压电线、变压器和发电机线圈需要极高的绝缘材料，否则轻则短路，重则起火。</p>
+                <p>当时人类能找到的最好绝缘体，是产自南美亚马逊的野生天然帕拉橡胶。</p>
+                <p>市场笃信没有橡胶，发电厂造得再好也是一堆废铁。从 1895 年到 1910 年，绝缘橡胶价格暴涨 500%，核心绝缘公司的股价在 4 到 5 年内翻了 20 至 30 倍。</p>
+                <div class="tape three reveal">
+                    <div><small>绝缘橡胶 · 1895—1910</small><b class="up">▲500%</b></div>
+                    <div><small>核心绝缘公司 · 4—5 年</small><b class="up">▲20—30<em>倍</em></b></div>
+                    <div><small>酚醛树脂价格 / 天然橡胶</small><b class="down">1/10</b></div>
+                </div>
+                <p>然而，发明的鬼才特斯拉横空出世。他发明的交流电与变压器结合，通过高压输电使电阻损耗降至可忽略不计的水平，彻底摆脱了对粗铜导线的依赖。</p>
+                <p>1907 年，化学家贝克兰合成了酚醛树脂（人类第一款全合成塑料），配合廉价的陶瓷绝缘子，绝缘性能提升十倍，价格仅为天然橡胶的十分之一。</p>
+                <p>技术瓶颈被彻底粉碎后，铺设电网不再是高科技，电价迎来血崩。</p>
+                <p>曾经傲视群雄的电力基建股，最终退化为二级市场上背负庞大设备折旧、几乎失去成长性的老灯股和红利股。</p>
+            </div>
+
+            <div class="case">
+                <h3><span class="when">25 年前</span>“光纤与交换机神话”</h3>
+                <p>千禧年互联网狂热时期，华尔街坚信互联网流量每 100 天翻倍。5 年内，全球资本向电信行业狂砸 5000 亿美元，铺设了 3900 万英里光纤（足以绕地球 1500 圈）。</p>
+                <p>为了维持流量繁荣的神话，电信巨头之间甚至玩起了“带宽对倒”的营收虚构游戏。</p>
+                <p>与此同时，为了支撑流量增长，企业疯狂抢购网络交换机，思科（Cisco）与朗讯等巨头的订单排到十几个月之后。思科股价在 2000 年 3 月冲上 80 美元，一度成为全球市值最高的公司。</p>
+                <p>然而，密集波分复用（DWDM）技术的商用落地打破了一切。工程师只需在光纤两头加装分波器，就能将 160 多种不同颜色的激光同时打入同一根光纤，单根光纤通信容量瞬间提升百倍。</p>
+                <p>到 2002 年，全球 97.5% 的光纤躺在地底和海底成为无信号的“暗光纤”，带宽价格暴跌 90%。</p>
+                <p>超过 60 家电信巨头排队破产，行业蒸发 2 万亿美元市值。</p>
+                <div class="tape reveal">
+                    <div><small>5 年砸向电信业</small><b>5000<em>亿美元</em></b></div>
+                    <div><small>2002 年暗光纤占比</small><b class="down">97.5%</b></div>
+                    <div><small>带宽价格</small><b class="down">▼90%</b></div>
+                    <div><small>思科股价</small><b class="down">▼90%</b></div>
+                </div>
+                <p>那些原本昂贵的高科技硬件在短短几个月内变成了砸在手里的砖头，昂贵的交换机沦为电子垃圾，思科股价暴跌近 90%。</p>
+            </div>
+        </section>
+
+        <!-- 05 -->
+        <section class="part" id="goldrush">
+            <div class="part-label"><b>05</b>核心洞察四</div>
+            <h2>淘金热的后半程——卖铲人破产，生态重构者永生</h2>
+            <p>商业世界长期流传着一个误区：“淘金热里最稳赚不赔的是卖铲人。”如今英伟达“卖铲人”的外号正是由此而来。</p>
+            <p>但极少有人知道故事后半截的真相：</p>
+            <p>卖铲人赚取的只是淘金前几年的快钱，一旦矿区开采完毕或技术发生迭代，满仓库的铁铲就会瞬间沦为废铁。</p>
+            <p>在 19 世纪美国西部淘金热中崛起的无数矿业公司与铁铲商，后期有 90% 以上走向了破产消失。</p>
+            <p>相反，真正建立起百年商业帝国的，从来都不是重资产的先行修路人，而是那些轻资产的后发生态重构者。</p>
+            <p>淘金热期间，亨利·威尔斯与威廉·法哥发现当时的美国邮政极不靠谱，根本无法把金子安全寄回老家。于是他们一方面推出马车武装押运，另一方面直接在矿区收购黄金，给淘金客兑换纸质汇票。</p>
+            <p>这两项依附于淘金客的轻资产生意爆发出了巨大的生命力，孵化出了大名鼎鼎的美国运通（American Express）与富国银行（Wells Fargo）。</p>
+            <div class="versus reveal">
+                <div class="vs">
+                    <div class="vs-tag">SHOVEL SELLERS</div>
+                    <div class="vs-title">矿业公司与铁铲商</div>
+                    <div class="vs-num down">&gt;90%</div>
+                    <p>后期走向破产消失，只赚到淘金前几年的快钱。</p>
+                </div>
+                <div class="vs">
+                    <div class="vs-tag">ECOSYSTEM BUILDERS</div>
+                    <div class="vs-title">美国运通 + 富国银行</div>
+                    <div class="vs-num up">320<em>亿美元</em></div>
+                    <p>合计年净利润；总市值曾一度突破 4100 亿美元。起点是武装押运与黄金汇票。</p>
+                </div>
+            </div>
+            <p>如今，这两家公司合计年净利润超 320 亿美元，总市值曾一度突破 4100 亿美元。</p>
+            <div class="fire reveal">
+                <p>这就像是一场森林大火，烧掉了统治高空、遮蔽阳光的大树，下方的新生小树才得以有机会拔地而起。</p>
+            </div>
+            <p>狂热基建之下的资本蜂拥，是一场无法阻挡也极其必要的疯狂——因为基础设施的本质，就是用高昂的溢价去换取时间的压缩。</p>
+            <p>这就如同中国的高铁、地铁与城市化奇迹，之所以能在 30 年内走完西方国家 200 年的路，正是因为周边土地开发带来的诱人溢价。重赏之下必有勇夫，若无超额利益与溢价诱惑，绝大部分基建路线至今都将停留在图纸之上。</p>
+            <p>正是这些超量建设产生的规模效应，让新技术迅速变得廉价，进而滋养出重构资金流、信息流与服务流的超级霸主：</p>
+            <div class="heirs">
+                <div class="heir reveal">
+                    <div class="heir-from"><small>CHEAP RAIL</small>廉价铁路</div>
+                    <div>留下了高效廉价的运输网络，孕育了主打邮购商品的零售先驱西尔斯百货（Sears Roebuck），以及打通全国分销网络的可口可乐（Coca-Cola）。</div>
+                </div>
+                <div class="heir reveal">
+                    <div class="heir-from"><small>CHEAP POWER</small>廉价电力</div>
+                    <div>电能供给变得像自来水般寻常后，催生了打造现代工业流水线的福特汽车（Ford）、解放家庭劳动力的大型白色家电，以及万亿级别的好莱坞影视娱乐业；美铝公司利用廉价电能电解铝，将比黄金还贵重（拿破仑三世曾专享铝叉）的铝材拉到白菜价，进而催生了现代航空业与建筑业。</div>
+                </div>
+                <div class="heir reveal">
+                    <div class="heir-from"><small>CHEAP DARK FIBER</small>廉价暗光纤</div>
+                    <div>电信泡沫破裂后留下的 3900 万英里暗光纤被后人以白菜价接盘，流量成本暴跌 90%，这片暗光纤的废墟上才长出了谷歌（Google）、Netflix、亚马逊（AWS）、淘宝、微信与字节跳动。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 -->
+        <section class="part" id="alarm">
+            <div class="part-label"><b>06</b>核心洞察五</div>
+            <h2>现实的警钟——高昂资金成本与“负自由现金流”的撞墙时刻</h2>
+            <p>回到当下的 AI 产业，基础设施建设正面临资金链与投资回报率的严峻考验。狂热的算力军备竞赛正在撞上资本成本的高墙。</p>
+            <p>资本市场的异动已经敲响了警钟：</p>
+            <ul class="feed">
+                <li><strong>高利借贷与垃圾债风险</strong>：某 AI 巨头（IC）在 10 月份曝出的代号为“北京计划”的 600 亿美元芯片融资案中，420 亿美元优先债不得不找芯片合作方博通（Broadcom）提供担保；而在 180 亿美元次级债中，黑石集团接手了 90 亿美元份额，并要求提供超过 10% 的收益率。</li>
+                <li><strong>巨头的财务讽刺</strong>：同评级企业在公开债券市场的借贷成本仅为 7% 左右，超过 10% 意味着华尔街已将其按高风险垃圾债进行定价。堂堂单季度营收高达 168 亿美元的世界第一大玩家（T3），为了购买大股东谷歌的 TPU 芯片，不仅拿不到折扣利率，反而不得不拿着未来 5 年的芯片租约当抵押，去承担 10%+ 的垃圾债利息！</li>
+            </ul>
+            <div class="panel reveal">
+                <div class="panel-head">“北京计划”600 亿美元芯片融资案<small>DEBT TAPE</small></div>
+                <div class="panel-body">
+                    <div class="stack" role="img" aria-label="优先债 420 亿美元由博通担保；次级债 180 亿美元，其中黑石接手 90 亿美元">
+                        <div class="seg-a">优先债 420 · 博通担保</div>
+                        <div class="seg-b">次级 90</div>
+                        <div class="seg-c">黑石 90</div>
+                    </div>
+                    <div class="stack-scale"><span>0</span><span>单位：亿美元</span><span>600</span></div>
+                    <div class="rates">
+                        <div class="rate">
+                            <span>同评级公开债</span>
+                            <div class="rate-track"><span class="rate-fill" style="width: 58.3%"></span></div>
+                            <span class="v">≈7%</span>
+                        </div>
+                        <div class="rate">
+                            <span>黑石要求收益率</span>
+                            <div class="rate-track"><span class="rate-fill hot" style="width: 83.3%"></span></div>
+                            <span class="v hot">&gt;10%</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="panel-note">利率刻度 0—12%。超过 10% 意味着华尔街已按高风险垃圾债定价。</p>
+            </div>
+            <ul class="feed">
+                <li><strong>科技巨头的现金流失血</strong>：过去两年，亚马逊、谷歌、Meta 等巨头依靠积累多年的巨额现金储备进行算力扩张。但如今，巨头的现金池正在见底。谷歌自 2004 年上市 22 年以来（历经 2008 年次贷危机与 2020 年美股熔断），在今年二季度首次出现了负 58.55 亿美元的自由现金流。Meta 在一年内背负了 950 亿美元的芯片债（包括 6 月向阿波罗举债 350 亿美元），以及高达 5180 亿美元的长期算力采购承诺。</li>
+            </ul>
+            <div class="stats reveal">
+                <div class="stat"><b class="down">−58.55<em>亿美元</em></b><small>谷歌上市 22 年来首次负自由现金流</small></div>
+                <div class="stat"><b>950<em>亿美元</em></b><small>Meta 一年内背负的芯片债</small></div>
+                <div class="stat"><b class="up">5180<em>亿美元</em></b><small>Meta 长期算力采购承诺</small></div>
+            </div>
+            <p>当前 AI 主线呈现出一个极其严峻的财务困局：科技巨头想继续大力投资但自身现金流受阻，而外部资本市场虽然有钱但要价极其昂贵。</p>
+            <div class="squeeze reveal" aria-label="两头堵：自身现金流受阻，外部资本要价昂贵">
+                <div class="wall"><b>墙 A · 内部</b>想继续大力投资，但自身现金流受阻</div>
+                <div class="core">AI 基建</div>
+                <div class="wall right"><b>墙 B · 外部</b>资本市场有钱，但要价极其昂贵</div>
+            </div>
+            <p>一根金条两头堵，两头撞墙的现实预示着 AI 基建阶段的拐点正在逼近。</p>
+        </section>
+
+        <!-- 07 -->
+        <section class="part" id="close">
+            <div class="part-label"><b>07</b>结语</div>
+            <h2>科技革命从不辜负人类，但总会淘汰狂热的赌徒</h2>
+            <p>揭示 AI 基础设施的狂热风险，绝不意味着看空人工智能的未来。相反，人工智能时代才刚刚经历了最初始的基建阶段，众多现象级应用远未到来，长期的商业价值也远未结束。</p>
+            <p>当年那些押注互联网改变世界的人，手里股票跌了 90% 破产了，但他们对行业前景的判断一点都没错。看对趋势的秀才被中途弄死了，利用廉价基建的卖车人发财了——<strong>市场最后证明你是对的，和市场中途有没有把你弄死，完全是两码事。</strong></p>
+            <p>资本在基建期的狂热涌入虽然残忍，但对人类社会而言却是必要的。基建的本质，就是用高昂的资本溢价去换取技术演进时间的压缩。正如几百年来被反复验证的铁律所言：</p>
+            <blockquote>
+                <p>当一项技术昂贵到只有巨头才用得起时，它只是资本的赌场；只有当它廉价到连街边小店都嫌它不值钱时，它才真正开启人类的新时代。</p>
+            </blockquote>
+            <p>当年的熟铁危机持续了 4 年，早期电力股繁荣持续了 6 年，千禧年光纤狂热持续了 5 年。靠炒作供应链瓶颈支撑起来的 AI 基建行情，同样不会永远持续下去。瓦解算力瓶颈的新技术或许正在某个角落孕育，并将带来摧枯拉朽般的毁灭性创新。</p>
+            <div class="panel reveal">
+                <div class="panel-head">每一轮狂热能撑多久<small>DURATION</small></div>
+                <div class="panel-body">
+                    <div class="dur"><span>熟铁危机</span><div class="dur-track"><span class="dur-fill" style="width: 50%"></span></div><span class="v">4 年</span></div>
+                    <div class="dur"><span>早期电力股</span><div class="dur-track"><span class="dur-fill" style="width: 75%"></span></div><span class="v">6 年</span></div>
+                    <div class="dur"><span>千禧年光纤</span><div class="dur-track"><span class="dur-fill" style="width: 62.5%"></span></div><span class="v">5 年</span></div>
+                    <div class="dur ai"><span>AI 基建</span><div class="dur-track"><span class="dur-fill" style="width: 37.5%"></span></div><span class="v">3 年+</span></div>
+                    <div class="dur-axis"><span></span><div><span>0</span><span>2</span><span>4</span><span>6</span><span>8 年</span></div><span></span></div>
+                </div>
+                <p class="panel-note">AI 基建从 2023 年的封装瓶颈算起，虚线表示尚未结束。</p>
+            </div>
+            <div class="final-q reveal">
+                <small>OPEN QUESTION</small>
+                <p>在这场由狂热赌徒买单的 AI 基建大火烧尽之后，究竟哪一家还在小仓库里艰难创业的初创公司，会成为下一个时代的福特或谷歌？</p>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="../../index.html">← 返回 Digital Garden</a>
+            <span>第 26 期 · AI 泡沫破裂前夕</span>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            var pool = "0123456789▲▼%×$+—?年股破产铁光电".split("");
+            var cells = [];
+            Array.prototype.forEach.call(document.querySelectorAll(".flap"), function (el, row) {
+                var text = el.textContent.trim();
+                el.setAttribute("aria-label", text);
+                el.textContent = "";
+                Array.from(text).forEach(function (ch, i) {
+                    var span = document.createElement("span");
+                    span.setAttribute("aria-hidden", "true");
+                    if (ch === " ") {
+                        span.className = "sp";
+                    } else {
+                        span.className = /[\u3400-\u9fff]/.test(ch) ? "c cjk" : "c";
+                        span.textContent = ch;
+                        cells.push({ el: span, ch: ch, left: reduce ? 0 : 6 + row * 2 + i * 2 });
+                    }
+                    el.appendChild(span);
+                });
+            });
+
+            if (!reduce) {
+                var timer = setInterval(function () {
+                    var busy = false;
+                    cells.forEach(function (c) {
+                        if (c.left > 0) {
+                            c.left--;
+                            busy = true;
+                            c.el.textContent = c.left === 0 ? c.ch : pool[(Math.random() * pool.length) | 0];
+                        }
+                    });
+                    if (!busy) clearInterval(timer);
+                }, 55);
+            }
+
+            var fill = document.getElementById("progressFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var targets = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+            var activeIdx = -2;
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                fill.style.transform = "scaleX(" + p + ")";
+
+                var cutoff = Math.max(120, window.innerHeight * 0.35);
+                var active = -1;
+                for (var j = 0; j < targets.length; j++) {
+                    if (targets[j].getBoundingClientRect().top <= cutoff) active = j;
+                }
+                if (p > 0.985) active = targets.length - 1;
+                if (active === activeIdx) return;
+                activeIdx = active;
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+                if (active >= 0) {
+                    var nav = links[active].parentNode;
+                    var link = links[active];
+                    nav.scrollTo({ left: link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2, behavior: "smooth" });
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+
+            var reveals = document.querySelectorAll(".reveal");
+            if (!("IntersectionObserver" in window)) {
+                reveals.forEach(function (el) { el.classList.add("is-in"); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+            reveals.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+</html>

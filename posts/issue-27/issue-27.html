@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden 第27期 - 数字花园</title>
+    <meta name="description" content="Digital Garden 第27期：2026 年中期选举的六个核心洞察、选举之后全球动荡背后的 5 个冷酷真相、五个地缘战区的态势简报，以及纽芬兰地图入口。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0f0d0a;
+            --ink-soft: #3a342b;
+            --parchment: #f7f3ec;
+            --cream: #fffcf5;
+            --line: rgba(15, 13, 10, 0.12);
+            --line-strong: rgba(15, 13, 10, 0.22);
+            --muted: #7a7062;
+            --shadow: 0 12px 36px rgba(15, 13, 10, 0.08);
+            --midterm: #1d3fa6;
+            --midterm-soft: rgba(29, 63, 166, 0.09);
+            --pressure: #a8740c;
+            --pressure-soft: rgba(168, 116, 12, 0.12);
+            --theatre: #c0321d;
+            --theatre-soft: rgba(192, 50, 29, 0.10);
+            --map: #2b6f68;
+            --map-soft: rgba(43, 111, 104, 0.10);
+            --display: "Playfair Display", "Noto Serif SC", Georgia, serif;
+            --serif: "Noto Serif SC", "Crimson Pro", Georgia, serif;
+            --mono: "JetBrains Mono", "SFMono-Regular", monospace;
+            --max: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--serif);
+            background:
+                radial-gradient(ellipse at 8% 0%, rgba(29, 63, 166, 0.07), transparent 38%),
+                radial-gradient(ellipse at 92% 0%, rgba(192, 50, 29, 0.08), transparent 36%),
+                var(--parchment);
+            color: var(--ink);
+            line-height: 1.75;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .progress {
+            position: fixed; top: 0; left: 0; width: 100%; height: 3px;
+            background: rgba(0, 0, 0, 0.04); z-index: 100;
+        }
+        .progress-fill {
+            width: 0; height: 100%;
+            background: linear-gradient(90deg, var(--midterm), var(--pressure), var(--theatre), var(--map));
+            transition: width 0.08s linear;
+        }
+
+        .masthead {
+            background: var(--ink);
+            color: var(--parchment);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .masthead-inner,
+        .section-rail-inner,
+        .page,
+        .footer-inner {
+            width: min(calc(100% - 38px), var(--max));
+            margin: 0 auto;
+        }
+
+        .masthead-inner { padding: 28px 0 48px; }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .back-link, .issue-stamp {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.65);
+            border: 1px solid rgba(247, 243, 236, 0.14);
+            padding: 8px 12px;
+        }
+
+        .back-link:hover, .back-link:focus-visible {
+            color: var(--parchment);
+            border-color: rgba(247, 243, 236, 0.4);
+            outline: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(240px, 0.65fr);
+            gap: 32px;
+            align-items: end;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(247, 243, 236, 0.42);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-family: var(--display);
+            font-size: clamp(2.4rem, 7vw, 5.2rem);
+            line-height: 0.94;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+        }
+        .hero-title .accent {
+            color: rgba(247, 243, 236, 0.42);
+            font-style: italic;
+        }
+
+        .hero-summary {
+            margin-top: 16px;
+            max-width: 58ch;
+            color: rgba(247, 243, 236, 0.75);
+            font-size: 1.05rem;
+        }
+
+        .tag-row {
+            display: flex; flex-wrap: wrap; gap: 9px;
+            margin-top: 18px;
+        }
+        .tag {
+            font-size: 0.82rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.06);
+            padding: 6px 13px;
+            color: rgba(247, 243, 236, 0.8);
+        }
+
+        .hero-meta {
+            display: grid; gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-meta-line {
+            display: flex; justify-content: space-between; gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            color: rgba(247, 243, 236, 0.5);
+        }
+        .hero-meta-line strong {
+            color: rgba(247, 243, 236, 0.82);
+            font-weight: 500;
+            text-align: right;
+        }
+
+        .section-rail {
+            position: sticky; top: 3px; z-index: 40;
+            background: rgba(247, 243, 236, 0.92);
+            border-bottom: 1px solid var(--line-strong);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .section-rail-inner {
+            padding: 12px 0;
+            display: flex; gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .section-rail-inner::-webkit-scrollbar { display: none; }
+
+        .rail-link {
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border: 1px solid transparent;
+            white-space: nowrap;
+        }
+        .rail-link:hover, .rail-link:focus-visible, .rail-link.active {
+            color: var(--ink);
+            background: rgba(255, 255, 255, 0.6);
+            border-color: var(--line);
+            outline: none;
+        }
+        .rail-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+        }
+        .rail-link.midterm { --accent: var(--midterm); }
+        .rail-link.pressure { --accent: var(--pressure); }
+        .rail-link.theatre { --accent: var(--theatre); }
+        .rail-link.map { --accent: var(--map); }
+
+        .page { padding: 34px 0 80px; }
+        .story-grid { display: grid; gap: 26px; }
+
+        .story {
+            background: rgba(255, 255, 255, 0.54);
+            border: 1px solid rgba(15, 13, 10, 0.09);
+            box-shadow: var(--shadow);
+            scroll-margin-top: 84px;
+        }
+
+        .story-head {
+            display: grid;
+            grid-template-columns: 145px minmax(0, 1fr);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .story-label {
+            padding: 22px 16px;
+            background: var(--soft);
+            border-right: 1px solid rgba(15, 13, 10, 0.07);
+        }
+        .story-index {
+            font-family: var(--mono);
+            font-size: 0.73rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-label h2 {
+            font-family: var(--display);
+            font-size: 1.55rem;
+            line-height: 1.04;
+            color: var(--accent);
+        }
+
+        .story-body { padding: 28px 28px 30px; }
+        .story-kicker {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .story-body h3 {
+            font-family: var(--display);
+            font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+        }
+        .story-summary {
+            font-size: 1.04rem;
+            color: var(--ink-soft);
+            max-width: 66ch;
+        }
+        .signal-list {
+            list-style: none;
+            display: grid; gap: 10px;
+            margin: 18px 0 24px;
+        }
+        .signal-list li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--ink-soft);
+        }
+        .signal-list li::before {
+            content: "";
+            position: absolute; left: 0; top: 0.8em;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent);
+            transform: translateY(-50%);
+        }
+
+        .story-footer {
+            display: flex; justify-content: space-between;
+            align-items: center; flex-wrap: wrap; gap: 12px;
+            border-top: 1px solid var(--line);
+            padding-top: 22px;
+        }
+        .story-note {
+            color: var(--muted);
+            font-size: 0.94rem;
+            max-width: 45ch;
+        }
+        .story-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 11px 16px;
+            background: var(--ink);
+            color: var(--parchment);
+            font-weight: 500;
+            transition: transform 140ms ease;
+        }
+        .story-link:hover, .story-link:focus-visible {
+            transform: translateY(-2px);
+            outline: none;
+        }
+
+        .story.midterm { --accent: var(--midterm); --soft: var(--midterm-soft); }
+        .story.pressure { --accent: var(--pressure); --soft: var(--pressure-soft); }
+        .story.theatre { --accent: var(--theatre); --soft: var(--theatre-soft); }
+        .story.map { --accent: var(--map); --soft: var(--map-soft); }
+
+        .bottom-nav {
+            margin-top: 38px;
+            display: flex; flex-wrap: wrap; gap: 10px;
+        }
+        .bottom-nav a {
+            display: inline-flex; align-items: center;
+            padding: 11px 14px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.56);
+            color: var(--ink-soft);
+        }
+        .bottom-nav a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+        footer { border-top: 1px solid var(--line); margin-top: 48px; }
+        .footer-inner {
+            padding: 24px 0 44px;
+            color: var(--muted);
+            display: flex; justify-content: space-between;
+            flex-wrap: wrap; gap: 10px;
+            font-size: 0.93rem;
+        }
+
+        @media (max-width: 940px) {
+            .hero-grid, .story-head { grid-template-columns: 1fr; }
+            .story-label {
+                border-right: 0;
+                border-bottom: 1px solid rgba(15, 13, 10, 0.07);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .masthead-inner,
+            .section-rail-inner,
+            .page,
+            .footer-inner {
+                width: min(calc(100% - 26px), var(--max));
+            }
+            .topbar { flex-direction: column; align-items: flex-start; }
+            .hero-meta-line { display: grid; grid-template-columns: 1fr; }
+            .hero-meta-line strong { text-align: left; }
+            .story-body { padding: 24px 18px 26px; }
+            .story-link { width: 100%; justify-content: center; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-title .accent {
+                display: block;
+                margin-top: 8px;
+                font-size: 0.62em;
+            }
+            .hero-summary { max-width: 100%; }
+            .hero-meta, .story-label { padding: 16px; }
+            .story-body h3 { font-size: 1.35rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .progress-fill { transition: none; }
+            .story-link { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-inner">
+            <div class="topbar">
+                <a class="back-link" href="../../index.html">Back to Index</a>
+                <div class="issue-stamp">Issue 27 / 2026.11.08</div>
+            </div>
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow">Digital Garden Curated Index</div>
+                    <h1 class="hero-title">Issue 27<span class="accent"> / Midterm, Pressure, Theatre</span></h1>
+                    <p class="hero-summary">第27期聚焦三件事：2026 年中期选举的开票结果与六个核心洞察、选举之后全球动荡背后的 5 个冷酷真相，以及从巴西、深圳、霍尔木兹到麦加和阿拉斯加的五个地缘战区；同时保留一个持续可用的纽芬兰地图入口。</p>
+                    <div class="tag-row">
+                        <span class="tag">中期选举</span>
+                        <span class="tag">全球动荡</span>
+                        <span class="tag">地缘政治</span>
+                        <span class="tag">纽芬兰地图</span>
+                    </div>
+                </div>
+                <aside class="hero-meta">
+                    <div class="hero-meta-line"><span>Period</span><strong>2026-11-08</strong></div>
+                    <div class="hero-meta-line"><span>Stories</span><strong>04 Sections</strong></div>
+                    <div class="hero-meta-line"><span>Tone</span><strong>Elections / Geopolitics</strong></div>
+                    <div class="hero-meta-line"><span>Focus</span><strong>Congress, Compute, Five Theatres</strong></div>
+                </aside>
+            </div>
+        </div>
+    </header>
+
+    <nav class="section-rail" aria-label="专题导航">
+        <div class="section-rail-inner">
+            <a class="rail-link midterm" href="#midterm"><span class="rail-dot"></span><span>Midterm</span></a>
+            <a class="rail-link pressure" href="#wang-pressure"><span class="rail-dot"></span><span>Pressure</span></a>
+            <a class="rail-link theatre" href="#yan-theatre"><span class="rail-dot"></span><span>Theatre</span></a>
+            <a class="rail-link map" href="#newfoundland-map"><span class="rail-dot"></span><span>Map</span></a>
+        </div>
+    </nav>
+
+    <main class="page">
+        <section class="story-grid">
+            <article id="midterm" class="story midterm">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 01</div>
+                        <h2>Midterm</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Congress / Bills / Endorsements</div>
+                        <h3>2026 年中期选举的变局与深层启示：从惨败、内斗到后特朗普时代的政治重塑</h3>
+                        <p class="story-summary">两年前席卷全国的特朗普，两年后丢掉了参众两院，德州参议员与州长双双翻蓝。选区地图改得了选票的算法，改不了摇摆区家庭每个月的账单；特朗普能决定谁赢下初选，却决定不了谁赢下大选。</p>
+                        <ul class="signal-list">
+                            <li>政治悬崖：参议院握着人事任命，众议院握着钱袋子，两院全丢后停摆、传票、调查与弹劾接踵而来。</li>
+                            <li>生活账单：房贷利率从 2.96% 涨到 7.24%，35 万美元贷款的月供从 1,468 美元涨到 2,385 美元。</li>
+                            <li>背书毒药：帕克斯顿初选以 63.8% 血洗柯宁，大选得票却不到 40%。</li>
+                            <li>新资本入场：加密货币 1.76 亿、AI 右翼 1.4 亿，预测市场与犹他州打起监管主权官司。</li>
+                            <li>接班之争与三条战线：万斯与鲁比奥卡位 2028，民主党靠供给侧议程、工会动员与宗教进步派重整。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">2026 年只是中场休息，2028 年才是终极考场。</p>
+                            <a class="story-link" href="./midterm-elections-observation.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="wang-pressure" class="story pressure">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 02</div>
+                        <h2>Pressure</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Compute / Coalition / Release valve</div>
+                        <h3>极化、算力反噬与外交“掀桌子”：未来几年全球动荡背后的 5 个冷酷真相</h3>
+                        <p class="story-summary">要让一根筷子断掉，最快的办法是左右来回折。选民在两党之间反复摇摆，大选之后世界却更动荡——因为内政的阀门焊死了，压力只能从外交与军事的喷口泄出去。</p>
+                        <ul class="signal-list">
+                            <li>算力反噬：申请并网的负荷是德州电网总容量的 3 倍，41 项数据中心公投中 40 项站在限制一边。</li>
+                            <li>同盟捅穿：中东战火叠加对加拿大 50% 关税，农业州种不起地，锈带工人买不起货。</li>
+                            <li>内政脑死亡：两院失守后人事与财政回路双双切断，万斯败选次日公开切割。</li>
+                            <li>外交掀桌子：跛脚总统的固定剧本——2014 年的奥巴马、2018—2019 年的特朗普都把危机转嫁给外部。</li>
+                            <li>遮羞布：全球化每年带来 2 万亿美元收益、500 亿美元代价，账单却落在不同的人头上。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">外交永远只是内政的遮羞布。</p>
+                            <a class="story-link" href="./insight-from-wang-after-midterm-elections.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="yan-theatre" class="story theatre">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 03</div>
+                        <h2>Theatre</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Florida / Shenzhen / Hormuz / Mecca / Alaska</div>
+                        <h3>5 个颠覆认知的地缘政治真相：从“逃跑政客”到 AI 时代的美元命门</h3>
+                        <p class="story-summary">赢了是民主，输了是迫害，跑路是传统。五个战区的态势简报，剥开油价、选举与硝烟的表象，看一场冷酷且精算的权力博弈。</p>
+                        <ul class="signal-list">
+                            <li>润美传统：老博索纳罗政变无望后飞往佛罗里达，两个儿子也接连出逃美国。</li>
+                            <li>深圳协议：30 万吨俄罗斯柴油不够美国用一天，真正的交易是越过小国的“雅尔塔 2.0”。</li>
+                            <li>美元命门：伊朗不打军舰、不封海峡，专挑数据中心与海底光缆，直击华尔街的 AI 叙事。</li>
+                            <li>圣地处决：同类行为，2012 年本国公民判 4 个月，2026 年孟加拉劳工判死刑。</li>
+                            <li>真假沙利文：阿拉斯加用同名候选人诱发废票，南卡让验光师妹妹接班参选。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">不在谈判桌前，就在菜单之上。</p>
+                            <a class="story-link" href="./insight-from-yan-20261108.html">打开完整分析</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article id="newfoundland-map" class="story map">
+                <div class="story-head">
+                    <div class="story-label">
+                        <div class="story-index">Section 04</div>
+                        <h2>Map</h2>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-kicker">Useful Link / Local Utility</div>
+                        <h3>纽芬兰地图入口（圣约翰斯租房）</h3>
+                        <p class="story-summary">保持 Digital Garden 的实用传统：给出一个长期可用的纽芬兰地图入口，方便快速查看圣约翰斯及周边区域房源分布与更新信息。</p>
+                        <ul class="signal-list">
+                            <li>持续更新租房信息，适合作为常用查询入口。</li>
+                            <li>地图化呈现让区域判断和通勤规划更直观。</li>
+                            <li>在中期选举与地缘政治之外，保留一条可直接落地使用的路径。</li>
+                        </ul>
+                        <div class="story-footer">
+                            <p class="story-note">这部分强调“可立即使用”的本地价值。</p>
+                            <a class="story-link" href="https://greattyrion.github.io/localRentalPlace/" target="_blank" rel="noreferrer">打开纽芬兰地图</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <nav class="bottom-nav" aria-label="页面底部导航">
+            <a href="../../index.html">返回首页</a>
+            <a href="../issue-26/issue-26.html">打开第26期</a>
+            <a href="https://github.com/GreatTyrion/digital-garden/issues" target="_blank" rel="noreferrer">意见反馈</a>
+        </nav>
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <p>© 2026 Digital Garden</p>
+            <p>Issue 27 作为专题导览页，链接到各篇独立 HTML 正文。</p>
+        </div>
+    </footer>
+
+    <script>
+        var progressFill = document.getElementById("progressFill");
+        var railLinks = Array.prototype.slice.call(document.querySelectorAll(".rail-link"));
+        var sections = railLinks.map(function (link) {
+            var section = document.querySelector(link.getAttribute("href"));
+            return section ? { link: link, section: section } : null;
+        }).filter(Boolean);
+
+        function updateProgress() {
+            var scrollTop = window.scrollY;
+            var scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            var ratio = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressFill.style.width = Math.min(Math.max(ratio, 0), 100) + "%";
+        }
+
+        function updateActiveRail() {
+            var threshold = window.innerHeight * 0.3;
+            var active = sections[0];
+            sections.forEach(function (item) {
+                if (item.section.getBoundingClientRect().top <= threshold) {
+                    active = item;
+                }
+            });
+            railLinks.forEach(function (link) { link.classList.remove("active"); });
+            if (active) { active.link.classList.add("active"); }
+        }
+
+        function onScroll() {
+            updateProgress();
+            updateActiveRail();
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("load", onScroll);
+    </script>
+</body>
+</html>

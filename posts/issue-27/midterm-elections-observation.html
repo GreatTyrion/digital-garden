@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 年中期选举的变局与深层启示 · 选举之夜号外</title>
+    <meta name="description" content="两院全丢后的政治悬崖、杰利蝾螈敌不过生活账单、特朗普背书成了大选毒药、加密与预测市场入场、万斯与鲁比奥的路线之争，以及民主党的三条反击战线——2026 年中期选举的 6 个核心洞察。">
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Libre+Franklin:wght@400;600;800&family=Noto+Sans+SC:wght@500;700;900&family=Noto+Serif+SC:wght@400;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --paper: #f5f2ea;
+            --paper-2: #ebe6da;
+            --ink: #15171d;
+            --ink-soft: #33363e;
+            --muted: #6c6f77;
+            --rule: rgba(21, 23, 29, 0.18);
+            --blue: #1d3fa6;
+            --blue-wash: rgba(29, 63, 166, 0.08);
+            --red: #cf2a1f;
+            --red-wash: rgba(207, 42, 31, 0.08);
+            --slab: "Alfa Slab One", "Noto Sans SC", serif;
+            --label: "Libre Franklin", "Noto Sans SC", sans-serif;
+            --head: "Noto Sans SC", "PingFang SC", sans-serif;
+            --text: "Noto Serif SC", "Songti SC", "STSong", serif;
+            --receipt: "Courier Prime", "Courier New", monospace;
+            --max-w: 700px;
+            --wide-w: 1120px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+        }
+
+        body {
+            font-family: var(--text);
+            color: var(--ink-soft);
+            background-color: var(--paper);
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.09 0 0 0 0 0.11 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            font-size: 1.04rem;
+            line-height: 1.95;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; }
+
+        ::selection { background: var(--blue); color: #fff; }
+
+        /* ---------- progress ---------- */
+        .progress-bar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: 4px;
+            z-index: 200;
+            display: flex;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, var(--blue), var(--red));
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* ---------- flag (masthead) ---------- */
+        .flag {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 18px 24px 0;
+        }
+
+        .flag-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--label);
+            font-size: 0.74rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-bottom: 10px;
+        }
+
+        .flag-top a {
+            text-decoration: none;
+            color: var(--ink);
+        }
+
+        .flag-top a:hover,
+        .flag-top a:focus-visible { color: var(--red); outline: none; }
+
+        .flag-name {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            border-top: 4px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            padding: 10px 0 8px;
+        }
+
+        .flag-name h2 {
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: clamp(1.4rem, 3.6vw, 2.4rem);
+            letter-spacing: 0.01em;
+            color: var(--ink);
+            line-height: 1;
+        }
+
+        .extra {
+            font-family: var(--slab);
+            font-size: clamp(1rem, 2.4vw, 1.5rem);
+            color: #fff;
+            background: var(--red);
+            padding: 6px 14px 4px;
+            transform: rotate(-2deg);
+            line-height: 1;
+        }
+
+        .flag-sub {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: var(--label);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            padding: 6px 0;
+            border-bottom: 4px double var(--ink);
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 36px 24px 26px;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 44px;
+            align-items: start;
+        }
+
+        .kicker {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.78rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 14px;
+        }
+
+        .hero h1 {
+            font-family: var(--head);
+            font-weight: 900;
+            color: var(--ink);
+            font-size: clamp(2.1rem, 5vw, 3.8rem);
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 .yr {
+            font-family: var(--slab);
+            font-weight: 400;
+            color: var(--blue);
+            letter-spacing: 0;
+        }
+
+        .dek {
+            margin-top: 18px;
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            line-height: 1.55;
+            color: var(--ink-soft);
+            padding-left: 14px;
+            border-left: 6px solid var(--red);
+        }
+
+        .hero-lead {
+            margin-top: 20px;
+            max-width: 36em;
+        }
+
+        /* results board */
+        .board {
+            border: 2px solid var(--ink);
+            background: #fff;
+            box-shadow: 8px 8px 0 var(--ink);
+        }
+
+        .board-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 14px;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--label);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .board-head .dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .board-head .dot::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse { 50% { opacity: 0.2; } }
+
+        .chamber {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .chamber-name {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1.35rem;
+            color: var(--ink);
+            line-height: 1.2;
+        }
+
+        .chamber-name small {
+            display: block;
+            font-family: var(--label);
+            font-weight: 600;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .call {
+            font-family: var(--slab);
+            font-size: 0.92rem;
+            letter-spacing: 0.04em;
+            color: #fff;
+            background: var(--blue);
+            padding: 6px 10px 4px;
+            white-space: nowrap;
+        }
+
+        .seatbar {
+            grid-column: 1 / -1;
+            height: 10px;
+            background: repeating-linear-gradient(90deg, var(--blue) 0 6px, transparent 6px 8px);
+            -webkit-mask: linear-gradient(90deg, #000 var(--p, 100%), rgba(0, 0, 0, 0.12) var(--p, 100%));
+            mask: linear-gradient(90deg, #000 var(--p, 100%), rgba(0, 0, 0, 0.12) var(--p, 100%));
+        }
+
+        .states {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .state {
+            padding: 12px 12px 14px;
+            text-align: center;
+            border-right: 1px solid var(--rule);
+        }
+
+        .state:last-child { border-right: 0; }
+
+        .state b {
+            display: block;
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: 1.9rem;
+            line-height: 1.1;
+            color: var(--blue);
+        }
+
+        .state.warn b { color: var(--red); }
+
+        .state span {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
+        }
+
+        .board-foot {
+            padding: 8px 14px 10px;
+            font-family: var(--label);
+            font-size: 0.72rem;
+            color: var(--muted);
+            border-top: 1px solid var(--rule);
+        }
+
+        /* ticker */
+        .ticker {
+            border-top: 2px solid var(--ink);
+            border-bottom: 2px solid var(--ink);
+            background: var(--ink);
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .ticker-track {
+            display: inline-flex;
+            gap: 0;
+            padding: 9px 0;
+            font-family: var(--label);
+            font-weight: 600;
+            font-size: 0.86rem;
+            letter-spacing: 0.02em;
+        }
+
+        .js .ticker-track { animation: crawl 48s linear infinite; }
+
+        .ticker:hover .ticker-track { animation-play-state: paused; }
+
+        .ticker-track span {
+            padding: 0 22px;
+            border-right: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .ticker-track b { color: #ffcf4a; font-weight: 800; }
+
+        @keyframes crawl { to { transform: translateX(-50%); } }
+
+        /* ---------- nav ---------- */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 120;
+            background: rgba(245, 242, 234, 0.94);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--ink);
+        }
+
+        .section-nav-inner {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 14px;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-height: 48px;
+            padding: 0 12px;
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 4px solid transparent;
+        }
+
+        .section-nav a small {
+            font-family: var(--slab);
+            font-size: 0.86rem;
+            color: var(--blue);
+        }
+
+        .section-nav a:hover,
+        .section-nav a:focus-visible { color: var(--ink); outline: none; }
+
+        .section-nav a.is-active {
+            color: var(--ink);
+            border-bottom-color: var(--red);
+        }
+
+        /* ---------- article ---------- */
+        article {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 8px 24px 40px;
+        }
+
+        .chapter {
+            padding: 64px 0 20px;
+        }
+
+        .chapter + .chapter { border-top: 1px solid var(--ink); }
+
+        .chapter > * + * { margin-top: 1.1em; }
+
+        .chapter-head {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4px 20px;
+            align-items: start;
+        }
+
+        .chapter-num {
+            grid-row: span 2;
+            font-family: var(--slab);
+            font-size: clamp(4.2rem, 10vw, 6.4rem);
+            line-height: 0.85;
+            color: var(--blue);
+            -webkit-text-stroke: 0;
+        }
+
+        .chapter:nth-of-type(even) .chapter-num { color: var(--red); }
+
+        .chapter-label {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-top: 6px;
+        }
+
+        .chapter h2 {
+            font-family: var(--head);
+            font-weight: 900;
+            color: var(--ink);
+            font-size: clamp(1.45rem, 3vw, 2rem);
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+
+        .chapter h3 {
+            font-family: var(--head);
+            font-weight: 900;
+            color: var(--ink);
+            font-size: 1.2rem;
+            margin-top: 2em;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .chapter h3 .tag {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #fff;
+            background: var(--blue);
+            padding: 2px 8px;
+        }
+
+        .chapter strong { color: var(--ink); font-weight: 600; }
+
+        .mark {
+            color: var(--ink);
+            background: linear-gradient(transparent 60%, rgba(255, 207, 74, 0.6) 60%);
+        }
+
+        .points { list-style: none; }
+
+        .points li {
+            position: relative;
+            padding-left: 26px;
+        }
+
+        .points li + li { margin-top: 0.9em; }
+
+        .points li::before {
+            content: "";
+            position: absolute;
+            left: 2px;
+            top: 0.62em;
+            width: 12px;
+            height: 12px;
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+        }
+
+        .points li:nth-child(odd)::before { background: var(--blue); border-color: var(--blue); }
+        .points li:nth-child(even)::before { background: var(--red); border-color: var(--red); }
+
+        blockquote {
+            margin: 2em 0;
+            padding: 22px 0 20px;
+            border-top: 4px solid var(--ink);
+            border-bottom: 1px solid var(--ink);
+            position: relative;
+        }
+
+        blockquote::before {
+            content: "“";
+            position: absolute;
+            top: -0.18em;
+            right: 0;
+            font-family: var(--slab);
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--red);
+        }
+
+        blockquote p {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+            line-height: 1.55;
+            color: var(--ink);
+            padding-right: 54px;
+        }
+
+        /* ---------- figures ---------- */
+        .fig {
+            margin: 2.2em 0;
+        }
+
+        .fig-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            border-bottom: 2px solid var(--ink);
+            padding-bottom: 6px;
+            margin-bottom: 14px;
+        }
+
+        .fig-head b {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1rem;
+            color: var(--ink);
+        }
+
+        .fig-head span {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .fig-note {
+            margin-top: 12px;
+            font-family: var(--label);
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        /* power cards */
+        .powers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .power {
+            border: 2px solid var(--ink);
+            background: #fff;
+            padding: 16px 16px 14px;
+        }
+
+        .power-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .power-name {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+
+        .power-seats {
+            font-family: var(--slab);
+            font-size: 1.9rem;
+            color: var(--blue);
+            line-height: 1;
+        }
+
+        .power-seats small {
+            font-family: var(--head);
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-left: 2px;
+        }
+
+        .power-hold {
+            display: inline-block;
+            margin: 8px 0 8px;
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.86rem;
+            color: #fff;
+            background: var(--ink);
+            padding: 2px 10px;
+        }
+
+        .power p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .power dl {
+            margin-top: 10px;
+            border-top: 1px solid var(--rule);
+            font-family: var(--label);
+            font-size: 0.78rem;
+        }
+
+        .power dl div {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dotted var(--rule);
+        }
+
+        .power dt { color: var(--muted); }
+        .power dd { color: var(--ink); font-weight: 600; }
+
+        .cliff {
+            margin-top: 14px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 6px;
+            counter-reset: c;
+        }
+
+        .cliff span {
+            counter-increment: c;
+            position: relative;
+            text-align: center;
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 0.95rem;
+            color: #fff;
+            background: var(--red);
+            padding: 12px 6px 10px;
+            clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%, 10px 50%);
+        }
+
+        .cliff span:first-child { clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%); }
+        .cliff span:nth-child(1) { opacity: 0.7; }
+        .cliff span:nth-child(2) { opacity: 0.8; }
+        .cliff span:nth-child(3) { opacity: 0.9; }
+
+        /* receipt */
+        .receipt-wrap {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 190px;
+            gap: 22px;
+            align-items: start;
+        }
+
+        .receipt {
+            --edge: 10px;
+            position: relative;
+            background: #fffdf7;
+            font-family: var(--receipt);
+            color: #22242a;
+            padding: 22px 20px 26px;
+            box-shadow: 0 12px 28px rgba(21, 23, 29, 0.16);
+            transform: rotate(-1deg);
+            -webkit-mask:
+                conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--edge) 51% repeat-x,
+                conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--edge) 51% repeat-x;
+            mask:
+                conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--edge) 51% repeat-x,
+                conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--edge) 51% repeat-x;
+        }
+
+        .receipt h4 {
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.08em;
+        }
+
+        .receipt .sub {
+            text-align: center;
+            font-size: 0.74rem;
+            color: #6b6d72;
+            margin-bottom: 10px;
+        }
+
+        .receipt hr {
+            border: 0;
+            border-top: 1px dashed #8b8d92;
+            margin: 10px 0;
+        }
+
+        .r-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            padding: 4px 0;
+        }
+
+        .r-row span:first-child { font-family: var(--head); font-weight: 500; }
+
+        .r-row b { font-weight: 700; white-space: nowrap; }
+
+        .r-row small {
+            grid-column: 1 / -1;
+            font-size: 0.72rem;
+            color: #6b6d72;
+            font-family: var(--head);
+            font-weight: 500;
+        }
+
+        .r-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1rem;
+            padding-top: 4px;
+        }
+
+        .r-total b { color: var(--red); }
+
+        .maps-stamp {
+            border: 3px solid var(--blue);
+            color: var(--blue);
+            padding: 14px 12px;
+            text-align: center;
+            transform: rotate(3deg);
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .maps-stamp b {
+            display: block;
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: 3.4rem;
+            line-height: 1;
+        }
+
+        .maps-stamp span {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.86rem;
+            line-height: 1.5;
+            display: block;
+            margin-top: 6px;
+        }
+
+        .maps-stamp small {
+            display: block;
+            margin-top: 8px;
+            font-family: var(--label);
+            font-size: 0.7rem;
+            color: var(--ink-soft);
+        }
+
+        /* split bars */
+        .split + .split { margin-top: 18px; }
+
+        .split-label {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .split-row {
+            display: grid;
+            grid-template-columns: 112px 1fr 54px;
+            gap: 10px;
+            align-items: center;
+            font-family: var(--label);
+            font-size: 0.8rem;
+            color: var(--ink-soft);
+        }
+
+        .split-row + .split-row { margin-top: 6px; }
+
+        .split-row b {
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: 1.05rem;
+            color: var(--ink);
+            text-align: right;
+        }
+
+        .bar {
+            height: 18px;
+            background: var(--paper-2);
+            position: relative;
+        }
+
+        .bar i {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: var(--w);
+            background: var(--red);
+        }
+
+        .bar i.blue { background: var(--blue); }
+        .bar i.gray { background: #9a9ca3; }
+
+        .js .reveal .bar i {
+            width: 0;
+            transition: width 1s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .js .reveal.is-in .bar i { width: var(--w); }
+
+        .bar .line50 {
+            position: absolute;
+            left: 50%;
+            top: -4px;
+            bottom: -4px;
+            border-left: 2px dashed var(--ink);
+        }
+
+        .paxton {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 12px;
+            align-items: center;
+            margin-top: 22px;
+            text-align: center;
+        }
+
+        .paxton div {
+            border: 2px solid var(--ink);
+            padding: 12px 10px;
+            background: #fff;
+        }
+
+        .paxton div b {
+            display: block;
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: 2.2rem;
+            line-height: 1.1;
+            color: var(--red);
+        }
+
+        .paxton div.lose { background: var(--ink); }
+        .paxton div.lose b { color: #fff; }
+        .paxton div.lose span { color: #d4d5d9; }
+
+        .paxton div span {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.82rem;
+        }
+
+        .paxton i {
+            font-family: var(--slab);
+            font-style: normal;
+            font-size: 1.6rem;
+            color: var(--ink);
+        }
+
+        /* money chart */
+        .money { list-style: none; }
+
+        .money li {
+            display: grid;
+            grid-template-columns: 150px 1fr 92px;
+            gap: 12px;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .money .who {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--ink);
+            line-height: 1.35;
+        }
+
+        .money .who small {
+            display: block;
+            font-family: var(--label);
+            font-weight: 400;
+            font-size: 0.72rem;
+            color: var(--muted);
+        }
+
+        .money .amt {
+            font-family: var(--slab);
+            font-size: 1.05rem;
+            color: var(--ink);
+            text-align: right;
+        }
+
+        .money .bar { height: 22px; }
+        .money .bar i { background: repeating-linear-gradient(135deg, var(--ink) 0 2px, #33363e 2px 6px); }
+        .money li:first-child .bar i { background: var(--blue); }
+
+        .court {
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 2px solid var(--ink);
+        }
+
+        .court div {
+            padding: 12px 14px;
+            font-size: 0.88rem;
+            line-height: 1.6;
+        }
+
+        .court div + div { border-left: 2px solid var(--ink); background: var(--red-wash); }
+
+        .court time {
+            display: block;
+            font-family: var(--slab);
+            font-size: 1.1rem;
+            color: var(--blue);
+        }
+
+        .court div + div time { color: var(--red); }
+
+        /* hierarchy */
+        .tiers {
+            display: grid;
+            gap: 8px;
+        }
+
+        .tier {
+            display: grid;
+            grid-template-columns: 116px 1fr;
+            align-items: stretch;
+            border: 2px solid var(--ink);
+            background: #fff;
+        }
+
+        .tier-role {
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 10px 8px;
+            background: var(--ink);
+            color: #fff;
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+
+        .tier-role small {
+            display: block;
+            font-family: var(--label);
+            font-weight: 600;
+            font-size: 0.64rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .tier-who {
+            padding: 10px 14px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tier-who b { color: var(--ink); }
+
+        .tier.t1 { width: 70%; margin: 0 auto; }
+        .tier.t2 { width: 85%; margin: 0 auto; }
+
+        .tier.t3 .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .chips span {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.78rem;
+            border: 1px solid var(--ink);
+            padding: 1px 8px;
+        }
+
+        .rift {
+            margin-top: 12px;
+            text-align: center;
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 0.95rem;
+            color: var(--red);
+        }
+
+        .faceoff {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 12px;
+            align-items: stretch;
+        }
+
+        .contender {
+            border: 2px solid var(--ink);
+            background: #fff;
+            padding: 14px 14px 12px;
+        }
+
+        .contender .role {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .contender h4 {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1.3rem;
+            color: var(--ink);
+            line-height: 1.3;
+        }
+
+        .contender h4 small {
+            display: block;
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--red);
+        }
+
+        .contender ul {
+            list-style: none;
+            margin-top: 8px;
+            font-size: 0.84rem;
+            line-height: 1.65;
+        }
+
+        .contender li {
+            padding: 4px 0;
+            border-top: 1px dotted var(--rule);
+        }
+
+        .contender li b { color: var(--ink); }
+
+        .vs {
+            align-self: center;
+            font-family: var(--slab);
+            font-size: 1.6rem;
+            color: var(--red);
+        }
+
+        /* fronts */
+        .fronts {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .front {
+            border-top: 6px solid var(--blue);
+            background: #fff;
+            padding: 12px 12px 14px;
+            box-shadow: 0 0 0 1px var(--rule);
+        }
+
+        .front-no {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+
+        .front b {
+            display: block;
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1.02rem;
+            color: var(--ink);
+            line-height: 1.4;
+            margin: 2px 0 6px;
+        }
+
+        .front p {
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        .front .big {
+            font-family: var(--slab);
+            font-size: 1.6rem;
+            line-height: 1.1;
+            color: var(--blue);
+            margin-top: 8px;
+            display: block;
+        }
+
+        .front .big small {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.76rem;
+            color: var(--muted);
+            margin-left: 4px;
+        }
+
+        .results {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: var(--label);
+            font-size: 0.84rem;
+        }
+
+        .results th {
+            text-align: left;
+            font-weight: 800;
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding: 6px 8px;
+            border-bottom: 2px solid var(--ink);
+        }
+
+        .results td {
+            padding: 9px 8px;
+            border-bottom: 1px solid var(--rule);
+            vertical-align: middle;
+        }
+
+        .results td.name {
+            font-family: var(--head);
+            font-weight: 700;
+            color: var(--ink);
+        }
+
+        .results td.dist {
+            font-family: var(--slab);
+            color: var(--blue);
+            white-space: nowrap;
+        }
+
+        .results td.pct {
+            width: 46%;
+        }
+
+        .results .bar { height: 16px; }
+        .results .bar i { background: var(--blue); }
+
+        .results .pct-num {
+            font-family: var(--slab);
+            color: var(--ink);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .won::after {
+            content: "✓";
+            display: inline-block;
+            margin-left: 6px;
+            font-family: var(--label);
+            font-weight: 800;
+            color: #fff;
+            background: var(--blue);
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            text-align: center;
+            font-size: 0.66rem;
+            border-radius: 50%;
+            vertical-align: 1px;
+        }
+
+        .mamdani {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border: 2px solid var(--ink);
+            background: #fff;
+            text-align: center;
+        }
+
+        .mamdani div { padding: 12px 8px; }
+        .mamdani div + div { border-left: 1px solid var(--rule); }
+
+        .mamdani b {
+            display: block;
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: 1.7rem;
+            color: var(--blue);
+            line-height: 1.1;
+        }
+
+        .mamdani div:last-child b { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: 3px; }
+
+        .mamdani span {
+            font-family: var(--head);
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        /* final scoreboard */
+        .score {
+            margin-top: 2em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border: 3px solid var(--ink);
+            background: var(--ink);
+            gap: 3px;
+        }
+
+        .score div {
+            background: var(--paper);
+            padding: 18px 16px 16px;
+            text-align: center;
+        }
+
+        .score div:last-child { background: var(--blue); color: #fff; }
+
+        .score small {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.7rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .score b {
+            display: block;
+            font-family: var(--slab);
+            font-weight: 400;
+            font-size: clamp(2.4rem, 7vw, 3.6rem);
+            line-height: 1.1;
+        }
+
+        .score span {
+            font-family: var(--head);
+            font-weight: 900;
+            font-size: 1rem;
+        }
+
+        .ask {
+            margin-top: 2em;
+            padding: 18px 20px;
+            background: #fff;
+            border: 2px dashed var(--ink);
+        }
+
+        .ask h4 {
+            font-family: var(--label);
+            font-weight: 800;
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--red);
+            margin-bottom: 6px;
+        }
+
+        .ask p { color: var(--ink); }
+
+        /* ---------- footer ---------- */
+        footer {
+            max-width: var(--wide-w);
+            margin: 20px auto 0;
+            padding: 0 24px 48px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 4px double var(--ink);
+            font-family: var(--label);
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .footer-inner a {
+            color: var(--ink);
+            text-decoration: none;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-inner a:hover,
+        .footer-inner a:focus-visible { color: var(--red); outline: none; }
+
+        /* ---------- reveal ---------- */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .js .reveal.is-in { opacity: 1; transform: none; }
+
+        .js .board { animation: drop 0.8s 0.15s cubic-bezier(.2, .8, .2, 1) both; }
+
+        @keyframes drop {
+            from { opacity: 0; transform: translate(10px, -10px); box-shadow: 0 0 0 var(--ink); }
+            to { opacity: 1; transform: none; box-shadow: 8px 8px 0 var(--ink); }
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 940px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .board { max-width: 520px; }
+
+            .fronts { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1rem; line-height: 1.9; }
+
+            .flag { padding: 14px 16px 0; }
+            .flag-top .mid { display: none; }
+            .flag-sub span:nth-child(2) { display: none; }
+
+            .hero { padding: 26px 16px 22px; }
+
+            .board { box-shadow: 5px 5px 0 var(--ink); margin-right: 5px; }
+            .state b { font-size: 1.5rem; }
+
+            article { padding: 0 16px 28px; }
+
+            .chapter { padding-top: 48px; }
+            .chapter-head { gap: 2px 14px; }
+
+            .powers { grid-template-columns: 1fr; }
+            .cliff { grid-template-columns: 1fr 1fr; }
+            .cliff span, .cliff span:first-child { clip-path: none; }
+
+            .receipt-wrap { grid-template-columns: 1fr; }
+            .maps-stamp { max-width: 240px; margin: 0 auto; }
+
+            .split-row { grid-template-columns: 86px 1fr 46px; }
+
+            .paxton { grid-template-columns: 1fr; gap: 6px; }
+            .paxton i { transform: rotate(90deg); }
+
+            .money li { grid-template-columns: 1fr 76px; gap: 6px 10px; }
+            .money .bar { grid-column: 1 / -1; grid-row: 2; }
+
+            .court { grid-template-columns: 1fr; }
+            .court div + div { border-left: 0; border-top: 2px solid var(--ink); }
+
+            .tier, .tier.t1, .tier.t2 { width: 100%; grid-template-columns: 92px 1fr; }
+
+            .faceoff { grid-template-columns: 1fr; }
+            .vs { text-align: center; }
+
+            .results td.pct { width: 34%; }
+            .results th:nth-child(3), .results td.pct { display: none; }
+
+            .mamdani b { font-size: 1.3rem; }
+
+            blockquote p { padding-right: 36px; }
+            blockquote::before { font-size: 3.6rem; }
+
+            footer { padding: 0 16px 36px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+            .js .reveal { opacity: 1; transform: none; }
+            .js .reveal .bar i { width: var(--w); }
+            .ticker { overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="flag">
+        <div class="flag-top">
+            <a href="../../index.html">← Digital Garden</a>
+            <span class="mid">U.S. Politics · Midterm Desk</span>
+            <span>第 27 期 · 2026.11.08</span>
+        </div>
+        <div class="flag-name">
+            <h2>The Garden Ledger</h2>
+            <span class="extra">EXTRA!</span>
+        </div>
+        <div class="flag-sub">
+            <span>Midterms 2026 · Special Edition</span>
+            <span>Six Takeaways</span>
+            <span>Late Final</span>
+        </div>
+    </header>
+
+    <section class="hero" aria-labelledby="title">
+        <div>
+            <p class="kicker">Election Night · 中期选举观察</p>
+            <h1 id="title"><span class="yr">2026</span> 年中期选举的变局与深层启示</h1>
+            <p class="dek">从惨败、内斗到后特朗普时代的政治重塑</p>
+            <p class="hero-lead">两年前，特朗普以席卷之势“大杀四方”；两年后，共和党全面输掉参众两院，连德州、堪萨斯这样的“铁票仓”也接连告急。这只是选民的阶段性经济惩罚，还是两党深层权力结构重组的开始？下面是六个核心洞察。</p>
+        </div>
+
+        <aside class="board" aria-label="选举结果速览">
+            <div class="board-head"><span class="dot">Results</span><span>Projected</span></div>
+            <div class="chamber">
+                <div class="chamber-name"><small>U.S. Senate</small>参议院</div>
+                <span class="call">DEM 控制</span>
+                <div class="seatbar" aria-hidden="true"></div>
+            </div>
+            <div class="chamber">
+                <div class="chamber-name"><small>U.S. House</small>众议院</div>
+                <span class="call">DEM 控制</span>
+                <div class="seatbar" aria-hidden="true"></div>
+            </div>
+            <div class="states">
+                <div class="state"><b>TX</b><span>参议员 翻蓝</span></div>
+                <div class="state"><b>TX</b><span>州长 翻蓝</span></div>
+                <div class="state warn"><b>KS</b><span>铁票仓 告急</span></div>
+            </div>
+            <div class="board-foot">改选：众议院全部 435 席 · 参议院 35 席</div>
+        </aside>
+    </section>
+
+    <div class="ticker" aria-label="要闻快讯">
+        <div class="ticker-track">
+            <span>参众两院 <b>共和党全面失守</b></span>
+            <span>德州参议员与州长 <b>双双翻蓝</b></span>
+            <span>帕克斯顿 初选 <b>63.8%</b> → 大选 <b>不足 40%</b></span>
+            <span>30 年房贷利率 <b>2.96% → 7.24%</b></span>
+            <span>加密货币 <b>1.76 亿美元</b> · 100 多场国会选举</span>
+            <span>NY-7 瓦尔德斯 <b>83%</b></span>
+            <span>2028 才是 <b>终极考场</b></span>
+            <span aria-hidden="true">参众两院 <b>共和党全面失守</b></span>
+            <span aria-hidden="true">德州参议员与州长 <b>双双翻蓝</b></span>
+            <span aria-hidden="true">帕克斯顿 初选 <b>63.8%</b> → 大选 <b>不足 40%</b></span>
+            <span aria-hidden="true">30 年房贷利率 <b>2.96% → 7.24%</b></span>
+            <span aria-hidden="true">加密货币 <b>1.76 亿美元</b> · 100 多场国会选举</span>
+            <span aria-hidden="true">NY-7 瓦尔德斯 <b>83%</b></span>
+            <span aria-hidden="true">2028 才是 <b>终极考场</b></span>
+        </div>
+    </div>
+
+    <nav class="section-nav" aria-label="文章目录">
+        <div class="section-nav-inner">
+            <a href="#intro"><small>0</small>导言</a>
+            <a href="#cliff"><small>1</small>政治悬崖</a>
+            <a href="#bills"><small>2</small>生活账单</a>
+            <a href="#poison"><small>3</small>背书毒药</a>
+            <a href="#money"><small>4</small>新资本</a>
+            <a href="#heirs"><small>5</small>接班之争</a>
+            <a href="#fronts"><small>6</small>三条战线</a>
+            <a href="#close"><small>∎</small>结语</a>
+        </div>
+    </nav>
+
+    <article>
+        <!-- 导言 -->
+        <section class="chapter" id="intro">
+            <div class="chapter-head">
+                <div class="chapter-num">0</div>
+                <div class="chapter-label">Introduction</div>
+                <h2>导言：二十四个月的逆转</h2>
+            </div>
+            <p>2024 年的美国大选中，特朗普曾以席卷之势“大杀四方”，展现出令人震撼的政治号召力与行政掌控力。然而仅仅过了两年，2026 年中期选举的开票结果却给共和党浇了一头冰冷彻骨的雪水——共和党不仅全面输掉了参众两院，连德克萨斯州和堪萨斯州等被奉为共和党底牌的“铁票仓”也接连告急；更具象征意义的是，德州国会参议员席位与州长宝座在大选中被民主党双双斩落马下。</p>
+            <p>为什么短短二十四个月内，美国的政治风向就发生了如此剧烈的逆转？这仅仅是选民对执政党阶段性的经济惩罚，还是两党深层权力结构、利益集团博弈以及意识形态路线走向重组的开始？</p>
+            <p>作为贯穿未来数年美政走向的关键节点，本文将基于最新的选举数据、资金流向与党内路线博弈，深度梳理 2026 年中期选举中最具冲击力、最反直觉的 6 大核心洞察。</p>
+        </section>
+
+        <!-- 1 -->
+        <section class="chapter" id="cliff">
+            <div class="chapter-head">
+                <div class="chapter-num">1</div>
+                <div class="chapter-label">Divided Government</div>
+                <h2>权力“断头台”：两院全丢后，白宫将面临怎样的政治悬崖？</h2>
+            </div>
+            <p>在美国三权分立的宪政架构下，总统掌管行政权，国会掌握立法权与财税权，法院掌管司法权。总统若想将治理蓝图转化为合法有效的联邦法律，必须依赖国会两院的顺畅配合。其中，众议院 435 个席位按人口比例分配，每两年全部改选；参议院 100 个席位每州两席，任期六年，每两年改选三分之一。2026 年中期选举除了改选全部 435 个众议院席位外，还改选了 35 个参议院席位。</p>
+            <p>一旦陷入“府院分治（Divided Government）”的困局，参众两院对行政权的制衡将从制度性的“刹车片”演变为致命的“断头台”：</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><b>两院各握一把刀</b><span>Checks on the White House</span></figcaption>
+                <div class="powers">
+                    <div class="power">
+                        <div class="power-top"><span class="power-name">参议院</span><span class="power-seats">100<small>席</small></span></div>
+                        <span class="power-hold">握着“帽子”：人事确认权</span>
+                        <p>内阁部长、联邦官员、最高法院大法官都要过参议院这一关。</p>
+                        <dl>
+                            <div><dt>分配</dt><dd>每州两席</dd></div>
+                            <div><dt>任期</dt><dd>6 年，每两年改选 1/3</dd></div>
+                            <div><dt>本次改选</dt><dd>35 席</dd></div>
+                        </dl>
+                    </div>
+                    <div class="power">
+                        <div class="power-top"><span class="power-name">众议院</span><span class="power-seats">435<small>席</small></span></div>
+                        <span class="power-hold">握着“钱袋子”：拨款与调查权</span>
+                        <p>所有税收与拨款法案从这里发起，还能发传票、开听证、启动弹劾。</p>
+                        <dl>
+                            <div><dt>分配</dt><dd>按人口比例</dd></div>
+                            <div><dt>任期</dt><dd>每两年全部改选</dd></div>
+                            <div><dt>本次改选</dt><dd>435 席</dd></div>
+                        </dl>
+                    </div>
+                </div>
+                <div class="cliff" aria-label="两院失守后的四重风险">
+                    <span>政府停摆</span><span>传票听证</span><span>专项调查</span><span>弹劾罢免</span>
+                </div>
+            </figure>
+
+            <ul class="points">
+                <li><strong>参议院（人事确认权）</strong>：参议院握有内阁部长、联邦官员及最高法院大法官等核心人选的合意确认权。失去参议院后，特朗普若想将心腹或激进派官员送入联邦高层，必须经过民主党控制的参议院首肯，白宫的行政指令面临被直接“断供”的瘫痪风险。</li>
+                <li><strong>众议院（财政拨款与调查监督权）</strong>：宪法规定所有税收与拨款法案必须从众议院发起。众议院不仅可以随时以拒绝通过国防与政府预算倒逼白宫妥协，更拥有召开听证会、发下传票启动政府调查以及发起弹劾案的法定特权。</li>
+            </ul>
+            <p>回顾特朗普的第一任期，2018 年中期选举民主党夺回众议院后，迅速在 2019 年发起了对特朗普的弹劾案。虽然最终定罪权掌握在参议院手中，但无休止的传票、公开听证会与专项调查组，已足以将白宫的行政资源消耗殆尽，令总统沦为履职维艰的“跛脚鸭”。</p>
+            <p>如今国会两院全数失守，白宫将直接暴露在政府停摆、高频传票听证会、针对内阁成员的专项调查组乃至再次面临弹劾罢免的严峻悬崖之上。</p>
+            <blockquote>
+                <p>参议院握着帽盖，负责官员任命；众议院握着钱袋子，掌控财政拨款。两院都丢了，政府停摆、听证会、调查组、弹劾，你就等着吧。</p>
+            </blockquote>
+        </section>
+
+        <!-- 2 -->
+        <section class="chapter" id="bills">
+            <div class="chapter-head">
+                <div class="chapter-num">2</div>
+                <div class="chapter-label">Gerrymandering vs. Inflation</div>
+                <h2>“田忌赛马”输给了生活账单：杰利蝾螈为何敌不过高通胀？</h2>
+            </div>
+            <p>为了在选举中占据先天优势，两党长期利用“杰利蝾螈”（Gerrymandering，即操纵选区划定）手段进行深度的政治地理博弈。其核心逻辑如同“田忌赛马”：通过重划地图，将对手的选票高度集中在少数选区彻底“浪费”，同时让自己在更多选区以微弱优势获胜。</p>
+            <p>2025 年，特朗普积极推动共和党控制的州重新划分选区，德克萨斯州成为主战场；民主党控制的加利福尼亚州则迅速用新地图展开反击。根据美国人口普查局的统计，2026 年共有 9 个州采用了与 2024 年不同的国会选区地图。然而，<span class="mark">划定地图虽然可以改变选票的算法，却改变不了选民每个月面对的现实账单</span>。</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><b>一张摇摆区家庭的账单</b><span>Household Receipt</span></figcaption>
+                <div class="receipt-wrap">
+                    <div class="receipt" role="img" aria-label="摇摆区家庭生活账单：物价、房贷、医保与电费的上涨">
+                        <h4>SWING STATE HOUSEHOLD</h4>
+                        <p class="sub">账单明细 · 2021 → 2026</p>
+                        <hr>
+                        <div class="r-row"><span>一篮子日常物品</span><b>$100 → $121</b><small>拜登任内消费价格累计上涨约 21.4%（2021→2025）</small></div>
+                        <div class="r-row"><span>30 年固定房贷利率</span><b>2.96% → 7.24%</b></div>
+                        <div class="r-row"><span>月供（35 万美元 / 30 年）</span><b>$1,468 → $2,385</b><small>仅本金与利息</small></div>
+                        <div class="r-row"><span>家庭医保全年总保费</span><b>$28,300</b><small>凯撒家庭基金会，2026 年雇主提供</small></div>
+                        <div class="r-row"><span>其中员工自付</span><b>$7,471</b><small>同比 +$621，不含看病时的额外自付</small></div>
+                        <div class="r-row"><span>电费</span><b>↑ 上涨</b><small>AI 数据中心抢占居民用电</small></div>
+                        <hr>
+                        <div class="r-total"><span>月供每月多付</span><b>+$917</b></div>
+                    </div>
+                    <div class="maps-stamp">
+                        <b>9</b>
+                        <span>个州 2026 年<br>换了新选区地图</span>
+                        <small>美国人口普查局统计</small>
+                    </div>
+                </div>
+                <p class="fig-note">地图改得了选票的算法，改不了每个月的账单。</p>
+            </figure>
+
+            <p>在宏观数据与部分精英圈层中，经济指标或许显得光鲜亮丽，不少华人社交媒体也频繁晒出高收入与高消费的繁荣景象，但这些极少数群体的生活体验无法代表摇摆区普通选民的真实处境。真正决定权力走向的，是摇摆区选民面临的沉重生活压迫：</p>
+            <ul class="points">
+                <li><strong>消费价格飞涨</strong>：拜登任内美国消费价格累计上涨约 21.4%，2021 年价值 100 美元的一篮子日常物品，到 2025 年需支付 121 美元。</li>
+                <li><strong>房贷成本飙升</strong>：30 年期固定房贷平均利率从 2021 年的 2.96% 飙升至 7.24%。以 35 万美元贷款（分期 30 年）为例，仅本金与利息的每月还款额就从 1,468 美元暴涨至 2,385 美元。</li>
+                <li><strong>医疗保费高企</strong>：凯撒家庭基金会调查显示，2026 年雇主提供的家庭医保全年平均总保费已达到 28,300 美元；其中员工自付部分高达 7,471 美元，仅自付额就同比增加了 621 美元，这尚未计算看病时的额外自付诊疗费用。</li>
+                <li><strong>基建与电费冲突</strong>：科技巨头拼命建设人工智能数据中心导致用电需求激增，在基建效率低下的背景下，部分数据中心直接抢占居民用电，推高了普通家庭的电费支出。</li>
+            </ul>
+            <p>宏观数据的繁荣无法掩盖微观个体的痛感。当生活账单超越了意识形态，任何地缘布局与选区操纵都在选民实打实的经济压力面前溃不成军。</p>
+        </section>
+
+        <!-- 3 -->
+        <section class="chapter" id="poison">
+            <div class="chapter-head">
+                <div class="chapter-num">3</div>
+                <div class="chapter-label">The Endorsement Paradox</div>
+                <h2>初选“乱杀”与大选“惨败”：特朗普的背书为何成了共和党的毒药？</h2>
+            </div>
+            <p>2026 年中期选举暴露了共和党目前面临的致命结构悖论：特朗普在 MAGA 基本盘中依然拥有至高无上的号召力，但在全国大选与温和派选民中，他的背书却演变成了极具破坏力的政治毒药。</p>
+            <p>2026 年 5 月马凯特大学法学院的民调准确揭示了这种党内与党外的政治撕裂：</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><b>同一个党，两种选民</b><span>Marquette Law Poll</span></figcaption>
+                <div class="split">
+                    <div class="split-label">会支持特朗普背书的挑战者（5 月）</div>
+                    <div class="split-row"><span>认同 MAGA</span><div class="bar"><i style="--w: 87%"></i><span class="line50"></span></div><b>87%</b></div>
+                    <div class="split-row"><span>不认同 MAGA</span><div class="bar"><i class="gray" style="--w: 30%"></i><span class="line50"></span></div><b>30%</b></div>
+                </div>
+                <div class="split">
+                    <div class="split-label">确定 / 打算参加中期选举投票（9 月）</div>
+                    <div class="split-row"><span>极度支持 MAGA</span><div class="bar"><i style="--w: 82%"></i><span class="line50"></span></div><b>82%</b></div>
+                    <div class="split-row"><span>无感或反感</span><div class="bar"><i class="gray" style="--w: 52%"></i><span class="line50"></span></div><b>52%</b></div>
+                </div>
+                <div class="paxton" aria-label="帕克斯顿从初选到大选的得票变化">
+                    <div><b>63.8%</b><span>5 月初选：帕克斯顿血洗柯宁</span></div>
+                    <i>→</i>
+                    <div class="lose"><b>&lt; 40%</b><span>大选：败给塔拉里克</span></div>
+                </div>
+                <p class="fig-note">虚线为 50%。初选由基本盘决定，大选由温和派与独立选民决定。</p>
+            </figure>
+
+            <ul class="points">
+                <li><strong>认同 MAGA 的共和党选民</strong>：87% 的人表示会支持特朗普背书的挑战者；</li>
+                <li><strong>不认同 MAGA 的共和党选民</strong>：这一比例仅有 30%。</li>
+            </ul>
+            <p>这种数据结构揭示了一个残酷的悖论：<span class="mark">特朗普可以决定谁代表共和党赢下党内初选，却无法决定谁能赢下全国大选</span>。</p>
+            <p>这一悖论在德克萨斯州的参议员初选中展现得淋漓尽致。在国会经营 24 年、拥有一流筹款网络与建制派资源的老牌大佬约罕·柯宁（John Cornyn），因支持援助乌克兰、参与推动枪支安全法案及曾公开质疑特朗普的胜选能力，引发了特朗普的强烈不满。在 5 月的党内初选中，特朗普全力背书德州总检察长肯·帕克斯顿（Ken Paxton），最终帕克斯顿以 63.8% 对 36.2% 的压倒性优势血洗柯宁。</p>
+            <p>然而，帕克斯顿本身自带滥用职权等严重污点（曾于 2023 年遭德州众议院弹劾），属于典型的“带病提拔”。到了全国大选阶段，选民结构的差异迅速发酵：9 月马凯特大学民调显示，极度支持 MAGA 的共和党选民中 82% 确定会参加中期选举投票，而无感或反感 MAGA 的共和党选民中仅有 52% 打算投票。</p>
+            <p>这种温和派的弃考与独立选民的离场，加上反感特朗普的激进选民的高昂反扑，直接导致自带污点的帕克斯顿在大选中崩溃——其得票率连 40% 都未能达到，直接被民主党的进步派黑马詹姆斯·塔拉里克（James Talarico）斩落马下。共和党不仅拱手让出了德州参议员席位，连州长宝座也一并输掉。</p>
+            <blockquote>
+                <p>特朗普可以决定谁代表共和党参选，但是没有办法决定谁能够赢得最终的大选。</p>
+            </blockquote>
+        </section>
+
+        <!-- 4 -->
+        <section class="chapter" id="money">
+            <div class="chapter-head">
+                <div class="chapter-num">4</div>
+                <div class="chapter-label">New Money</div>
+                <h2>新资本势力入场：加密货币、AI 与预测市场如何撕裂旧政治？</h2>
+            </div>
+            <p>除了传统的华尔街、能源巨头与军工集团外，2026 年的中期选举见证了三股新资本势力的强力介入，深刻重塑了美国政治的投融资逻辑与监管博弈。</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><b>新资本砸进中期选举的钱</b><span>Campaign Money</span></figcaption>
+                <ul class="money">
+                    <li><span class="who">加密货币行业<small>100 多场国会选举 · 跨党派</small></span><div class="bar"><i style="--w: 100%"></i></div><span class="amt">1.76 亿</span></li>
+                    <li><span class="who">AI 与硅谷右翼<small>Leading the Future</small></span><div class="bar"><i style="--w: 79.5%"></i></div><span class="amt">1.4 亿</span></li>
+                    <li><span class="who">体育博彩巨头<small>政治捐款</small></span><div class="bar"><i style="--w: 40.9%"></i></div><span class="amt">7200 万+</span></li>
+                    <li><span class="who">预测平台及创始人<small>以 Polymarket 为代表</small></span><div class="bar"><i style="--w: 2.8%"></i></div><span class="amt">500 万+</span></li>
+                </ul>
+                <p class="fig-note">单位：美元。以加密货币行业的 1.76 亿美元为满刻度。</p>
+            </figure>
+
+            <h3><span class="tag">4.1</span>人工智能与硅谷右翼</h3>
+            <p>以超级行动委员会“Leading the Future”为代表，硅谷科技右翼在本次中期选举中筹集了约 1.4 亿美元资金，旨在通过强大的政治影响力推动联邦减少对 AI 研发与数据中心扩张的监管。</p>
+
+            <h3><span class="tag">4.2</span>加密货币行业</h3>
+            <p>加密货币行业在 100 多场国会选举中累计砸下 1.76 亿美元。与传统利益集团不同，加密资本放弃了单向押宝，而是实施“跨党派扶持”，向两党中的友好议员同时注资，确保无论国会山权杖落入谁手，数字资产立法都能顺畅推进。</p>
+
+            <h3><span class="tag">4.3</span>体育博彩与预测市场</h3>
+            <p>传统体育博彩巨头在政治捐款中投入超 7200 万美元（例如纽约州对线上体育博彩征收 51% 的高额毛收入税，在 2026 财年为州政府贡献了 13 亿美元税收）。</p>
+            <p>与此同时，以 Polymarket 为代表的预测平台及其创始人捐款超 500 万美元，并与监管机构展开了激烈的监管主权大战：</p>
+            <ul class="points">
+                <li><strong>联邦金融衍生品之争</strong>：预测平台主张其交易属于受联邦商品期货交易委员会（CFTC）监管的“金融衍生品合约”，不应受各州反赌博法律约束。</li>
+                <li><strong>联邦与州的正面交锋</strong>：2026 年 10 月 27 日，CFTC 正式起诉犹他州，要求阻止当地以反赌博法律限制预测市场；次日，犹他州总检察长反手对预测平台及其两位创始人提起刑事指控，揭示了联邦与州政府在巨大税收与监管主权上的利益撕裂。</li>
+            </ul>
+            <div class="court reveal" aria-label="联邦与犹他州的交锋">
+                <div><time>10.27</time>CFTC 起诉犹他州，要求阻止以反赌博法律限制预测市场</div>
+                <div><time>10.28</time>犹他州总检察长对预测平台及两位创始人提起刑事指控</div>
+            </div>
+            <p>预测平台将候选人的胜负盘口实时挂在交易屏幕上，实现了“一杠投钱，一杠挣钱”的资本循环。这种模式不仅重塑了资金流动路径，更将政治选举<span class="mark">“实时盘口化”与“金融衍生品化”</span>，完成了对选民心理与政策博弈的二次收割。</p>
+        </section>
+
+        <!-- 5 -->
+        <section class="chapter" id="heirs">
+            <div class="chapter-head">
+                <div class="chapter-num">5</div>
+                <div class="chapter-label">After Trump</div>
+                <h2>“后特朗普时代”的权力卡位：右翼理论重构与万斯 vs. 鲁比奥的路线之争</h2>
+            </div>
+            <p>随着特朗普第二任期全面面临“府院分治”的瘫痪危机，右翼内部的理论家与政治新星已开始为“后特朗普时代”的权力重组做准备。</p>
+            <p>如果将 MAGA 运动比作一场草根起义，特朗普是一位政治敏锐度极高的“投机财主”，那么如今彼得·蒂尔（Peter Thiel）等硅谷科技右翼资本则充当着提供资金与自动化工具的“地主阶级”，而一批精英学者正充当起为这场起义提供理论指导与战术纲领的“士大夫”：</p>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><b>一场草根起义的三层结构</b><span>The MAGA Coalition</span></figcaption>
+                <div class="tiers">
+                    <div class="tier t1">
+                        <div class="tier-role"><span><small>Opportunist</small>投机财主</span></div>
+                        <div class="tier-who"><b>特朗普</b>：政治敏锐度极高的领头人</div>
+                    </div>
+                    <div class="tier t2">
+                        <div class="tier-role"><span><small>Landlords</small>地主阶级</span></div>
+                        <div class="tier-who"><b>彼得·蒂尔等硅谷科技右翼</b>：提供资金与自动化工具</div>
+                    </div>
+                    <div class="tier t3">
+                        <div class="tier-role"><span><small>Scholars</small>士大夫</span></div>
+                        <div class="tier-who"><b>精英学者</b>：提供理论指导与战术纲领
+                            <div class="chips"><span>卡斯 · 经济民族主义</span><span>德宁 · 后自由主义</span><span>维米尔 · 共同善宪政</span><span>哈佐尼 · 民族国家优先</span></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="rift">裂缝：士大夫要保住工人岗位，地主要用自动化减少劳动需求</p>
+            </figure>
+
+            <ul class="points">
+                <li><strong>奥伦·卡斯（Oren Cass，American Compass 智库）</strong>：主张经济民族主义，批判过去数十年的自由市场经济导致制造业外迁与社区衰败，强调政府必须积极干预市场，扶持本土制造业以服务于劳工利益。</li>
+                <li><strong>帕特里克·德宁（Patrick Deneen）</strong>：倡导后自由主义，主张恢复家庭、社区与传统道德秩序。</li>
+                <li><strong>阿德里安·维米尔（Adrian Vermeule）</strong>：提出“共同善宪政主义”（Common-good Constitutionalism），倡导国家机构与司法部门重视公共道德。</li>
+                <li><strong>约拉姆·哈佐尼（Yoram Hazony）</strong>：强调民族国家优先，反对让无边界的自由市场凌驾于国家主权之上。</li>
+            </ul>
+            <p>然而，“士大夫”与“地主阶级”之间存在着根本性的利益分歧：以卡斯为代表的经济民族主义者希望保护本土工人的工作岗位，而彼得·蒂尔等硅谷科技资本则致力于通过自动化与人工智能减少劳动需求。</p>
+            <p>这种深层分歧直接映射在 2028 年接班人的卡位战中：</p>
+
+            <div class="faceoff reveal">
+                <div class="contender">
+                    <span class="role">Vice President · 副总统</span>
+                    <h4><small>JD Vance</small>JD·万斯</h4>
+                    <ul>
+                        <li><b>后台</b>：蒂尔的政治门生，曾获 1500 万美元专项支持</li>
+                        <li><b>理论</b>：整合卡斯的经济批评与德宁的保守道德观</li>
+                        <li><b>筹款</b>：曾一晚筹集 600 万美元</li>
+                        <li><b>外交</b>：战略收缩倾向</li>
+                    </ul>
+                </div>
+                <span class="vs">VS</span>
+                <div class="contender">
+                    <span class="role">Secretary of State · 国务卿</span>
+                    <h4><small>Marco Rubio</small>马克·鲁比奥</h4>
+                    <ul>
+                        <li><b>后台</b>：成熟的共和党建制派人脉</li>
+                        <li><b>理论</b>：传统建制派与新保守主义兼具，曾参与《美国指南》创刊</li>
+                        <li><b>金主</b>：获肯·格里芬公开青睐</li>
+                        <li><b>外交</b>：维持美国全球领导地位</li>
+                    </ul>
+                </div>
+            </div>
+
+            <ul class="points">
+                <li><strong>副总统 JD·万斯（JD Vance）</strong>：作为蒂尔的政治门生（曾获蒂尔 1500 万美元专项资金支持），万斯同时高度整合了卡斯的经济批评与德宁的保守道德观。他具备极强的政治筹款能力（曾一晚筹集 600 万美元），是新兴右翼理论与科技资本的汇聚点，但他未来必须在科技资本与工人群体之间平衡复杂的矛盾。</li>
+                <li><strong>国务卿马克·鲁比奥（Marco Rubio）</strong>：拥有成熟的共和党建制派人脉，在外交上倾向于维持美国的全球领导地位（与万斯的战略收缩倾向形成鲜明对比）。鲁比奥曾参与《美国指南》创刊，兼具传统建制派与新保守主义的支持，并获得了传统大金主肯·格里芬（Ken Griffin）的公开青睐。</li>
+            </ul>
+        </section>
+
+        <!-- 6 -->
+        <section class="chapter" id="fronts">
+            <div class="chapter-head">
+                <div class="chapter-num">6</div>
+                <div class="chapter-label">Democratic Rebuild</div>
+                <h2>民主党的三条反击战线：极具务实感与接地气的“组织重整”</h2>
+            </div>
+            <p>经历 2024 年的惨败后，民主党在中期选举中暂时搁置了虚无的身份政治与意识形态内耗，依靠三条极其务实、接地气的反击战线重构了基层组织。</p>
+
+            <div class="fronts reveal">
+                <div class="front">
+                    <span class="front-no">Front 1</span>
+                    <b>新民主党人联盟 · 生活负担议程</b>
+                    <p>供给侧改革：住房、能源审批、医疗成本。</p>
+                    <span class="big">400 万<small>套住房 / 10 年</small></span>
+                </div>
+                <div class="front">
+                    <span class="front-no">Front 2</span>
+                    <b>DSA × 工会 · 基层动员</b>
+                    <p>复制马姆达尼的敲门模式，工会力量重回国会。</p>
+                    <span class="big">83%<small>瓦尔德斯 · NY-7</small></span>
+                </div>
+                <div class="front">
+                    <span class="front-no">Front 3</span>
+                    <b>宗教进步派 · 以圣经反击圣经</b>
+                    <p>牧师与神学生直接在右翼地盘夺回宗教话语。</p>
+                    <span class="big">TX · KS · IA</span>
+                </div>
+            </div>
+
+            <h3><span class="tag">战线一</span>新民主党人联盟与“生活负担议程”</h3>
+            <p>拥有 114 名众议员的新民主党人联盟（New Democrat Coalition，主席布拉德·斯奈德）在宾州议员克里希·霍拉汉（Chrissy Houlahan）的推动下，发布了“生活负担议程”。</p>
+            <p>他们精准指出<span class="mark">美国通胀的本质在于供给不足</span>，主张通过供给侧改革降低生活成本：计划在未来 10 年建设 400 万套住房、简化能源与电网审批流程、降低医疗成本。</p>
+            <p>该联盟依靠强大的竞选资金（筹集或协助筹集超 1400 万美元），派出具备地方治理经验的候选人争夺共和党优势选区：前市长佩奇·科涅蒂（Paige Cognetti）在宾州击败共和党议员布雷斯纳汉；法学教授博汉南（Bohannan）在爱荷华州第一选区击败共和党现任议员米勒-米克斯；奶牛场出身的丽贝卡·库克（Rebecca Cooke）与 20 年退役海军陆战队员乔安娜·门多萨（Jo Anna Mendoza）分别在威斯康星州与亚利桑那州取得了历史性突破。</p>
+
+            <h3><span class="tag">战线二</span>民主社会主义者（DSA）与工会深度结合</h3>
+            <p>借鉴 2025 年左翼政治新星马姆达尼（Zohran Mamdani）在纽约市长初选中击败建制派大佬库默的草根动员模式，左翼将“工会 + 基层动员”模式推向全国：</p>
+            <div class="mamdani reveal" aria-label="马姆达尼模式">
+                <div><b>3 万+</b><span>志愿者</span></div>
+                <div><b>160 万</b><span>次敲门拜访</span></div>
+                <div><b>3100 万</b><span>外部反对资金</span></div>
+            </div>
+
+            <figure class="fig reveal">
+                <figcaption class="fig-head"><b>工会候选人计票结果</b><span>House Results</span></figcaption>
+                <table class="results">
+                    <thead>
+                        <tr><th>候选人</th><th>选区</th><th>得票率</th><th></th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="name won">阿维拉·瓦里耶</td><td class="dist">NY-13</td><td class="pct"><div class="bar"><i style="--w: 87.5%"></i></div></td><td class="pct-num">87.5%</td></tr>
+                        <tr><td class="name won">克莱尔·瓦尔德斯</td><td class="dist">NY-7</td><td class="pct"><div class="bar"><i style="--w: 83%"></i></div></td><td class="pct-num">83%</td></tr>
+                        <tr><td class="name won">基罗斯</td><td class="dist">CO-1</td><td class="pct"><div class="bar"><i style="--w: 78%"></i></div></td><td class="pct-num">78%</td></tr>
+                        <tr><td class="name won">多诺万·麦金尼</td><td class="dist">MI-13</td><td class="pct"><div class="bar"><i style="--w: 74%"></i></div></td><td class="pct-num">74%</td></tr>
+                    </tbody>
+                </table>
+            </figure>
+
+            <ul class="points">
+                <li><strong>克莱尔·瓦尔德斯（Claire Valdez，NY-7）</strong>：DSA 成员兼 UAW 组织者，在汽车工人联合会（UAW）主席肖恩·费恩与马姆达尼助选下，以 83% 的高票斩获纽约州第 7 选区国会席位；</li>
+                <li><strong>多诺万·麦金尼（Donavan McKinney，MI-13）</strong>：在 UAW、护士工会及工作家庭党支持下，以 74% 得票率斩获密歇根州第 13 选区席位；</li>
+                <li><strong>阿维拉·瓦里耶（NY-13）与基罗斯（CO-1）</strong>：分别以 87.5% 与 78% 的得票率大获全胜。</li>
+            </ul>
+            <p>他们成功将工会力量与基层组织重新带回国会政治核心。</p>
+
+            <h3><span class="tag">战线三</span>宗教进步派的正面对决</h3>
+            <p>针对共和党长期垄断的宗教话语权，民主党派出宗教进步派候选人直接在右翼地盘“以圣经反击圣经”：</p>
+            <ul class="points">
+                <li><strong>詹姆斯·塔拉里克（James Talarico）</strong>：作为德州最大黑马，这位长老会神学院学生直接引用圣经关于“关爱穷人、善待病人与移民”的教义与共和党辩论，在大选选战中直接击败了自带污点的特朗普铁杆帕克斯顿，掀翻了共和党长期把持的德州参议员席位；</li>
+                <li><strong>亚当·汉米尔顿（Adam Hamilton）</strong>：拥有 25,000 名成员的卫理公会大教堂创办牧师，在堪萨斯州挑战共和党参议员马歇尔，结束了该州近一个世纪没有民主党竞争力的历史；</li>
+                <li><strong>莎拉·特龙·加里奥特（Sarah Trone Garriott）与林赛·詹姆斯（Lindsay James）</strong>：分别为路德宗牧师与长老会牧师，也在爱荷华州成功击败共和党现任议员。</li>
+            </ul>
+            <p>这种<span class="mark">“务实供给侧 + 工会基层动员 + 宗教话语重构”</span>的三线并行，构成了民主党组织重整的底层硬实力。</p>
+        </section>
+
+        <!-- 结语 -->
+        <section class="chapter" id="close">
+            <div class="chapter-head">
+                <div class="chapter-num">∎</div>
+                <div class="chapter-label">Conclusion</div>
+                <h2>结语：中场休息，不是终场哨</h2>
+            </div>
+            <p>2026 年中期选举不仅是对特朗普政府执政成绩的阶段性审判，更是美国两党深层权力再分配、利益集团洗牌与思想路线重组的“大练兵”。</p>
+            <p>共和党虽然在国会席位上遭遇大败，但其 MAGA 运动的理论内核与“后特朗普时代”的继承路线已日益清晰，下一步需要的只是清除党内自带污点的麻烦制造者；而民主党虽然赢得了国会控制权与数个铁票仓，却依然面临新民主党人联盟、工会左翼与宗教进步派之间的路线分歧，急需一场彻底的组织与纲领重构。</p>
+            <div class="score reveal" aria-label="2026 中场，2028 终场">
+                <div><small>Halftime</small><b>2026</b><span>只是中场休息</span></div>
+                <div><small>Final</small><b>2028</b><span>才是终极考场</span></div>
+            </div>
+            <p>在当下的美国，批评现状与暴露问题已不再新鲜，<span class="mark">谁能提出一套足以取代特朗普体系、兼顾经济可行性与社会凝聚力的长期治理方案</span>，谁才是美国政治真正的终极赢家。</p>
+            <div class="ask">
+                <h4>思考与互动 · Reader Mailbag</h4>
+                <p>当现实的生活账单超越了虚幻的意识形态，你认为哪一种政治路线能在 2028 年真正修补分裂的美国？欢迎在评论区留下你的理性思考与见解。</p>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="../../index.html">← 返回 Digital Garden</a>
+            <span>第 27 期 · 2026 年中期选举的变局与深层启示</span>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var fill = document.getElementById("progressFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+            var activeIdx = -1;
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                fill.style.transform = "scaleX(" + p + ")";
+
+                var cutoff = Math.max(120, window.innerHeight * 0.35);
+                var active = -1;
+                for (var j = 0; j < sections.length; j++) {
+                    if (sections[j].getBoundingClientRect().top <= cutoff) active = j;
+                }
+                if (p > 0.985) active = sections.length - 1;
+                if (active === activeIdx) return;
+                activeIdx = active;
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+                if (active >= 0) {
+                    var nav = links[active].parentNode;
+                    var link = links[active];
+                    nav.scrollTo({ left: link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2, behavior: "smooth" });
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+
+            var reveals = document.querySelectorAll(".reveal");
+            if (!("IntersectionObserver" in window)) {
+                reveals.forEach(function (el) { el.classList.add("is-in"); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+            reveals.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+</html>

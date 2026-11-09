@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>极化、算力反噬与外交“掀桌子” · 未来几年全球动荡背后的 5 个冷酷真相</title>
+    <meta name="description" content="算力基建遭基层反噬、关税与战争捅穿选民同盟、两院失守后的内政脑死亡、宪法漏洞下的外交泄洪，以及“外交只是内政的遮羞布”——中期选举之后全球动荡的 5 个冷酷真相。">
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@400;500;700&family=Fragment+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bp: #0f2a52;
+            --bp-deep: #0b2143;
+            --bp-panel: rgba(16, 44, 86, 0.85);
+            --grid: rgba(190, 220, 255, 0.07);
+            --grid-major: rgba(190, 220, 255, 0.13);
+            --line: rgba(200, 225, 255, 0.22);
+            --line-strong: rgba(220, 235, 255, 0.5);
+            --ink: #eef4ff;
+            --soft: #c0d1ea;
+            --muted: #8aa2c6;
+            --cyan: #8fd3ff;
+            --hazard: #ffd23f;
+            --hazard-wash: rgba(255, 210, 63, 0.12);
+            --alarm: #ff5b4a;
+            --alarm-wash: rgba(255, 91, 74, 0.14);
+            --display: "Unbounded", "Noto Sans SC", sans-serif;
+            --poster: "ZCOOL QingKe HuangYou", "Noto Sans SC", sans-serif;
+            --text: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            --mono: "Fragment Mono", "SFMono-Regular", "Menlo", monospace;
+            --max-w: 700px;
+            --wide-w: 1140px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 70px;
+            background: var(--bp-deep);
+        }
+
+        body {
+            font-family: var(--text);
+            color: var(--soft);
+            background:
+                linear-gradient(var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px,
+                linear-gradient(90deg, var(--grid-major) 1px, transparent 1px) 0 0 / 120px 120px,
+                linear-gradient(var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0 / 24px 24px,
+                radial-gradient(ellipse 90% 60% at 50% 0%, #17396c, var(--bp) 60%, var(--bp-deep));
+            background-attachment: fixed;
+            font-size: 1.02rem;
+            line-height: 1.95;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; }
+
+        ::selection { background: var(--hazard); color: var(--bp-deep); }
+
+        /* ---------- progress ---------- */
+        .progress-bar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: 6px;
+            z-index: 200;
+            background: rgba(11, 33, 67, 0.8);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, var(--hazard) 0 8px, #1b1b1b 8px 16px);
+            transform: scaleX(0);
+            transform-origin: left;
+        }
+
+        /* ---------- title block ---------- */
+        .titleblock {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 22px 24px 0;
+        }
+
+        .tb-row {
+            display: grid;
+            grid-template-columns: auto 1fr auto auto;
+            border: 1px solid var(--line-strong);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .tb-row > * {
+            padding: 8px 14px;
+            border-right: 1px solid var(--line-strong);
+        }
+
+        .tb-row > *:last-child { border-right: 0; }
+
+        .tb-row a {
+            color: var(--ink);
+            text-decoration: none;
+        }
+
+        .tb-row a:hover,
+        .tb-row a:focus-visible { color: var(--hazard); outline: none; }
+
+        .tb-row b { color: var(--ink); font-weight: 400; }
+
+        /* ---------- hero ---------- */
+        .hero {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 44px 24px 40px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 48px;
+            align-items: center;
+        }
+
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--hazard);
+            margin-bottom: 18px;
+        }
+
+        .kicker::before {
+            content: "";
+            width: 26px;
+            height: 10px;
+            background: repeating-linear-gradient(-45deg, var(--hazard) 0 4px, transparent 4px 8px);
+        }
+
+        .hero h1 {
+            font-family: var(--poster);
+            font-weight: 400;
+            color: var(--ink);
+            font-size: clamp(2.5rem, 5.6vw, 4.3rem);
+            line-height: 1.12;
+            letter-spacing: 0.01em;
+        }
+
+        .hero h1 em {
+            font-style: normal;
+            color: var(--hazard);
+        }
+
+        .dek {
+            margin-top: 18px;
+            font-family: var(--text);
+            font-weight: 700;
+            font-size: clamp(1.05rem, 1.9vw, 1.25rem);
+            color: var(--ink);
+            line-height: 1.6;
+        }
+
+        .dek .num {
+            font-family: var(--display);
+            font-weight: 800;
+            color: var(--alarm);
+        }
+
+        .hero-lead {
+            margin-top: 18px;
+            max-width: 34em;
+        }
+
+        .sheet {
+            position: relative;
+            border: 1px solid var(--line-strong);
+            background: var(--bp-panel);
+        }
+
+        .sheet-head,
+        .sheet-foot {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 8px 12px;
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .sheet-head { border-bottom: 1px solid var(--line); }
+        .sheet-foot { border-top: 1px solid var(--line); }
+        .sheet-head b, .sheet-foot b { color: var(--ink); font-weight: 400; }
+
+        .stick-svg { display: block; width: 100%; height: auto; }
+
+        .stick-svg text {
+            font-family: "Fragment Mono", monospace;
+            font-size: 11px;
+            fill: var(--soft);
+            letter-spacing: 0.04em;
+        }
+
+        .stick-svg .lbl-cn {
+            font-family: "Noto Sans SC", sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            fill: var(--ink);
+        }
+
+        .stick-svg .ghost {
+            fill: none;
+            stroke: var(--cyan);
+            stroke-width: 10;
+            stroke-linecap: round;
+            opacity: 0.22;
+        }
+
+        .stick-svg .stick {
+            fill: var(--ink);
+        }
+
+        .stick-svg .dim {
+            stroke: var(--muted);
+            stroke-width: 1;
+            fill: none;
+        }
+
+        .stick-svg .swing {
+            fill: none;
+            stroke: var(--hazard);
+            stroke-width: 1.6;
+            stroke-dasharray: 5 4;
+        }
+
+        .js .stick-svg .flex {
+            transform-origin: 260px 160px;
+            animation: flex 3.6s ease-in-out infinite;
+        }
+
+        @keyframes flex {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2.2deg); }
+            75% { transform: rotate(2.2deg); }
+        }
+
+        .js .stick-svg .crack {
+            animation: crack 3.6s ease-in-out infinite;
+        }
+
+        @keyframes crack {
+            0%, 20%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* ---------- nav ---------- */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 120;
+            background: rgba(11, 33, 67, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-nav-inner {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 14px;
+            display: flex;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 12px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 3px solid transparent;
+        }
+
+        .section-nav a small {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--hazard);
+        }
+
+        .section-nav a:hover,
+        .section-nav a:focus-visible { color: var(--ink); outline: none; }
+
+        .section-nav a.is-active {
+            color: var(--ink);
+            border-bottom-color: var(--hazard);
+        }
+
+        /* ---------- article ---------- */
+        article {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 24px 40px;
+        }
+
+        .chapter {
+            position: relative;
+            padding: 72px 0 24px;
+        }
+
+        .chapter > * + * { margin-top: 1.1em; }
+
+        .chapter-tag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .chapter-tag b {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0;
+            color: var(--bp-deep);
+            background: var(--hazard);
+            padding: 2px 10px;
+        }
+
+        .chapter-tag::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--line);
+        }
+
+        .chapter h2 {
+            font-family: var(--poster);
+            font-weight: 400;
+            color: var(--ink);
+            font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+            line-height: 1.3;
+            letter-spacing: 0.01em;
+            margin-top: 0.6em;
+        }
+
+        .chapter h2 small {
+            display: block;
+            font-family: var(--text);
+            font-weight: 500;
+            font-size: 0.5em;
+            color: var(--cyan);
+            margin-top: 6px;
+            letter-spacing: 0;
+        }
+
+        .chapter strong { color: var(--ink); font-weight: 700; }
+
+        .hl {
+            color: var(--ink);
+            box-shadow: inset 0 -0.42em 0 rgba(255, 210, 63, 0.3);
+        }
+
+        .points { list-style: none; counter-reset: pt; }
+
+        .points li {
+            position: relative;
+            padding-left: 34px;
+        }
+
+        .points li + li { margin-top: 1em; }
+
+        .points li::before {
+            content: "";
+            position: absolute;
+            left: 6px;
+            top: 0.72em;
+            width: 12px;
+            height: 12px;
+            border: 1.5px solid var(--hazard);
+            transform: rotate(45deg);
+        }
+
+        ol.points li::before {
+            counter-increment: pt;
+            content: counter(pt);
+            left: 0;
+            top: 0.3em;
+            width: 22px;
+            height: 22px;
+            transform: none;
+            display: grid;
+            place-items: center;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--bp-deep);
+            background: var(--hazard);
+            border: 0;
+            border-radius: 50%;
+        }
+
+        blockquote {
+            position: relative;
+            margin: 2em 0;
+            padding: 22px 24px 20px 26px;
+            border: 1px solid var(--alarm);
+            background: var(--alarm-wash);
+        }
+
+        blockquote::before {
+            content: "⚠ QUOTE";
+            position: absolute;
+            top: -0.8em;
+            left: 18px;
+            padding: 0 8px;
+            background: var(--bp);
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            color: var(--alarm);
+        }
+
+        blockquote p {
+            font-family: var(--text);
+            font-weight: 700;
+            font-size: clamp(1.1rem, 2.2vw, 1.32rem);
+            line-height: 1.7;
+            color: var(--ink);
+        }
+
+        blockquote cite {
+            display: block;
+            margin-top: 10px;
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--soft);
+        }
+
+        blockquote.law {
+            border-color: var(--hazard);
+            background: var(--hazard-wash);
+            text-align: center;
+            padding: 30px 24px 26px;
+        }
+
+        blockquote.law::before { content: "LAW · 定律"; color: var(--hazard); }
+
+        blockquote.law p {
+            font-family: var(--poster);
+            font-weight: 400;
+            font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+            line-height: 1.5;
+        }
+
+        /* ---------- figures ---------- */
+        .fig {
+            margin: 2.2em 0;
+            border: 1px solid var(--line-strong);
+            background: var(--bp-panel);
+        }
+
+        .fig-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .fig-head b {
+            font-weight: 700;
+            font-size: 0.98rem;
+            color: var(--ink);
+        }
+
+        .fig-head span {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        .fig-body { padding: 16px 16px 14px; }
+
+        .fig-note {
+            padding: 10px 14px 12px;
+            border-top: 1px dashed var(--line);
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        /* load bars */
+        .load + .load { margin-top: 16px; }
+
+        .load-label {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+        }
+
+        .load-label b {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 0.92rem;
+            color: var(--ink);
+            white-space: nowrap;
+        }
+
+        .track {
+            position: relative;
+            height: 22px;
+            border: 1px solid var(--line-strong);
+            background: repeating-linear-gradient(90deg, transparent 0 calc(33.333% - 1px), var(--line) calc(33.333% - 1px) 33.333%);
+        }
+
+        .track i {
+            position: absolute;
+            inset: 2px auto 2px 2px;
+            width: calc(var(--w) - 4px);
+            background: var(--cyan);
+        }
+
+        .track i.alarm { background: repeating-linear-gradient(-45deg, var(--alarm) 0 6px, #c43a2c 6px 12px); }
+        .track i.hazard { background: var(--hazard); }
+
+        .js .reveal .track i {
+            width: 0;
+            transition: width 1.1s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .js .reveal.is-in .track i { width: calc(var(--w) - 4px); }
+
+        .ballots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(26px, 1fr));
+            gap: 5px;
+            margin-top: 4px;
+        }
+
+        .ballots span {
+            aspect-ratio: 1;
+            border: 1px solid var(--hazard);
+            display: grid;
+            place-items: center;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--bp-deep);
+            background: var(--hazard);
+        }
+
+        .js .reveal .ballots span {
+            background: transparent;
+            transition: background 0.2s ease;
+            transition-delay: calc(var(--i) * 22ms);
+        }
+
+        .js .reveal.is-in .ballots span { background: var(--hazard); }
+
+        .ballots span.no,
+        .js .reveal .ballots span.no,
+        .js .reveal.is-in .ballots span.no {
+            background: transparent;
+            border-color: var(--muted);
+            color: var(--muted);
+        }
+
+        .ballots-cap {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .ballots-cap b {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: var(--hazard);
+            line-height: 1;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border: 1px solid var(--line-strong);
+            margin: 2em 0;
+        }
+
+        .stat {
+            padding: 16px 14px 14px;
+            background: var(--bp-panel);
+        }
+
+        .stat + .stat { border-left: 1px solid var(--line-strong); }
+
+        .stat-num {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1.9rem;
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .stat-num small {
+            font-family: var(--text);
+            font-weight: 500;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-left: 3px;
+        }
+
+        .stat-num.alarm { color: var(--alarm); }
+        .stat-num.hazard { color: var(--hazard); }
+
+        .stat p {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        /* coalition */
+        .coalition {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--line-strong);
+        }
+
+        .camp {
+            background: var(--bp-deep);
+            padding: 14px 14px 16px;
+        }
+
+        .camp h4 {
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .camp h4 small {
+            display: block;
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .camp ul { list-style: none; font-size: 0.86rem; line-height: 1.6; }
+
+        .camp li { padding: 5px 0; border-top: 1px dashed var(--line); }
+
+        .camp li::before {
+            content: "WANT ";
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            color: var(--cyan);
+        }
+
+        .camp li.broken {
+            color: var(--alarm);
+            font-weight: 700;
+        }
+
+        .camp li.broken::before { content: "GOT ✕ "; color: var(--alarm); }
+
+        .pipeline {
+            list-style: none;
+            padding: 16px;
+            display: grid;
+            gap: 0;
+        }
+
+        .pipeline li {
+            position: relative;
+            padding: 10px 14px;
+            border: 1px solid var(--line-strong);
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--ink);
+        }
+
+        .pipeline li + li { margin-top: 26px; }
+
+        .pipeline li + li::before {
+            content: "▼";
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8rem;
+            color: var(--hazard);
+            line-height: 22px;
+        }
+
+        .pipeline li.input { border-color: var(--alarm); background: var(--alarm-wash); }
+        .pipeline li.end { border-color: var(--alarm); background: var(--alarm); color: #fff; font-weight: 700; text-align: center; }
+
+        .pipeline small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .canada { margin-top: 10px; display: grid; gap: 6px; }
+
+        .canada div {
+            display: grid;
+            grid-template-columns: 44px 1fr 52px;
+            gap: 10px;
+            align-items: center;
+            font-size: 0.82rem;
+        }
+
+        .canada .track { height: 14px; }
+
+        .canada b {
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--ink);
+            text-align: right;
+        }
+
+        /* circuit */
+        .circuit { padding: 16px; display: grid; gap: 18px; }
+
+        .wire {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .node {
+            position: relative;
+            padding: 10px 10px;
+            border: 1px solid var(--line-strong);
+            font-size: 0.84rem;
+            line-height: 1.5;
+            color: var(--soft);
+        }
+
+        .node:first-child {
+            border-color: var(--alarm);
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        .node:last-child {
+            border-color: var(--hazard);
+            background: var(--hazard-wash);
+            color: var(--ink);
+        }
+
+        .node:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -23px;
+            width: 22px;
+            border-top: 1.5px solid var(--hazard);
+        }
+
+        .node:not(:last-child)::before {
+            content: "";
+            position: absolute;
+            top: calc(50% - 4px);
+            right: -24px;
+            border: 4.5px solid transparent;
+            border-left: 6px solid var(--hazard);
+            border-right: 0;
+        }
+
+        .node small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.64rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .clock {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            border: 1px solid var(--line-strong);
+            margin: 2em 0;
+        }
+
+        .clock div { padding: 16px; background: var(--bp-panel); }
+        .clock div + div { border-left: 1px solid var(--line-strong); }
+
+        .clock b {
+            display: block;
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 2.3rem;
+            line-height: 1;
+            color: var(--ink);
+        }
+
+        .clock div + div b { color: var(--alarm); }
+
+        .clock span { font-size: 0.86rem; color: var(--muted); }
+
+        /* pressure cooker */
+        .cooker-svg { display: block; width: 100%; height: auto; }
+
+        .cooker-svg text {
+            font-family: "Fragment Mono", monospace;
+            font-size: 11px;
+            fill: var(--soft);
+        }
+
+        .cooker-svg .cn {
+            font-family: "Noto Sans SC", sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            fill: var(--ink);
+        }
+
+        .cooker-svg .cn.alarm { fill: var(--alarm); }
+        .cooker-svg .cn.hazard { fill: var(--hazard); }
+
+        .cooker-svg .body {
+            fill: rgba(143, 211, 255, 0.06);
+            stroke: var(--ink);
+            stroke-width: 2;
+        }
+
+        .cooker-svg .hatch { fill: url(#hatch); }
+
+        .cooker-svg .weld {
+            stroke: var(--alarm);
+            stroke-width: 3;
+            fill: none;
+        }
+
+        .cooker-svg .jet {
+            fill: none;
+            stroke: var(--hazard);
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-dasharray: 10 8;
+        }
+
+        .js .cooker-svg .jet { animation: jet 0.9s linear infinite; }
+
+        @keyframes jet { to { stroke-dashoffset: -18; } }
+
+        .cases {
+            display: grid;
+            gap: 14px;
+        }
+
+        .case {
+            border: 1px solid var(--line-strong);
+            background: var(--bp-panel);
+        }
+
+        .case-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .case-head b {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--hazard);
+        }
+
+        .case-head span { font-weight: 700; color: var(--ink); font-size: 0.92rem; }
+
+        .case-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .case-cols > div { padding: 12px 14px 14px; }
+        .case-cols > div + div { border-left: 1px dashed var(--line); }
+
+        .case-cols h5 {
+            font-family: var(--mono);
+            font-weight: 400;
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            color: var(--cyan);
+        }
+
+        .case-cols > div + div h5 { color: var(--alarm); }
+
+        .case-cols ul { list-style: none; font-size: 0.86rem; line-height: 1.6; }
+
+        .case-cols li { padding: 4px 0 4px 14px; position: relative; }
+
+        .case-cols li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: var(--muted);
+        }
+
+        .fed { padding: 16px; }
+
+        .fed .load-label span { color: var(--soft); }
+
+        /* area ledger */
+        .area {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 22px;
+            align-items: end;
+            padding: 18px 16px 16px;
+        }
+
+        .area-squares {
+            position: relative;
+            width: 220px;
+            height: 220px;
+        }
+
+        .sq-big {
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(45deg, rgba(143, 211, 255, 0.18) 0 2px, transparent 2px 8px),
+                rgba(143, 211, 255, 0.08);
+            border: 1.5px solid var(--cyan);
+        }
+
+        .sq-small {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 34.8px;
+            height: 34.8px;
+            background: var(--alarm);
+            box-shadow: 0 0 0 3px var(--bp-deep);
+        }
+
+        .sq-big span,
+        .area-squares > b {
+            position: absolute;
+            font-family: var(--display);
+            font-weight: 800;
+            color: var(--ink);
+        }
+
+        .sq-big span { top: 14px; right: 14px; font-size: 1.5rem; }
+
+        .area-legend { display: grid; gap: 14px; }
+
+        .area-legend div {
+            padding-left: 14px;
+            border-left: 4px solid var(--cyan);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .area-legend div.cost { border-left-color: var(--alarm); }
+
+        .area-legend b {
+            display: block;
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--ink);
+        }
+
+        .area-legend div.cost b { color: var(--alarm); }
+
+        .area-legend small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--muted);
+        }
+
+        /* close */
+        .watershed {
+            margin: 2em 0;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 18px;
+            align-items: center;
+            padding: 18px;
+            border: 1px solid var(--hazard);
+            background: var(--hazard-wash);
+        }
+
+        .watershed b {
+            font-family: var(--display);
+            font-weight: 800;
+            font-size: clamp(2.6rem, 7vw, 3.8rem);
+            line-height: 1;
+            color: var(--hazard);
+        }
+
+        .watershed p { color: var(--ink); font-size: 0.95rem; }
+
+        .final {
+            margin-top: 2em;
+            padding: 22px 22px 20px;
+            background: repeating-linear-gradient(-45deg, var(--hazard) 0 12px, #141414 12px 24px);
+        }
+
+        .final p {
+            background: var(--bp-deep);
+            padding: 18px 18px 16px;
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        /* ---------- footer ---------- */
+        footer {
+            max-width: var(--wide-w);
+            margin: 24px auto 0;
+            padding: 0 24px 48px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding-top: 14px;
+            border-top: 1px solid var(--line-strong);
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--muted);
+        }
+
+        .footer-inner a {
+            color: var(--ink);
+            text-decoration: none;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-inner a:hover,
+        .footer-inner a:focus-visible { color: var(--hazard); outline: none; }
+
+        /* ---------- reveal ---------- */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .js .reveal.is-in { opacity: 1; transform: none; }
+
+        .js .hero > * { animation: rise 0.8s cubic-bezier(.2, .7, .2, 1) both; }
+        .js .hero > *:nth-child(2) { animation-delay: 0.15s; }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 940px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .tb-row { grid-template-columns: auto 1fr auto; }
+            .tb-row .tb-sheet { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 0.98rem; line-height: 1.9; }
+
+            .titleblock { padding: 14px 16px 0; }
+            .tb-row { grid-template-columns: auto 1fr; }
+            .tb-row .tb-title { display: none; }
+
+            .hero { padding: 28px 16px 30px; }
+
+            article { padding: 0 16px 28px; }
+
+            .chapter { padding-top: 54px; }
+
+            .stats { grid-template-columns: 1fr; }
+            .stat { display: grid; grid-template-columns: 120px 1fr; gap: 12px; align-items: center; }
+            .stat + .stat { border-left: 0; border-top: 1px solid var(--line-strong); }
+            .stat p { margin-top: 0; }
+            .stat-num { font-size: 1.5rem; }
+
+            .coalition { grid-template-columns: 1fr; }
+
+            .wire { grid-template-columns: 1fr; gap: 18px; }
+            .node:not(:last-child)::after {
+                top: auto;
+                bottom: -18px;
+                right: auto;
+                left: 22px;
+                width: 0;
+                height: 17px;
+                border-top: 0;
+                border-left: 1.5px solid var(--hazard);
+            }
+            .node:not(:last-child)::before {
+                top: auto;
+                bottom: -18px;
+                right: auto;
+                left: 18px;
+                border: 4.5px solid transparent;
+                border-top: 6px solid var(--hazard);
+                border-bottom: 0;
+            }
+
+            .case-cols { grid-template-columns: 1fr; }
+            .case-cols > div + div { border-left: 0; border-top: 1px dashed var(--line); }
+
+            .area { grid-template-columns: 1fr; justify-items: center; }
+            .area-legend { width: 100%; }
+
+            .watershed { grid-template-columns: 1fr; gap: 6px; }
+
+            blockquote { padding: 20px 18px 18px; }
+
+            footer { padding: 0 16px 36px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+            .js .reveal { opacity: 1; transform: none; }
+            .js .reveal .track i { width: calc(var(--w) - 4px); }
+            .js .reveal .ballots span { background: var(--hazard); }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="titleblock">
+        <div class="tb-row">
+            <a href="../../index.html">← Digital Garden</a>
+            <span class="tb-title">Drawing · <b>Pressure Release Schematic</b></span>
+            <span class="tb-sheet">Sheet 27-W</span>
+            <span>第 27 期 · 2026.11.08</span>
+        </div>
+    </header>
+
+    <section class="hero" aria-labelledby="title">
+        <div>
+            <p class="kicker">After the Midterms · 中期选举之后</p>
+            <h1 id="title">极化、算力反噬<br>与外交<em>“掀桌子”</em></h1>
+            <p class="dek">未来几年全球动荡背后的 <span class="num">5</span> 个冷酷真相</p>
+            <p class="hero-lead">要让一根筷子断掉，单向用力折很硬，最快的办法是左右来回反复折。大选尘埃落定，全球经济与地缘政治却没有回归平静——真相藏在算力反噬、自相矛盾的政策算计，以及政客在权力终局前的垂死挣扎里。</p>
+        </div>
+
+        <figure class="sheet">
+            <div class="sheet-head"><span><b>Fig. 0</b> · 来回折的筷子</span><span>Fatigue Test</span></div>
+            <svg class="stick-svg" viewBox="0 0 520 300" role="img" aria-label="示意图：一根筷子在 2024 大选与 2026 中期之间被左右反复折弯，中间出现裂纹">
+                <path class="ghost" d="M50,190 Q260,90 470,190"/>
+                <path class="ghost" d="M50,130 Q260,230 470,130"/>
+
+                <g class="flex">
+                    <rect class="stick" x="50" y="154" width="200" height="12" rx="3"/>
+                    <rect class="stick" x="270" y="154" width="200" height="12" rx="3"/>
+                    <polyline class="crack" points="250,154 256,159 252,163 258,166" fill="none" stroke="#ff5b4a" stroke-width="2"/>
+                    <polyline class="crack" points="270,154 264,158 268,162 262,166" fill="none" stroke="#ff5b4a" stroke-width="2"/>
+                </g>
+
+                <path class="swing" d="M480,108 A60,60 0 0 1 480,212"/>
+                <polygon points="476,212 486,212 481,222" fill="#ffd23f"/>
+                <path class="swing" d="M40,212 A60,60 0 0 1 40,108"/>
+                <polygon points="35,108 45,108 40,98" fill="#ffd23f"/>
+
+                <line class="dim" x1="260" y1="40" x2="260" y2="140"/>
+                <line class="dim" x1="250" y1="40" x2="270" y2="40"/>
+                <text x="276" y="52">FRACTURE ZONE</text>
+                <text class="lbl-cn" x="276" y="72" style="fill:#ff5b4a">断裂点</text>
+
+                <text class="lbl-cn" x="58" y="90">左折 · 2024 大选</text>
+                <text x="58" y="106">REVERSAL 01</text>
+                <text class="lbl-cn" x="330" y="252">右折 · 2026 中期</text>
+                <text x="330" y="268">REVERSAL 02</text>
+                <text class="lbl-cn" x="58" y="262" style="fill:#ffd23f">再折 · 2028 ?</text>
+            </svg>
+            <div class="sheet-foot"><span>鞭子一下没少挨</span><b>脏东西也全吃下去了</b></div>
+        </figure>
+    </section>
+
+    <nav class="section-nav" aria-label="文章目录">
+        <div class="section-nav-inner">
+            <a href="#intro"><small>00</small>导言</a>
+            <a href="#compute"><small>01</small>算力反噬</a>
+            <a href="#coalition"><small>02</small>同盟捅穿</a>
+            <a href="#braindead"><small>03</small>内政脑死亡</a>
+            <a href="#flip"><small>04</small>外交掀桌子</a>
+            <a href="#figleaf"><small>05</small>遮羞布</a>
+            <a href="#close"><small>∎</small>结语</a>
+        </div>
+    </nav>
+
+    <article>
+        <section class="chapter" id="intro">
+            <div class="chapter-tag"><b>00</b>Introduction</div>
+            <h2>文章导言<small>为什么大选之后，世界反而更动荡？</small></h2>
+            <p>要想让一根筷子断掉，单向用力折往往很硬，最快的方法是左右来回反复折腾。用这个比喻来形容今天的美国政治与选民困境，简直再贴切不过。</p>
+            <p>在美国政治极化高度扭曲的当下，选民的投票行为陷入了一场荒诞的死循环：上一次大选，选民在“站着挨鞭子”与“跪下吃大便”之间选择了挨鞭子；等挨了数十下鞭子、疼得撕心裂肺时，在中期选举中又掉头选择吃大便；结果吃了半顿感到恶心反胃，过几年还得站起来继续挨鞭子。折腾到最后，鞭子一下没少挨，脏东西也全吃下去了。执政党把国家搞得一团糟，对立派系非但没有丝毫深刻的反省与革新，甚至连像样的领队人都推不出来——可仅仅因为对手在当众“自残”，就能在选举中轻松实现翻盘。</p>
+            <p>然而，真正令人脊背发凉的核心问题在于：<span class="hl">为什么大选尘埃落定之后，全球经济与地缘政治非但没有回归平静，反而面临着更剧烈的动荡、撕裂与“掀桌子”？</span></p>
+            <p>真相往往藏在资本狂热的算力反噬、混乱自相矛盾的政策算计，以及政客在权力终局前的垂死挣扎之中。本文将为你深度拆解未来几年全球政治经济格局中最反直觉、也最冷酷的 5 个核心发现。</p>
+        </section>
+
+        <section class="chapter" id="compute">
+            <div class="chapter-tag"><b>01</b>发现一 · Compute Backlash</div>
+            <h2>AI 算力狂飙的基层反噬<small>科技利空为何一夜变“核弹”？</small></h2>
+            <p>长期以来，华尔街与资本市场一直将人工智能（AI）算力基建视为长效重磅利好，疯狂炒作算力、电力、铜线与存储的供应短缺。然而在需求端未发生任何实质改变的情况下，原本被寄予厚望的算力设施建设，突然在政治与资本市场上演了极其惨烈的“砸盘逆转”。</p>
+            <p>这一突变的本质，在于算力狂飙引发了美国基层选民的强烈愤怒，科技巨头<span class="hl">“转嫁成本、独占收益”</span>的掠夺模式遭到了地方社会的全面抵抗：</p>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>德州电网：申请并网的算力负荷</b><span>Load Test</span></div>
+                <div class="fig-body">
+                    <div class="load">
+                        <div class="load-label"><span>德州现有电网总容量</span><b>1×</b></div>
+                        <div class="track" role="img" aria-label="德州现有电网总容量，记为 1 倍"><i style="--w: 33.333%"></i></div>
+                    </div>
+                    <div class="load">
+                        <div class="load-label"><span>科技巨头排队申请并网</span><b>4.7 亿千瓦 · 3×</b></div>
+                        <div class="track" role="img" aria-label="申请并网负荷 4.7 亿千瓦，为现有电网总容量的 3 倍"><i class="alarm" style="--w: 100%"></i></div>
+                    </div>
+                </div>
+                <p class="fig-note">扩建电网的开支由当地房产税与消费税平摊——电费飙升、冷却水被大量消耗。</p>
+            </figure>
+
+            <ol class="points">
+                <li><strong>利益的极度错配</strong>：科技巨头在德克萨斯州等地，拿着前任共和党州长批准的 20 年免税优惠，赚取了数万亿美元的市值。然而，投入数百亿美元砸出来的算力中心，机房建成后运维人员甚至不足 50 人，而训练出来的 AI 转头就跑去抢占白领阶层的饭碗。</li>
+                <li><strong>基建成本的无耻转嫁</strong>：科技巨头排队申请并网的算力负荷高达 4.7 亿千瓦，相当于德州现有电网总容量的 3 倍！扩建电网的巨额基建开支，却实打实地由当地普通人的房产税和消费税平摊，直接导致当地电费飙升、冷却水被大量消耗。</li>
+                <li><strong>地方民意的全面反扑</strong>：在本次中期选举中，全美 41 项与数据中心相关的地方公投中，有 40 项的结果站在了限制数据中心一边（唯一例外是北达科他州小镇哈伍德），基建狂飙瞬间撞上了民意的铁板。</li>
+                <li><strong>政界与资本的撕逼交锋</strong>：没有任何理工科背景的 34 岁民主党众议员雅斯敏·安萨里（Yassamin Ansari），公然呼吁暂停先进 AI 研发、加强监管，并将其列为新国会头号议程。德州当选州长吉娜·伊诺霍萨（Gina Hinojosa）更是直接向科技巨头发难。</li>
+            </ol>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>与数据中心相关的地方公投</b><span>Ballot Measures</span></div>
+                <div class="fig-body">
+                    <div class="ballots-cap"><span>结果站在限制一边</span><b>40 / 41</b></div>
+                    <div class="ballots" id="ballots" aria-label="41 项公投中 40 项结果限制数据中心，1 项例外"></div>
+                </div>
+                <p class="fig-note">27 项限制性提案获得通过，13 项支持数据中心的提案被否决；唯一例外是北达科他州哈伍德。来源：Ballotpedia。</p>
+            </figure>
+
+            <blockquote>
+                <p>我并不恨数据中心，恨的是它们如何占德州人的便宜。</p>
+                <cite>—— 德克萨斯州当选州长 吉娜·伊诺霍萨（Gina Hinojosa）</cite>
+            </blockquote>
+
+            <div class="stats reveal">
+                <div class="stat"><div class="stat-num hazard">20<small>年</small></div><p>前任州长批准的免税优惠</p></div>
+                <div class="stat"><div class="stat-num">&lt;50<small>人</small></div><p>数百亿美元算力中心建成后的运维人员</p></div>
+                <div class="stat"><div class="stat-num alarm">−2.5<small>万亿美元</small></div><p>伊诺霍萨表态后美股科技板块单日蒸发</p></div>
+            </div>
+
+            <p>伊诺霍萨的这番表态犹如向金融市场投下一枚核弹，美股科技板块在单日内蒸发了约 2.5 万亿美元的市值。尽管次日伊诺霍萨被迫出面打圆场，澄清已安排和审批中的项目不受影响，股市才稍稍喘息，但这仅仅是基层选民反抗科技巨头转嫁成本的第一回合交锋。这场战役才刚刚拉开序幕。</p>
+        </section>
+
+        <section class="chapter" id="coalition">
+            <div class="chapter-tag"><b>02</b>发现二 · Coalition Rupture</div>
+            <h2>错乱的关税与战争<small>被一记重税捅穿的选民同盟</small></h2>
+            <p>如果领导者的决策脱离了严密的政经逻辑，仅仅为了追求流量与短期情绪宣泄，最终必然导致政策自相矛盾，亲手拆毁自己的政治基本盘。</p>
+            <p>在过去十余年中，特朗普能够横扫共和党，核心在于他巧妙绑定了两个原本利益冲突的群体：</p>
+            <ul class="points">
+                <li><strong>中南部农业与能源州白人</strong>：忍受贸易战带来的农产品滞销，图的是当局大力开发传统能源，把柴油、电价和农资化肥成本压下去。</li>
+                <li><strong>五大湖锈带蓝领</strong>：铁心支持当局，图的是能压住日常生活成本，并将制造业工厂带回美国。</li>
+            </ul>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>两个基本盘：想要的与得到的</b><span>Coalition Spec</span></div>
+                <div class="coalition">
+                    <div class="camp">
+                        <h4><small>South-Central · Farm &amp; Energy</small>中南部农业与能源州白人</h4>
+                        <ul>
+                            <li>便宜的柴油与电价</li>
+                            <li>便宜的农资化肥</li>
+                            <li class="broken">化肥与柴油贵到种不起地</li>
+                        </ul>
+                    </div>
+                    <div class="camp">
+                        <h4><small>Great Lakes · Rust Belt</small>五大湖锈带蓝领</h4>
+                        <ul>
+                            <li>压住日常生活成本</li>
+                            <li>制造业工厂迁回美国</li>
+                            <li class="broken">工厂没等来，物价飞涨</li>
+                        </ul>
+                    </div>
+                </div>
+            </figure>
+
+            <p>然而，这一精心构建的选民同盟，被一连串草台班子式的自杀决策彻底捅穿：</p>
+            <p>中东重启战火直接推高了全球油价；紧接着，华盛顿又突然对加拿大出口美国的商品加征 50% 的关税。而半个多世纪以来，加拿大一直是美国民生基础物资的真正后方支撑：</p>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>同盟是怎么被捅穿的</b><span>Failure Path</span></div>
+                <ol class="pipeline">
+                    <li class="input"><small>Input A</small>中东重启战火，油价飙升</li>
+                    <li class="input"><small>Input B · 加拿大 50% 关税</small>
+                        <div class="canada" aria-label="原文给出的加拿大份额">
+                            <div><span>原油</span><div class="track"><i class="alarm" style="--w: 60%"></i></div><b>&gt;60%</b></div>
+                            <div><span>钾肥</span><div class="track"><i class="alarm" style="--w: 90%"></i></div><b>~90%</b></div>
+                            <div><span>木材</span><div class="track"><i class="alarm" style="--w: 30%"></i></div><b>~30%</b></div>
+                        </div>
+                    </li>
+                    <li><small>Stage 1</small>通胀螺旋上升</li>
+                    <li><small>Stage 2</small>农业州种不起地 + 锈带工人买不起货</li>
+                    <li class="end">基本盘彻底解体</li>
+                </ol>
+            </figure>
+
+            <p>一手搞乱中东，一手重创加拿大，美国国内通胀在短时间内螺旋上升。中南部农户下地发现化肥与柴油贵到根本种不起地；锈带工人没等来工厂迁回，走进超市却发现物价飞涨。这种<span class="hl">“冬天拆了门板当柴烧”</span>的短视决策，让两大核心基本盘同时反水，选民同盟轰然塌房。</p>
+        </section>
+
+        <section class="chapter" id="braindead">
+            <div class="chapter-tag"><b>03</b>发现三 · Lame Duck</div>
+            <h2>内政“脑死亡”与跛脚绝境<small>领导者权威归零后的逃跑潮</small></h2>
+            <p>随着铁票区的反水，总统彻底失去参众两院的控制权后，其内政权力在制度层面上陷入了彻底的“脑死亡”状态。</p>
+            <p>美式政治体制的权力运行有着严密的人事与财政死扣：</p>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>两条被切断的回路</b><span>Circuit Diagram</span></div>
+                <div class="circuit">
+                    <div class="wire">
+                        <div class="node"><small>Senate</small>失去参议院控制权</div>
+                        <div class="node">失去人事任免权</div>
+                        <div class="node">无法任命心腹，免职后无法填补提名</div>
+                        <div class="node">官员跳船，权威归零</div>
+                    </div>
+                    <div class="wire">
+                        <div class="node"><small>House</small>失去众议院控制权</div>
+                        <div class="node">失去立法与钱袋子</div>
+                        <div class="node">税收、预算与福利法案被卡死</div>
+                        <div class="node">行政命令出不了白宫</div>
+                    </div>
+                </div>
+            </figure>
+
+            <p>政治权威的衰退规律极其残酷：<span class="hl">领导者的权威从来不是在办完离职手续时消失的，而是在公布退休时间的那一刻就已经彻底归零。</span></p>
+            <p>败选次日，白宫内部气氛极其低迷，大批官员开始四处活动准备跳船。副总统万斯（Vance）在败选次日更是罕见地公开与总统切割，抛出辛辣嘲讽：</p>
+            <blockquote>
+                <p>输掉选举就是因为这场错误的伊朗战争。谁觉得为了打这场仗赔掉参议院控制权是值得的，那就请。</p>
+                <cite>—— 副总统 万斯（Vance），败选次日</cite>
+            </blockquote>
+            <p>总统在党内迅速从众人捧变成了人人避之不及的“有毒资产”。更深层的绝望在于特朗普独特的政治心理与身份：他已 80 岁高龄，任期只剩最后 2 年，绝不可能像奥巴马那样退而不休当党内太上皇；他本质上是一个靠流量与民粹从外部夺权的“闯入者”，共和党只是他借壳上市的工具。他既无意愿、也无能力为了共和党的未来去和民主党搞跨党派妥协分肥。</p>
+
+            <div class="clock reveal">
+                <div><b>80</b><span>岁高龄，当不了党内太上皇</span></div>
+                <div><b>2</b><span>年任期，没有下一届大选作退路</span></div>
+            </div>
+
+            <p>随着新国会开启，掌握强制传票权和调查听证权的民主党将全面铺开调查。最高法院赋予的总统豁免权仅保护公务行为，根本保不了家族敛财、内幕交易及幕僚行为。在没有下一届大选作为退路、且缺乏国会遮蔽的情况下，一场严酷的政治清算已不可避免。</p>
+        </section>
+
+        <section class="chapter" id="flip">
+            <div class="chapter-tag"><b>04</b>发现四 · Pressure Release</div>
+            <h2>内政受阻，外交“掀桌子”<small>宪法漏洞下的全球泄洪危局</small></h2>
+            <p>美式三权分立制度存在一个致命漏洞：总统在内政事务上权力极小，但在外交与军事行动上却拥有庞大的单边裁量权（源于宪法第二条赋予的最高统帅权）。</p>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>高压锅剖面：阀门焊死后，压力往哪走</b><span>Section A–A</span></div>
+                <svg class="cooker-svg" viewBox="0 0 640 330" role="img" aria-label="高压锅剖面示意：内政阀门被参众两院焊死，压力从外交与军事喷口喷出，形成关税、制裁与中东局势三股射流">
+                    <defs>
+                        <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                            <line x1="0" y1="0" x2="0" y2="8" stroke="rgba(143,211,255,0.35)" stroke-width="2"/>
+                        </pattern>
+                    </defs>
+                    <!-- body -->
+                    <path class="body" d="M110,120 L110,280 Q110,300 130,300 L350,300 Q370,300 370,280 L370,120 Z"/>
+                    <rect class="hatch" x="112" y="200" width="256" height="98"/>
+                    <rect x="96" y="104" width="288" height="18" fill="#0b2143" stroke="#eef4ff" stroke-width="2"/>
+                    <!-- welded valve -->
+                    <rect x="222" y="74" width="36" height="30" fill="#0b2143" stroke="#eef4ff" stroke-width="2"/>
+                    <path class="weld" d="M216,104 l6,-6 l6,6 l6,-6 l6,6 l6,-6 l6,6 l6,-6 l6,6 l6,-6"/>
+                    <line x1="214" y1="66" x2="266" y2="112" stroke="#ff5b4a" stroke-width="3"/>
+                    <line x1="266" y1="66" x2="214" y2="112" stroke="#ff5b4a" stroke-width="3"/>
+                    <line class="dim" x1="240" y1="66" x2="240" y2="30" stroke="#8aa2c6"/>
+                    <text class="cn alarm" x="174" y="24">内政阀门 · 焊死</text>
+                    <text x="300" y="24">SENATE + HOUSE LOST</text>
+
+                    <text class="cn" x="168" y="170">内政 · 过剩的政治能量</text>
+                    <text x="168" y="188">PRESSURE ↑↑↑</text>
+
+                    <!-- nozzle -->
+                    <path d="M370,170 L430,158 L430,198 L370,186 Z" fill="#0b2143" stroke="#eef4ff" stroke-width="2"/>
+                    <text class="cn hazard" x="376" y="230">外交 / 军事喷口</text>
+                    <text x="376" y="248">ART. II · COMMANDER-IN-CHIEF</text>
+
+                    <!-- jets -->
+                    <path class="jet" d="M436,168 Q500,120 600,92"/>
+                    <path class="jet" d="M436,178 L600,178"/>
+                    <path class="jet" d="M436,188 Q500,236 600,264"/>
+                    <text class="cn" x="540" y="82">关税</text>
+                    <text class="cn" x="540" y="168">制裁</text>
+                    <text class="cn" x="540" y="290">中东局势</text>
+                </svg>
+                <p class="fig-note">能量守恒：内政阀门焊死、跨党派妥协走不通时，过剩的政治能量会从外交与军事缝隙中以更大的压强喷出。</p>
+            </figure>
+
+            <p>权力运作遵循能量守恒定律。当高压锅的内政阀门被彻底焊死、跨党派妥协的路走不通时，总统必然会将过剩的政治能量，从外交与军事缝隙中以更大的压强喷射出来。回顾历史，每当总统陷入跛脚境地，将危机转嫁给外部世界几乎是固定的剧本：</p>
+
+            <div class="cases reveal">
+                <div class="case">
+                    <div class="case-head"><b>2018—2019</b><span>特朗普跛脚期</span></div>
+                    <div class="case-cols">
+                        <div>
+                            <h5>掀桌子手段</h5>
+                            <ul>
+                                <li>全面升级全球关税与科技制裁</li>
+                                <li>要求韩国承担 5 倍驻军费（威胁撤军）</li>
+                                <li>恶意阻挠 WTO 上诉机构新法官遴选</li>
+                                <li>击杀伊朗高官苏莱曼尼，强推《亚伯拉罕协议》</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>长远后果</h5>
+                            <ul>
+                                <li>创伤亚太同盟信用，中日韩自贸区谈判陷入僵局</li>
+                                <li>WTO 最高裁判机构因人数不足彻底瘫痪</li>
+                                <li>埋下 2023 年加沙局势大爆发的炸药包</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="case">
+                    <div class="case-head"><b>2014</b><span>奥巴马跛脚期</span></div>
+                    <div class="case-cols">
+                        <div>
+                            <h5>掀桌子手段</h5>
+                            <ul>
+                                <li>重启对台军售，推行排除中国的 TPP 协定</li>
+                                <li>密集启动对华双反调查</li>
+                                <li>签署伊核协议，强行促成“萨德”反导系统入韩</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h5>长远后果</h5>
+                            <ul>
+                                <li>硬生生拆散了东亚一体化与中日韩自贸区蓝图</li>
+                                <li>加剧了东亚安全格局的对立与地缘动荡</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p>更精明的算计在于<span class="hl">“前人埋雷，后人扛雷”</span>。正如 2020 年选情危急时，特朗普配合美联储无限量化宽松，在短短几个月内将美联储资产负债表从 4.2 万亿美元暴涨至 7.2 万亿美元，把随后的超级通胀烂摊子全额甩给接盘的拜登政府一样——如今内政动弹不得的执政者，完全可以通过行政命令乱加关税、驱逐廉价劳工、在中东制造局势，把失控的通胀与地缘烂摊子再次全数留给下一届执政党。</p>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>2020：美联储资产负债表</b><span>Mine Laid</span></div>
+                <div class="fed">
+                    <div class="load">
+                        <div class="load-label"><span>扩表前</span><b>4.2 万亿美元</b></div>
+                        <div class="track" role="img" aria-label="扩表前 4.2 万亿美元"><i style="--w: 58.3%"></i></div>
+                    </div>
+                    <div class="load">
+                        <div class="load-label"><span>短短几个月后</span><b>7.2 万亿美元</b></div>
+                        <div class="track" role="img" aria-label="几个月后 7.2 万亿美元"><i class="hazard" style="--w: 100%"></i></div>
+                    </div>
+                </div>
+                <p class="fig-note">随后的超级通胀，由接盘的拜登政府扛下。</p>
+            </figure>
+        </section>
+
+        <section class="chapter" id="figleaf">
+            <div class="chapter-tag"><b>05</b>发现五 · The Fig Leaf</div>
+            <h2>大国博弈的冷酷真相<small>外交永远只是内政的遮羞布</small></h2>
+            <p>许多人感到困惑：既然全球化与自由贸易在经济学上被证明是最佳解，双赢能带来巨大收益，为什么超级大国偏要亲手砸碎这一共识？</p>
+            <p>从数据上看，全球化为超级大国带来了惊人的整体收益：</p>
+            <ul class="points">
+                <li><strong>收益</strong>：每年从全球化中获取超过 2 万亿美元的收益（包括外包剪刀差、高端服务业垄断、知识产权租金及美元铸币税等）。</li>
+                <li><strong>成本</strong>：每年因本土产业被挤走所付出的代价仅约为 500 亿美元。</li>
+            </ul>
+            <p>然而，<span class="hl">经济学算的是国家总账，而政治学算的是利益如何分配、账单由谁承担</span>：</p>
+
+            <figure class="fig reveal">
+                <div class="fig-head"><b>同一本总账，两个收件人</b><span>Area to Scale</span></div>
+                <div class="area">
+                    <div class="area-squares" role="img" aria-label="面积比例图：2 万亿美元收益的方块是 500 亿美元代价方块的 40 倍">
+                        <div class="sq-big"><span>40×</span></div>
+                        <div class="sq-small"></div>
+                    </div>
+                    <div class="area-legend">
+                        <div><b>2 万亿美元 / 年</b>流入华尔街、硅谷与跨国巨头的避税账户<small>外包剪刀差 · 服务业垄断 · 知识产权租金 · 美元铸币税</small></div>
+                        <div class="cost"><b>500 亿美元 / 年</b>全额由本土制造业工人与基层退化人群承担<small>本土产业被挤走的代价</small></div>
+                    </div>
+                </div>
+                <p class="fig-note">方块面积按比例绘制：红色小方块是蓝色大方块的 1/40。</p>
+            </figure>
+
+            <p>当内部分赃机制彻底腐烂、阶级矛盾无法调和时，华盛顿的政客宁可让国家整体亏损数千亿甚至上万亿，只要能多争取一张选票或阻挡一天国会传票，就会毫不犹豫地推翻棋盘。</p>
+            <p>昔日副总统彭斯发表被华盛顿精英惊呼为“新冷战宣言”的对华演说时，全美大众甚至无暇关注，因为当天全美民众都在围观大法官的性丑闻听证会。这一幕极为讽刺地揭示了华盛顿政客的自嗨与底层民众真实关注点之间的巨大断层。</p>
+            <blockquote class="law">
+                <p>所有的外部狂风暴雨，全都是内部矛盾的投影；外交永远只是内政的遮羞布。</p>
+            </blockquote>
+            <p>在大洋彼岸那些只算计选票、个人退路与家族生死的政客眼里，不管是盟友还是对手，全都是家里揭不开锅时顺手抓来转移视线与泄洪的沙包。根本没有人在乎外部的理性双赢。</p>
+        </section>
+
+        <section class="chapter" id="close">
+            <div class="chapter-tag"><b>∎</b>Conclusion</div>
+            <h2>结语与思考<small>为漫长而冷酷的秩序坍塌做足准备</small></h2>
+            <p>纵观全篇，当前全球秩序持续动荡的根源，不在于外部冲突的偶然爆发，而在于超级大国彻底放弃了痛苦的内部改革，转而向外部互害与卸洪。</p>
+            <div class="watershed reveal">
+                <b>2018</b>
+                <p>不仅是自由贸易体系被打破的起点，更是超级大国政治全面转向外部泄洪的分水岭。</p>
+            </div>
+            <p>面对未来的漫长动荡，我们必须保持高度清醒的认知：不要抱有虚幻的幻想，更不要试图用理论上的“理性双赢”去赌一个处于政治暮年、退无可退的赌徒的良知。</p>
+            <div class="final reveal">
+                <p>当超级大国彻底放弃内部改革，转而将外部世界作为卸洪与互害的沙包；当华盛顿的政客为了家族生死与一张选票随时准备推翻桌上的棋盘——身处风暴边缘与全球供应链节点上的我们，绝不能再抱有“双赢理智”的幻想，而必须为这场漫长而冷酷的秩序坍塌做足准备。</p>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="../../index.html">← 返回 Digital Garden</a>
+            <span>第 27 期 · 极化、算力反噬与外交“掀桌子”</span>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var box = document.getElementById("ballots");
+            for (var b = 1; b <= 41; b++) {
+                var s = document.createElement("span");
+                s.textContent = b === 41 ? "✕" : "✓";
+                if (b === 41) s.className = "no";
+                s.style.setProperty("--i", b);
+                s.setAttribute("aria-hidden", "true");
+                box.appendChild(s);
+            }
+
+            var fill = document.getElementById("progressFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+            var activeIdx = -1;
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                fill.style.transform = "scaleX(" + p + ")";
+
+                var cutoff = Math.max(120, window.innerHeight * 0.35);
+                var active = -1;
+                for (var j = 0; j < sections.length; j++) {
+                    if (sections[j].getBoundingClientRect().top <= cutoff) active = j;
+                }
+                if (p > 0.985) active = sections.length - 1;
+                if (active === activeIdx) return;
+                activeIdx = active;
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+                if (active >= 0) {
+                    var nav = links[active].parentNode;
+                    var link = links[active];
+                    nav.scrollTo({ left: link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2, behavior: "smooth" });
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+
+            var reveals = document.querySelectorAll(".reveal");
+            if (!("IntersectionObserver" in window)) {
+                reveals.forEach(function (el) { el.classList.add("is-in"); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+            reveals.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+</html>

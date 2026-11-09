@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 个颠覆认知的地缘政治真相 · 态势简报</title>
+    <meta name="description" content="博索纳罗家族的“润美”传统、买柴油背后的“深圳协议”、伊朗直指 AI 与美元环流的命门、沙特圣地处决案的合法性焦虑、阿拉斯加“真假沙利文”——五个战区的态势简报。">
+    <script>document.documentElement.classList.add("js");</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@400;600;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --night: #0a1013;
+            --night-2: #0f181c;
+            --panel: rgba(18, 29, 34, 0.72);
+            --line: rgba(150, 196, 184, 0.16);
+            --line-strong: rgba(150, 196, 184, 0.34);
+            --text: #dde4df;
+            --soft: #b0bcb6;
+            --muted: #73847e;
+            --phosphor: #8fe3c4;
+            --phosphor-wash: rgba(143, 227, 196, 0.08);
+            --signal: #ff5a1f;
+            --signal-wash: rgba(255, 90, 31, 0.1);
+            --amber: #f2c14e;
+            --display: "Instrument Serif", "Noto Serif SC", serif;
+            --cn: "Noto Serif SC", "Songti SC", "STSong", serif;
+            --mono: "DM Mono", "SFMono-Regular", "Menlo", monospace;
+            --max-w: 690px;
+            --wide-w: 1180px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 76px;
+            background: var(--night);
+        }
+
+        body {
+            font-family: var(--cn);
+            color: var(--soft);
+            background:
+                radial-gradient(ellipse 80% 50% at 70% -10%, rgba(143, 227, 196, 0.09), transparent 70%),
+                radial-gradient(ellipse 60% 40% at 0% 30%, rgba(255, 90, 31, 0.05), transparent 70%),
+                linear-gradient(rgba(150, 196, 184, 0.035) 1px, transparent 1px) 0 0 / 100% 32px,
+                linear-gradient(90deg, rgba(150, 196, 184, 0.035) 1px, transparent 1px) 0 0 / 32px 100%,
+                var(--night);
+            font-size: 1.04rem;
+            line-height: 1.95;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+            mix-blend-mode: multiply;
+            opacity: 0.35;
+            z-index: 300;
+        }
+
+        a { color: inherit; }
+
+        ::selection { background: var(--signal); color: #0a1013; }
+
+        /* ---------- progress ---------- */
+        .progress-bar {
+            position: fixed;
+            inset: 0 0 auto 0;
+            height: 2px;
+            z-index: 250;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--phosphor), var(--signal));
+            transform: scaleX(0);
+            transform-origin: left;
+            box-shadow: 0 0 12px rgba(255, 90, 31, 0.6);
+        }
+
+        /* ---------- masthead ---------- */
+        .masthead {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 20px 24px 0;
+        }
+
+        .masthead-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--line-strong);
+        }
+
+        .masthead-row a {
+            color: var(--phosphor);
+            text-decoration: none;
+        }
+
+        .masthead-row a:hover,
+        .masthead-row a:focus-visible {
+            color: var(--signal);
+            outline: none;
+        }
+
+        .live {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text);
+        }
+
+        .live::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--signal);
+            box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.6);
+            animation: blink 2.4s infinite;
+        }
+
+        @keyframes blink {
+            0% { box-shadow: 0 0 0 0 rgba(255, 90, 31, 0.55); }
+            70% { box-shadow: 0 0 0 9px rgba(255, 90, 31, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 90, 31, 0); }
+        }
+
+        /* ---------- hero ---------- */
+        .hero {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 44px 24px 40px;
+            display: grid;
+            grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+            gap: 44px;
+            align-items: center;
+        }
+
+        .kicker {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--phosphor);
+            margin-bottom: 18px;
+        }
+
+        .kicker span { color: var(--muted); }
+
+        .hero h1 {
+            font-family: var(--cn);
+            font-weight: 900;
+            color: var(--text);
+            font-size: clamp(2.1rem, 4.6vw, 3.5rem);
+            line-height: 1.18;
+            letter-spacing: -0.01em;
+        }
+
+        .hero h1 .five {
+            font-family: var(--display);
+            font-style: italic;
+            font-weight: 400;
+            color: var(--signal);
+            font-size: 1.9em;
+            line-height: 0.8;
+            vertical-align: -0.12em;
+            margin-right: 0.04em;
+            text-shadow: 0 0 34px rgba(255, 90, 31, 0.35);
+        }
+
+        .dek {
+            margin-top: 16px;
+            font-family: var(--display);
+            font-style: italic;
+            font-size: 1.4rem;
+            color: var(--phosphor);
+            line-height: 1.4;
+        }
+
+        .dek b {
+            font-family: var(--cn);
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.82em;
+            color: var(--soft);
+        }
+
+        .hero-lead {
+            margin-top: 22px;
+            max-width: 34em;
+            color: var(--soft);
+        }
+
+        /* ---------- map panel ---------- */
+        .panel {
+            position: relative;
+            border: 1px solid var(--line);
+            background: var(--panel);
+            backdrop-filter: blur(2px);
+        }
+
+        .panel::before,
+        .panel::after {
+            content: "";
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border: 1px solid var(--phosphor);
+            pointer-events: none;
+        }
+
+        .panel::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+        .panel::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+
+        .map-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 14px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .map-head b { color: var(--phosphor); font-weight: 500; }
+
+        .map-svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .land {
+            fill: url(#dots);
+            stroke: rgba(143, 227, 196, 0.28);
+            stroke-width: 0.6;
+            stroke-linejoin: round;
+        }
+
+        .grat line {
+            stroke: rgba(150, 196, 184, 0.08);
+            stroke-width: 0.6;
+        }
+
+        .route {
+            fill: none;
+            stroke: var(--signal);
+            stroke-width: 1.3;
+            stroke-dasharray: 4 4;
+            stroke-linecap: round;
+        }
+
+        .route.faint {
+            stroke: var(--amber);
+            stroke-width: 0.9;
+            opacity: 0.75;
+        }
+
+        .js .route { animation: march 1.6s linear infinite; }
+
+        @keyframes march { to { stroke-dashoffset: -16; } }
+
+        .pin { cursor: pointer; }
+        .pin .core { fill: var(--signal); }
+        .pin .ring {
+            fill: none;
+            stroke: var(--signal);
+            stroke-width: 1;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        .js .pin .ring { animation: ping 2.6s ease-out infinite; }
+        .pin:nth-of-type(2) .ring { animation-delay: 0.5s; }
+        .pin:nth-of-type(3) .ring { animation-delay: 1s; }
+        .pin:nth-of-type(4) .ring { animation-delay: 1.5s; }
+        .pin:nth-of-type(5) .ring { animation-delay: 2s; }
+
+        @keyframes ping {
+            0% { transform: scale(0.6); opacity: 0.9; }
+            100% { transform: scale(3.2); opacity: 0; }
+        }
+
+        .pin text {
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            fill: var(--text);
+            letter-spacing: 0.06em;
+        }
+
+        .pin .tag {
+            fill: rgba(10, 16, 19, 0.85);
+            stroke: rgba(255, 90, 31, 0.6);
+            stroke-width: 0.6;
+        }
+
+        .pin:hover .tag,
+        .pin:focus .tag,
+        .pin.is-hot .tag { fill: var(--signal); }
+        .pin:hover text,
+        .pin:focus text,
+        .pin.is-hot text { fill: #0a1013; }
+        .pin:focus { outline: none; }
+
+        .theatres {
+            list-style: none;
+            border-top: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .theatres li + li { border-left: 1px solid var(--line); }
+
+        .theatres a {
+            display: block;
+            height: 100%;
+            padding: 12px 12px 14px;
+            text-decoration: none;
+            transition: background 0.2s ease;
+        }
+
+        .theatres a:hover,
+        .theatres a:focus-visible,
+        .theatres a.is-hot {
+            background: var(--signal-wash);
+            outline: none;
+        }
+
+        .theatres .no {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--signal);
+            letter-spacing: 0.1em;
+        }
+
+        .theatres .place {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            color: var(--muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .theatres .what {
+            display: block;
+            margin-top: 6px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* ---------- section nav ---------- */
+        .section-nav {
+            position: sticky;
+            top: 0;
+            z-index: 120;
+            background: rgba(10, 16, 19, 0.86);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-nav-inner {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 16px;
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .section-nav-inner::-webkit-scrollbar { display: none; }
+
+        .section-nav a {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 48px;
+            padding: 0 12px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .section-nav a small {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--signal);
+            letter-spacing: 0.08em;
+        }
+
+        .section-nav a:hover,
+        .section-nav a:focus-visible {
+            color: var(--text);
+            outline: none;
+        }
+
+        .section-nav a.is-active {
+            color: var(--text);
+            border-bottom-color: var(--signal);
+        }
+
+        /* ---------- files (chapters) ---------- */
+        article {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 16px 24px 40px;
+        }
+
+        .file {
+            display: grid;
+            grid-template-columns: 230px minmax(0, var(--max-w));
+            gap: 0 56px;
+            padding: 64px 0 56px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .file-meta {
+            position: sticky;
+            top: 84px;
+            align-self: start;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .file-no {
+            font-family: var(--display);
+            font-style: italic;
+            font-size: 4.6rem;
+            line-height: 0.9;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--signal);
+        }
+
+        .file-no small {
+            font-family: var(--mono);
+            font-style: normal;
+            font-size: 0.72rem;
+            color: var(--muted);
+            margin-left: 6px;
+            letter-spacing: 0.1em;
+        }
+
+        .file-meta dl { margin-top: 18px; border-top: 1px solid var(--line); }
+
+        .file-meta dl div {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 7px 0;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .file-meta dd { color: var(--text); text-align: right; }
+
+        .status {
+            display: inline-block;
+            margin-top: 14px;
+            padding: 3px 8px;
+            border: 1px solid var(--signal);
+            color: var(--signal);
+        }
+
+        .status.ok { border-color: var(--phosphor); color: var(--phosphor); }
+
+        .file-body > * + * { margin-top: 1.15em; }
+
+        .file-body h2 {
+            font-family: var(--cn);
+            font-weight: 900;
+            color: var(--text);
+            font-size: clamp(1.5rem, 2.8vw, 2.05rem);
+            line-height: 1.35;
+            letter-spacing: -0.005em;
+        }
+
+        .file-body h2 em {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 0.62em;
+            color: var(--phosphor);
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .file-body h3 {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--phosphor);
+            margin-top: 2em;
+        }
+
+        .file-body strong { color: var(--text); font-weight: 600; }
+
+        .hl {
+            color: var(--text);
+            background: linear-gradient(transparent 62%, rgba(255, 90, 31, 0.28) 62%);
+        }
+
+        .points {
+            list-style: none;
+            border-left: 1px solid var(--line-strong);
+        }
+
+        .points li {
+            position: relative;
+            padding: 0 0 0 22px;
+        }
+
+        .points li + li { margin-top: 1em; }
+
+        .points li::before {
+            content: "";
+            position: absolute;
+            left: -4px;
+            top: 0.75em;
+            width: 7px;
+            height: 7px;
+            background: var(--signal);
+        }
+
+        ol.points { counter-reset: p; }
+        ol.points li::before {
+            counter-increment: p;
+            content: counter(p, decimal-leading-zero);
+            left: -14px;
+            top: 0.15em;
+            width: auto;
+            height: auto;
+            padding: 0 4px;
+            background: var(--night);
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--signal);
+        }
+
+        ol.points li { padding-left: 26px; }
+
+        blockquote {
+            position: relative;
+            margin: 2em 0;
+            padding: 26px 26px 24px 26px;
+            border: 1px solid rgba(255, 90, 31, 0.4);
+            background:
+                linear-gradient(90deg, var(--signal-wash), transparent 70%);
+        }
+
+        blockquote::before {
+            content: "▌ INTERCEPT · 截获原话";
+            position: absolute;
+            top: -0.8em;
+            left: 18px;
+            padding: 0 8px;
+            background: var(--night);
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.14em;
+            color: var(--signal);
+        }
+
+        blockquote p {
+            font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+            line-height: 1.7;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .quote-pair { display: grid; gap: 22px; margin: 2em 0; }
+        .quote-pair blockquote { margin: 0; }
+
+        /* ---------- figures ---------- */
+        .fig {
+            margin: 2.2em 0;
+            padding: 20px 20px 18px;
+        }
+
+        .fig-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .fig-head b {
+            font-family: var(--cn);
+            font-size: 0.98rem;
+            letter-spacing: 0;
+            text-transform: none;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .fig-note {
+            margin-top: 14px;
+            font-size: 0.86rem;
+            line-height: 1.75;
+            color: var(--muted);
+        }
+
+        /* log timeline */
+        .log { list-style: none; }
+
+        .log li {
+            display: grid;
+            grid-template-columns: 112px 1fr;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--line);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .log li:last-child { border-bottom: 0; }
+
+        .log time {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--phosphor);
+            letter-spacing: 0.04em;
+            padding-top: 2px;
+        }
+
+        .log .flee {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 0 6px;
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            letter-spacing: 0.1em;
+            color: #0a1013;
+            background: var(--signal);
+            vertical-align: 2px;
+        }
+
+        .log .who { color: var(--text); font-weight: 600; }
+
+        /* gauge bars */
+        .gauge + .gauge { margin-top: 18px; }
+
+        .gauge-label {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--soft);
+            margin-bottom: 6px;
+        }
+
+        .gauge-label b {
+            font-family: var(--mono);
+            font-weight: 500;
+            color: var(--text);
+            white-space: nowrap;
+        }
+
+        .track {
+            position: relative;
+            height: 14px;
+            background: rgba(150, 196, 184, 0.07);
+            border: 1px solid var(--line);
+        }
+
+        .track span {
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: var(--w);
+            background: var(--phosphor);
+        }
+
+        .track span.hot { background: var(--signal); }
+
+        .js .reveal .track span {
+            width: 0;
+            transition: width 1.1s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .js .reveal.is-in .track span { width: var(--w); }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            margin: 2em 0;
+        }
+
+        .stat {
+            background: var(--night-2);
+            padding: 18px 16px 16px;
+        }
+
+        .stat-num {
+            font-family: var(--display);
+            font-size: 2.5rem;
+            line-height: 1;
+            color: var(--text);
+        }
+
+        .stat-num small {
+            font-family: var(--cn);
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-left: 4px;
+        }
+
+        .stat-num.hot { color: var(--signal); }
+
+        .stat p {
+            margin-top: 10px;
+            font-size: 0.84rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        /* calendar strip */
+        .cal {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cal div {
+            border-top: 2px solid var(--line-strong);
+            padding-top: 8px;
+            font-size: 0.86rem;
+            line-height: 1.55;
+        }
+
+        .cal div.hot { border-top-color: var(--signal); }
+
+        .cal time {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--phosphor);
+            margin-bottom: 4px;
+        }
+
+        .cal div.hot time { color: var(--signal); }
+
+        /* menu pull */
+        .menu {
+            margin: 2em 0;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 14px;
+            text-align: center;
+        }
+
+        .menu div {
+            padding: 16px 12px;
+            border: 1px solid var(--line);
+        }
+
+        .menu div b {
+            display: block;
+            font-size: 1.2rem;
+            color: var(--text);
+        }
+
+        .menu div span {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .menu div.hot { border-color: var(--signal); background: var(--signal-wash); }
+        .menu div.hot b { color: var(--signal); }
+
+        .menu i {
+            font-family: var(--display);
+            font-size: 1.5rem;
+            color: var(--muted);
+        }
+
+        /* flow */
+        .flow {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0;
+            counter-reset: f;
+        }
+
+        .flow li {
+            position: relative;
+            padding: 14px 14px 12px;
+            border: 1px solid var(--line);
+            margin-right: 18px;
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+
+        .flow li:last-child { margin-right: 0; border-color: var(--signal); background: var(--signal-wash); }
+
+        .flow li:not(:last-child)::after {
+            content: "→";
+            position: absolute;
+            right: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: var(--mono);
+            color: var(--muted);
+        }
+
+        .flow li.broken { border-style: dashed; }
+
+        .flow time {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--phosphor);
+            text-transform: uppercase;
+        }
+
+        .flow li:last-child time { color: var(--signal); }
+
+        .flow b {
+            display: block;
+            margin: 4px 0 4px;
+            color: var(--text);
+            font-size: 0.98rem;
+        }
+
+        /* verdict ledger */
+        .verdict {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+        }
+
+        .verdict > div {
+            background: var(--night-2);
+            padding: 16px 16px 18px;
+        }
+
+        .verdict h4 {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            color: var(--phosphor);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .verdict .case-b h4 { color: var(--signal); }
+
+        .verdict dl div {
+            padding: 8px 0;
+            border-bottom: 1px dashed var(--line);
+        }
+
+        .verdict dt {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            color: var(--muted);
+            text-transform: uppercase;
+        }
+
+        .verdict dd {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text);
+        }
+
+        .sentence {
+            margin-top: 14px;
+            font-family: var(--cn);
+            font-weight: 900;
+            font-size: 1.5rem;
+            line-height: 1.3;
+            color: var(--text);
+        }
+
+        .case-b .sentence {
+            display: inline-block;
+            color: var(--signal);
+            border: 2px solid var(--signal);
+            padding: 2px 12px;
+            transform: rotate(-3deg);
+        }
+
+        .contract {
+            margin-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            font-size: 0.92rem;
+            color: var(--text);
+            text-align: center;
+        }
+
+        .contract span {
+            padding: 6px 12px;
+            border: 1px solid var(--line-strong);
+        }
+
+        .contract .crack {
+            font-family: var(--mono);
+            color: var(--signal);
+            border: 0;
+            padding: 0;
+            letter-spacing: 0.1em;
+        }
+
+        /* ballot */
+        .ballot {
+            background: #ece6d6;
+            color: #1a1a17;
+            padding: 18px 18px 64px;
+            font-family: var(--mono);
+            position: relative;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+            transform: rotate(-0.6deg);
+        }
+
+        .ballot-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-bottom: 2px solid #1a1a17;
+            padding-bottom: 8px;
+        }
+
+        .ballot-head b { font-weight: 500; }
+
+        .ballot table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 8px;
+            font-size: 0.82rem;
+        }
+
+        .ballot th {
+            font-weight: 500;
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-align: center;
+            padding: 6px 4px;
+            color: #55524a;
+        }
+
+        .ballot th:first-child { text-align: left; }
+
+        .ballot td {
+            padding: 9px 4px;
+            border-top: 1px solid rgba(26, 26, 23, 0.2);
+            text-align: center;
+        }
+
+        .ballot td:first-child { text-align: left; }
+
+        .ballot td small { display: block; color: #6b675d; font-size: 0.7rem; }
+
+        .bubble {
+            display: inline-block;
+            width: 18px;
+            height: 12px;
+            border: 1.5px solid #1a1a17;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .bubble.on { background: #1a1a17; }
+
+        .ballot tr.fake td:first-child b { background: rgba(255, 90, 31, 0.25); }
+
+        .exhausted {
+            position: absolute;
+            right: 16px;
+            bottom: 18px;
+            padding: 4px 10px;
+            border: 3px solid #c8321a;
+            color: #c8321a;
+            font-weight: 500;
+            font-size: 0.86rem;
+            letter-spacing: 0.08em;
+            transform: rotate(-9deg);
+            background: rgba(236, 230, 214, 0.86);
+        }
+
+        .steps {
+            list-style: none;
+            counter-reset: s;
+            margin-top: 18px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .steps li {
+            counter-increment: s;
+            display: grid;
+            grid-template-columns: 30px 1fr;
+            gap: 10px;
+            font-size: 0.9rem;
+            line-height: 1.65;
+        }
+
+        .steps li::before {
+            content: counter(s);
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--signal);
+            border: 1px solid var(--signal);
+            height: 24px;
+            display: grid;
+            place-items: center;
+        }
+
+        /* summary */
+        .board { list-style: none; border-top: 1px solid var(--line-strong); margin-top: 1.6em; }
+
+        .board li {
+            display: grid;
+            grid-template-columns: 46px 140px 1fr;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 0.94rem;
+            line-height: 1.65;
+            align-items: baseline;
+        }
+
+        .board .no { font-family: var(--mono); color: var(--signal); font-size: 0.76rem; }
+
+        .board .place {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--phosphor);
+        }
+
+        .ask {
+            margin-top: 2em;
+            padding: 22px 22px 20px;
+            border: 1px dashed var(--phosphor);
+            background: var(--phosphor-wash);
+        }
+
+        .ask h4 {
+            font-family: var(--mono);
+            font-weight: 500;
+            font-size: 0.72rem;
+            letter-spacing: 0.14em;
+            color: var(--phosphor);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .ask p { color: var(--text); }
+
+        /* ---------- footer ---------- */
+        footer {
+            max-width: var(--wide-w);
+            margin: 0 auto;
+            padding: 0 24px 56px;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            padding-top: 18px;
+            border-top: 1px solid var(--line-strong);
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            letter-spacing: 0.06em;
+            color: var(--muted);
+        }
+
+        .footer-inner a {
+            color: var(--phosphor);
+            text-decoration: none;
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .footer-inner a:hover,
+        .footer-inner a:focus-visible { color: var(--signal); outline: none; }
+
+        /* ---------- reveal ---------- */
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .js .reveal.is-in { opacity: 1; transform: none; }
+
+        .js .hero > * { animation: rise 0.9s cubic-bezier(.2, .7, .2, 1) both; }
+        .js .hero > *:nth-child(2) { animation-delay: 0.18s; }
+
+        @keyframes rise {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: none; }
+        }
+
+        /* ---------- responsive ---------- */
+        @media (max-width: 940px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding-top: 32px;
+            }
+
+            .file {
+                grid-template-columns: 1fr;
+                padding: 48px 0 44px;
+            }
+
+            .file-meta {
+                position: static;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: flex-end;
+                gap: 6px 18px;
+                margin-bottom: 22px;
+            }
+
+            .file-no { font-size: 3.4rem; }
+
+            .file-meta dl {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0 16px;
+                margin-top: 0;
+                border-top: 0;
+            }
+
+            .file-meta dl div { border-bottom: 0; padding: 0; gap: 6px; }
+
+            .status { margin-top: 0; }
+
+            .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 0; }
+            .flow li:nth-child(2) { margin-right: 0; }
+            .flow li:nth-child(2)::after { display: none; }
+        }
+
+        @media (max-width: 640px) {
+            body { font-size: 1rem; line-height: 1.9; }
+
+            .masthead { padding: 14px 16px 0; }
+            .masthead-row .mid { display: none; }
+
+            .hero { padding: 26px 16px 30px; }
+            .dek { font-size: 1.2rem; }
+
+            .theatres { grid-template-columns: 1fr; }
+            .theatres li + li { border-left: 0; border-top: 1px solid var(--line); }
+            .theatres a {
+                display: grid;
+                grid-template-columns: 30px 92px 1fr;
+                align-items: baseline;
+                gap: 8px;
+                padding: 11px 14px;
+            }
+            .theatres .place { margin-top: 0; }
+            .theatres .what { margin-top: 0; }
+
+            article { padding: 0 16px 28px; }
+
+            .stats { grid-template-columns: 1fr; }
+            .stat { display: grid; grid-template-columns: 128px 1fr; align-items: center; gap: 12px; padding: 14px; }
+            .stat-num { font-size: 2rem; }
+            .stat p { margin-top: 0; }
+
+            .cal { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 10px; }
+
+            .menu { grid-template-columns: 1fr; gap: 6px; }
+            .menu i { transform: rotate(90deg); }
+
+            .flow { grid-template-columns: 1fr; gap: 18px; }
+            .flow li { margin-right: 0; }
+            .flow li:not(:last-child)::after {
+                display: block;
+                content: "↓";
+                right: auto;
+                left: 18px;
+                top: auto;
+                bottom: -18px;
+                transform: none;
+            }
+            .flow li:nth-child(2)::after { display: block; }
+
+            .verdict { grid-template-columns: 1fr; }
+
+            .log li { grid-template-columns: 1fr; gap: 2px; }
+
+            .ballot { padding: 14px 12px; transform: none; }
+            .ballot table { font-size: 0.74rem; }
+            .exhausted { position: static; display: inline-block; margin-top: 10px; }
+
+            .board li { grid-template-columns: 34px 1fr; gap: 4px 10px; }
+            .board li p { grid-column: 2; }
+
+            blockquote { padding: 22px 18px 18px; }
+            .fig { padding: 16px 14px; }
+
+            footer { padding: 0 16px 40px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+            }
+            .js .reveal { opacity: 1; transform: none; }
+            .js .reveal .track span { width: var(--w); }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" aria-hidden="true">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <header class="masthead">
+        <div class="masthead-row">
+            <a href="../../index.html">← Digital Garden</a>
+            <span class="mid live">Situation Room · 态势简报</span>
+            <span>第 27 期 · 2026.11.08</span>
+        </div>
+    </header>
+
+    <section class="hero" aria-labelledby="title">
+        <div>
+            <p class="kicker">Briefing 27-Y <span>/ Five Theatres, One Order</span></p>
+            <h1 id="title"><span class="five">5</span>个颠覆认知的地缘政治真相</h1>
+            <p class="dek">from fugitive politicians to the dollar’s AI lifeline <b>· 从“逃跑政客”到 AI 时代的美元命门</b></p>
+            <p class="hero-lead">油价波动、选举交锋、局部硝烟，只是浮在水面的表象。国际政治的底层逻辑绝非温情脉脉的理想主义，而是反直觉、冷酷且精算的权力博弈。下面是五个战区的态势简报。</p>
+        </div>
+
+        <div class="panel map-panel">
+            <div class="map-head">
+                <span><b>Theatre Map</b> · 五个战区</span>
+                <span>示意 · 非比例</span>
+            </div>
+            <svg class="map-svg" viewBox="0 10 720 290" role="img" aria-label="世界示意图，标出佛罗里达、深圳、霍尔木兹海峡、麦加与阿拉斯加五个事件地点">
+                <defs>
+                    <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="0.9" fill="rgba(143,227,196,0.42)"/>
+                    </pattern>
+                </defs>
+                <g class="grat">
+                    <line x1="0" y1="60" x2="720" y2="60"/><line x1="0" y1="120" x2="720" y2="120"/>
+                    <line x1="0" y1="180" x2="720" y2="180"/><line x1="0" y1="240" x2="720" y2="240"/>
+                    <line x1="120" y1="10" x2="120" y2="300"/><line x1="240" y1="10" x2="240" y2="300"/>
+                    <line x1="360" y1="10" x2="360" y2="300"/><line x1="480" y1="10" x2="480" y2="300"/>
+                    <line x1="600" y1="10" x2="600" y2="300"/>
+                </g>
+                <path class="land" d="M24,48 L36,40 L80,40 L110,40 L170,36 L200,34 L230,56 L248,76 L228,90 L220,96 L208,104 L208,110 L198,118 L200,128 L196,126 L192,120 L180,122 L166,126 L166,136 L176,144 L186,138 L184,148 L194,160 L202,164 L198,166 L188,156 L176,152 L166,148 L150,140 L140,132 L136,120 L130,120 L126,114 L118,110 L112,100 L112,86 L104,78 L90,64 L70,60 L56,62 L44,66 L30,70 L40,62 L28,56 Z M250,60 L272,60 L320,40 L324,26 L300,14 L240,16 L220,26 L250,40 Z M216,156 L236,160 L256,170 L290,190 L290,198 L282,210 L278,224 L264,232 L254,248 L244,256 L236,260 L230,270 L224,280 L222,290 L212,284 L212,270 L214,254 L218,240 L220,216 L208,208 L198,192 L200,182 L204,176 L206,166 Z M342,106 L342,94 L356,92 L350,84 L364,78 L370,74 L376,72 L378,66 L370,64 L370,56 L388,46 L400,40 L416,38 L440,46 L448,44 L470,42 L480,40 L500,34 L520,34 L560,26 L584,32 L620,38 L640,36 L680,40 L700,40 L720,44 L720,50 L704,56 L686,60 L684,68 L672,78 L672,66 L660,62 L644,62 L634,72 L642,76 L640,84 L630,94 L620,96 L618,110 L612,106 L610,100 L602,100 L604,106 L598,110 L604,118 L600,126 L594,134 L580,138 L576,138 L572,144 L578,156 L570,162 L566,160 L560,154 L560,166 L566,176 L562,174 L556,164 L556,148 L548,144 L544,136 L536,136 L532,140 L520,150 L520,160 L514,164 L506,148 L504,138 L496,134 L484,130 L474,130 L472,126 L464,124 L456,120 L460,128 L464,132 L472,132 L472.6,127.4 L474,134 L478,135 L470,146 L464,148 L450,154 L446,154 L438,138 L430,124 L428,124 L424,118 L430,114 L432,108 L420,108 L414,106 L412,100 L406,100 L406,106 L402,104 L398,96 L386,90 L384,92 L392,100 L390,104 L384,96 L378,92 L366,94 L358,106 L348,108 Z M326,150 L326,138 L334,124 L348,110 L380,106 L382,114 L400,118 L410,116 L424,118 L428,124 L436,144 L446,156 L462,156 L456,170 L440,186 L440,200 L430,220 L426,232 L414,248 L400,250 L396,240 L384,214 L388,200 L378,182 L378,172 L370,168 L344,172 L334,164 Z M350,80 L362,78 L364,74 L356,68 L354,62 L348,64 L350,70 L354,72 L350,76 Z M620,118 L624,112 L632,110 L640,108 L644,100 L642,90 L648,92 L640,98 L638,106 L632,106 L626,108 L620,112 Z M588,224 L588,248 L596,250 L608,246 L622,242 L636,250 L642,256 L654,256 L660,254 L666,238 L666,230 L652,218 L644,202 L642,214 L632,204 L620,204 L612,208 L604,216 Z M550,170 L556,172 L572,192 L564,188 Z M578,178 L594,166 L598,178 L592,188 L580,186 Z M448,230 L454,230 L460,210 L458,204 L448,214 Z M622,182 L642,186 L660,200 L642,198 Z"/>
+
+                <!-- 01 巴西利亚 → 佛罗里达 -->
+                <path class="route" d="M264,212 Q262,150 198,125"/>
+                <circle cx="264" cy="212" r="2.4" fill="#f2c14e"/>
+                <!-- 02 俄罗斯柴油 → 德州；华盛顿、莫斯科 → 深圳 -->
+                <path class="route faint" d="M435,69 Q300,10 170,120"/>
+                <path class="route faint" d="M435,69 Q520,70 588,135"/>
+                <path class="route faint" d="M206,102 Q400,-10 588,135"/>
+                <circle cx="435" cy="69" r="2.4" fill="#f2c14e"/>
+                <circle cx="206" cy="102" r="2.4" fill="#f2c14e"/>
+                <circle cx="198" cy="112" r="2" fill="#f2c14e"/>
+
+                <a href="#escape" class="pin" data-target="escape" aria-label="01 佛罗里达">
+                    <circle class="ring" cx="197" cy="125" r="5"/>
+                    <circle class="core" cx="197" cy="125" r="3.2"/>
+                    <rect class="tag" x="150" y="134" width="40" height="15"/>
+                    <text x="155" y="145">01 FL</text>
+                </a>
+                <a href="#shenzhen" class="pin" data-target="shenzhen" aria-label="02 深圳">
+                    <circle class="ring" cx="588" cy="135" r="5"/>
+                    <circle class="core" cx="588" cy="135" r="3.2"/>
+                    <rect class="tag" x="596" y="138" width="46" height="15"/>
+                    <text x="601" y="149">02 SZX</text>
+                </a>
+                <a href="#hormuz" class="pin" data-target="hormuz" aria-label="03 霍尔木兹">
+                    <circle class="ring" cx="473" cy="127" r="5"/>
+                    <circle class="core" cx="473" cy="127" r="3.2"/>
+                    <rect class="tag" x="482" y="104" width="46" height="15"/>
+                    <text x="487" y="115">03 HMZ</text>
+                </a>
+                <a href="#mecca" class="pin" data-target="mecca" aria-label="04 麦加">
+                    <circle class="ring" cx="440" cy="137" r="5"/>
+                    <circle class="core" cx="440" cy="137" r="3.2"/>
+                    <rect class="tag" x="384" y="146" width="46" height="15"/>
+                    <text x="389" y="157">04 MKK</text>
+                </a>
+                <a href="#sullivan" class="pin" data-target="sullivan" aria-label="05 阿拉斯加">
+                    <circle class="ring" cx="60" cy="58" r="5"/>
+                    <circle class="core" cx="60" cy="58" r="3.2"/>
+                    <rect class="tag" x="68" y="62" width="40" height="15"/>
+                    <text x="73" y="73">05 AK</text>
+                </a>
+            </svg>
+            <ul class="theatres">
+                <li><a href="#escape" data-target="escape"><span class="no">01</span><span class="place">Florida</span><span class="what">润美传统</span></a></li>
+                <li><a href="#shenzhen" data-target="shenzhen"><span class="no">02</span><span class="place">Shenzhen</span><span class="what">雅尔塔 2.0</span></a></li>
+                <li><a href="#hormuz" data-target="hormuz"><span class="no">03</span><span class="place">Hormuz</span><span class="what">美元命门</span></a></li>
+                <li><a href="#mecca" data-target="mecca"><span class="no">04</span><span class="place">Mecca</span><span class="what">圣地处决</span></a></li>
+                <li><a href="#sullivan" data-target="sullivan"><span class="no">05</span><span class="place">Alaska · SC</span><span class="what">真假沙利文</span></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <nav class="section-nav" aria-label="文章目录">
+        <div class="section-nav-inner">
+            <a href="#intro"><small>00</small>导言</a>
+            <a href="#escape"><small>01</small>润美传统</a>
+            <a href="#shenzhen"><small>02</small>深圳协议</a>
+            <a href="#hormuz"><small>03</small>美元命门</a>
+            <a href="#mecca"><small>04</small>圣地处决</a>
+            <a href="#sullivan"><small>05</small>真假沙利文</a>
+            <a href="#close"><small>∎</small>结语</a>
+        </div>
+    </nav>
+
+    <article>
+        <!-- 00 -->
+        <section class="file" id="intro">
+            <div class="file-meta">
+                <div class="file-no">00<small>/ 05</small></div>
+                <dl>
+                    <div><dt>类型</dt><dd>导言</dd></div>
+                    <div><dt>周期</dt><dd>康波交替</dd></div>
+                </dl>
+                <span class="status ok">Overview</span>
+            </div>
+            <div class="file-body">
+                <h2><em>Introduction · 导言</em>被表象掩盖的世界真实秩序</h2>
+                <p>在日常的新闻头条中，大众看到的往往是油价的剧烈波动、选举舞台上的唇枪舌剑，或是局部地区的硝烟与冲突。然而，这些纷繁复杂的事件往往只是浮于水面的表象。国际政治的底层逻辑绝非温情脉脉的理想主义，而是充满反直觉、冷酷且精算的权力博弈。</p>
+                <p>当下，全球正处于<span class="hl">康波周期交替与国际秩序重构的剧烈动荡期</span>。旧有的规则正在快速解体，新的大国势力范围正在划定，许多过去被奉为圭臬的政治常识正在被残酷的现实逐一破除。大国与小国、资本与霸权、理想与精算之间的张力拉满，构成了复杂的暗流。</p>
+                <p>本文将通过深入解构近期全球热点事件，剥离媒体喧嚣与政治修辞，为你提炼出 5 个最令人震惊、最具启发性的地缘政治真相，带你透视被表象掩盖的世界真实秩序。</p>
+            </div>
+        </section>
+
+        <!-- 01 -->
+        <section class="file" id="escape">
+            <div class="file-meta">
+                <div class="file-no">01<small>/ 05</small></div>
+                <dl>
+                    <div><dt>战区</dt><dd>巴西 → 佛罗里达</dd></div>
+                    <div><dt>坐标</dt><dd>27.8°N 81.7°W</dd></div>
+                </dl>
+                <span class="status">Fugitive Pattern</span>
+            </div>
+            <div class="file-body">
+                <h2><em>看点一 · The “Escape Tradition”</em>赢了是民主，输了是迫害，跑路是传统——右翼新贵们的“润美”真相</h2>
+                <p>巴西博索纳罗家族在政治失败后的系列操作，为观察全球极右翼民粹政客的真实面目提供了一个绝佳的样本。当权力在手时，他们高呼民粹口号煽动群众；而一旦在选举中落败或面临法律调查，“逃跑至美国佛罗里达州”便成了他们家族心照不宣的套路。</p>
+                <p>在大选落败后，老博索纳罗（Jair Bolsonaro）曾于 2022 年 12 月 7 日在总统府向海陆空三军司令及国防部长展示了秘筹已久的“绿黄匕首计划”，意图通过军力推翻选举结果并暗杀当选总统卢拉。当时，陆军与空军司令明确表示反对政变，唯独海军司令表现得极其狡黠，顺从地表示“只要借口找到位，也不是不能服从命令”。然而，眼看全面武装政变无望，老博索纳罗于当年 12 月 30 日迅速飞往美国佛罗里达避难。</p>
+                <p>随后的剧情更是将这出政治荒诞剧推向高潮：老博索纳罗出逃数日后，其支持者于 2023 年 1 月 8 日冲击巴西国会、最高法院和总统府。老博索纳罗在美逗留三个月，眼看卢拉政府因经济压力受挫，便企图回国重新领导反对派，结果回国即被逮捕，最终被判定策划政变罪成立，判处 27 年 3 个月监禁，现处于居家监视居住状态。</p>
+
+                <figure class="fig panel reveal">
+                    <figcaption class="fig-head"><b>一个家族的出逃日志</b><span>Flight Log</span></figcaption>
+                    <ol class="log">
+                        <li><time>2022.12.07</time><span>总统府展示“绿黄匕首计划”：陆军、空军反对，海军司令态度暧昧。</span></li>
+                        <li><time>2022.12.30</time><span><span class="who">老博索纳罗</span>政变无望，飞往佛罗里达<span class="flee">→ FL</span></span></li>
+                        <li><time>2023.01.08</time><span>支持者冲击国会、最高法院与总统府，当事人身在美国。</span></li>
+                        <li><time>约 3 个月后</time><span>企图回国重掌反对派，落地即被捕；政变罪成立，判 27 年 3 个月。</span></li>
+                        <li><time>判刑之后</time><span><span class="who">爱德华多</span>放弃众议员资格，拿到 EB-1 杰出人才绿卡<span class="flee">→ US</span></span></li>
+                        <li><time>2026</time><span><span class="who">弗拉维奥</span>被令留国、交出护照，携妻儿出逃<span class="flee">→ FL</span></span></li>
+                    </ol>
+                </figure>
+
+                <p>老博索纳罗落网后，其家族成员接连上演“跑路”戏码：</p>
+                <ul class="points">
+                    <li><strong>爱德华多·博索纳罗（Eduardo Bolsonaro）</strong>：曾任巴西众议员，长期充当家族的“国际联络人”。他与史蒂夫·班农（Steve Bannon）关系密切，班农曾于 2018 及 2019 年先后封其为国际民族主义运动在巴西乃至整个南美洲的负责人。老博索纳罗被判刑后，爱德华多果断放弃众议员资格逃往美国，甚至利用其美方关系成功拿到了专门发放给“世界顶尖人才”的 EB-1 杰出人才绿卡，讽刺至极。</li>
+                    <li><strong>弗拉维奥·博索纳罗（Flávio Bolsonaro）</strong>：2026 年再次挑起反对派大旗，在媒体面前宣称自己是“站在野蛮与民主之间的最后保障”。然而，在巴西最高法院下令要求其留国接受调查并交出护照后，这位“民主捍卫者”的第一反应同样是带着妻儿迅速逃往佛罗里达。</li>
+                </ul>
+                <p>这揭示了一个冷酷的现实：在这类极右翼民粹政客眼中，从政不过是一份获取利益与权力的职业，而“润美”才是生活的终极归宿。他们善于利用公共信任变现，在危险临头时将民粹支持者甩在身处险境的战场，把严肃的司法调查歪曲为政治迫害，以此完成规避法律制裁的终极逃逸。</p>
+                <blockquote>
+                    <p>赢了是民主，输了是迫害，跑路是传统……从政只是工作，润美才是生活。</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- 02 -->
+        <section class="file" id="shenzhen">
+            <div class="file-meta">
+                <div class="file-no">02<small>/ 05</small></div>
+                <dl>
+                    <div><dt>战区</dt><dd>华盛顿 · 莫斯科 · 深圳</dd></div>
+                    <div><dt>坐标</dt><dd>22.5°N 114.1°E</dd></div>
+                </dl>
+                <span class="status">Smoke Screen</span>
+            </div>
+            <div class="file-body">
+                <h2><em>看点二 · The Russian Diesel Smoke Screen</em>“买柴油只是幌子”——美俄私下勾连背后的“深圳协议”（雅尔塔 2.0）</h2>
+                <p>美国突然豁免制裁并宣布购买俄罗斯柴油的举动，表面上被解读为缓解国内高油价（德克萨斯州因缺油进入紧急状态，柴油飙升至每加仑 6.28 美元）以挽救选情。但从数据上看，这完全是个彻头彻尾的烟雾弹。</p>
+
+                <figure class="fig panel reveal">
+                    <figcaption class="fig-head"><b>30 万吨柴油，够美国用多久？</b><span>Fuel Gauge</span></figcaption>
+                    <div class="gauge">
+                        <div class="gauge-label"><span>美国单日柴油消耗量</span><b>≈ 370 万桶 / 天</b></div>
+                        <div class="track" role="img" aria-label="美国单日消耗约 370 万桶"><span style="--w: 100%"></span></div>
+                    </div>
+                    <div class="gauge">
+                        <div class="gauge-label"><span>俄方承诺立即供应（30 万吨）</span><b>≈ 225 万桶</b></div>
+                        <div class="track" role="img" aria-label="立即供应约 225 万桶，不足一天用量"><span class="hot" style="--w: 61%"></span></div>
+                    </div>
+                    <div class="gauge">
+                        <div class="gauge-label"><span>算上后续最高 300 万吨</span><b>仅够 9—10 天</b></div>
+                        <div class="track" role="img" aria-label="最高 300 万吨也仅够 9 至 10 天"><span class="hot" style="--w: 32%"></span></div>
+                    </div>
+                    <p class="fig-note">第三条以 30 天为满刻度。全部承诺供应量也撑不过美国十天的柴油消耗——福克斯财经直言，靠这点进口压低油价“毫无意义”。</p>
+                </figure>
+
+                <p>俄罗斯承诺立即供应的 30 万吨柴油（约 225 万桶），甚至不足以支撑美国单日约 370 万桶的柴油消耗量；即便算上后续潜在的最高 300 万吨供应，也仅够美国维持 9 至 10 天。福克斯财经媒体直言，试图靠进口这点原油压低油价“毫无意义”。</p>
+                <p>这笔交易的底层逻辑，是<span class="hl">大国正在越过当事小国，私下筹划重新划分势力范围与终结冲突的“雅尔塔协议 2.0”（又称“深圳协议”）</span>。</p>
+                <ul class="points">
+                    <li><strong>法案与豁免的荒诞剧</strong>：2026 年 9 月 18 日，美国刚刚通过《林赛·格雷厄姆制裁俄伊法案》，授权对俄能源前五大进口国施加最高 100% 的二级关税，意在威慑中印。然而在 10 月 17 日法案正式生效前夕，俄罗斯自身却成了第一个获得美方行政豁免的国家。</li>
+                    <li><strong>小国的悲惨宿命</strong>：2026 年 10 月 9 日，美方特使威特科夫与库什纳在迈阿密召开美欧和平谈判会议，本质上是在给乌克兰和欧洲代表寻找一个“体面的投降方式”。同日，美俄元首通电话达成柴油交易，并探讨了利用 11 月 18 日至 19 日在深圳举行 APEC 峰会期间举行中美俄三方高层对话、商讨国际安全架构的设想。</li>
+                </ul>
+
+                <div class="cal reveal" aria-label="关键日期">
+                    <div><time>09.18</time>制裁俄伊法案通过，二级关税最高 100%</div>
+                    <div><time>10.09</time>迈阿密和谈；美俄元首通话敲定柴油交易</div>
+                    <div><time>10.17</time>法案生效前夕，俄罗斯先拿到豁免</div>
+                    <div class="hot"><time>11.18—19</time>深圳 APEC：中美俄三方对话设想</div>
+                </div>
+
+                <p>在此背景下，乌克兰逐渐失去美方的战场情报共享、星链服务及弹药支援。尽管乌方发起剧烈反击（打死打伤俄炼油能力约 30%、袭击黑海码头及圣彼得堡），仍无法改变大国将其作为筹码的现实。这残酷地证明了国际政治的铁律：缺乏实力的政治实体如果无法坐在谈判桌前，就注定会出现在菜单之上。</p>
+
+                <div class="menu reveal" aria-label="谈判桌与菜单">
+                    <div><b>谈判桌前</b><span>At the table</span></div>
+                    <i>or</i>
+                    <div class="hot"><b>菜单之上</b><span>On the menu</span></div>
+                </div>
+
+                <blockquote>
+                    <p>没有大国崛起，别说小国尊严了，连你自己那条命都不一定属于你。</p>
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- 03 -->
+        <section class="file" id="hormuz">
+            <div class="file-meta">
+                <div class="file-no">03<small>/ 05</small></div>
+                <dl>
+                    <div><dt>战区</dt><dd>霍尔木兹 · 华尔街</dd></div>
+                    <div><dt>坐标</dt><dd>26.6°N 56.3°E</dd></div>
+                </dl>
+                <span class="status">Critical Node</span>
+            </div>
+            <div class="file-body">
+                <h2><em>看点三 · Broken Dollar Recycling</em>美元环流破裂与 AI 豪赌——伊朗如何一刀切中华尔街命门</h2>
+                <p>当前美国正面临深重的财政危机：国债规模突破 40 万亿美元，每年仅利息支出就已超越整体军费开支。要理解这一困局，必须复盘“美元环流”的历史演进。</p>
+                <p>20 世纪 70 年代，基辛格促成了“石油美元环流”——说服沙特和伊朗等产油国将石油收益重新注入美债及美方指定的地区合作中（如投资埃及以瓦解苏联阵营）。然而，奥巴马时期的页岩油技术革命使美国自身转型为化石能源出口国，这一举措虽然打破了中东对美能源要挟，却也从物理层面破坏了原有的石油美元环流机制；加之美方单方面退出伊朗核协议，资本吸纳的旧管道被彻底砸碎。</p>
+
+                <figure class="fig panel reveal">
+                    <figcaption class="fig-head"><b>美元环流的三次换管</b><span>Recycling Pipeline</span></figcaption>
+                    <ol class="flow">
+                        <li><time>1970s</time><b>石油美元环流</b>沙特、伊朗把石油收益注回美债与美方指定的地区合作</li>
+                        <li class="broken"><time>Obama era</time><b>旧管道砸碎</b>页岩油革命让美国成为出口国，再加退出伊核协议</li>
+                        <li><time>Now</time><b>AI 全押</b>科技巨头年资本支出 8200 多亿美元，海湾主权基金承诺约 3000 亿美元</li>
+                        <li><time>Target</time><b>伊朗的靶点</b>数据中心、海底光缆、AI 基础设施</li>
+                    </ol>
+                </figure>
+
+                <p>为了构建全新的全球资本吸纳引擎与技术霸权，美国选择向人工智能（AI）领域“全押（All-in）”。美国科技巨头每年在 AI 领域的资本支出高达 8200 多亿美元，海湾主权基金（如沙特 PIF、阿联酋 Mubadala、MGX）也承诺向美国 AI 及中东数据中心注入约 3000 亿美元。美股 AI 资产叙事成为了华尔街最新的核心命脉。</p>
+                <p>特朗普曾在共和党大会上公开发表了一段针对伊朗的冷酷真言：“如果有核弹，我会打电话给最高领袖先生说：‘先生您好，能为您做点什么？’但如果没有核弹，我就会把你炸得稀巴烂。”这段话彻底点醒了伊朗——威慑力的关键在于切中敌人的根本痛点。</p>
+                <p>面对美军的军事压境，伊朗放弃了传统的物理对抗模式（打美军军舰或封锁海峡），而是由最高国家安全委员会秘书雷扎伊发出致命威胁：<span class="hl">一旦开战，伊朗将打击中东地区的数据中心、海底光缆和人工智能基础设施</span>。</p>
+
+                <div class="stats reveal">
+                    <div class="stat"><div class="stat-num">40<small>万亿美元</small></div><p>美国国债规模，年利息已超整体军费</p></div>
+                    <div class="stat"><div class="stat-num">99<small>%</small></div><p>跨国数据经由海底光缆传输</p></div>
+                    <div class="stat"><div class="stat-num hot">−9<small>%</small></div><p>伊朗表态后 SpaceX 估值预期单日暴跌</p></div>
+                </div>
+
+                <p>这一战略直击华尔街的资本命门：</p>
+                <ol class="points">
+                    <li><strong>物理咽喉的脆弱性</strong>：海底光缆承载了全球 99% 的跨国数据传输，霍尔木兹海峡附近的电缆与中东算力节点是欧亚数据流动的枢纽。</li>
+                    <li><strong>资本叙事的瓦解</strong>：当数据中心必须部署防空导弹时，“AI 是全球最安全资产”的金融叙事便荡然无存。伊朗表态后，SpaceX 估值预期受创，单日暴跌 9%，纳斯达克创下数月来最差单日表现。</li>
+                </ol>
+                <p>钱只有流动起来才叫做资本，趴在一个地方只是资金。伊朗这一刀不砍军舰、不打油田，专砍华尔街精心构建的 AI 资产泡沫，展现了现代地缘博弈从物理杀伤向金融与技术叙事根基的精准打击。</p>
+                <div class="quote-pair">
+                    <blockquote>
+                        <p>钱只有流动起来才叫做资本，趴在一个地方叫做资金。</p>
+                    </blockquote>
+                    <blockquote>
+                        <p>有核弹我叫你先生，没核弹我把你炸得稀巴烂。</p>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 -->
+        <section class="file" id="mecca">
+            <div class="file-meta">
+                <div class="file-no">04<small>/ 05</small></div>
+                <dl>
+                    <div><dt>战区</dt><dd>麦加 · 也门边境</dd></div>
+                    <div><dt>坐标</dt><dd>21.4°N 39.8°E</dd></div>
+                </dl>
+                <span class="status">Legitimacy Stress</span>
+            </div>
+            <div class="file-body">
+                <h2><em>看点四 · Domestic PR Amid Military Impasse</em>打不赢胡塞就砍“软柿子”——沙特圣地处决案背后的公关与合法性焦虑</h2>
+                <p>2026 年 10 月，沙特阿拉伯在麦加一座清真寺内处决了两名犯下“淫秽行为”的孟加拉国劳工。这一极刑判决背后，暴露出沙特王室深层的合法性焦虑与极其双标的司法审判逻辑。</p>
+                <p>根据伊斯兰教法体系，刑罚分为“固定刑（Hudud）”与“酌定刑（Ta'zir）”。固定刑针对通奸等特定罪行有着近乎苛刻的法理举证要求——必须有 4 名公正、理智的成年穆斯林男子亲眼目睹全过程（即完整的插入行为），仅凭视频、照片或拥抱亲吻均不能定罪。</p>
+                <p>这种司法双标在历史对比中极其悬殊：</p>
+
+                <figure class="fig panel reveal">
+                    <figcaption class="fig-head"><b>同类行为，两份判决</b><span>Verdict Ledger</span></figcaption>
+                    <div class="verdict">
+                        <div class="case-a">
+                            <h4>Case 2012 · 本国公民</h4>
+                            <dl>
+                                <div><dt>当事人</dt><dd>52 岁沙特男子与 24 岁女子</dd></div>
+                                <div><dt>地点</dt><dd>麦地那先知清真寺</dd></div>
+                                <div><dt>举证</dt><dd>未达“4 名公正理智成年穆斯林男子现场目击”标准</dd></div>
+                                <div><dt>适用</dt><dd>酌定刑</dd></div>
+                            </dl>
+                            <p class="sentence">监禁 4 个月<br>鞭刑 70 下</p>
+                        </div>
+                        <div class="case-b">
+                            <h4>Case 2026 · 孟加拉劳工</h4>
+                            <dl>
+                                <div><dt>当事人</dt><dd>两名缺乏外交保护的外籍劳工</dd></div>
+                                <div><dt>地点</dt><dd>麦加一座清真寺</dd></div>
+                                <div><dt>时间线</dt><dd>2023 年 8 月被捕，拖至 2026 年 10 月</dd></div>
+                                <div><dt>适用</dt><dd>酌定刑自由裁量的最重上限</dd></div>
+                            </dl>
+                            <p class="sentence">死刑</p>
+                        </div>
+                    </div>
+                </figure>
+
+                <ul class="points">
+                    <li><strong>2012 年沙特本国公民案</strong>：一名 52 岁沙特男子与一名 24 岁女子在麦地那先知清真寺犯下同类行为被捕。因举证无法达到“4 名公正理智成年穆斯林男子现场目击”的固定刑法定标准，法官最终适用自由裁量权极大的“酌定刑”，仅判处两人监禁 4 个月及鞭刑 70 下。</li>
+                    <li><strong>2026 年孟加拉劳工案</strong>：两名外劳早在 2023 年 8 月即被捕，却被拖延至 2026 年 10 月被极速适用“酌定刑”自由裁量权的最重上限，直接处以死刑。</li>
+                </ul>
+                <p>这种极端的量刑落差，根源在于沙特统治契约的失效危机。自 1986 年法赫德国王改制确立“两圣地监护人”头衔以来，沙特王室的统治合法性便建立在“提供安全与富裕，换取民众政治顺从”的基础上。然而，面对也门胡塞武装（Ansar Allah）持续十年的顽强对抗，沙特领土、机场及石油设施屡遭导弹与无人机袭击，甚至弹落圣地周边，“安全监护人”的形象严重受损，“2030 愿景”等巨型项目也因外部安全隐患而屡屡受阻。</p>
+
+                <div class="contract reveal" aria-label="统治契约">
+                    <span>提供安全与富裕</span>
+                    <span class="crack">⇄ ╳ ⇄</span>
+                    <span>换取政治顺从</span>
+                </div>
+
+                <p>在军事上无法实质剿灭胡塞武装、内部社会契约承压的困局下，沙特急需一场内部政治表演。通过对缺乏外交保护的外籍弱势群体施以最高规格的“酌定刑”死刑，沙特王室以极低成本向全球穆斯林世界表演了其严守圣地纯洁性的决心。这种<span class="hl">“外部受挫、内部立威”</span>的做法，揭示了政治实体在安全契约破裂时利用弱势群体进行危机公关的冷酷本质。</p>
+            </div>
+        </section>
+
+        <!-- 05 -->
+        <section class="file" id="sullivan">
+            <div class="file-meta">
+                <div class="file-no">05<small>/ 05</small></div>
+                <dl>
+                    <div><dt>战区</dt><dd>阿拉斯加 · 南卡</dd></div>
+                    <div><dt>坐标</dt><dd>61.2°N 149.9°W</dd></div>
+                </dl>
+                <span class="status">Ballot Engineering</span>
+            </div>
+            <div class="file-body">
+                <h2><em>看点五 · The Absurdities of Democratic Machinery</em>美式民主的现实荒诞剧——“真假沙利文”与宗族政治</h2>
+                <p>在美国中期选举的激烈对峙中，两起发生在地方选区的标志性事件彻底撕开了美式民主理想主义的面纱，露出了选举工程精细操弄与门阀政治接班的荒诞底色。</p>
+                <p>在选情胶着的阿拉斯加州参议院席位争夺战中，民主党为了击败现任共和党参议员丹·沙利文（DS Sullivan），精心设计了一套针对该州“排序复选制（Ranked-Choice Voting）”的选举套路。排序复选制规定，选民按偏好排列候选人；若无人首轮得票过半，则淘汰末位者并将选票按第二偏好重新分配。</p>
+                <p>民主党翻遍全州选民名册，在偏远渔村找到了一位同名同姓的退休老教师——小丹尼尔·J·沙利文（Daniel J. Sullivan）。民主党说服这位铁杆民主党老教师临时将党籍改为共和党参选，并完全照搬现任参议员的宣传标识、口号与视觉配色，甚至特意将其选票中间名缩写改为“S.”。</p>
+
+                <figure class="fig reveal">
+                    <div class="ballot" role="img" aria-label="排序复选制选票示意：选民只把假沙利文排在第一位，没有填写第二、第三选择，该票在假沙利文被淘汰后作废">
+                        <div class="ballot-head"><b>Alaska · U.S. Senate</b><span>Rank up to 3</span></div>
+                        <table>
+                            <thead>
+                                <tr><th>候选人</th><th>第 1</th><th>第 2</th><th>第 3</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td><b>SULLIVAN, DAN S.</b><small>共和党 · 现任</small></td><td><span class="bubble"></span></td><td><span class="bubble"></span></td><td><span class="bubble"></span></td></tr>
+                                <tr class="fake"><td><b>SULLIVAN, DANIEL S.</b><small>共和党 · 退休老教师</small></td><td><span class="bubble on"></span></td><td><span class="bubble"></span></td><td><span class="bubble"></span></td></tr>
+                                <tr><td><b>民主党候选人</b><small>民主党</small></td><td><span class="bubble"></span></td><td><span class="bubble"></span></td><td><span class="bubble"></span></td></tr>
+                            </tbody>
+                        </table>
+                        <span class="exhausted">VOTE EXHAUSTED · 作废</span>
+                    </div>
+                    <ol class="steps">
+                        <li>共和党铁杆选民看到熟悉的名字与配色，把假沙利文填为第一选择，后两栏留空。</li>
+                        <li>假沙利文在早期轮次被淘汰，这张票没有后续偏好可以转移。</li>
+                        <li>触发“选票作废（Vote Exhaustion）”，共和党的基数选票在计票中被物理消灭。</li>
+                    </ol>
+                </figure>
+
+                <p>此举旨在精确诱导共和党铁杆选民误选假沙利文作为第一选择，且不再填写第二、第三选择。当假沙利文在早期轮次被淘汰时，由于缺乏后续偏好选项，这些选票将直接触发“选票作废（Vote Exhaustion）”规则，从而在物理上消灭共和党的基数选票。联邦执法部门随后干预调查，该老教师则在投票前夕从机场搭乘飞机神秘失踪。</p>
+
+                <h3>South Carolina · 宗族接班</h3>
+                <p>而在南卡罗来纳州，资深共和党参议员林赛·格雷厄姆（Lindsey Graham）因主动脉剥离突然去世后，共和党在缺乏梯队建制的情况下，直接推举格雷厄姆的妹妹接盘参选。这位妹妹本是验光师出身，此前毫无政治履历，仅凭借家族背景便被任命为掌控 9000 万美元预算的南卡盲人委员会主任。面对民主党推出的儿科医生候选人，两党为这一席位狂砸数千万美元公关资金，将一场严肃的公职选举退化为宗族门阀的遗产继承战。</p>
+                <p>这两个案例表明，美式民主在人口结构剧变（白人人口比例下降、锈带工人焦虑）与政治极化加剧的背景下正加速衰退。<span class="hl">选举已经高度脱离了政策辩论与公共利益</span>，退化为精密的选举工程套路、宗族门阀政治以及对身份焦虑的无休止贩卖。</p>
+            </div>
+        </section>
+
+        <!-- close -->
+        <section class="file" id="close">
+            <div class="file-meta">
+                <div class="file-no">Fin.</div>
+                <dl>
+                    <div><dt>类型</dt><dd>结语</dd></div>
+                    <div><dt>目标</dt><dd>个人确定性</dd></div>
+                </dl>
+                <span class="status ok">Debrief</span>
+            </div>
+            <div class="file-body">
+                <h2><em>Conclusion · 结语</em>大变局时代的个人确定性寻找</h2>
+                <p>纵观上述五个看点，贯穿其中的底层逻辑清晰可见：世界正处于康波周期交替与国际秩序重构的剧烈动荡期。旧有的秩序平衡已被打破，无一不彰显出这个时代新旧规则交替时的阵痛：</p>
+                <ol class="board reveal">
+                    <li><span class="no">01</span><span class="place">Florida</span><p>政客将从政当工作、润美当生活的利己避险；</p></li>
+                    <li><span class="no">02</span><span class="place">Shenzhen</span><p>大国越过小国私下划定势力范围的冷酷密谋；</p></li>
+                    <li><span class="no">03</span><span class="place">Hormuz</span><p>美式霸权全押 AI 背后的资本脆弱性；</p></li>
+                    <li><span class="no">04</span><span class="place">Mecca</span><p>政治实体利用司法审判进行的危机公关；</p></li>
+                    <li><span class="no">05</span><span class="place">Alaska · SC</span><p>美式选举工程的衰退。</p></li>
+                </ol>
+                <p>面对纷繁复杂的宏大叙事与地缘巨浪，普通人最容易陷入立场先行的情绪裹挟，或产生被动承受命运后果的无力感。打破困局的关键，在于提升个人的认知格局。历史反复证明，<span class="hl">个人的认知格局越大，眼前的困惑与迷茫就越少</span>；唯有看清大国博弈与资产演进的底层框架，才能在秩序重构的萧条期或转变期中，识别系统性风险，从而找到属于个人的确定性立足点。</p>
+                <div class="ask">
+                    <h4>思考与互动 · Open Question</h4>
+                    <p>面对全球大国秩序重组与金融、技术叙事的剧烈重构，你认为普通人在未来的 3 到 5 年中，应当如何调整自己的资产配置与认知框架，才能在时代的巨浪中立于不败之地？欢迎在评论区留下你的深度见解。</p>
+                </div>
+            </div>
+        </section>
+    </article>
+
+    <footer>
+        <div class="footer-inner">
+            <a href="../../index.html">← 返回 Digital Garden</a>
+            <span>第 27 期 · 5 个颠覆认知的地缘政治真相</span>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            var fill = document.getElementById("progressFill");
+            var links = Array.prototype.slice.call(document.querySelectorAll(".section-nav a"));
+            var sections = links.map(function (a) {
+                return document.querySelector(a.getAttribute("href"));
+            }).filter(Boolean);
+            var activeIdx = -1;
+
+            function onScroll() {
+                var doc = document.documentElement;
+                var max = doc.scrollHeight - doc.clientHeight;
+                var p = max > 0 ? doc.scrollTop / max : 0;
+                fill.style.transform = "scaleX(" + p + ")";
+
+                var cutoff = Math.max(120, window.innerHeight * 0.35);
+                var active = -1;
+                for (var j = 0; j < sections.length; j++) {
+                    if (sections[j].getBoundingClientRect().top <= cutoff) active = j;
+                }
+                if (p > 0.985) active = sections.length - 1;
+                if (active === activeIdx) return;
+                activeIdx = active;
+                links.forEach(function (a, idx) {
+                    a.classList.toggle("is-active", idx === active);
+                });
+                if (active >= 0) {
+                    var nav = links[active].parentNode;
+                    var link = links[active];
+                    nav.scrollTo({ left: link.offsetLeft - nav.clientWidth / 2 + link.clientWidth / 2, behavior: "smooth" });
+                }
+            }
+
+            window.addEventListener("scroll", onScroll, { passive: true });
+            onScroll();
+
+            // 地图图钉与战区列表联动高亮
+            var linked = document.querySelectorAll("[data-target]");
+            function hot(target, on) {
+                linked.forEach(function (el) {
+                    if (el.getAttribute("data-target") === target) el.classList.toggle("is-hot", on);
+                });
+            }
+            linked.forEach(function (el) {
+                var t = el.getAttribute("data-target");
+                el.addEventListener("mouseenter", function () { hot(t, true); });
+                el.addEventListener("mouseleave", function () { hot(t, false); });
+                el.addEventListener("focus", function () { hot(t, true); });
+                el.addEventListener("blur", function () { hot(t, false); });
+            });
+
+            var reveals = document.querySelectorAll(".reveal");
+            if (!("IntersectionObserver" in window)) {
+                reveals.forEach(function (el) { el.classList.add("is-in"); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-in");
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: "0px 0px -10% 0px", threshold: 0.12 });
+            reveals.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
+</body>
+</html>
